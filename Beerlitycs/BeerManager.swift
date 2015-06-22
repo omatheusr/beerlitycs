@@ -8,8 +8,8 @@ import Parse
 
 class BeerManager: NSObject {
     var objectId: String!
-    var user: PFUser!
-    var location: PFGeoPoint!
+    var name: String!
+    var alcoholContent: String!
     var createdAt: NSDate!
     var date: String!
     var hour: String!
@@ -20,85 +20,60 @@ class BeerManager: NSObject {
     
     init(dictionary : PFObject) {
         super.init()
-        
-        //        self.date = formatDate(dictionary.createdAt!, format: "dd/MM/yyyy")
-        //        self.hour = formatDate(dictionary.createdAt!, format: "HH:mm")
-        self.location = dictionary["location"] as! PFGeoPoint
+
+        self.name = dictionary["name"] as! String
+        self.alcoholContent = dictionary["alcoholContent"] as! String
         
         self.date = formatDate(dictionary["localDate"] as! NSDate, format: "dd/MM/yyyy")
         self.hour = formatDate(dictionary["localDate"] as! NSDate, format: "HH:mm")
     }
     
-    func newPoop(userID: String, callback: (error: NSError?) -> ()) {
-        PFGeoPoint.geoPointForCurrentLocationInBackground {
-            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
-            if error == nil {
-                var nPoop = PFObject(className:"Poop")
-                //                nPoop["user"] = PFUser.objectWithoutDataWithObjectId(userID)
-                nPoop["location"] = geoPoint
-                nPoop["localDate"] = NSDate()
-                
-                
-                nPoop.pinInBackgroundWithBlock {
-                    (success: Bool, error: NSError?) -> Void in
-                    if (success) {
-                        callback(error: nil)
-                    } else {
-                        callback(error: error)
-                    }
-                }
-                //
-                //                nPoop.saveInBackgroundWithBlock {
-                //                    (success: Bool, error: NSError?) -> Void in
-                //                    if (success) {
-                //                        callback(error: nil)
-                //                    } else {
-                //                        callback(error: error)
-                //                    }
-                //                }
+    func newBeer(beerControl: BeerManager, callback: (error: NSError?) -> ()) {
+        var query = PFObject(className:"Cup")
+
+        query["name"] = beerControl.name
+        query["alcoholcontent"] = beerControl.alcoholContent
+        query["localDate"] = NSDate()
+
+        //                query.saveInBackgroundWithBlock { Salvar no Servidor
+        query.pinInBackgroundWithBlock {
+            (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                callback(error: nil)
             } else {
-                println("no geopoint");
+                callback(error: error)
             }
         }
     }
     
-    func getPoops(userID: String, callback: (poopResult: NSArray?, error: NSError?) -> ()) {
-        var query = PFQuery(className:"Poop")
-        var saveQuery = PFObject(className:"Poop")
-        //        saveQuery.un
+    func getBeers(callback: (allBeers: NSArray?, error: NSError?) -> ()) {
+        var query = PFQuery(className:"Beer")
         query.fromLocalDatastore()
         
-        //        query.whereKey("user", equalTo:PFUser.objectWithoutDataWithObjectId(userID))
-        
-        var poopResultar: NSArray!
+        var auxBeers: NSArray!
         
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in
             if error == nil {
-                poopResultar = objects!
-                callback(poopResult: poopResultar, error: nil)
-                //                println(objects!)
-                //                PFObject.pinAllInBackground(objects)
-                //                saveQuery.saveEventually()
+                auxBeers = objects!
+                callback(allBeers: auxBeers, error: nil)
             } else {
-                // Log details of the failure
                 println("Error: \(error) \(error!.userInfo!)")
-                callback(poopResult: nil, error: error!)
+                callback(allBeers: nil, error: error!)
             }
         }
     }
     
-    func getPoopsForGraph(userID: String, callback: (poopPoints: [Int]?, error: NSError?) ->()) {
+    func getBeersForGraph(callback: (beerPoints: [Int]?, error: NSError?) ->()) {
         let cal = NSCalendar.currentCalendar()
         var date = cal.startOfDayForDate(NSDate())
         
         var days = [Int]()
         var dateweek = cal.dateByAddingUnit(.CalendarUnitDay, value: -6, toDate: date, options: nil)!
         
-        var query = PFQuery(className:"Poop")
+        var query = PFQuery(className:"Beer")
         query.fromLocalDatastore()
-        
-        //        query.whereKey("user", equalTo:PFUser.objectWithoutDataWithObjectId(userID))
+
         query.whereKey("localDate", greaterThan: dateweek)
         
         var graphPoints:[Int] = []
@@ -109,7 +84,7 @@ class BeerManager: NSObject {
                 for i in 0...6 {
                     let day = cal.component(.CalendarUnitDay, fromDate: date)
                     days.append(day)
-                    
+
                     date = cal.dateByAddingUnit(.CalendarUnitDay, value: -1, toDate: date, options: nil)!
                     var teste = false
                     var aux = 0
@@ -132,23 +107,21 @@ class BeerManager: NSObject {
                             } else {
                                 if(teste == false) {
                                     teste = true
-                                    
                                     //                                println(day)
                                 } else {
-                                    
                                 }
                             }
                         }
-                        
+
                         graphPoints.insert(aux, atIndex: i)
                     }
                 }
-                
-                callback(poopPoints: graphPoints.reverse(), error: nil)
+
+                callback(beerPoints: graphPoints.reverse(), error: nil)
             } else {
                 // Log details of the failure
                 println("Error: \(error) \(error!.userInfo!)")
-                callback(poopPoints: nil, error: error!)
+                callback(beerPoints: nil, error: error!)
             }
         }
     }
