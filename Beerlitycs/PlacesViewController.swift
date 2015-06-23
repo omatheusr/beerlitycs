@@ -11,6 +11,9 @@ import Parse
 
 class PlacesViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    var places = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +27,8 @@ class PlacesViewController: UIViewController {
                 )
                 
                 let placeControl = PlaceManager()
-                let venues = placeControl.requestPlacesWithLocation(location)
+                self.places = placeControl.requestPlacesWithLocation(location)
+                self.updateTableView()
             }
         }
     }
@@ -33,7 +37,32 @@ class PlacesViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    func updateTableView() {
+        self.tableView.reloadData()
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return places.count
+    }
+    func tableView(tableView: UITableView, numberOfSectionsInTableView section: Int) -> Int {
+        return 1
+    }
     
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("placeCell") as! PlacesTableViewCell
+        
+        //        println(poops[indexPath.row]["name"])
+        
+        cell.placeName.text = places[indexPath.row]["name"] as? String
+        
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
 
     /*
     // MARK: - Navigation

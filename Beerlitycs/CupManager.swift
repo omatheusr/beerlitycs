@@ -11,7 +11,9 @@ import Parse
 
 class CupManager: NSObject {
     var objectId: String!
-    var ml: String!
+    var name: String!
+    var size: String!
+    var icon: String!
     var createdAt: NSDate!
     var date: String!
     var hour: String!
@@ -23,13 +25,17 @@ class CupManager: NSObject {
     init(dictionary : PFObject) {
         super.init()
         
-        self.ml = dictionary["ml"] as! String
+        self.name = dictionary["name"] as! String
+        self.size = dictionary["size"] as! String
+        self.icon = dictionary["icon"] as! String
     }
     
     func newCup(cupControl: CupManager, callback: (error: NSError?) -> ()) {
         var query = PFObject(className:"Cup")
         
-        query["ml"] = cupControl.ml
+        query["name"] = cupControl.name
+        query["size"] = cupControl.size
+        query["icon"] = cupControl.icon
         
         //                query.saveInBackgroundWithBlock { Salvar no Servidor
         query.pinInBackgroundWithBlock {

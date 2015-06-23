@@ -71,7 +71,7 @@ class PlaceManager: NSObject {
     }
 
     func requestPlacesWithLocation(location: CLLocation) -> [AnyObject] {
-        let requestString = "\(API_URL)venues/search?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&v=20130815&ll=\(location.coordinate.latitude),\(location.coordinate.longitude)"
+        let requestString = "\(API_URL)venues/search?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&categoryId=4d4b7105d754a06376d81259&v=20130815&ll=\(location.coordinate.latitude),\(location.coordinate.longitude)"
         
         if let url = NSURL(string: requestString) {
             let request = NSURLRequest(URL: url)
