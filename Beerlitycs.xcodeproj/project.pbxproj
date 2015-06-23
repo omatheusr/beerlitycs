@@ -32,6 +32,9 @@
 		BFF6D0FB1B385231000984C4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF6D0FA1B385231000984C4 /* Social.framework */; };
 		BFF6D0FD1B387DEF000984C4 /* CupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6D0FC1B387DEF000984C4 /* CupManager.swift */; };
 		BFF6D0FF1B388758000984C4 /* PlaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6D0FE1B388758000984C4 /* PlaceManager.swift */; };
+		BFF6D1011B398655000984C4 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6D1001B398655000984C4 /* PlacesViewController.swift */; };
+		BFF6D1031B398D5E000984C4 /* RankingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6D1021B398D5E000984C4 /* RankingManager.swift */; };
+		BFF6D1051B398FB8000984C4 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6D1041B398FB8000984C4 /* UserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +77,9 @@
 		BFF6D0FA1B385231000984C4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		BFF6D0FC1B387DEF000984C4 /* CupManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CupManager.swift; sourceTree = "<group>"; };
 		BFF6D0FE1B388758000984C4 /* PlaceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceManager.swift; sourceTree = "<group>"; };
+		BFF6D1001B398655000984C4 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
+		BFF6D1021B398D5E000984C4 /* RankingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingManager.swift; sourceTree = "<group>"; };
+		BFF6D1041B398FB8000984C4 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +177,7 @@
 			children = (
 				BFF6D0D71B351511000984C4 /* CheckInViewController.swift */,
 				BFF6D0D91B3520D3000984C4 /* RankingViewController.swift */,
+				BFF6D1001B398655000984C4 /* PlacesViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -187,9 +194,11 @@
 		BFF6D0D61B35146B000984C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BFF6D1041B398FB8000984C4 /* UserManager.swift */,
 				BFF6D0DB1B384D55000984C4 /* BeerManager.swift */,
 				BFF6D0FC1B387DEF000984C4 /* CupManager.swift */,
 				BFF6D0FE1B388758000984C4 /* PlaceManager.swift */,
+				BFF6D1021B398D5E000984C4 /* RankingManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -317,9 +326,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFF6D1051B398FB8000984C4 /* UserManager.swift in Sources */,
 				BFF6D0D81B351511000984C4 /* CheckInViewController.swift in Sources */,
+				BFF6D1011B398655000984C4 /* PlacesViewController.swift in Sources */,
 				BFF6D0DC1B384D55000984C4 /* BeerManager.swift in Sources */,
 				BFF6D0B51B351402000984C4 /* AppDelegate.swift in Sources */,
+				BFF6D1031B398D5E000984C4 /* RankingManager.swift in Sources */,
 				BFF6D0DA1B3520D3000984C4 /* RankingViewController.swift in Sources */,
 				BFF6D0FD1B387DEF000984C4 /* CupManager.swift in Sources */,
 				BFF6D0FF1B388758000984C4 /* PlaceManager.swift in Sources */,
