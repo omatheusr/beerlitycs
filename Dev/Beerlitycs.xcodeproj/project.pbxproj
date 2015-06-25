@@ -12,6 +12,8 @@
 		A058D5D91B3C2BB30005140C /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A058D5D61B3C2BB30005140C /* FBSDKShareKit.framework */; };
 		A058D5DB1B3C2BC10005140C /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A058D5DA1B3C2BC10005140C /* ParseFacebookUtilsV4.framework */; };
 		BF7B61FA1B39E00A00336C4F /* PlacesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */; };
+		BFF40ECE1B3C62D30004BDDC /* BeersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */; };
+		BFF40ED01B3C62EB0004BDDC /* BeersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */; };
 		BFF4F1A61B3C293100AD2F83 /* DrinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF4F1A51B3C293100AD2F83 /* DrinkManager.swift */; };
 		BFF6D0B51B351402000984C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6D0B41B351402000984C4 /* AppDelegate.swift */; };
 		BFF6D0BA1B351402000984C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFF6D0B81B351402000984C4 /* Main.storyboard */; };
@@ -60,6 +62,8 @@
 		A058D5D61B3C2BB30005140C /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		A058D5DA1B3C2BC10005140C /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTableViewCell.swift; sourceTree = "<group>"; };
+		BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeersViewController.swift; sourceTree = "<group>"; };
+		BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeersTableViewCell.swift; sourceTree = "<group>"; };
 		BFF4F1A51B3C293100AD2F83 /* DrinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkManager.swift; sourceTree = "<group>"; };
 		BFF6D0AF1B351402000984C4 /* Beerlitycs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beerlitycs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF6D0B31B351402000984C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -197,6 +201,8 @@
 				BFF6D0D91B3520D3000984C4 /* RankingViewController.swift */,
 				BFF6D1001B398655000984C4 /* PlacesViewController.swift */,
 				BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */,
+				BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */,
+				BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFF6D1051B398FB8000984C4 /* UserManager.swift in Sources */,
+				BFF40ED01B3C62EB0004BDDC /* BeersTableViewCell.swift in Sources */,
 				BFF4F1A61B3C293100AD2F83 /* DrinkManager.swift in Sources */,
 				BFF6D0D81B351511000984C4 /* CheckInViewController.swift in Sources */,
 				BFF6D1011B398655000984C4 /* PlacesViewController.swift in Sources */,
@@ -358,6 +365,7 @@
 				BFF6D0B51B351402000984C4 /* AppDelegate.swift in Sources */,
 				BF7B61FA1B39E00A00336C4F /* PlacesTableViewCell.swift in Sources */,
 				BFF6D1031B398D5E000984C4 /* RankingManager.swift in Sources */,
+				BFF40ECE1B3C62D30004BDDC /* BeersViewController.swift in Sources */,
 				BFF6D0DA1B3520D3000984C4 /* RankingViewController.swift in Sources */,
 				BFF6D0FD1B387DEF000984C4 /* CupManager.swift in Sources */,
 				BFF6D0FF1B388758000984C4 /* PlaceManager.swift in Sources */,

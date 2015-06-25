@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -122,7 +122,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Be-7p-Avl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2084" y="-331"/>
+            <point key="canvasLocation" x="2032" y="1181"/>
         </scene>
         <!--Cadastrar cerveja-->
         <scene sceneID="ZhV-w2-DiK">
@@ -187,9 +187,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSs-fW-WvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2797" y="-331"/>
+            <point key="canvasLocation" x="2745" y="1181"/>
         </scene>
-        <!--Check In View Controller-->
+        <!--Check In-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CheckInViewController" customModule="Beerlitycs" customModuleProvider="target" sceneMemberID="viewController">
@@ -202,34 +202,87 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTt-NJ-Hi4">
-                                <rect key="frame" x="277" y="285" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <rect key="frame" x="267" y="285" width="66" height="30"/>
+                                <state key="normal" title="Ver locais">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="si3-JR-Y5U" kind="show" id="Cks-Jc-kjj"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7i-Uu-lhW">
+                                <rect key="frame" x="259" y="323" width="83" height="30"/>
+                                <state key="normal" title="Ver cervejas">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bFa-5C-Akj" kind="show" id="oKW-0R-7X3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="cTt-NJ-Hi4" secondAttribute="centerX" id="AeH-4R-ec7"/>
+                            <constraint firstItem="n7i-Uu-lhW" firstAttribute="centerX" secondItem="cTt-NJ-Hi4" secondAttribute="centerX" id="Fvf-oj-zWb"/>
+                            <constraint firstItem="n7i-Uu-lhW" firstAttribute="top" secondItem="cTt-NJ-Hi4" secondAttribute="bottom" constant="8" id="GmM-oI-BuU"/>
                             <constraint firstAttribute="centerY" secondItem="cTt-NJ-Hi4" secondAttribute="centerY" id="Vev-K2-epC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="zkM-fB-dHi">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="1yx-SK-HBP">
-                            <connections>
-                                <segue destination="5wX-Yr-rAK" kind="show" id="0cc-9L-7lq"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Check In" id="zkM-fB-dHi"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2084" y="387"/>
+            <point key="canvasLocation" x="1272" y="1931"/>
         </scene>
-        <!--Bares-->
+        <!--Escolha a cerveja-->
+        <scene sceneID="KjS-bz-RPk">
+            <objects>
+                <viewController id="bFa-5C-Akj" customClass="BeersViewController" customModule="Beerlitycs" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DjV-LK-M2R"/>
+                        <viewControllerLayoutGuide type="bottom" id="nOg-UJ-qPb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AYo-Br-9aT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2lX-xp-QDe">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="beerCell" id="KX2-oh-mWJ" customClass="BeersTableViewCell" customModule="Beerlitycs" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KX2-oh-mWJ" id="ajK-PL-fTo">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGq-Lf-axk">
+                                                    <rect key="frame" x="8" y="11" width="442" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2lX-xp-QDe" firstAttribute="leading" secondItem="AYo-Br-9aT" secondAttribute="leading" id="9wG-hY-NLE"/>
+                            <constraint firstItem="2lX-xp-QDe" firstAttribute="top" secondItem="AYo-Br-9aT" secondAttribute="top" id="anj-c4-jW6"/>
+                            <constraint firstItem="nOg-UJ-qPb" firstAttribute="top" secondItem="2lX-xp-QDe" secondAttribute="bottom" id="lwc-Gi-edW"/>
+                            <constraint firstAttribute="trailing" secondItem="2lX-xp-QDe" secondAttribute="trailing" id="phI-sV-Qyc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Escolha a cerveja" id="rBW-lo-Wc2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h5k-X2-JaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1272" y="2684"/>
+        </scene>
+        <!--Onde você está-->
         <scene sceneID="eQh-uj-zYY">
             <objects>
                 <viewController id="si3-JR-Y5U" customClass="PlacesViewController" customModule="Beerlitycs" customModuleProvider="target" sceneMemberID="viewController">
@@ -284,14 +337,14 @@
                             <constraint firstAttribute="trailing" secondItem="fbR-O6-4a7" secondAttribute="trailing" id="UKf-hP-3eY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Bares" id="A3c-7y-ciI"/>
+                    <navigationItem key="navigationItem" title="Onde você está" id="A3c-7y-ciI"/>
                     <connections>
                         <outlet property="tableView" destination="fbR-O6-4a7" id="UjR-DQ-xVk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZM-js-0WN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2792" y="388"/>
+            <point key="canvasLocation" x="2032" y="1931"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="JXV-aP-NVJ">
@@ -304,7 +357,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="wyp-sv-DjW" kind="relationship" relationship="viewControllers" id="Yvo-hF-4uK"/>
+                        <segue destination="Hpa-kH-q36" kind="relationship" relationship="viewControllers" id="yBR-1j-hMJ"/>
                         <segue destination="mTt-r1-XYE" kind="relationship" relationship="viewControllers" id="kst-px-mc1"/>
                         <segue destination="1X6-Zd-Jia" kind="relationship" relationship="viewControllers" id="HVw-iy-nxW"/>
                     </connections>
@@ -331,25 +384,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hL4-td-RSB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1272" y="-331"/>
-        </scene>
-        <!--Feed-->
-        <scene sceneID="oBL-6P-2WC">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wyp-sv-DjW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Feed" id="1se-JZ-0LE"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cqD-gc-c9h">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="KwX-z2-v98"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oB4-fC-xkQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1272" y="387"/>
         </scene>
         <!--Ranking-->
         <scene sceneID="wjS-JM-sMf">
@@ -390,7 +424,72 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tan-hJ-5Ux" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272" y="1133"/>
+            <point key="canvasLocation" x="1272" y="388"/>
+        </scene>
+        <!--Feed-->
+        <scene sceneID="Sga-Go-c7g">
+            <objects>
+                <viewController id="m5r-jV-Yfa" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8ck-4U-Aw8"/>
+                        <viewControllerLayoutGuide type="bottom" id="kwy-kd-lvP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qmT-qb-brB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Feed" id="mpI-Lh-SOA">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="LV7-Fb-eky">
+                            <connections>
+                                <segue destination="5wX-Yr-rAK" kind="show" id="k00-zP-joC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="TZd-Np-pJ6" kind="showDetail" identifier="checkIn" id="pKa-BW-SLY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aTA-mn-0oy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1272" y="1181"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="P3V-tQ-2ai">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TZd-Np-pJ6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MBs-G0-Kw0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="zuT-wo-XSX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rFJ-CI-h58" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="460" y="1931"/>
+        </scene>
+        <!--Bar-->
+        <scene sceneID="Ovd-fm-94Q">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hpa-kH-q36" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Bar" id="gpd-ST-zgM"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EFB-gF-OXU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="m5r-jV-Yfa" kind="relationship" relationship="rootViewController" id="d8F-pQ-CCE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fYm-jd-Q9I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="460" y="1181"/>
         </scene>
     </scenes>
     <resources>
