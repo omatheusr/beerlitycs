@@ -93,6 +93,24 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="Tcp-mt-gP4">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="k7G-pI-Q7n">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k7G-pI-Q7n" id="YB3-P8-sdN">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sair" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIo-UJ-Jwx">
+                                                    <rect key="frame" x="8" y="11" width="125" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="5wX-Yr-rAK" id="sqX-Eb-IOW"/>
@@ -201,9 +219,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="si3-JR-Y5U" kind="show" id="N7f-Yq-l6U"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -312,11 +327,11 @@
             </objects>
             <point key="canvasLocation" x="1272" y="-331"/>
         </scene>
-        <!--Check In-->
+        <!--Feed-->
         <scene sceneID="oBL-6P-2WC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wyp-sv-DjW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Check In" id="1se-JZ-0LE"/>
+                    <tabBarItem key="tabBarItem" title="Feed" id="1se-JZ-0LE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cqD-gc-c9h">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -351,7 +366,4 @@
             <point key="canvasLocation" x="1272" y="1133"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="N7f-Yq-l6U"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -11,7 +11,7 @@ import Parse
 
 class RankingManager: NSObject {
     var objectId: String!
-    var user: String!
+    var user: UserManager!
     var totalml: String!
     var createdAt: NSDate!
     var date: String!
