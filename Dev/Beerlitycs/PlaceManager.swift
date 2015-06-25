@@ -41,8 +41,7 @@ class PlaceManager: NSObject {
         query["foursquareId"] = placeControl.foursquareId
         query["totalml"] = placeControl.totalml
 
-        //                query.saveInBackgroundWithBlock { Salvar no Servidor
-        query.pinInBackgroundWithBlock {
+        query.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
                 callback(error: nil)
@@ -54,7 +53,6 @@ class PlaceManager: NSObject {
 
     func getPlaces(callback: (allPlaces: NSArray?, error: NSError?) -> ()) {
         var query = PFQuery(className:"Place")
-        query.fromLocalDatastore()
 
         var auxPlaces: NSArray!
 

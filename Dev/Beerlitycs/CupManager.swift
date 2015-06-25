@@ -37,8 +37,7 @@ class CupManager: NSObject {
         query["size"] = cupControl.size
         query["icon"] = cupControl.icon
         
-        //                query.saveInBackgroundWithBlock { Salvar no Servidor
-        query.pinInBackgroundWithBlock {
+        query.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
                 callback(error: nil)
@@ -50,7 +49,6 @@ class CupManager: NSObject {
     
     func getCups(callback: (allCups: NSArray?, error: NSError?) -> ()) {
         var query = PFQuery(className:"Cup")
-        query.fromLocalDatastore()
         
         var auxCups: NSArray!
         

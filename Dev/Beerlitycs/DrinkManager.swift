@@ -30,6 +30,9 @@ class DrinkManager: NSObject {
         self.place = dictionary["place"] as! PlaceManager
         self.beer = dictionary["beer"] as! BeerManager
         self.cup = dictionary["cup"] as! CupManager
+
+        self.date = formatDate(dictionary.createdAt!, format: "dd/MM/yyyy")
+        self.hour = formatDate(dictionary.createdAt!, format: "HH:mm")
     }
     
     func newDrink(drinkControl: DrinkManager, callback: (error: NSError?) -> ()) {
@@ -76,10 +79,10 @@ class DrinkManager: NSObject {
         
         var query = PFQuery(className:"Drink")
         
-        query.whereKey("ce", greaterThan: dateweek)
-        
+        query.whereKey("createdAt", greaterThan: dateweek)
+
         var graphPoints:[Int] = []
-        
+
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in
             if error == nil {
@@ -126,5 +129,14 @@ class DrinkManager: NSObject {
                 callback(beerPoints: nil, error: error!)
             }
         }
+    }
+
+    func formatDate(date: NSDate, format: String) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = format
+        
+        let myString = dateFormatter.stringFromDate(date)
+        
+        return myString;
     }
 }

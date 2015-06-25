@@ -13,6 +13,7 @@ class UserManager: NSObject {
     var objectId: String!
     var name: String!
     var email: String!
+    var password: String!
     var birth: String!
     var height: String!
     var weight: String!
@@ -23,7 +24,7 @@ class UserManager: NSObject {
     override init() {
         super.init()
     }
-    
+
     init(dictionary : PFObject) {
         super.init()
         
@@ -36,20 +37,31 @@ class UserManager: NSObject {
     }
 
     func newUser(userControl: UserManager, callback: (error: NSError?) -> ()) {
-        var query = PFObject(className:"Cup")
+        var query = PFUser()
         
         query["name"] = userControl.name
         query["email"] = userControl.email
         query["birth"] = userControl.birth
         query["height"] = userControl.height
         query["weight"] = userControl.weight
-        
-        query.saveInBackgroundWithBlock {
+
+        query.signUpInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
                 callback(error: nil)
             } else {
                 callback(error: error)
+            }
+        }
+    }
+
+    func login(userControl: UserManager, callback: (error: NSError?) -> ()) {
+        PFUser.logInWithUsernameInBackground(userControl.email, password:userControl.password) {
+            (user: PFUser?, error: NSError?) -> Void in
+            if user != nil {
+                callback(error: nil)
+            } else {
+               callback(error: error)
             }
         }
     }
