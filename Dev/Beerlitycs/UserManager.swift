@@ -45,7 +45,7 @@ class UserManager: NSObject {
         query["height"]? = userControl.height
         query["weight"]? = userControl.weight
         
-        query.saveInBackgroundWithBlock {
+        query.signUpInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
                 callback(error: nil)
