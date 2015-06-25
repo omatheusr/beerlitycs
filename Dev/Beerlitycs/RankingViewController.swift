@@ -12,34 +12,33 @@ import FBSDKLoginKit
 
 class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
 
+    @IBOutlet var fbLoginButton: UIButton!
+    
     var permissions = ["public_profile", "email", "user_friends", ""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var currentUser = PFUser.currentUser()?.objectId
+        
+        if currentUser != nil {
+            fbLoginButton.enabled = false
+        }
+        
+        
+    }
 
-//        if (FBSDKAccessToken.currentAccessToken() != nil)
-//        {
-//            // User is already logged in, do work such as go to next view controller.
-//            println("logado")
-//            returnUserData()
-//            
-//            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-//            self.view.addSubview(loginView)
-//            loginView.center = self.view.center
-//            loginView.delegate = self
-//        }
-//        else
-//        {
-//            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-//            self.view.addSubview(loginView)
-//            loginView.center = self.view.center
-//            loginView.readPermissions = ["public_profile", "email", "user_friends"]
-//            loginView.delegate = self
-//        }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // Facebook UIButton Action --------------------------------------------------------------------
+
+    @IBAction func fbLoginButtonTapped(sender: UIButton) {
         
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
             (user: PFUser?, error: NSError?) -> Void in
-            
             
             if let loggedUser = user {
                 if loggedUser.isNew {
@@ -53,17 +52,15 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
             } else {
                 println("Uh oh. The user cancelled the Facebook login.")
             }
+            
+            if error != nil {
+                println(error);
+            }
+            
         }
         
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
     // Facebook Functions -------------------------------------------------------------------------
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -106,11 +103,9 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
             else
             {
-                println("fetched user: \(result)")
+                //println("fetched user: \(result)")
                 let userName : NSString = result.valueForKey("name") as! NSString
-                println("User Name is: \(userName)")
                 let userEmail : NSString = result.valueForKey("email") as! NSString
-                println("User Email is: \(userEmail)")
                 
                 var currentUser = UserManager()
                 currentUser.objectId = user.objectId
@@ -118,8 +113,6 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
                 currentUser.email = userEmail as String
                 
                 currentUser.editUser(currentUser, callback: { (error) -> () in
-                    
-                    println(currentUser)
                     
                     if (error != nil) {
                         println(error);

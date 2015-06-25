@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Configurações-->
@@ -200,8 +201,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTt-NJ-Hi4">
-                                <rect key="frame" x="352" y="352" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTt-NJ-Hi4">
+                                <rect key="frame" x="277" y="285" width="46" height="30"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -211,6 +212,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="cTt-NJ-Hi4" secondAttribute="centerX" id="AeH-4R-ec7"/>
+                            <constraint firstAttribute="centerY" secondItem="cTt-NJ-Hi4" secondAttribute="centerY" id="Vev-K2-epC"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zkM-fB-dHi">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="1yx-SK-HBP">
@@ -357,13 +362,38 @@
                     <view key="view" contentMode="scaleToFill" id="JUK-wE-13l">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hA-s6-sKE">
+                                <rect key="frame" x="534" y="28" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="UbI-9b-Wkd"/>
+                                    <constraint firstAttribute="width" constant="50" id="tJy-px-Cug"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="facebook-icon">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fbLoginButtonTapped:" destination="mTt-r1-XYE" eventType="touchUpInside" id="5Hb-fM-Hvl"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1hA-s6-sKE" firstAttribute="trailing" secondItem="JUK-wE-13l" secondAttribute="trailingMargin" id="Mrh-Hw-8M8"/>
+                            <constraint firstItem="1hA-s6-sKE" firstAttribute="top" secondItem="rcb-t1-xtf" secondAttribute="bottom" constant="8" id="cR2-iR-nPz"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Ranking" id="sO3-i6-JGA"/>
+                    <connections>
+                        <outlet property="fbLoginButton" destination="1hA-s6-sKE" id="kBI-Ax-nbh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tan-hJ-5Ux" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1272" y="1133"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="facebook-icon" width="512" height="512"/>
+    </resources>
 </document>
