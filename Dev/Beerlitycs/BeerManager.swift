@@ -22,9 +22,9 @@ class BeerManager: NSObject {
         super.init()
 
         self.name = dictionary["name"] as! String
-        self.alcoholContent = dictionary["alcoholContent"] as! String
+        self.alcoholContent = dictionary["alcoholcontent"] as! String
     }
-    
+
     func newBeer(beerControl: BeerManager, callback: (error: NSError?) -> ()) {
         var query = PFObject(className:"Beer")
 

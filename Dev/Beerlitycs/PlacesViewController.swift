@@ -17,20 +17,7 @@ class PlacesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        PFGeoPoint.geoPointForCurrentLocationInBackground {
-            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
-            if error == nil {
-                let location = CLLocation(
-                    latitude: geoPoint!.latitude,
-                    longitude: geoPoint!.longitude
-                )
-                
-                let placeControl = PlaceManager()
-                self.places = placeControl.requestPlacesWithLocation(location)
-                self.updateTableView()
-            }
-        }
+        loadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,10 +38,10 @@ class PlacesViewController: UIViewController {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("placeCell") as! PlacesTableViewCell
         
-        //        println(poops[indexPath.row]["name"])
+        let placeControl = PlaceManager(array: places[indexPath.row])
         
-        cell.placeName.text = places[indexPath.row]["name"] as? String
-        
+        cell.placeName.text = placeControl.name
+
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         return cell
@@ -64,6 +51,21 @@ class PlacesViewController: UIViewController {
         return true
     }
 
+    func loadData() {
+        PFGeoPoint.geoPointForCurrentLocationInBackground {
+            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+            if error == nil {
+                let location = CLLocation(
+                    latitude: geoPoint!.latitude,
+                    longitude: geoPoint!.longitude
+                )
+                
+                let placeControl = PlaceManager()
+                self.places = placeControl.requestPlacesWithLocation(location)
+                self.updateTableView()
+            }
+        }
+    }
     /*
     // MARK: - Navigation
 

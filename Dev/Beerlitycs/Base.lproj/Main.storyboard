@@ -246,8 +246,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" placeholder="Pesquisar" translatesAutoresizingMaskIntoConstraints="NO" id="79J-Bm-kBv">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="CJs-W5-btg"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="CJs-W5-btg"/>
+                                    </mask>
+                                </variation>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2lX-xp-QDe">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="beerCell" id="KX2-oh-mWJ" customClass="BeersTableViewCell" customModule="Beerlitycs" customModuleProvider="target">
@@ -258,25 +270,38 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGq-Lf-axk">
                                                     <rect key="frame" x="8" y="11" width="442" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="beerName" destination="EGq-Lf-axk" id="Gcs-q4-qOT"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="bFa-5C-Akj" id="iTZ-r5-pcf"/>
+                                    <outlet property="delegate" destination="bFa-5C-Akj" id="4zR-CP-OEV"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="79J-Bm-kBv" firstAttribute="top" secondItem="DjV-LK-M2R" secondAttribute="bottom" id="187-NL-qnE"/>
+                            <constraint firstAttribute="bottom" secondItem="2lX-xp-QDe" secondAttribute="bottom" id="3ii-bQ-Z3d"/>
                             <constraint firstItem="2lX-xp-QDe" firstAttribute="leading" secondItem="AYo-Br-9aT" secondAttribute="leading" id="9wG-hY-NLE"/>
-                            <constraint firstItem="2lX-xp-QDe" firstAttribute="top" secondItem="AYo-Br-9aT" secondAttribute="top" id="anj-c4-jW6"/>
-                            <constraint firstItem="nOg-UJ-qPb" firstAttribute="top" secondItem="2lX-xp-QDe" secondAttribute="bottom" id="lwc-Gi-edW"/>
+                            <constraint firstAttribute="trailing" secondItem="79J-Bm-kBv" secondAttribute="trailing" id="Puh-10-QLa"/>
+                            <constraint firstItem="79J-Bm-kBv" firstAttribute="leading" secondItem="AYo-Br-9aT" secondAttribute="leading" id="eHW-zj-hUM"/>
                             <constraint firstAttribute="trailing" secondItem="2lX-xp-QDe" secondAttribute="trailing" id="phI-sV-Qyc"/>
+                            <constraint firstItem="2lX-xp-QDe" firstAttribute="top" secondItem="79J-Bm-kBv" secondAttribute="bottom" id="z09-wg-lEg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Escolha a cerveja" id="rBW-lo-Wc2"/>
+                    <connections>
+                        <outlet property="tableView" destination="2lX-xp-QDe" id="DgE-LM-dRJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h5k-X2-JaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -437,7 +462,26 @@
                     <view key="view" contentMode="scaleToFill" id="qmT-qb-brB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A74-ZW-uuA">
+                                <rect key="frame" x="16" y="491" width="568" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="36X-0D-7FR"/>
+                                </constraints>
+                                <state key="normal" title="Fazer CheckIn">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="TZd-Np-pJ6" kind="showDetail" id="AQV-5t-1es"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="A74-ZW-uuA" secondAttribute="trailing" constant="16" id="9Rm-gd-tOQ"/>
+                            <constraint firstItem="kwy-kd-lvP" firstAttribute="top" secondItem="A74-ZW-uuA" secondAttribute="bottom" constant="16" id="9f1-O6-xxx"/>
+                            <constraint firstItem="A74-ZW-uuA" firstAttribute="leading" secondItem="qmT-qb-brB" secondAttribute="leading" constant="16" id="WEx-xa-zod"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Feed" id="mpI-Lh-SOA">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="LV7-Fb-eky">
@@ -446,9 +490,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="TZd-Np-pJ6" kind="showDetail" identifier="checkIn" id="pKa-BW-SLY"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aTA-mn-0oy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

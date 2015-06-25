@@ -12,12 +12,15 @@ import Parse
 let API_URL = "https://api.foursquare.com/v2/"
 let CLIENT_ID = "URTAIWYA3BRK2KJMI021TPJGSD2DC4SSQEJEUAY4YFDTRXTA"
 let CLIENT_SECRET = "JTLHDJCLSALUBS5MGFOQGPQSMLV3LW10JODXSDQNW5FJNKL3"
+let CATEGORY_ID = "4d4b7105d754a06376d81259"
 
 class PlaceManager: NSObject {
     var objectId: String!
     var name: String!
     var foursquareId: String!
     var totalml: String!
+    var address: String!
+    var location: PFGeoPoint!
     var createdAt: NSDate!
     var date: String!
     var hour: String!
@@ -32,6 +35,16 @@ class PlaceManager: NSObject {
         self.name = dictionary["name"] as! String
         self.foursquareId = dictionary["foursquareId"] as! String
         self.totalml = dictionary["totalml"] as! String
+    }
+
+    init(array : AnyObject) {
+        super.init()
+        
+        var placeLocation : NSDictionary = array["location"] as! NSDictionary
+        self.name = array["name"] as! String
+        self.foursquareId = array["id"] as! String
+        self.address = placeLocation["address"] as! String
+        self.location = PFGeoPoint(latitude:placeLocation["lat"] as! Double, longitude: placeLocation["lng"] as! Double)
     }
 
     func newPlace(placeControl: PlaceManager, callback: (error: NSError?) -> ()) {
@@ -69,7 +82,7 @@ class PlaceManager: NSObject {
     }
 
     func requestPlacesWithLocation(location: CLLocation) -> [AnyObject] {
-        let requestString = "\(API_URL)venues/search?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&categoryId=4d4b7105d754a06376d81259&v=20130815&ll=\(location.coordinate.latitude),\(location.coordinate.longitude)"
+        let requestString = "\(API_URL)venues/search?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&categoryId=\(CATEGORY_ID)&v=20130815&ll=\(location.coordinate.latitude),\(location.coordinate.longitude)"
         
         if let url = NSURL(string: requestString) {
             let request = NSURLRequest(URL: url)
