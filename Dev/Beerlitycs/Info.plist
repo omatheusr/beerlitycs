@@ -38,6 +38,19 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Nós precisamos da sua localização para buscar bares próximos</string>
+	<key>FacebookAppID</key>
+	<string>1492691627688126</string>
+	<key>FacebookDisplayName</key>
+	<string>Beerlitycs</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1492691627688126</string>
+			</array>
+		</dict>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
