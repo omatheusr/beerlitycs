@@ -12,7 +12,7 @@ import FBSDKLoginKit
 
 class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
 
-    var permissions = ["public_profile", "email", "user_friends"]
+    var permissions = ["public_profile", "email", "user_friends", ""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +39,16 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
             (user: PFUser?, error: NSError?) -> Void in
-            if let user = user {
-                if user.isNew {
+            
+            
+            if let loggedUser = user {
+                if loggedUser.isNew {
                     println("User signed up and logged in through Facebook!")
+                    self.returnUserData(loggedUser)
+                    
                 } else {
                     println("User logged in through Facebook!")
+                    self.returnUserData(loggedUser)
                 }
             } else {
                 println("Uh oh. The user cancelled the Facebook login.")
@@ -89,7 +94,7 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     // ---------------------------------------------------------------------------------------------
     
-    func returnUserData()
+    func returnUserData(user: PFUser)
     {
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
@@ -106,6 +111,20 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
                 println("User Name is: \(userName)")
                 let userEmail : NSString = result.valueForKey("email") as! NSString
                 println("User Email is: \(userEmail)")
+                
+                var currentUser = UserManager()
+                currentUser.objectId = user.objectId
+                currentUser.name = userName as String
+                currentUser.email = userEmail as String
+                
+                currentUser.editUser(currentUser, callback: { (error) -> () in
+                    
+                    println(currentUser)
+                    
+                    if (error != nil) {
+                        println(error);
+                    }
+                })
             }
         })
     }

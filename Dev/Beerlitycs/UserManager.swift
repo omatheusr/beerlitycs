@@ -38,11 +38,11 @@ class UserManager: NSObject {
     func newUser(userControl: UserManager, callback: (error: NSError?) -> ()) {
         var query = PFObject(className:"Cup")
         
-        query["name"] = userControl.name
-        query["email"] = userControl.email
-        query["birth"] = userControl.birth
-        query["height"] = userControl.height
-        query["weight"] = userControl.weight
+        query["name"]? = userControl.name
+        query["email"]? = userControl.email
+        query["birth"]? = userControl.birth
+        query["height"]? = userControl.height
+        query["weight"]? = userControl.weight
         
         query.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
@@ -56,16 +56,16 @@ class UserManager: NSObject {
 
     func editUser(userControl: UserManager, callback: (error: NSError?) -> ()) {
         var query = PFUser.query()!
-        query.getObjectInBackgroundWithId("xWMyZEGZ") {
+        query.getObjectInBackgroundWithId(userControl.objectId) {
             (gameScore: PFObject?, error: NSError?) -> Void in
             if error != nil {
                 println(error)
             } else if let query = gameScore {
-                query["name"] = userControl.name
-                query["email"] = userControl.email
-                query["birth"] = userControl.birth
-                query["height"] = userControl.height
-                query["weight"] = userControl.weight
+                query["name"]? = userControl.name
+                query["email"]? = userControl.email
+                query["birth"]? = userControl.birth
+                query["height"]? = userControl.height
+                query["weight"]? = userControl.weight
                 
                 query.saveInBackgroundWithBlock {
                     (success: Bool, error: NSError?) -> Void in
