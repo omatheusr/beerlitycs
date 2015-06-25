@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A058D5D71B3C2BB30005140C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A058D5D41B3C2BB30005140C /* FBSDKCoreKit.framework */; };
+		A058D5D81B3C2BB30005140C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A058D5D51B3C2BB30005140C /* FBSDKLoginKit.framework */; };
+		A058D5D91B3C2BB30005140C /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A058D5D61B3C2BB30005140C /* FBSDKShareKit.framework */; };
+		A058D5DB1B3C2BC10005140C /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A058D5DA1B3C2BC10005140C /* ParseFacebookUtilsV4.framework */; };
 		BF7B61FA1B39E00A00336C4F /* PlacesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */; };
 		BFF4F1A61B3C293100AD2F83 /* DrinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF4F1A51B3C293100AD2F83 /* DrinkManager.swift */; };
 		BFF6D0B51B351402000984C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6D0B41B351402000984C4 /* AppDelegate.swift */; };
@@ -50,6 +54,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A058D5D31B3C2A540005140C /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		A058D5D41B3C2BB30005140C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		A058D5D51B3C2BB30005140C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		A058D5D61B3C2BB30005140C /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		A058D5DA1B3C2BC10005140C /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTableViewCell.swift; sourceTree = "<group>"; };
 		BFF4F1A51B3C293100AD2F83 /* DrinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkManager.swift; sourceTree = "<group>"; };
 		BFF6D0AF1B351402000984C4 /* Beerlitycs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beerlitycs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,7 +100,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A058D5D81B3C2BB30005140C /* FBSDKLoginKit.framework in Frameworks */,
 				BFF6D0FB1B385231000984C4 /* Social.framework in Frameworks */,
+				A058D5DB1B3C2BC10005140C /* ParseFacebookUtilsV4.framework in Frameworks */,
 				BFF6D0F91B38522A000984C4 /* Accounts.framework in Frameworks */,
 				BFF6D0F71B385224000984C4 /* libsqlite3.dylib in Frameworks */,
 				BFF6D0F51B385215000984C4 /* libz.dylib in Frameworks */,
@@ -104,6 +115,8 @@
 				BFF6D0E91B3851D5000984C4 /* CoreLocation.framework in Frameworks */,
 				BFF6D0E51B3851BD000984C4 /* AudioToolbox.framework in Frameworks */,
 				BFF6D0E31B3851B3000984C4 /* CFNetwork.framework in Frameworks */,
+				A058D5D91B3C2BB30005140C /* FBSDKShareKit.framework in Frameworks */,
+				A058D5D71B3C2BB30005140C /* FBSDKCoreKit.framework in Frameworks */,
 				BFF6D0E11B385166000984C4 /* Parse.framework in Frameworks */,
 				BFF6D0E01B385166000984C4 /* Bolts.framework in Frameworks */,
 			);
@@ -142,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				BFF6D0B41B351402000984C4 /* AppDelegate.swift */,
+				A058D5D31B3C2A540005140C /* Bridging-Header.h */,
 				BFF6D0BB1B351402000984C4 /* Images.xcassets */,
 				BFF6D0D61B35146B000984C4 /* Model */,
 				BFF6D0D51B351463000984C4 /* View */,
@@ -212,6 +226,10 @@
 		BFF6D0DD1B385145000984C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A058D5DA1B3C2BC10005140C /* ParseFacebookUtilsV4.framework */,
+				A058D5D41B3C2BB30005140C /* FBSDKCoreKit.framework */,
+				A058D5D51B3C2BB30005140C /* FBSDKLoginKit.framework */,
+				A058D5D61B3C2BB30005140C /* FBSDKShareKit.framework */,
 				BFF6D0FA1B385231000984C4 /* Social.framework */,
 				BFF6D0F81B38522A000984C4 /* Accounts.framework */,
 				BFF6D0F61B385224000984C4 /* libsqlite3.dylib */,
@@ -478,6 +496,7 @@
 				INFOPLIST_FILE = Beerlitycs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Beerlitycs/Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -492,6 +511,7 @@
 				INFOPLIST_FILE = Beerlitycs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Beerlitycs/Bridging-Header.h";
 			};
 			name = Release;
 		};
