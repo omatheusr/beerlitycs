@@ -23,20 +23,15 @@ class BeerManager: NSObject {
 
         self.name = dictionary["name"] as! String
         self.alcoholContent = dictionary["alcoholContent"] as! String
-        
-        self.date = formatDate(dictionary["localDate"] as! NSDate, format: "dd/MM/yyyy")
-        self.hour = formatDate(dictionary["localDate"] as! NSDate, format: "HH:mm")
     }
     
     func newBeer(beerControl: BeerManager, callback: (error: NSError?) -> ()) {
-        var query = PFObject(className:"Cup")
+        var query = PFObject(className:"Beer")
 
         query["name"] = beerControl.name
         query["alcoholcontent"] = beerControl.alcoholContent
-        query["localDate"] = NSDate()
 
-        //                query.saveInBackgroundWithBlock { Salvar no Servidor
-        query.pinInBackgroundWithBlock {
+        query.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
                 callback(error: nil)
@@ -48,7 +43,6 @@ class BeerManager: NSObject {
     
     func getBeers(callback: (allBeers: NSArray?, error: NSError?) -> ()) {
         var query = PFQuery(className:"Beer")
-        query.fromLocalDatastore()
         
         var auxBeers: NSArray!
         
@@ -62,14 +56,5 @@ class BeerManager: NSObject {
                 callback(allBeers: nil, error: error!)
             }
         }
-    }
-    
-    func formatDate(date: NSDate, format: String) -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = format
-        
-        let myString = dateFormatter.stringFromDate(date)
-        
-        return myString;
     }
 }
