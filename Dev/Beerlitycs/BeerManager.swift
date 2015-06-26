@@ -44,6 +44,9 @@ class BeerManager: NSObject {
     func getBeers(callback: (allBeers: NSArray?, error: NSError?) -> ()) {
         var query = PFQuery(className:"Beer")
         
+        query.whereKey("active", equalTo: true)
+        query.orderByAscending("name")
+
         var auxBeers: NSArray!
         
         query.findObjectsInBackgroundWithBlock {

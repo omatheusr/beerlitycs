@@ -19,7 +19,7 @@ class PlaceManager: NSObject {
     var name: String!
     var foursquareId: String!
     var totalml: String!
-    var address: String!
+    var address: String?
     var location: PFGeoPoint!
     var createdAt: NSDate!
     var date: String!
@@ -43,7 +43,11 @@ class PlaceManager: NSObject {
         var placeLocation : NSDictionary = array["location"] as! NSDictionary
         self.name = array["name"] as! String
         self.foursquareId = array["id"] as! String
-        self.address = placeLocation["address"] as! String
+        if ((placeLocation["address"]) != nil) {
+            self.address = placeLocation["address"] as? String
+        } else {
+            self.address = placeLocation["crossStreet"] as? String
+        }
         self.location = PFGeoPoint(latitude:placeLocation["lat"] as! Double, longitude: placeLocation["lng"] as! Double)
     }
 

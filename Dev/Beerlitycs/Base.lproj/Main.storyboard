@@ -319,31 +319,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fbR-O6-4a7">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="52" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fbR-O6-4a7">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="placeCell" id="E7H-bB-1g8" customClass="PlacesTableViewCell" customModule="Beerlitycs" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="placeCell" rowHeight="52" id="E7H-bB-1g8" customClass="PlacesTableViewCell" customModule="Beerlitycs" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E7H-bB-1g8" id="k1H-qq-kJW">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxN-uR-5SW">
-                                                    <rect key="frame" x="8" y="0.0" width="592" height="43"/>
+                                                    <rect key="frame" x="8" y="8" width="576" height="18"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5f-xe-w6c">
+                                                    <rect key="frame" x="8" y="28" width="576" height="16"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="AxN-uR-5SW" firstAttribute="top" secondItem="k1H-qq-kJW" secondAttribute="top" id="5k7-LV-aYo"/>
+                                                <constraint firstItem="AxN-uR-5SW" firstAttribute="top" secondItem="k1H-qq-kJW" secondAttribute="top" constant="8" id="5k7-LV-aYo"/>
+                                                <constraint firstItem="f5f-xe-w6c" firstAttribute="top" secondItem="AxN-uR-5SW" secondAttribute="bottom" constant="2" id="LOi-DS-byx"/>
                                                 <constraint firstItem="AxN-uR-5SW" firstAttribute="leading" secondItem="k1H-qq-kJW" secondAttribute="leading" constant="8" id="Onk-md-iOC"/>
                                                 <constraint firstAttribute="trailing" secondItem="AxN-uR-5SW" secondAttribute="trailing" id="PdC-l1-foU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="AxN-uR-5SW" secondAttribute="trailing" constant="8" id="jRB-pa-Iv7"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="f5f-xe-w6c" secondAttribute="trailing" constant="8" id="kFm-g4-wha"/>
                                                 <constraint firstAttribute="bottom" secondItem="AxN-uR-5SW" secondAttribute="bottom" id="lFu-Ea-KUs"/>
+                                                <constraint firstItem="AxN-uR-5SW" firstAttribute="leading" secondItem="f5f-xe-w6c" secondAttribute="leading" id="yOK-sA-6WX"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="PdC-l1-foU"/>
+                                                    <exclude reference="lFu-Ea-KUs"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="placeAddress" destination="f5f-xe-w6c" id="X27-9d-jyb"/>
                                             <outlet property="placeName" destination="AxN-uR-5SW" id="Tgv-Cj-No3"/>
                                         </connections>
                                     </tableViewCell>

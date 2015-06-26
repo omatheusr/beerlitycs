@@ -11,6 +11,7 @@ import UIKit
 class PlacesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var placeName: UILabel!
+    @IBOutlet weak var placeAddress: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
