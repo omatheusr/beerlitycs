@@ -60,4 +60,5 @@ class BeerManager: NSObject {
             }
         }
     }
+    
 }

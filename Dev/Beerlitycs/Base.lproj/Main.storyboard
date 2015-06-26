@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Configurações-->
         <scene sceneID="mns-fo-yXM">
             <objects>
-                <tableViewController id="5wX-Yr-rAK" sceneMemberID="viewController">
+                <tableViewController id="5wX-Yr-rAK" customClass="ConfigurationViewController" customModule="Beerlitycs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="BIV-u0-yyc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,7 +96,7 @@
                             </tableViewSection>
                             <tableViewSection id="Tcp-mt-gP4">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="k7G-pI-Q7n">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="k7G-pI-Q7n" customClass="ConfigurationExitTableViewCell" customModule="Beerlitycs" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k7G-pI-Q7n" id="YB3-P8-sdN">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -107,6 +107,15 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UFr-dk-ktU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="39"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="exitButtonTapped:" destination="5wX-Yr-rAK" eventType="touchUpInside" id="0rS-mk-tbA"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -127,7 +136,7 @@
         <!--Cadastrar cerveja-->
         <scene sceneID="ZhV-w2-DiK">
             <objects>
-                <tableViewController id="f6d-yl-gHK" sceneMemberID="viewController">
+                <tableViewController id="f6d-yl-gHK" customClass="RegisterNewBeerViewController" customModule="Beerlitycs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="MLP-mf-Qvd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -182,8 +191,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Cadastrar cerveja" id="ddO-lq-lyU">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="dgW-43-cRV"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="dgW-43-cRV">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="f6d-yl-gHK" id="cJF-BU-2ji"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="txtNewBeerAlcoholContent" destination="xgJ-EE-7dv" id="GVZ-GF-Y9h"/>
+                        <outlet property="txtNewBeerName" destination="1qR-4h-Qfr" id="HIT-yV-98r"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSs-fW-WvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
