@@ -63,7 +63,6 @@ class PlacesViewController: UIViewController {
                 
                 let placeControl = PlaceManager()
                 self.places = placeControl.requestPlacesWithLocation(location)
-                println(self.places)
                 self.updateTableView()
             }
         }
