@@ -32,7 +32,10 @@ class ConfigurationViewController: UITableViewController {
         var alert = UIAlertController(title: "Cuidado!", message: "Tem certeza que deseja sair do aplicativo?", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default){ (action) -> Void in
             
-            PFUser.logOut()
+            if ((PFUser.currentUser()) != nil){
+                PFUser.logOut()
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            }
             
             })
         
