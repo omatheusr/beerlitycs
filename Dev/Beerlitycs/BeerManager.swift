@@ -43,7 +43,6 @@ class BeerManager: NSObject {
     
     func getBeers(callback: (allBeers: NSArray?, error: NSError?) -> ()) {
         var query = PFQuery(className:"Beer")
-        
         var auxBeers: NSArray!
         
         query.findObjectsInBackgroundWithBlock {
@@ -57,4 +56,5 @@ class BeerManager: NSObject {
             }
         }
     }
+    
 }

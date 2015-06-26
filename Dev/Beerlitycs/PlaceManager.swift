@@ -43,7 +43,7 @@ class PlaceManager: NSObject {
         var placeLocation : NSDictionary = array["location"] as! NSDictionary
         self.name = array["name"] as! String
         self.foursquareId = array["id"] as! String
-        self.address = placeLocation["address"] as! String
+        self.address? = placeLocation["address"] as! String
         self.location = PFGeoPoint(latitude:placeLocation["lat"] as! Double, longitude: placeLocation["lng"] as! Double)
     }
 

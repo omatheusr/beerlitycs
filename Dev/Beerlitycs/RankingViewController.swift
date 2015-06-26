@@ -14,17 +14,18 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet var fbLoginButton: UIButton!
     
-    var permissions = ["public_profile", "email", "user_friends", ""]
-    
+    var permissions = ["public_profile", "email", "user_friends"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         var currentUser = PFUser.currentUser()?.objectId
-        
+
         if currentUser != nil {
             fbLoginButton.enabled = false
+        } else {
+            fbLoginButton.enabled = true
         }
-        
         
     }
 
@@ -42,12 +43,17 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
             
             if let loggedUser = user {
                 if loggedUser.isNew {
+                    self.fbLoginButton.enabled = false
+                    
                     println("User signed up and logged in through Facebook!")
                     self.returnUserData(loggedUser)
-                    
+
                 } else {
+                    self.fbLoginButton.enabled = false
+                    
                     println("User logged in through Facebook!")
                     self.returnUserData(loggedUser)
+                    
                 }
             } else {
                 println("Uh oh. The user cancelled the Facebook login.")
@@ -103,7 +109,7 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
             else
             {
-                //println("fetched user: \(result)")
+                println("fetched user: \(result)")
                 let userName : NSString = result.valueForKey("name") as! NSString
                 let userEmail : NSString = result.valueForKey("email") as! NSString
                 
