@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class ConfigurationViewController: UITableViewController {
 
@@ -30,6 +31,8 @@ class ConfigurationViewController: UITableViewController {
     @IBAction func exitButtonTapped(sender: UIButton) {
         var alert = UIAlertController(title: "Cuidado!", message: "Tem certeza que deseja sair do aplicativo?", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default){ (action) -> Void in
+            
+            PFUser.logOut()
             
             })
         

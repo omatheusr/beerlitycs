@@ -96,7 +96,7 @@
                             </tableViewSection>
                             <tableViewSection id="Tcp-mt-gP4">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="k7G-pI-Q7n" customClass="ConfigurationExitTableViewCell" customModule="Beerlitycs" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="k7G-pI-Q7n">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k7G-pI-Q7n" id="YB3-P8-sdN">
                                             <autoresizingMask key="autoresizingMask"/>
