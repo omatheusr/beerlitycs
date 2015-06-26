@@ -41,6 +41,7 @@ class PlacesViewController: UIViewController {
         let placeControl = PlaceManager(array: places[indexPath.row])
         
         cell.placeName.text = placeControl.name
+        cell.placeAddress.text = placeControl.address
 
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
