@@ -13,6 +13,11 @@
 		A058D5D81B3C2BB30005140C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A058D5D51B3C2BB30005140C /* FBSDKLoginKit.framework */; };
 		A058D5D91B3C2BB30005140C /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A058D5D61B3C2BB30005140C /* FBSDKShareKit.framework */; };
 		A058D5DB1B3C2BC10005140C /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A058D5DA1B3C2BC10005140C /* ParseFacebookUtilsV4.framework */; };
+		BF02297E1B3DBB79006A66CF /* CupsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02297D1B3DBB79006A66CF /* CupsCollectionViewController.swift */; };
+		BF0229801B3F996E006A66CF /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02297F1B3F996E006A66CF /* FeedViewController.swift */; };
+		BF0229821B3F99FF006A66CF /* CupsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0229811B3F99FF006A66CF /* CupsCollectionViewCell.swift */; };
+		BF0229891B3F9C31006A66CF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0229881B3F9C31006A66CF /* LoginViewController.swift */; };
+		BF02298B1B3F9C3D006A66CF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02298A1B3F9C3D006A66CF /* RegisterViewController.swift */; };
 		BF7B61FA1B39E00A00336C4F /* PlacesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */; };
 		BFF40ECE1B3C62D30004BDDC /* BeersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */; };
 		BFF40ED01B3C62EB0004BDDC /* BeersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */; };
@@ -34,7 +39,6 @@
 		BFF6D0EB1B3851DF000984C4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF6D0EA1B3851DF000984C4 /* MobileCoreServices.framework */; };
 		BFF6D0ED1B3851E9000984C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF6D0EC1B3851E9000984C4 /* QuartzCore.framework */; };
 		BFF6D0EF1B3851EF000984C4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF6D0EE1B3851EF000984C4 /* Security.framework */; };
-		BFF6D0F11B3851FB000984C4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF6D0F01B3851FB000984C4 /* StoreKit.framework */; };
 		BFF6D0F31B38520A000984C4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF6D0F21B38520A000984C4 /* SystemConfiguration.framework */; };
 		BFF6D0F51B385215000984C4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF6D0F41B385215000984C4 /* libz.dylib */; };
 		BFF6D0F71B385224000984C4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF6D0F61B385224000984C4 /* libsqlite3.dylib */; };
@@ -65,6 +69,11 @@
 		A058D5D51B3C2BB30005140C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		A058D5D61B3C2BB30005140C /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		A058D5DA1B3C2BC10005140C /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		BF02297D1B3DBB79006A66CF /* CupsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CupsCollectionViewController.swift; sourceTree = "<group>"; };
+		BF02297F1B3F996E006A66CF /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		BF0229811B3F99FF006A66CF /* CupsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CupsCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF0229881B3F9C31006A66CF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BF02298A1B3F9C3D006A66CF /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTableViewCell.swift; sourceTree = "<group>"; };
 		BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeersViewController.swift; sourceTree = "<group>"; };
 		BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeersTableViewCell.swift; sourceTree = "<group>"; };
@@ -90,7 +99,6 @@
 		BFF6D0EA1B3851DF000984C4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		BFF6D0EC1B3851E9000984C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BFF6D0EE1B3851EF000984C4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		BFF6D0F01B3851FB000984C4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BFF6D0F21B38520A000984C4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BFF6D0F41B385215000984C4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BFF6D0F61B385224000984C4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -115,7 +123,6 @@
 				BFF6D0F71B385224000984C4 /* libsqlite3.dylib in Frameworks */,
 				BFF6D0F51B385215000984C4 /* libz.dylib in Frameworks */,
 				BFF6D0F31B38520A000984C4 /* SystemConfiguration.framework in Frameworks */,
-				BFF6D0F11B3851FB000984C4 /* StoreKit.framework in Frameworks */,
 				BFF6D0EF1B3851EF000984C4 /* Security.framework in Frameworks */,
 				BFF6D0ED1B3851E9000984C4 /* QuartzCore.framework in Frameworks */,
 				BFF6D0EB1B3851DF000984C4 /* MobileCoreServices.framework in Frameworks */,
@@ -140,6 +147,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF0229831B3F9BCB006A66CF /* CheckIn */ = {
+			isa = PBXGroup;
+			children = (
+				BFF6D0D71B351511000984C4 /* CheckInViewController.swift */,
+				BF02297D1B3DBB79006A66CF /* CupsCollectionViewController.swift */,
+				BF0229811B3F99FF006A66CF /* CupsCollectionViewCell.swift */,
+				BFF6D1001B398655000984C4 /* PlacesViewController.swift */,
+				BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */,
+				BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */,
+				BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */,
+			);
+			name = CheckIn;
+			sourceTree = "<group>";
+		};
+		BF0229841B3F9BE0006A66CF /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				A02E9AC81B3D81FA00F962E9 /* RegisterNewBeerViewController.swift */,
+				A02E9ACA1B3D977A00F962E9 /* ConfigurationViewController.swift */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+		BF0229851B3F9C00006A66CF /* Ranking */ = {
+			isa = PBXGroup;
+			children = (
+				BFF6D0D91B3520D3000984C4 /* RankingViewController.swift */,
+			);
+			name = Ranking;
+			sourceTree = "<group>";
+		};
+		BF0229861B3F9C08006A66CF /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				BF02297F1B3F996E006A66CF /* FeedViewController.swift */,
+			);
+			name = Feed;
+			sourceTree = "<group>";
+		};
+		BF0229871B3F9C1F006A66CF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BF0229881B3F9C31006A66CF /* LoginViewController.swift */,
+				BF02298A1B3F9C3D006A66CF /* RegisterViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		BFF6D0A61B351402000984C4 = {
 			isa = PBXGroup;
 			children = (
@@ -201,14 +256,11 @@
 		BFF6D0D41B351430000984C4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BFF6D0D71B351511000984C4 /* CheckInViewController.swift */,
-				BFF6D0D91B3520D3000984C4 /* RankingViewController.swift */,
-				BFF6D1001B398655000984C4 /* PlacesViewController.swift */,
-				BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */,
-				BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */,
-				BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */,
-				A02E9AC81B3D81FA00F962E9 /* RegisterNewBeerViewController.swift */,
-				A02E9ACA1B3D977A00F962E9 /* ConfigurationViewController.swift */,
+				BF0229871B3F9C1F006A66CF /* Login */,
+				BF0229861B3F9C08006A66CF /* Feed */,
+				BF0229851B3F9C00006A66CF /* Ranking */,
+				BF0229841B3F9BE0006A66CF /* Configuration */,
+				BF0229831B3F9BCB006A66CF /* CheckIn */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -216,8 +268,8 @@
 		BFF6D0D51B351463000984C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BFF6D0B81B351402000984C4 /* Main.storyboard */,
 				BFF6D0BD1B351402000984C4 /* LaunchScreen.xib */,
+				BFF6D0B81B351402000984C4 /* Main.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -247,7 +299,6 @@
 				BFF6D0F61B385224000984C4 /* libsqlite3.dylib */,
 				BFF6D0F41B385215000984C4 /* libz.dylib */,
 				BFF6D0F21B38520A000984C4 /* SystemConfiguration.framework */,
-				BFF6D0F01B3851FB000984C4 /* StoreKit.framework */,
 				BFF6D0EE1B3851EF000984C4 /* Security.framework */,
 				BFF6D0EC1B3851E9000984C4 /* QuartzCore.framework */,
 				BFF6D0EA1B3851DF000984C4 /* MobileCoreServices.framework */,
@@ -311,6 +362,12 @@
 				TargetAttributes = {
 					BFF6D0AE1B351402000984C4 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 4NRYRR94WS;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					BFF6D0C31B351402000984C4 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -363,20 +420,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFF6D1051B398FB8000984C4 /* UserManager.swift in Sources */,
+				BF0229821B3F99FF006A66CF /* CupsCollectionViewCell.swift in Sources */,
 				BFF40ED01B3C62EB0004BDDC /* BeersTableViewCell.swift in Sources */,
 				BFF4F1A61B3C293100AD2F83 /* DrinkManager.swift in Sources */,
+				BF0229891B3F9C31006A66CF /* LoginViewController.swift in Sources */,
 				BFF6D0D81B351511000984C4 /* CheckInViewController.swift in Sources */,
 				A02E9AC91B3D81FA00F962E9 /* RegisterNewBeerViewController.swift in Sources */,
 				BFF6D1011B398655000984C4 /* PlacesViewController.swift in Sources */,
 				BFF6D0DC1B384D55000984C4 /* BeerManager.swift in Sources */,
 				BFF6D0B51B351402000984C4 /* AppDelegate.swift in Sources */,
 				A02E9ACB1B3D977A00F962E9 /* ConfigurationViewController.swift in Sources */,
+				BF02298B1B3F9C3D006A66CF /* RegisterViewController.swift in Sources */,
+				BF0229801B3F996E006A66CF /* FeedViewController.swift in Sources */,
 				BF7B61FA1B39E00A00336C4F /* PlacesTableViewCell.swift in Sources */,
 				BFF6D1031B398D5E000984C4 /* RankingManager.swift in Sources */,
 				BFF40ECE1B3C62D30004BDDC /* BeersViewController.swift in Sources */,
 				BFF6D0DA1B3520D3000984C4 /* RankingViewController.swift in Sources */,
 				BFF6D0FD1B387DEF000984C4 /* CupManager.swift in Sources */,
 				BFF6D0FF1B388758000984C4 /* PlaceManager.swift in Sources */,
+				BF02297E1B3DBB79006A66CF /* CupsCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +567,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Beerlitycs",
@@ -520,6 +583,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Beerlitycs",

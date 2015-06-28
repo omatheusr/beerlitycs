@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import MapKit
 import Parse
 
 class CheckInViewController: UIViewController {
+
+    @IBOutlet weak var mapView: MKMapView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,9 @@ class CheckInViewController: UIViewController {
     }
     
 
+    @IBAction func cancelCheckIn(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 
