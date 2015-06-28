@@ -27,6 +27,10 @@ class RegisterViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = false
+
+        let color = UIColor(red: 55.0/255.0, green: 61.0/255.0, blue: 74.0/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = color
+        self.navigationController?.navigationBar.translucent = true
     }
 
     override func didReceiveMemoryWarning() {

@@ -30,6 +30,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize Facebook
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
+        application.setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+
+        let color = UIColor(red: 55.0/255.0, green: 61.0/255.0, blue: 74.0/255.0, alpha: 1.0)
+        UITabBar.appearance().barTintColor = color
+        UITabBar.appearance().tintColor = UIColor.whiteColor()
+        
+//        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.whiteColor()], forState: UIControlState.Selected)
+
+        let colorNav = UIColor(red: 157.0/255.0, green: 140.0/255.0, blue: 112.0/255.0, alpha: 1.0)
+        let font = UIFont(name: "AvenirNext-UltraLight", size: 24)
+        if let font = font {
+            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName : font, NSForegroundColorAttributeName : UIColor.whiteColor()]
+        }
+
+        UINavigationBar.appearance().barTintColor = colorNav
+        UINavigationBar.appearance().opaque = true
+        UINavigationBar.appearance().translucent = false
+
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

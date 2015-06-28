@@ -10,7 +10,7 @@
             <objects>
                 <tableViewController id="5wX-Yr-rAK" customClass="ConfigurationViewController" customModule="Beerlitycs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="BIV-u0-yyc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -138,7 +138,7 @@
             <objects>
                 <tableViewController id="f6d-yl-gHK" customClass="RegisterNewBeerViewController" customModule="Beerlitycs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="MLP-mf-Qvd">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -492,8 +492,8 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="LSI-5S-EOn" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="LF0-4g-via">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="LF0-4g-via">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -648,7 +648,7 @@
             </objects>
             <point key="canvasLocation" x="1272" y="-1195"/>
         </scene>
-        <!--Register View Controller-->
+        <!--Cadastro-->
         <scene sceneID="L9U-3i-edC">
             <objects>
                 <viewController id="Ymh-fs-jXc" customClass="RegisterViewController" customModule="Beerlitycs" customModuleProvider="target" sceneMemberID="viewController">
@@ -797,6 +797,7 @@
                             <constraint firstItem="HWL-Gu-6hV" firstAttribute="leading" secondItem="vYo-v1-hoQ" secondAttribute="leading" id="ohb-dA-6RF"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Cadastro" id="fpc-Ue-qW8"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="bgInputView" destination="oxU-wh-9Am" id="lwQ-bp-a6R"/>
@@ -817,11 +818,11 @@
                         <viewControllerLayoutGuide type="bottom" id="zRa-tI-wcc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sgA-h9-XjY">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Estatisticas" id="7fn-Tp-JUF"/>
+                    <tabBarItem key="tabBarItem" title="Estatisticas" image="stats-icon" id="7fn-Tp-JUF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hL4-td-RSB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -836,7 +837,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Emu-fR-aUE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JUK-wE-13l">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hA-s6-sKE">
@@ -859,7 +860,7 @@
                             <constraint firstItem="1hA-s6-sKE" firstAttribute="top" secondItem="rcb-t1-xtf" secondAttribute="bottom" constant="8" id="cR2-iR-nPz"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Ranking" id="sO3-i6-JGA"/>
+                    <tabBarItem key="tabBarItem" title="Ranking" image="ranking-icon" id="sO3-i6-JGA"/>
                     <connections>
                         <outlet property="fbLoginButton" destination="1hA-s6-sKE" id="kBI-Ax-nbh"/>
                     </connections>
@@ -868,7 +869,7 @@
             </objects>
             <point key="canvasLocation" x="1284" y="1220"/>
         </scene>
-        <!--Feed-->
+        <!--Bar-->
         <scene sceneID="Sga-Go-c7g">
             <objects>
                 <viewController id="m5r-jV-Yfa" customClass="FeedViewController" customModule="Beerlitycs" customModuleProvider="target" sceneMemberID="viewController">
@@ -877,11 +878,84 @@
                         <viewControllerLayoutGuide type="bottom" id="kwy-kd-lvP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qmT-qb-brB">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6VL-aZ-2bl">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="495"/>
+                                <color key="backgroundColor" red="1" green="0.97254901959999995" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="1" green="0.97254901959999995" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="1" green="0.97254901959999995" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="statusCell" rowHeight="180" id="jnT-g8-nqA" customClass="StatusTableViewCell" customModule="Beerlitycs" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jnT-g8-nqA" id="KRN-7p-DcD">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jqr-d2-TVr">
+                                                    <rect key="frame" x="270" y="14" width="60" height="60"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gxv-VR-ugi">
+                                                    <rect key="frame" x="279" y="82" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUP-JF-bR8">
+                                                    <rect key="frame" x="279" y="111" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xi9-HL-iL4">
+                                                    <rect key="frame" x="279" y="140" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.2156862745" green="0.23921568630000001" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="feedCell" rowHeight="70" id="08f-0o-OAY" customClass="FeedTableViewCell" customModule="Beerlitycs" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="08f-0o-OAY" id="69V-Vv-6di">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fm-lB-zIi">
+                                                    <rect key="frame" x="64" y="8" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uzb-FT-ZuI">
+                                                    <rect key="frame" x="15" y="8" width="33" height="35"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22o-Kk-DG2">
+                                                    <rect key="frame" x="64" y="37" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.97254901959999995" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="activityText" destination="22o-Kk-DG2" id="iLz-an-r1H"/>
+                                            <outlet property="profileImage" destination="uzb-FT-ZuI" id="N0s-wK-Iny"/>
+                                            <outlet property="profileName" destination="2fm-lB-zIi" id="flh-zk-XS2"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="m5r-jV-Yfa" id="9g9-RS-JKX"/>
+                                    <outlet property="delegate" destination="m5r-jV-Yfa" id="eng-57-tnQ"/>
+                                </connections>
+                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A74-ZW-uuA">
-                                <rect key="frame" x="16" y="491" width="568" height="44"/>
+                                <rect key="frame" x="16" y="507" width="568" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="36X-0D-7FR"/>
                                 </constraints>
@@ -893,14 +967,18 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="A74-ZW-uuA" secondAttribute="trailing" constant="16" id="9Rm-gd-tOQ"/>
-                            <constraint firstItem="kwy-kd-lvP" firstAttribute="top" secondItem="A74-ZW-uuA" secondAttribute="bottom" constant="16" id="9f1-O6-xxx"/>
+                            <constraint firstItem="kwy-kd-lvP" firstAttribute="top" secondItem="A74-ZW-uuA" secondAttribute="bottom" id="9f1-O6-xxx"/>
+                            <constraint firstAttribute="trailing" secondItem="6VL-aZ-2bl" secondAttribute="trailing" id="LQa-Ue-AWd"/>
+                            <constraint firstItem="6VL-aZ-2bl" firstAttribute="leading" secondItem="qmT-qb-brB" secondAttribute="leading" id="TPh-EY-yxK"/>
                             <constraint firstItem="A74-ZW-uuA" firstAttribute="leading" secondItem="qmT-qb-brB" secondAttribute="leading" constant="16" id="WEx-xa-zod"/>
+                            <constraint firstItem="6VL-aZ-2bl" firstAttribute="top" secondItem="qmT-qb-brB" secondAttribute="top" id="gw7-Gn-5Hi"/>
+                            <constraint firstItem="kwy-kd-lvP" firstAttribute="top" secondItem="6VL-aZ-2bl" secondAttribute="bottom" constant="56" id="qwf-4L-SVj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Feed" id="mpI-Lh-SOA">
+                    <navigationItem key="navigationItem" title="Bar" id="mpI-Lh-SOA">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="LV7-Fb-eky">
                             <connections>
                                 <segue destination="5wX-Yr-rAK" kind="show" id="k00-zP-joC"/>
@@ -937,7 +1015,7 @@
         <scene sceneID="Ovd-fm-94Q">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hpa-kH-q36" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Bar" id="gpd-ST-zgM"/>
+                    <tabBarItem key="tabBarItem" title="Bar" image="bar-icon" id="gpd-ST-zgM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EFB-gF-OXU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1018,8 +1096,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bar-icon" width="10" height="23"/>
         <image name="facebook-icon" width="512" height="512"/>
         <image name="login-background" width="640" height="1146"/>
+        <image name="ranking-icon" width="24" height="23"/>
         <image name="register-background" width="640" height="1146"/>
+        <image name="stats-icon" width="37" height="23"/>
     </resources>
 </document>

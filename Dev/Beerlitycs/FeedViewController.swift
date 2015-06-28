@@ -10,6 +10,7 @@ import UIKit
 import Parse
 
 class FeedViewController: UIViewController {
+    var feed = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +27,39 @@ class FeedViewController: UIViewController {
         var currentUser = PFUser.currentUser()?.objectId
         
         if currentUser == nil {
-            self.performSegueWithIdentifier("loginSegue", sender: nil)
+//            self.performSegueWithIdentifier("loginSegue", sender: nil)
+        }
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return feed.count+1
+    }
+    func tableView(tableView: UITableView, numberOfSectionsInTableView section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if(indexPath.row == 0) {
+            let cell = tableView.dequeueReusableCellWithIdentifier("statusCell") as! StatusTableViewCell
+
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("feedCell") as! FeedTableViewCell
+ 
+            var drinkControl = DrinkManager(dictionary: self.feed[indexPath.row-1] as! PFObject)
+            cell.profileName.text = drinkControl.objectId
+
+            return cell
         }
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if(indexPath.row == 0) {
+            return 180
+        } else {
+            return 70
+        }
+    }
 
     /*
     // MARK: - Navigation
