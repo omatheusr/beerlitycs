@@ -191,7 +191,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Cadastrar cerveja" id="ddO-lq-lyU">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="dgW-43-cRV">
+                        <barButtonItem key="rightBarButtonItem" title="Salvar" id="dgW-43-cRV">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="f6d-yl-gHK" id="cJF-BU-2ji"/>
                             </connections>
@@ -505,7 +505,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56z-aV-Ant" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-222" y="879"/>
+            <point key="canvasLocation" x="-240" y="880"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Sjq-cj-T6C">
@@ -646,7 +646,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ec8-2E-Li0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272" y="-1195"/>
+            <point key="canvasLocation" x="1284" y="-1195"/>
         </scene>
         <!--Cadastro-->
         <scene sceneID="L9U-3i-edC">
@@ -807,7 +807,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qak-Xr-dmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1987" y="-1195"/>
+            <point key="canvasLocation" x="2044" y="-1195"/>
         </scene>
         <!--Estatisticas-->
         <scene sceneID="ceW-eC-G6J">
@@ -826,7 +826,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hL4-td-RSB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-216" y="1907"/>
+            <point key="canvasLocation" x="-240" y="1908"/>
         </scene>
         <!--Ranking-->
         <scene sceneID="wjS-JM-sMf">
@@ -960,6 +960,7 @@
                                     <constraint firstAttribute="height" constant="44" id="36X-0D-7FR"/>
                                 </constraints>
                                 <state key="normal" title="Fazer CheckIn">
+                                    <color key="titleColor" red="0.2156862745" green="0.23921568630000001" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1092,7 +1093,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9EN-Gh-9M9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="460" y="-1195"/>
+            <point key="canvasLocation" x="480" y="-1195"/>
         </scene>
     </scenes>
     <resources>
@@ -1103,4 +1104,5 @@
         <image name="register-background" width="640" height="1146"/>
         <image name="stats-icon" width="37" height="23"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
