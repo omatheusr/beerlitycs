@@ -46,6 +46,8 @@ class RegisterViewController: UIViewController {
             self.navigationController?.navigationBar.barTintColor = color
             self.navigationController?.navigationBar.translucent = true
             self.navigationItem.title = "Cadastro"
+        } else {
+            self.registerButton.setTitle("Editar", forState: UIControlState.Normal)
         }
 
         if(self.userControl != nil) {

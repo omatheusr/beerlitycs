@@ -38,6 +38,7 @@ class UserManager: NSObject {
         self.birth = dictionary["birth"] as? NSDate
         self.height = dictionary["height"] as? String
         self.weight = dictionary["weight"] as? String
+        self.photo = dictionary["photo"] as? PFFile
     }
 
     func newUser(userControl: UserManager, callback: (error: NSError?) -> ()) {
@@ -160,6 +161,7 @@ class UserManager: NSObject {
                 callback(error: error)
             }
             else {
+                let userID: NSString = result.valueForKey("id") as! NSString
                 let userName : NSString = result.valueForKey("name") as! NSString
                 let userEmail : NSString = result.valueForKey("email") as! NSString
                 
@@ -167,11 +169,23 @@ class UserManager: NSObject {
                 currentUser.objectId = user.objectId
                 currentUser.name = userName as String
                 currentUser.email = userEmail as String
+                
+                // Get users image from facebook ans save on parse
+                let url = NSURL(string: "http://graph.facebook.com/\(userID)/picture?type=large")!
+                let urlRequest = NSURLRequest(URL: url)
+                
+                NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue.mainQueue(), completionHandler: { (response:NSURLResponse!, data:NSData!, error:NSError!) -> Void in
+                    let image = UIImage(data: data)
+                    
+                    var jpegImage = UIImageJPEGRepresentation(image, 1.0)
+                    let file = PFFile(name:currentUser.objectId + ".jpg" , data: jpegImage)
+                    currentUser.photo = file
 
-                currentUser.editUser(currentUser, callback: { (error) -> () in
-                    if (error == nil) {
-                        callback(error: nil)
-                    }
+                    currentUser.editUser(currentUser, callback: { (error) -> () in
+                        if (error == nil) {
+                            callback(error: nil)
+                        }
+                    })
                 })
             }
         })
