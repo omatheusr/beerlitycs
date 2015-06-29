@@ -75,12 +75,27 @@ class UserManager: NSObject {
             if error != nil {
                 println(error)
             } else if let query = gameScore {
+                
                 query["name"] = userControl.name
                 query["email"] = userControl.email
-//                query["birth"] = userControl.birth
-//                query["height"] = userControl.height
-//                query["weight"] = userControl.weight
-
+                
+                if userControl.birth != nil{
+                    query["birth"] = userControl.birth
+                }
+                
+                if userControl.height != nil{
+                    query["height"] = userControl.height
+                }
+                
+                if userControl.weight != nil{
+                    query["weight"] = userControl.weight
+                }
+                
+                if userControl.photo != nil{
+                    query["photo"] = userControl.photo
+                }
+                
+            
                 query.saveInBackgroundWithBlock {
                     (success: Bool, error: NSError?) -> Void in
                     if (success) {
