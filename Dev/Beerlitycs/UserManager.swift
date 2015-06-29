@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import FBSDKLoginKit
 
 class UserManager: NSObject {
     var objectId: String!
@@ -124,5 +125,30 @@ class UserManager: NSObject {
                 callback(users: nil, error: error!)
             }
         }
+    }
+    
+    func returnUserData(user: PFUser, callback: (error: NSError?) -> ()) {
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+            
+            if (error != nil) {
+                callback(error: error)
+            }
+            else {
+                let userName : NSString = result.valueForKey("name") as! NSString
+                let userEmail : NSString = result.valueForKey("email") as! NSString
+                
+                var currentUser = UserManager()
+                currentUser.objectId = user.objectId
+                currentUser.name = userName as String
+                currentUser.email = userEmail as String
+
+                currentUser.editUser(currentUser, callback: { (error) -> () in
+                    if (error == nil) {
+                        callback(error: nil)
+                    }
+                })
+            }
+        })
     }
 }
