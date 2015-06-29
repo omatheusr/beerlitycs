@@ -21,6 +21,7 @@ class UserManager: NSObject {
     var createdAt: NSDate!
     var date: String!
     var hour: String!
+    var photo: PFFile?
     
     override init() {
         super.init()

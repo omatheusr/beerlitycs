@@ -37,7 +37,7 @@ class ConfigurationViewController: UITableViewController {
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }
             
-            })
+        })
         
         alert.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.Default){ (action) -> Void in })
         self.presentViewController(alert, animated: true, completion: nil)
