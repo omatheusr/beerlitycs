@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class RegisterViewController: UIViewController {
 
@@ -14,6 +15,18 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var bgInputView: UIView!
     @IBOutlet weak var registerButton: UIButton!
+
+    @IBOutlet weak var inputName: UITextField!
+    @IBOutlet weak var inputUserName: UITextField!
+    @IBOutlet weak var inputEmail: UITextField!
+    @IBOutlet weak var inputPassword: UITextField!
+    @IBOutlet weak var inputHeight: UITextField!
+    @IBOutlet weak var inputWeight: UITextField!
+
+    @IBOutlet weak var heightBottomConstraint: NSLayoutConstraint!
+
+    var userControl : UserManager?
+    var editView : Bool?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +41,29 @@ class RegisterViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = false
 
-        let color = UIColor(red: 55.0/255.0, green: 61.0/255.0, blue: 74.0/255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.barTintColor = color
-        self.navigationController?.navigationBar.translucent = true
+        if(editView == nil) {
+            let color = UIColor(red: 55.0/255.0, green: 61.0/255.0, blue: 74.0/255.0, alpha: 1.0)
+            self.navigationController?.navigationBar.barTintColor = color
+            self.navigationController?.navigationBar.translucent = true
+            self.navigationItem.title = "Cadastro"
+        }
+
+        if(self.userControl != nil) {
+            self.inputName.text = self.userControl?.name
+            self.inputEmail.text = self.userControl?.email
+            self.inputHeight.text = self.userControl?.height
+            self.inputWeight.text = self.userControl?.weight
+
+            if PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
+                self.inputEmail.enabled = false
+                self.inputPassword.hidden = true
+                self.inputUserName.hidden = true
+                
+                self.heightBottomConstraint.priority = 1000
+            } else {
+                self.inputUserName.text = self.userControl?.username
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,6 +99,43 @@ class RegisterViewController: UIViewController {
             completion: nil
         )
         
+    }
+
+    @IBAction func registerUser(sender: AnyObject) {
+        if let userControl = self.userControl {
+
+            userControl.name = self.inputName.text
+            userControl.height = inputHeight.text
+            userControl.weight = inputWeight.text
+            if !PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
+                userControl.email = self.inputEmail.text
+                userControl.password = self.inputPassword.text
+                userControl.username = self.inputUserName.text
+            }
+
+            userControl.editUser(userControl, callback: { (error) -> () in
+                if (error == nil) {
+                    println("Editado")
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            })
+        } else {
+            let userControl = UserManager()
+
+            userControl.name = inputName.text
+            userControl.email = inputEmail.text
+            userControl.username = inputUserName.text
+            userControl.password = inputPassword.text
+            userControl.height = inputHeight.text
+            userControl.weight = inputWeight.text
+            
+            userControl.newUser(userControl, callback: { (error) -> () in
+                if(error == nil) {
+                    println("Cadastrado")
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            })
+        }
     }
 
     func keyboardWillShow(notification: NSNotification) {

@@ -17,7 +17,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginFBButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var inputUsername: UITextField!
+    @IBOutlet weak var inputPassword: UITextField!
+
     var permissions = ["public_profile", "email", "user_friends"]
+    var userLogged : UserManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +44,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func newAccount(sender: AnyObject) {
-        self.performSegueWithIdentifier("registerSegue", sender: nil)
+//        self.performSegueWithIdentifier("registerSegue", sender: nil)
     }
 
     
@@ -55,22 +59,13 @@ class LoginViewController: UIViewController {
                     println("User signed up and logged in through Facebook!")
                     userControl.returnUserData(loggedUser, callback: { (error) -> () in
                         if(error == nil) {
-                            println("editado com sucesso")
+                            self.userLogged = UserManager(dictionary: loggedUser)
+                            self.performSegueWithIdentifier("registerSegue", sender: nil)
                         }
                     })
-                    
                 } else {
-                    println("User logged in through Facebook!")
-                    userControl.returnUserData(loggedUser, callback: { (error) -> () in
-                        if(error == nil) {
-                            println("editado com sucesso")
-                        } else {
-                            println("erro")
-                        }
-                    })
+                    self.dismissViewControllerAnimated(true, completion: nil)
                 }
-
-                self.performSegueWithIdentifier("registerSegue", sender: nil)
             } else {
                 println("Uh oh. The user cancelled the Facebook login.")
             }
@@ -79,6 +74,19 @@ class LoginViewController: UIViewController {
                 println(error);
             }
             
+        }
+    }
+
+    @IBAction func loginButton(sender: AnyObject) {
+        let userControl = UserManager()
+        
+        userControl.username = inputUsername.text
+        userControl.password = inputPassword.text
+        
+        userControl.login(userControl) { (error) -> () in
+            if(error == nil) {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
         }
     }
 
@@ -119,14 +127,11 @@ class LoginViewController: UIViewController {
     func keyboardWillHide(notification: NSNotification) {
         animateTextFieldWithKeyboard(notification)
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if(segue.identifier == "registerSegue") {
+            let rVC : RegisterViewController = segue.destinationViewController as! RegisterViewController
+            rVC.userControl = self.userLogged!
+        }
     }
-    */
-
 }

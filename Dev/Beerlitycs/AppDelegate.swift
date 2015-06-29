@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.whiteColor()], forState: UIControlState.Selected)
 
         let colorNav = UIColor(red: 157.0/255.0, green: 140.0/255.0, blue: 112.0/255.0, alpha: 1.0)
-        let font = UIFont(name: "AvenirNext-UltraLight", size: 24)
+        let font = UIFont(name: "AvenirNext-Regular", size: 20)
         if let font = font {
             UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName : font, NSForegroundColorAttributeName : UIColor.whiteColor()]
         }

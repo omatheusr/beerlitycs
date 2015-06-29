@@ -44,5 +44,17 @@ class ConfigurationViewController: UITableViewController {
 
     }
 
+    @IBAction func editProfile(sender: AnyObject) {
+        self.performSegueWithIdentifier("editProfile", sender: nil)
+    }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "editProfile") {
+            let rVC : RegisterViewController = segue.destinationViewController as! RegisterViewController
+            
+            let userControl = UserManager(dictionary: PFUser.currentUser()!)
+            rVC.userControl = userControl
+            rVC.editView = true
+        }
+    }
 }

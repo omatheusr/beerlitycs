@@ -13,11 +13,12 @@ import FBSDKLoginKit
 class UserManager: NSObject {
     var objectId: String!
     var name: String!
+    var username: String?
     var email: String!
     var password: String!
-    var birth: NSDate!
-    var height: String!
-    var weight: String!
+    var birth: NSDate?
+    var height: String?
+    var weight: String?
     var createdAt: NSDate!
     var date: String!
     var hour: String!
@@ -32,20 +33,39 @@ class UserManager: NSObject {
         
         self.objectId = dictionary.objectId
         self.name = dictionary["name"] as! String
+        self.username = dictionary.username
         self.email = dictionary["email"] as! String
-        self.birth = dictionary["birth"] as! NSDate
-        self.height = dictionary["height"] as! String
-        self.weight = dictionary["weight"] as! String
+        self.birth = dictionary["birth"] as? NSDate
+        self.height = dictionary["height"] as? String
+        self.weight = dictionary["weight"] as? String
     }
 
     func newUser(userControl: UserManager, callback: (error: NSError?) -> ()) {
         var query = PFUser()
         
-        query["name"]? = userControl.name
-        query["email"]? = userControl.email
-        query["birth"]? = userControl.birth
-        query["height"]? = userControl.height
-        query["weight"]? = userControl.weight
+        query["name"] = userControl.name
+        query["email"] = userControl.email
+        query.password = userControl.password
+
+        if userControl.username != nil{
+            query.username = userControl.username
+        }
+
+        if userControl.birth != nil{
+            query["birth"] = userControl.birth
+        }
+
+        if userControl.height != nil{
+            query["height"] = userControl.height
+        }
+        
+        if userControl.weight != nil{
+            query["weight"] = userControl.weight
+        }
+        
+        if userControl.photo != nil{
+            query["photo"] = userControl.photo
+        }
         
         query.signUpInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
@@ -58,7 +78,7 @@ class UserManager: NSObject {
     }
 
     func login(userControl: UserManager, callback: (error: NSError?) -> ()) {
-        PFUser.logInWithUsernameInBackground(userControl.email, password:userControl.password) {
+        PFUser.logInWithUsernameInBackground(userControl.username!, password:userControl.password) {
             (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
                 callback(error: nil)
@@ -70,38 +90,44 @@ class UserManager: NSObject {
 
     func editUser(userControl: UserManager, callback: (error: NSError?) -> ()) {
         var query = PFUser.query()!
+        
         query.getObjectInBackgroundWithId(userControl.objectId) {
-            (gameScore: PFObject?, error: NSError?) -> Void in
+            (userObject, error: NSError?) -> Void in
             if error != nil {
                 println(error)
-            } else if let query = gameScore {
+            } else if let userObject = userObject {
+                if let query = userObject as? PFUser {
+                    query["name"] = userControl.name
+                    query["email"] = userControl.email
+                    
+                    if userControl.username != nil{
+                        query.username = userControl.username
+                    }
+
+                    if userControl.birth != nil{
+                        query["birth"] = userControl.birth
+                    }
+                    
+                    if userControl.height != nil{
+                        query["height"] = userControl.height
+                    }
+                    
+                    if userControl.weight != nil{
+                        query["weight"] = userControl.weight
+                    }
+                    
+                    if userControl.photo != nil{
+                        query["photo"] = userControl.photo
+                    }
+                    
                 
-                query["name"] = userControl.name
-                query["email"] = userControl.email
-                
-                if userControl.birth != nil{
-                    query["birth"] = userControl.birth
-                }
-                
-                if userControl.height != nil{
-                    query["height"] = userControl.height
-                }
-                
-                if userControl.weight != nil{
-                    query["weight"] = userControl.weight
-                }
-                
-                if userControl.photo != nil{
-                    query["photo"] = userControl.photo
-                }
-                
-            
-                query.saveInBackgroundWithBlock {
-                    (success: Bool, error: NSError?) -> Void in
-                    if (success) {
-                        callback(error: nil)
-                    } else {
-                        callback(error: error)
+                    query.saveInBackgroundWithBlock {
+                        (success: Bool, error: NSError?) -> Void in
+                        if (success) {
+                            callback(error: nil)
+                        } else {
+                            callback(error: error)
+                        }
                     }
                 }
 
