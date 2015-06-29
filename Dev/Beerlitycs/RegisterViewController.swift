@@ -57,7 +57,9 @@ class RegisterViewController: UIViewController {
             self.inputWeight.text = self.userControl?.weight
 
             if PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
-                self.inputEmail.enabled = false
+                if(self.userControl?.email != nil) {
+                    self.inputEmail.enabled = false
+                }
                 self.inputPassword.hidden = true
                 self.inputUserName.hidden = true
                 
@@ -107,10 +109,11 @@ class RegisterViewController: UIViewController {
         if let userControl = self.userControl {
 
             userControl.name = self.inputName.text
+            userControl.email = self.inputEmail.text
             userControl.height = inputHeight.text
             userControl.weight = inputWeight.text
+
             if !PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
-                userControl.email = self.inputEmail.text
                 userControl.password = self.inputPassword.text
                 userControl.username = self.inputUserName.text
             }

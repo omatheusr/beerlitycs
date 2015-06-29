@@ -14,7 +14,7 @@ class UserManager: NSObject {
     var objectId: String!
     var name: String!
     var username: String?
-    var email: String!
+    var email: String?
     var password: String!
     var birth: NSDate?
     var height: String?
@@ -34,7 +34,7 @@ class UserManager: NSObject {
         self.objectId = dictionary.objectId
         self.name = dictionary["name"] as! String
         self.username = dictionary.username
-        self.email = dictionary["email"] as! String
+        self.email = dictionary["email"] as? String
         self.birth = dictionary["birth"] as? NSDate
         self.height = dictionary["height"] as? String
         self.weight = dictionary["weight"] as? String
@@ -99,7 +99,10 @@ class UserManager: NSObject {
             } else if let userObject = userObject {
                 if let query = userObject as? PFUser {
                     query["name"] = userControl.name
-                    query["email"] = userControl.email
+                    
+                    if userControl.email != nil{
+                        query["email"] = userControl.birth
+                    }
                     
                     if userControl.username != nil{
                         query.username = userControl.username
@@ -161,15 +164,17 @@ class UserManager: NSObject {
                 callback(error: error)
             }
             else {
+                var currentUser = UserManager()
+
                 let userID: NSString = result.valueForKey("id") as! NSString
                 let userName : NSString = result.valueForKey("name") as! NSString
-                let userEmail : NSString = result.valueForKey("email") as! NSString
+                if let userEmail = result.valueForKey("email") as? NSString {
+                    currentUser.email = userEmail as String
+                }
                 
-                var currentUser = UserManager()
                 currentUser.objectId = user.objectId
                 currentUser.name = userName as String
-                currentUser.email = userEmail as String
-                
+
                 // Get users image from facebook ans save on parse
                 let url = NSURL(string: "http://graph.facebook.com/\(userID)/picture?type=large")!
                 let urlRequest = NSURLRequest(URL: url)
