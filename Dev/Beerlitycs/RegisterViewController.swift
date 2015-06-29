@@ -13,16 +13,16 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var bgInputView: UIView!
+    @IBOutlet weak var registerButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 
-        self.bgInputView.layer.borderColor = UIColor.lightGrayColor().CGColor
-        self.bgInputView.layer.cornerRadius = 10
-        self.bgInputView.layer.borderWidth = 1
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        Util.roundedView(self.bgInputView.layer, border: true, radius: 6)
+        Util.roundedView(self.registerButton.layer, border: false, radius: 6)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -50,10 +50,10 @@ class RegisterViewController: UIViewController {
         // text view to the bottom of the superview.
         
         if notification.name == UIKeyboardWillShowNotification {
-            bottomConstraint.constant = -keyboardSize.height  // move up
+            bottomConstraint.constant = bottomConstraint.constant + keyboardSize.height  // move up
         }
         else {
-            bottomConstraint.constant = 0 // move down
+            bottomConstraint.constant = 171 // move down
         }
         
         view.setNeedsUpdateConstraints()

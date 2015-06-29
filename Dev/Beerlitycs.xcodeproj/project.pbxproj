@@ -20,6 +20,7 @@
 		BF02298B1B3F9C3D006A66CF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02298A1B3F9C3D006A66CF /* RegisterViewController.swift */; };
 		BF02298D1B409E63006A66CF /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02298C1B409E63006A66CF /* FeedTableViewCell.swift */; };
 		BF02298F1B40A0ED006A66CF /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02298E1B40A0ED006A66CF /* StatusTableViewCell.swift */; };
+		BF5641DC1B4178D700F414C3 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5641DB1B4178D700F414C3 /* Util.swift */; };
 		BF7B61FA1B39E00A00336C4F /* PlacesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */; };
 		BFF40ECE1B3C62D30004BDDC /* BeersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */; };
 		BFF40ED01B3C62EB0004BDDC /* BeersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */; };
@@ -78,6 +79,7 @@
 		BF02298A1B3F9C3D006A66CF /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		BF02298C1B409E63006A66CF /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		BF02298E1B40A0ED006A66CF /* StatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
+		BF5641DB1B4178D700F414C3 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTableViewCell.swift; sourceTree = "<group>"; };
 		BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeersViewController.swift; sourceTree = "<group>"; };
 		BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeersTableViewCell.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			children = (
 				BFF6D0B41B351402000984C4 /* AppDelegate.swift */,
 				A058D5D31B3C2A540005140C /* Bridging-Header.h */,
+				BF5641DB1B4178D700F414C3 /* Util.swift */,
 				BFF6D0BB1B351402000984C4 /* Images.xcassets */,
 				BFF6D0D61B35146B000984C4 /* Model */,
 				BFF6D0D51B351463000984C4 /* View */,
@@ -439,6 +442,7 @@
 				BF02298B1B3F9C3D006A66CF /* RegisterViewController.swift in Sources */,
 				BF0229801B3F996E006A66CF /* FeedViewController.swift in Sources */,
 				BF7B61FA1B39E00A00336C4F /* PlacesTableViewCell.swift in Sources */,
+				BF5641DC1B4178D700F414C3 /* Util.swift in Sources */,
 				BFF6D1031B398D5E000984C4 /* RankingManager.swift in Sources */,
 				BFF40ECE1B3C62D30004BDDC /* BeersViewController.swift in Sources */,
 				BF02298D1B409E63006A66CF /* FeedTableViewCell.swift in Sources */,

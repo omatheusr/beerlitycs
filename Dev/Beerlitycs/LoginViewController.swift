@@ -7,11 +7,27 @@
 //
 
 import UIKit
+import Parse
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var inputBgLogin: UIView!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loginFBButton: UIButton!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    var permissions = ["public_profile", "email", "user_friends"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        Util.roundedView(self.inputBgLogin.layer, border: true, radius: 6)
+        Util.roundedView(self.loginButton.layer, border: false, radius: 6)
+        Util.roundedView(self.loginFBButton.layer, border: false, radius: 6)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -26,7 +42,83 @@ class LoginViewController: UIViewController {
     @IBAction func newAccount(sender: AnyObject) {
         self.performSegueWithIdentifier("registerSegue", sender: nil)
     }
+
     
+    @IBAction func fbLoginButton(sender: AnyObject) {
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
+            (user: PFUser?, error: NSError?) -> Void in
+            
+            let userControl = UserManager()
+
+            if let loggedUser = user {
+                if loggedUser.isNew {
+                    println("User signed up and logged in through Facebook!")
+                    userControl.returnUserData(loggedUser, callback: { (error) -> () in
+                        if(error == nil) {
+                            println("editado com sucesso")
+                        }
+                    })
+                    
+                } else {
+                    println("User logged in through Facebook!")
+                    userControl.returnUserData(loggedUser, callback: { (error) -> () in
+                        if(error == nil) {
+                            println("editado com sucesso")
+                        } else {
+                            println("erro")
+                        }
+                    })
+                }
+
+                self.performSegueWithIdentifier("registerSegue", sender: nil)
+            } else {
+                println("Uh oh. The user cancelled the Facebook login.")
+            }
+            
+            if error != nil {
+                println(error);
+            }
+            
+        }
+    }
+
+    func animateTextFieldWithKeyboard(notification: NSNotification) {
+        
+        let userInfo = notification.userInfo!
+        
+        let keyboardSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! Double
+        let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as! UInt
+        
+        // baseContraint is your Auto Layout constraint that pins the
+        // text view to the bottom of the superview.
+        
+        if notification.name == UIKeyboardWillShowNotification {
+            bottomConstraint.constant = bottomConstraint.constant + keyboardSize.height  // move up
+        }
+        else {
+            bottomConstraint.constant = 0 // move down
+        }
+        
+        view.setNeedsUpdateConstraints()
+        
+        let options = UIViewAnimationOptions(curve << 16)
+        UIView.animateWithDuration(duration, delay: 0, options: options,
+            animations: {
+                self.view.layoutIfNeeded()
+            },
+            completion: nil
+        )
+        
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        animateTextFieldWithKeyboard(notification)
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        animateTextFieldWithKeyboard(notification)
+    }
     /*
     // MARK: - Navigation
 
