@@ -29,7 +29,7 @@ class FeedViewController: UIViewController {
         var currentUser = PFUser.currentUser()?.objectId
         
         if currentUser == nil {
-//            self.performSegueWithIdentifier("loginSegue", sender: nil)
+            //self.performSegueWithIdentifier("loginSegue", sender: nil)
         }
     }
 
