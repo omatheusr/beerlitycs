@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A02E9AC91B3D81FA00F962E9 /* RegisterNewBeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02E9AC81B3D81FA00F962E9 /* RegisterNewBeerViewController.swift */; };
 		A02E9ACB1B3D977A00F962E9 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02E9ACA1B3D977A00F962E9 /* ConfigurationViewController.swift */; };
+		A047DEEE1B41CAD50012EA2B /* StaticRankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A047DEED1B41CAD50012EA2B /* StaticRankingTableViewCell.swift */; };
+		A047DEF01B41CAE80012EA2B /* DinamicRankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A047DEEF1B41CAE80012EA2B /* DinamicRankingTableViewCell.swift */; };
 		A058D5D71B3C2BB30005140C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A058D5D41B3C2BB30005140C /* FBSDKCoreKit.framework */; };
 		A058D5D81B3C2BB30005140C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A058D5D51B3C2BB30005140C /* FBSDKLoginKit.framework */; };
 		A058D5D91B3C2BB30005140C /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A058D5D61B3C2BB30005140C /* FBSDKShareKit.framework */; };
@@ -67,6 +69,8 @@
 /* Begin PBXFileReference section */
 		A02E9AC81B3D81FA00F962E9 /* RegisterNewBeerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterNewBeerViewController.swift; sourceTree = "<group>"; };
 		A02E9ACA1B3D977A00F962E9 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
+		A047DEED1B41CAD50012EA2B /* StaticRankingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticRankingTableViewCell.swift; sourceTree = "<group>"; };
+		A047DEEF1B41CAE80012EA2B /* DinamicRankingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DinamicRankingTableViewCell.swift; sourceTree = "<group>"; };
 		A058D5D31B3C2A540005140C /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		A058D5D41B3C2BB30005140C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		A058D5D51B3C2BB30005140C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 			isa = PBXGroup;
 			children = (
 				BFF6D0D91B3520D3000984C4 /* RankingViewController.swift */,
+				A047DEED1B41CAD50012EA2B /* StaticRankingTableViewCell.swift */,
+				A047DEEF1B41CAE80012EA2B /* DinamicRankingTableViewCell.swift */,
 			);
 			name = Ranking;
 			sourceTree = "<group>";
@@ -428,6 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A047DEEE1B41CAD50012EA2B /* StaticRankingTableViewCell.swift in Sources */,
 				BFF6D1051B398FB8000984C4 /* UserManager.swift in Sources */,
 				BF0229821B3F99FF006A66CF /* CupsCollectionViewCell.swift in Sources */,
 				BFF40ED01B3C62EB0004BDDC /* BeersTableViewCell.swift in Sources */,
@@ -437,6 +444,7 @@
 				A02E9AC91B3D81FA00F962E9 /* RegisterNewBeerViewController.swift in Sources */,
 				BFF6D1011B398655000984C4 /* PlacesViewController.swift in Sources */,
 				BFF6D0DC1B384D55000984C4 /* BeerManager.swift in Sources */,
+				A047DEF01B41CAE80012EA2B /* DinamicRankingTableViewCell.swift in Sources */,
 				BFF6D0B51B351402000984C4 /* AppDelegate.swift in Sources */,
 				A02E9ACB1B3D977A00F962E9 /* ConfigurationViewController.swift in Sources */,
 				BF02298B1B3F9C3D006A66CF /* RegisterViewController.swift in Sources */,
