@@ -16,34 +16,24 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet var fbProfileImage: UIImageView!
     @IBOutlet var fbUserName: UILabel!
     
+    @IBOutlet weak var tableView: UITableView!
+    
     var permissions = ["public_profile", "email", "user_friends"]
-
+    var ranking = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var facebookProfileUrl = String()
-        let user = PFUser.currentUser()
+        // -------------------------------------------------------------------------------
+        // Verify if user is logged with Facebook and download users profile image
+        //--------------------------------------------------------------------------------
         
-        // Verify is user is logged with Facebook
         isLoggedWithFacebook()
+        loadUsersProfileImage()
         
-        // Users profile image
-        
-        if let userID: AnyObject = PFUser.currentUser()?.valueForKey("id") {
-            facebookProfileUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
-        }
-        
+        // -------------------------------------------------------------------------------
         // Rounded profile image
-        
-        if(PFUser.currentUser() != nil){
-            let userControl = UserManager(dictionary: user!)
-            
-            userControl.photo?.getDataInBackgroundWithBlock({ (image, error) -> Void in
-                self.fbProfileImage.image = UIImage(data: image!)
-            })
-        } else {
-            fbProfileImage.image = UIImage(named: "profiledefault")
-        }
+        //--------------------------------------------------------------------------------
             
         fbProfileImage.layer.borderWidth = 4.0
         fbProfileImage.layer.masksToBounds = false
@@ -60,20 +50,12 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     override func viewWillAppear(animated: Bool) {
         isLoggedWithFacebook()
+        loadUsersProfileImage() 
     }
     
-    
-    func isLoggedWithFacebook() {
-        var currentUser = PFUser.currentUser()?.objectId
-        
-        if currentUser != nil {
-            fbLoginButton.enabled = false
-        } else {
-            fbLoginButton.enabled = true
-        }
-    }
-    
-    // Function to convert HEX to UIColor -------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    // Function to convert HEX to UIColor
+    // ---------------------------------------------------------------------------------------------
     
     func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet() as NSCharacterSet).uppercaseString
@@ -97,7 +79,29 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
         )
     }
     
-    // Facebook UIButton Action --------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    // Table View Functions
+    // ---------------------------------------------------------------------------------------------
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ranking.count+1
+    }
+    
+    func tableView(tableView: UITableView, numberOfSectionsInTableView section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+            let cell = tableView.dequeueReusableCellWithIdentifier("DinamicRankingTableViewCell") as! DinamicRankingTableViewCell
+            cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
+            
+            return cell
+    }
+    
+    // ---------------------------------------------------------------------------------------------
+    // Facebook UIButton Action
+    // ---------------------------------------------------------------------------------------------
 
     @IBAction func fbLoginButtonTapped(sender: UIButton) {
         
@@ -130,7 +134,9 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
         
     }
     
-    // Facebook Functions -------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    // Facebook Functions
+    // ---------------------------------------------------------------------------------------------
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         println("User Logged In")
@@ -153,11 +159,56 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     // ---------------------------------------------------------------------------------------------
+    // Logout function
+    // ---------------------------------------------------------------------------------------------
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         println("User Logged Out")
     }
     
+    // ---------------------------------------------------------------------------------------------
+    // Verify if user is logged
+    // ---------------------------------------------------------------------------------------------
+    
+    func isLoggedWithFacebook() {
+        var currentUser = PFUser.currentUser()?.objectId
+        
+        if currentUser != nil {
+            fbLoginButton.enabled = false
+        } else {
+            fbLoginButton.enabled = true
+        }
+    }
+    
+    // -------------------------------------------------------------------------------
+    // Load users profile image
+    //--------------------------------------------------------------------------------
+    
+    func loadUsersProfileImage(){
+    
+        var facebookProfileUrl = String()
+        let user = PFUser.currentUser()
+    
+        if let userID: AnyObject = PFUser.currentUser()?.valueForKey("id") {
+            facebookProfileUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
+        }
+    
+        if(PFUser.currentUser() != nil){
+            let userControl = UserManager(dictionary: user!)
+    
+            userControl.photo?.getDataInBackgroundWithBlock({ (image, error) -> Void in
+                self.fbProfileImage.image = UIImage(data: image!)
+            })
+    
+            fbUserName.text = userControl.name as String
+        } else {
+            fbProfileImage.image = UIImage(named: "profiledefault")
+            fbUserName.text = "Undefined"
+        }
+    }
+    
+    // ---------------------------------------------------------------------------------------------
+    // Communication between app and facebook to get user's informations
     // ---------------------------------------------------------------------------------------------
     
     func returnUserData(user: PFUser)
@@ -205,6 +256,8 @@ class RankingViewController: UIViewController, FBSDKLoginButtonDelegate {
         })
     }
     
+    // ---------------------------------------------------------------------------------------------
+    //
     // ---------------------------------------------------------------------------------------------
 
 
