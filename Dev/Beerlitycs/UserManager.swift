@@ -14,7 +14,7 @@ class UserManager: NSObject {
     var name: String!
     var email: String!
     var password: String!
-    var birth: String!
+    var birth: NSDate!
     var height: String!
     var weight: String!
     var createdAt: NSDate!
@@ -25,13 +25,13 @@ class UserManager: NSObject {
         super.init()
     }
 
-    init(dictionary : PFObject) {
+    init(dictionary : PFUser) {
         super.init()
         
-        self.objectId = dictionary["objectId"] as! String
+        self.objectId = dictionary.objectId
         self.name = dictionary["name"] as! String
         self.email = dictionary["email"] as! String
-        self.birth = dictionary["birth"] as! String
+        self.birth = dictionary["birth"] as! NSDate
         self.height = dictionary["height"] as! String
         self.weight = dictionary["weight"] as! String
     }

@@ -10,9 +10,6 @@ class BeerManager: NSObject {
     var objectId: String!
     var name: String!
     var alcoholContent: String!
-    var createdAt: NSDate!
-    var date: String!
-    var hour: String!
     
     override init() {
         super.init()
@@ -21,6 +18,7 @@ class BeerManager: NSObject {
     init(dictionary : PFObject) {
         super.init()
 
+        self.objectId = dictionary.objectId
         self.name = dictionary["name"] as! String
         self.alcoholContent = dictionary["alcoholcontent"] as! String
     }

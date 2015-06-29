@@ -12,11 +12,8 @@ import Parse
 class CupManager: NSObject {
     var objectId: String!
     var name: String!
-    var size: String!
-    var icon: String!
-    var createdAt: NSDate!
-    var date: String!
-    var hour: String!
+    var size: NSNumber!
+    var icon: String?
     
     override init() {
         super.init()
@@ -24,10 +21,11 @@ class CupManager: NSObject {
     
     init(dictionary : PFObject) {
         super.init()
-        
+
+        self.objectId = dictionary.objectId
         self.name = dictionary["name"] as! String
-        self.size = dictionary["size"] as! String
-        self.icon = dictionary["icon"] as! String
+        self.size = dictionary["size"] as! NSNumber
+        self.icon? = dictionary["icon"] as! String
     }
     
     func newCup(cupControl: CupManager, callback: (error: NSError?) -> ()) {

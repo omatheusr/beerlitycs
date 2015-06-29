@@ -12,10 +12,12 @@ import Parse
 class FeedViewController: UIViewController {
     var feed = []
 
+    @IBOutlet weak var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        loadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,17 +39,21 @@ class FeedViewController: UIViewController {
     func tableView(tableView: UITableView, numberOfSectionsInTableView section: Int) -> Int {
         return 1
     }
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if(indexPath.row == 0) {
             let cell = tableView.dequeueReusableCellWithIdentifier("statusCell") as! StatusTableViewCell
+            cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
 
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("feedCell") as! FeedTableViewCell
  
             var drinkControl = DrinkManager(dictionary: self.feed[indexPath.row-1] as! PFObject)
-            cell.profileName.text = drinkControl.objectId
+            let activityText = "\(drinkControl.user!.name) está bebendo uma \(drinkControl.beer!.name) \(drinkControl.cup!.size)ml"
+
+            cell.profileName.text = drinkControl.user!.name
+            cell.activityText.text = activityText
 
             return cell
         }
@@ -55,12 +61,26 @@ class FeedViewController: UIViewController {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if(indexPath.row == 0) {
-            return 180
+            return 160
         } else {
-            return 70
+            return 80
+        }
+    }
+    
+    func loadData() {
+        let drinkControl = DrinkManager()
+        
+        drinkControl.getDrinks { (allDrinks, error) -> () in
+            if(error == nil) {
+                self.feed = allDrinks!
+                self.updateTableView()
+            }
         }
     }
 
+    func updateTableView() {
+        self.tableView.reloadData()
+    }
     /*
     // MARK: - Navigation
 

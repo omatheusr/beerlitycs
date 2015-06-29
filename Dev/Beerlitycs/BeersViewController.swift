@@ -40,8 +40,7 @@ class BeersViewController: UIViewController {
         
         var beerControl = BeerManager(dictionary: self.beers[indexPath.row] as! PFObject)
         cell.beerName.text = beerControl.name
-
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        cell.beerAlcoholContent.text = beerControl.alcoholContent + "%"
 
         return cell
     }

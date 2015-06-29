@@ -11,10 +11,10 @@ import Parse
 
 class DrinkManager: NSObject {
     var objectId: String!
-    var user: UserManager!
-    var place: PlaceManager!
-    var beer: BeerManager!
-    var cup: CupManager!
+    var user: UserManager?
+    var place: PlaceManager?
+    var beer: BeerManager?
+    var cup: CupManager?
     var createdAt: NSDate!
     var date: String!
     var hour: String!
@@ -25,11 +25,11 @@ class DrinkManager: NSObject {
     
     init(dictionary : PFObject) {
         super.init()
-        
-        self.user = dictionary["user"] as! UserManager
-        self.place = dictionary["place"] as! PlaceManager
-        self.beer = dictionary["beer"] as! BeerManager
-        self.cup = dictionary["cup"] as! CupManager
+
+        self.user = UserManager(dictionary: dictionary["user"] as! PFUser)
+//        self.place = PlaceManager(dictionary: dictionary["place"] as! PFObject)
+        self.beer = BeerManager(dictionary: dictionary["beer"] as! PFObject)
+        self.cup = CupManager(dictionary: dictionary["cup"] as! PFObject)
 
         self.date = formatDate(dictionary.createdAt!, format: "dd/MM/yyyy")
         self.hour = formatDate(dictionary.createdAt!, format: "HH:mm")
@@ -56,6 +56,11 @@ class DrinkManager: NSObject {
     func getDrinks(callback: (allDrinks: NSArray?, error: NSError?) -> ()) {
         var query = PFQuery(className:"Drink")
         
+        query.includeKey("user")
+        query.includeKey("place")
+        query.includeKey("beer")
+        query.includeKey("cup")
+
         var auxDrinks: NSArray!
         
         query.findObjectsInBackgroundWithBlock {
