@@ -35,6 +35,7 @@ class UserManager: NSObject {
         self.birth = dictionary["birth"] as! NSDate
         self.height = dictionary["height"] as! String
         self.weight = dictionary["weight"] as! String
+        self.photo = dictionary["photo"] as? PFFile
     }
 
     func newUser(userControl: UserManager, callback: (error: NSError?) -> ()) {
