@@ -10,4 +10,6 @@ import UIKit
 
 class CupsCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var iconCup: UIImageView!
+    @IBOutlet weak var sizeCup: UILabel!
 }

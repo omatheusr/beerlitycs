@@ -12,6 +12,10 @@ import Parse
 
 class CheckInViewController: UIViewController {
 
+    var beerSelected : BeerManager?
+    var placeSelected : PlaceManager?
+    var cupSelected : CupManager?
+    
     @IBOutlet weak var mapView: MKMapView!
 
     override func viewDidLoad() {
@@ -32,10 +36,17 @@ class CheckInViewController: UIViewController {
 
     
     @IBAction func selectBeer(segue:UIStoryboardSegue) {
+        if(segue.identifier == "selectBeer") {
+            println("cerveja selecionada")
+        }
     }
 
     @IBAction func selectPlace(segue:UIStoryboardSegue) {
+        if(segue.identifier == "selectPlace") {
+            println("local selecionado")
+        }
     }
+
     /*
     // MARK: - Navigation
 

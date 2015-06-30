@@ -7,10 +7,11 @@
 //
 
 import UIKit
-
-let reuseIdentifier = "Cell"
+import Parse
 
 class CupsCollectionViewController: UICollectionViewController {
+    
+    var cups = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,9 +20,10 @@ class CupsCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+//        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+        loadCups()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,23 +45,41 @@ class CupsCollectionViewController: UICollectionViewController {
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        return 0
+        return self.cups.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cupCell", forIndexPath: indexPath) as! CupsCollectionViewCell
     
-        // Configure the cell
+//        cell.iconCup.image = 
+        let cupControl = CupManager(dictionary: self.cups[indexPath.row] as! PFObject)
+        cell.sizeCup.text = String(cupControl.size) + "ml"
     
         return cell
     }
 
+    func loadCups() {
+        let cupControl = CupManager()
+        
+        cupControl.getCups { (allCups, error) -> () in
+            if(error == nil) {
+                self.cups = allCups!
+                self.updateTableView()
+            } else {
+                println("falha ao carregar")
+            }
+        }
+    }
+
+    func updateTableView() {
+        self.collectionView!.reloadData()
+    }
     // MARK: UICollectionViewDelegate
 
     /*

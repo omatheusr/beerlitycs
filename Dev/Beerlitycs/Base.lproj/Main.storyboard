@@ -997,7 +997,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EWD-Wj-xQr">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EWD-Wj-xQr">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" red="0.99607843137254903" green="0.96470588235294119" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -1219,12 +1219,12 @@
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="fCq-Zd-y8P"/>
+                                                            <exclude reference="7rc-fs-YUQ"/>
                                                             <exclude reference="0u6-g2-XSd"/>
                                                             <exclude reference="JCz-3s-YSL"/>
                                                             <exclude reference="XZe-Px-nch"/>
                                                             <exclude reference="dEc-2k-cAY"/>
                                                             <exclude reference="pDn-JO-vQd"/>
-                                                            <exclude reference="7rc-fs-YUQ"/>
                                                             <exclude reference="CJX-tj-2JO"/>
                                                             <exclude reference="zqk-NC-Km1"/>
                                                             <exclude reference="nVg-n6-BCU"/>
@@ -1554,7 +1554,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="115"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="0.97254901959999995" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bPN-HR-KRU">
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bPN-HR-KRU">
                             <size key="itemSize" width="104" height="115"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1571,8 +1571,8 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R51-8k-LP3">
                                             <rect key="frame" x="0.0" y="0.0" width="104" height="88"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62D-Ay-kQs">
-                                            <rect key="frame" x="30" y="90" width="55" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62D-Ay-kQs">
+                                            <rect key="frame" x="8" y="90" width="88" height="21"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="20"/>
                                             <color key="textColor" red="0.2156862745" green="0.23921568630000001" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1580,6 +1580,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <outlet property="iconCup" destination="R51-8k-LP3" id="Zh1-HG-Hea"/>
+                                    <outlet property="sizeCup" destination="62D-Ay-kQs" id="8eJ-u1-Nk4"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

@@ -12,7 +12,7 @@ import Parse
 class CupManager: NSObject {
     var objectId: String!
     var name: String!
-    var size: NSNumber!
+    var size: Int!
     var icon: String?
     
     override init() {
@@ -24,7 +24,7 @@ class CupManager: NSObject {
 
         self.objectId = dictionary.objectId
         self.name = dictionary["name"] as! String
-        self.size = dictionary["size"] as! NSNumber
+        self.size = dictionary["size"] as! Int
         self.icon? = dictionary["icon"] as! String
     }
     
