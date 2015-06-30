@@ -29,6 +29,13 @@ class CheckInViewController: UIViewController {
     @IBAction func cancelCheckIn(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+
+    
+    @IBAction func selectBeer(segue:UIStoryboardSegue) {
+    }
+
+    @IBAction func selectPlace(segue:UIStoryboardSegue) {
+    }
     /*
     // MARK: - Navigation
 

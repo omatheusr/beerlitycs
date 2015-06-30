@@ -31,13 +31,12 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
         Util.roundedView(self.bgInputView.layer, border: true, radius: 6)
         Util.roundedView(self.registerButton.layer, border: false, radius: 6)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = false
 
@@ -68,6 +67,9 @@ class RegisterViewController: UIViewController {
                 self.inputUserName.text = self.userControl?.username
             }
         }
+    }
+    @IBAction func backButton(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -120,8 +122,11 @@ class RegisterViewController: UIViewController {
 
             userControl.editUser(userControl, callback: { (error) -> () in
                 if (error == nil) {
-                    println("Editado")
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    if(self.editView == true) {
+                        self.navigationController?.popViewControllerAnimated(true)
+                    } else {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
                 }
             })
         } else {
@@ -136,7 +141,6 @@ class RegisterViewController: UIViewController {
             
             userControl.newUser(userControl, callback: { (error) -> () in
                 if(error == nil) {
-                    println("Cadastrado")
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             })

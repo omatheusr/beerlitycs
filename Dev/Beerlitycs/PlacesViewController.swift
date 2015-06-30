@@ -52,6 +52,10 @@ class PlacesViewController: UIViewController {
         return true
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("selectPlace", sender: nil)
+    }
+
     func loadData() {
         PFGeoPoint.geoPointForCurrentLocationInBackground {
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in

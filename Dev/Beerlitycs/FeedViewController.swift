@@ -50,7 +50,13 @@ class FeedViewController: UIViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier("feedCell") as! FeedTableViewCell
  
             var drinkControl = DrinkManager(dictionary: self.feed[indexPath.row-1] as! PFObject)
-            let activityText = "\(drinkControl.user!.name) está bebendo uma \(drinkControl.beer!.name) \(drinkControl.cup!.size)ml"
+            let activityText = "está bebendo uma \(drinkControl.beer!.name) \(drinkControl.cup!.size)ml no THOMAS PUB"
+
+            drinkControl.user?.photo?.getDataInBackgroundWithBlock({ (image, error) -> Void in
+                cell.profileImage.image = UIImage(data: image!)
+                Util.roundedView(cell.profileImage.layer, border: false, radius: cell.profileImage.frame.size.width / 2)
+                cell.profileImage.clipsToBounds = true
+            })
 
             cell.profileName.text = drinkControl.user!.name
             cell.activityText.text = activityText
@@ -81,6 +87,7 @@ class FeedViewController: UIViewController {
     func updateTableView() {
         self.tableView.reloadData()
     }
+
     /*
     // MARK: - Navigation
 

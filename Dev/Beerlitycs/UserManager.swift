@@ -101,7 +101,7 @@ class UserManager: NSObject {
                     query["name"] = userControl.name
                     
                     if userControl.email != nil{
-                        query["email"] = userControl.birth
+                        query["email"] = userControl.email
                     }
                     
                     if userControl.username != nil{
@@ -194,5 +194,40 @@ class UserManager: NSObject {
                 })
             }
         })
+    }
+    
+    func getMutualFriends(user: PFUser, callback: (friends: NSArray?, error: NSError?) -> ()) {
+        let fbRequestFriends : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "/me/friends", parameters: nil)
+
+        fbRequestFriends.startWithCompletionHandler{
+            (connection:FBSDKGraphRequestConnection!,result:AnyObject?, error:NSError!) -> Void in
+            
+            var auxUsers: NSArray!
+
+            if error == nil && result != nil {
+                auxUsers = result!["data"]! as! NSArray
+                var fbID = [String]()
+                
+                for user in auxUsers {
+                    let fbIDe = user["id"]! as! String
+                    fbID.append(fbIDe)
+                }
+
+                var friendQuery = PFUser.query()!
+                
+                friendQuery.whereKey("facebookId", containedIn: fbID as [AnyObject])
+                friendQuery.findObjectsInBackgroundWithBlock {
+                    (objects, error) -> Void in
+                    if error == nil {
+                        auxUsers = objects!
+                        callback(friends: auxUsers, error: nil)
+                    } else {
+                        callback(friends: nil, error: error)
+                    }
+                }
+            } else {
+                callback(friends: nil, error: error)
+            }
+        }
     }
 }
