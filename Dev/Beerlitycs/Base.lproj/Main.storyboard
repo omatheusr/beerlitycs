@@ -88,24 +88,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="9ve-HF-duf">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="Gs8-Db-EFH">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gs8-Db-EFH" id="so3-df-n8O">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Zerar estatisticas" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7B1-f6-yUF">
-                                                    <rect key="frame" x="8" y="11" width="125" height="21"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection id="Tcp-mt-gP4">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="k7G-pI-Q7n">
@@ -139,7 +121,13 @@
                             <outlet property="delegate" destination="5wX-Yr-rAK" id="B8d-ik-3cv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Configurações" id="jh9-6s-9Lb"/>
+                    <navigationItem key="navigationItem" title="Configurações" id="jh9-6s-9Lb">
+                        <barButtonItem key="leftBarButtonItem" image="icon-back" id="pCe-6O-7SE">
+                            <connections>
+                                <action selector="backToView:" destination="5wX-Yr-rAK" id="hc4-g2-7BB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="Ymh-fs-jXc" kind="show" identifier="editProfile" id="tVi-G4-Nng"/>
                     </connections>
@@ -808,14 +796,14 @@
                         <viewControllerLayoutGuide type="bottom" id="Qw1-Ci-F32"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vYo-v1-hoQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="register-background" translatesAutoresizingMaskIntoConstraints="NO" id="g6g-VC-FKZ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="HWL-Gu-6hV">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxU-wh-9Am">
                                         <rect key="frame" x="32" y="99" width="536" height="264"/>
@@ -1799,7 +1787,7 @@
         <image name="stats-icon" width="27" height="17"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yVn-HW-Cvv"/>
+        <segue reference="tVi-G4-Nng"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

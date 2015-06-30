@@ -48,6 +48,9 @@ class ConfigurationViewController: UITableViewController {
         self.performSegueWithIdentifier("editProfile", sender: nil)
     }
 
+    @IBAction func backToView(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "editProfile") {
             let rVC : RegisterViewController = segue.destinationViewController as! RegisterViewController

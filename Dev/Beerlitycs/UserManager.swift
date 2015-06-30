@@ -27,10 +27,10 @@ class UserManager: NSObject {
     override init() {
         super.init()
     }
-
+    
     init(dictionary : PFUser) {
         super.init()
-        
+    
         self.objectId = dictionary.objectId
         self.name = dictionary["name"] as! String
         self.username = dictionary.username
