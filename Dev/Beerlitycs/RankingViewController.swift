@@ -14,7 +14,6 @@ class RankingViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var permissions = ["public_profile", "email", "user_friends"]
     var ranking = []
     
     override func viewDidLoad() {
@@ -64,6 +63,21 @@ class RankingViewController: UIViewController {
                 Util.roundedView(cell.userPhoto.layer, border: false, radius: cell.userPhoto.frame.size.width / 2)
                 cell.userPhoto.clipsToBounds = true
             })
+            
+            cell.userPosition.text = String(indexPath.row) + "º"
+            
+            
+            var mlDrunk = NSInteger()
+            mlDrunk = 0
+            
+            userControl.getCupsDrunk(userControl.objectId, callback: { (cups, error) -> () in
+                if(error == nil) {
+                    mlDrunk = cups!
+                    cell.userDrinked.text = String(mlDrunk) + " ml"
+                } else {
+                    println("erro")
+                }
+            })
 
             return cell
         }
@@ -89,8 +103,16 @@ class RankingViewController: UIViewController {
                 self.ranking = friends!
                 self.updateTableView()
             } else {
-                println("fudeu")
+                println(error)
             }
         })
+        
     }
+    
+    
+    func classifyFriendsByMLDrunk(){
+        
+        
+    }
+    
 }

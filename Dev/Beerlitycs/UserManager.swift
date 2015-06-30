@@ -23,6 +23,7 @@ class UserManager: NSObject {
     var date: String!
     var hour: String!
     var photo: PFFile?
+    var mlDrunk: String?
     
     override init() {
         super.init()
@@ -39,6 +40,11 @@ class UserManager: NSObject {
         self.height = dictionary["height"] as? String
         self.weight = dictionary["weight"] as? String
         self.photo = dictionary["photo"] as? PFFile
+        
+        if((dictionary["mlDrunk"]) != nil) {
+            self.mlDrunk = dictionary["mlDrunk"] as? String
+        }
+        
     }
 
     func newUser(userControl: UserManager, callback: (error: NSError?) -> ()) {
@@ -67,6 +73,11 @@ class UserManager: NSObject {
         if userControl.photo != nil{
             query["photo"] = userControl.photo
         }
+        
+        if userControl.mlDrunk != nil{
+            query["mlDrunk"] = userControl.mlDrunk
+        }
+        
         
         query.signUpInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
@@ -124,7 +135,11 @@ class UserManager: NSObject {
                         query["photo"] = userControl.photo
                     }
                     
-                
+                    if userControl.mlDrunk != nil{
+                        query["mlDrunk"] = userControl.mlDrunk
+                    }
+                    
+                    
                     query.saveInBackgroundWithBlock {
                         (success: Bool, error: NSError?) -> Void in
                         if (success) {
@@ -230,4 +245,84 @@ class UserManager: NSObject {
             }
         }
     }
+    
+    //----------------------------------------------------------------------------------------------
+    //
+    //----------------------------------------------------------------------------------------------
+    
+    func getCupsDrunk (userID: String, callback: (cups: NSInteger?, error: NSError?) -> ()) {
+    
+        var query = PFQuery(className: "Drink")
+        var mlDrunk = NSInteger()
+        var auxDrinks = []
+        
+        mlDrunk = 0
+    
+        query.includeKey("cup")
+        query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
+
+        query.findObjectsInBackgroundWithBlock {
+            (objects, error) -> Void in
+            if error == nil {
+                auxDrinks = objects!
+    
+                var i : Int
+                for(i = 0; i < auxDrinks.count; i++) {
+                    let drink = DrinkManager(dictionary: auxDrinks[i] as! PFObject)
+                    
+                    if let mililiters = drink.cup?.size {
+                        mlDrunk = mlDrunk + mililiters
+                    }
+                }
+                
+                callback(cups: mlDrunk, error: nil)
+            } else {
+                println("Error: \(error) \(error!.userInfo!)")
+                callback(cups: nil, error: error!)
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
 }
