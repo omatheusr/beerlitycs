@@ -19,7 +19,8 @@ class RankingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        self.tableView.tableFooterView = UIView()
         loadMutualFriends()
     }
 
