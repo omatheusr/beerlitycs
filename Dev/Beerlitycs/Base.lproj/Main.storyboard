@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -276,8 +276,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2I-wM-hxS" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="170"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2I-wM-hxS">
+                                <rect key="frame" x="0.0" y="64" width="524" height="170"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="170" id="nS6-0Q-ppv"/>
@@ -293,7 +293,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="n7i-Uu-lhW" secondAttribute="trailing" constant="-16" id="V7o-UF-Rp3"/>
                             <constraint firstItem="oy1-ib-9AE" firstAttribute="top" secondItem="ybf-A2-yTu" secondAttribute="bottom" constant="16" id="Ve9-TQ-C9F"/>
                             <constraint firstItem="R2I-wM-hxS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YC7-UL-GBz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="R2I-wM-hxS" secondAttribute="trailing" constant="-16" id="f3i-Aa-rHO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="R2I-wM-hxS" secondAttribute="trailing" constant="60" id="f3i-Aa-rHO"/>
                             <constraint firstItem="74k-Xg-Fl2" firstAttribute="top" secondItem="oy1-ib-9AE" secondAttribute="bottom" constant="16" id="ghd-q1-366"/>
                             <constraint firstItem="R2I-wM-hxS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="hyC-g1-Kfi"/>
                             <constraint firstAttribute="centerX" secondItem="74k-Xg-Fl2" secondAttribute="centerX" id="i1M-yO-Oxd"/>
@@ -310,7 +310,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="R2I-wM-hxS" id="omy-JX-bUj"/>
+                        <outlet property="baseMapView" destination="R2I-wM-hxS" id="jPf-YD-XbU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>MGLMapboxMetricsEnabledSettingShownInApp</key>
+	<true/>
+	<key>MGLMapboxAccessToken</key>
+	<string>sk.eyJ1IjoibWF0aGV1c2JlY2tlciIsImEiOiJiYWZhNTg4NjRlYWJkYzUyNjBiYzNiYzk5YmFlOWZmZCJ9.Y4vw-oFFlJjuvhKdc0F8qA</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -35,8 +39,6 @@
 	<string>Beerlitycs</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>MGLMapboxAccessToken</key>
-	<string>pk.eyJ1IjoibWF0aGV1c2JlY2tlciIsImEiOiI0ZTYxZThlMTQwZGZmYmYxY2I1MWVmMzZiMzI0MDYyOCJ9.FhruyLpJ3660IfUEew72_Q</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Nós precisamos da sua localização para buscar bares próximos</string>
 	<key>UILaunchStoryboardName</key>

@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C1A49E58C7CE1097AA5B853 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEAAD6428F2D8CFC1FF25AD /* libPods.a */; };
 		396AB3C51B42C9E7007B25BF /* AnalyticsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396AB3C41B42C9E7007B25BF /* AnalyticsCell.swift */; };
 		396AB3C71B42CA5E007B25BF /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396AB3C61B42CA5E007B25BF /* BarChartViewController.swift */; };
 		396AB3CE1B42CB24007B25BF /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396AB3CD1B42CB13007B25BF /* Charts.framework */; };
 		396AB3CF1B42CB24007B25BF /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 396AB3CD1B42CB13007B25BF /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8862899A316504830D36910F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54460F0C1A161F917FA078AF /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A02E9AC91B3D81FA00F962E9 /* RegisterNewBeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02E9AC81B3D81FA00F962E9 /* RegisterNewBeerViewController.swift */; };
 		A02E9ACB1B3D977A00F962E9 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02E9ACA1B3D977A00F962E9 /* ConfigurationViewController.swift */; };
 		A047DEEE1B41CAD50012EA2B /* StaticRankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A047DEED1B41CAD50012EA2B /* StaticRankingTableViewCell.swift */; };
@@ -105,7 +105,7 @@
 		396AB3C41B42C9E7007B25BF /* AnalyticsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsCell.swift; sourceTree = "<group>"; };
 		396AB3C61B42CA5E007B25BF /* BarChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
 		396AB3C81B42CB12007B25BF /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
-		9AEAAD6428F2D8CFC1FF25AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		54460F0C1A161F917FA078AF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A02E9AC81B3D81FA00F962E9 /* RegisterNewBeerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterNewBeerViewController.swift; sourceTree = "<group>"; };
 		A02E9ACA1B3D977A00F962E9 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		A047DEED1B41CAD50012EA2B /* StaticRankingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticRankingTableViewCell.swift; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 				BFF6D0E11B385166000984C4 /* Parse.framework in Frameworks */,
 				396AB3CE1B42CB24007B25BF /* Charts.framework in Frameworks */,
 				BFF6D0E01B385166000984C4 /* Bolts.framework in Frameworks */,
-				2C1A49E58C7CE1097AA5B853 /* libPods.a in Frameworks */,
+				8862899A316504830D36910F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,7 +393,7 @@
 				BFF6D0E21B3851B3000984C4 /* CFNetwork.framework */,
 				BFF6D0DE1B385166000984C4 /* Bolts.framework */,
 				BFF6D0DF1B385166000984C4 /* Parse.framework */,
-				9AEAAD6428F2D8CFC1FF25AD /* libPods.a */,
+				54460F0C1A161F917FA078AF /* Pods.framework */,
 			);
 			name = Frameworks;
 			path = Beerlitycs;
@@ -412,6 +412,7 @@
 				BFF6D0AD1B351402000984C4 /* Resources */,
 				316BB2EB7AF2733392670C57 /* Copy Pods Resources */,
 				396AB3D21B42CB24007B25BF /* Embed Frameworks */,
+				D2520E5AD9D26E67229A491D /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -549,6 +550,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D2520E5AD9D26E67229A491D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -720,12 +736,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Matheus Alberton (J8Q76YWZCV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Beerlitycs",
 				);
 				INFOPLIST_FILE = Beerlitycs/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -739,12 +756,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matheus Alberton";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Beerlitycs",
 				);
 				INFOPLIST_FILE = Beerlitycs/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
