@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2C1A49E58C7CE1097AA5B853 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEAAD6428F2D8CFC1FF25AD /* libPods.a */; };
+		396AB3C51B42C9E7007B25BF /* AnalyticsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396AB3C41B42C9E7007B25BF /* AnalyticsCell.swift */; };
+		396AB3C71B42CA5E007B25BF /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396AB3C61B42CA5E007B25BF /* BarChartViewController.swift */; };
+		396AB3CE1B42CB24007B25BF /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396AB3CD1B42CB13007B25BF /* Charts.framework */; };
+		396AB3CF1B42CB24007B25BF /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 396AB3CD1B42CB13007B25BF /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A02E9AC91B3D81FA00F962E9 /* RegisterNewBeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02E9AC81B3D81FA00F962E9 /* RegisterNewBeerViewController.swift */; };
 		A02E9ACB1B3D977A00F962E9 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02E9ACA1B3D977A00F962E9 /* ConfigurationViewController.swift */; };
 		A047DEEE1B41CAD50012EA2B /* StaticRankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A047DEED1B41CAD50012EA2B /* StaticRankingTableViewCell.swift */; };
@@ -58,6 +62,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		396AB3CC1B42CB13007B25BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 396AB3C81B42CB12007B25BF /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BA8EC401A9D14DC00CE82E1;
+			remoteInfo = Charts;
+		};
+		396AB3D01B42CB24007B25BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 396AB3C81B42CB12007B25BF /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BA8EC3F1A9D14DC00CE82E1;
+			remoteInfo = Charts;
+		};
 		BFF6D0C51B351402000984C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFF6D0A71B351402000984C4 /* Project object */;
@@ -67,9 +85,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		396AB3D21B42CB24007B25BF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				396AB3CF1B42CB24007B25BF /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		15CECA2A9791E653BE1058B9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		34F30586382078E4B3B9F6B9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		396AB3C41B42C9E7007B25BF /* AnalyticsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsCell.swift; sourceTree = "<group>"; };
+		396AB3C61B42CA5E007B25BF /* BarChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
+		396AB3C81B42CB12007B25BF /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 		9AEAAD6428F2D8CFC1FF25AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A02E9AC81B3D81FA00F962E9 /* RegisterNewBeerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterNewBeerViewController.swift; sourceTree = "<group>"; };
 		A02E9ACA1B3D977A00F962E9 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +182,7 @@
 				A058D5D91B3C2BB30005140C /* FBSDKShareKit.framework in Frameworks */,
 				A058D5D71B3C2BB30005140C /* FBSDKCoreKit.framework in Frameworks */,
 				BFF6D0E11B385166000984C4 /* Parse.framework in Frameworks */,
+				396AB3CE1B42CB24007B25BF /* Charts.framework in Frameworks */,
 				BFF6D0E01B385166000984C4 /* Bolts.framework in Frameworks */,
 				2C1A49E58C7CE1097AA5B853 /* libPods.a in Frameworks */,
 			);
@@ -169,6 +205,23 @@
 				15CECA2A9791E653BE1058B9 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		396AB3C31B42C9B2007B25BF /* Analytic */ = {
+			isa = PBXGroup;
+			children = (
+				396AB3C41B42C9E7007B25BF /* AnalyticsCell.swift */,
+				396AB3C61B42CA5E007B25BF /* BarChartViewController.swift */,
+			);
+			name = Analytic;
+			sourceTree = "<group>";
+		};
+		396AB3C91B42CB12007B25BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				396AB3CD1B42CB13007B25BF /* Charts.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		BF0229831B3F9BCB006A66CF /* CheckIn */ = {
@@ -226,6 +279,7 @@
 		BFF6D0A61B351402000984C4 = {
 			isa = PBXGroup;
 			children = (
+				396AB3C81B42CB12007B25BF /* Charts.xcodeproj */,
 				BFF6D0B11B351402000984C4 /* Beerlitycs */,
 				BFF6D0C71B351402000984C4 /* BeerlitycsTests */,
 				BFF6D0B01B351402000984C4 /* Products */,
@@ -286,6 +340,7 @@
 		BFF6D0D41B351430000984C4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				396AB3C31B42C9B2007B25BF /* Analytic */,
 				BF0229871B3F9C1F006A66CF /* Login */,
 				BF0229861B3F9C08006A66CF /* Feed */,
 				BF0229851B3F9C00006A66CF /* Ranking */,
@@ -356,10 +411,12 @@
 				BFF6D0AC1B351402000984C4 /* Frameworks */,
 				BFF6D0AD1B351402000984C4 /* Resources */,
 				316BB2EB7AF2733392670C57 /* Copy Pods Resources */,
+				396AB3D21B42CB24007B25BF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				396AB3D11B42CB24007B25BF /* PBXTargetDependency */,
 			);
 			name = Beerlitycs;
 			productName = Beerlitycs;
@@ -419,6 +476,12 @@
 			mainGroup = BFF6D0A61B351402000984C4;
 			productRefGroup = BFF6D0B01B351402000984C4 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 396AB3C91B42CB12007B25BF /* Products */;
+					ProjectRef = 396AB3C81B42CB12007B25BF /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				BFF6D0AE1B351402000984C4 /* Beerlitycs */,
@@ -426,6 +489,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		396AB3CD1B42CB13007B25BF /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 396AB3CC1B42CB13007B25BF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		BFF6D0AD1B351402000984C4 /* Resources */ = {
@@ -487,6 +560,7 @@
 			files = (
 				A047DEEE1B41CAD50012EA2B /* StaticRankingTableViewCell.swift in Sources */,
 				BFF6D1051B398FB8000984C4 /* UserManager.swift in Sources */,
+				396AB3C51B42C9E7007B25BF /* AnalyticsCell.swift in Sources */,
 				BF0229821B3F99FF006A66CF /* CupsCollectionViewCell.swift in Sources */,
 				BFF40ED01B3C62EB0004BDDC /* BeersTableViewCell.swift in Sources */,
 				BFF4F1A61B3C293100AD2F83 /* DrinkManager.swift in Sources */,
@@ -495,6 +569,7 @@
 				A02E9AC91B3D81FA00F962E9 /* RegisterNewBeerViewController.swift in Sources */,
 				BFF6D1011B398655000984C4 /* PlacesViewController.swift in Sources */,
 				BFF6D0DC1B384D55000984C4 /* BeerManager.swift in Sources */,
+				396AB3C71B42CA5E007B25BF /* BarChartViewController.swift in Sources */,
 				BFF6D0B51B351402000984C4 /* AppDelegate.swift in Sources */,
 				A02E9ACB1B3D977A00F962E9 /* ConfigurationViewController.swift in Sources */,
 				BF02298B1B3F9C3D006A66CF /* RegisterViewController.swift in Sources */,
@@ -524,6 +599,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		396AB3D11B42CB24007B25BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = 396AB3D01B42CB24007B25BF /* PBXContainerItemProxy */;
+		};
 		BFF6D0C61B351402000984C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BFF6D0AE1B351402000984C4 /* Beerlitycs */;
