@@ -35,6 +35,8 @@
 	<string>Beerlitycs</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MGLMapboxAccessToken</key>
+	<string>pk.eyJ1IjoibWF0aGV1c2JlY2tlciIsImEiOiI0ZTYxZThlMTQwZGZmYmYxY2I1MWVmMzZiMzI0MDYyOCJ9.FhruyLpJ3660IfUEew72_Q</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Nós precisamos da sua localização para buscar bares próximos</string>
 	<key>UILaunchStoryboardName</key>

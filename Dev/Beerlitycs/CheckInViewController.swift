@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Parse
+import GoogleMaps
 
 class CheckInViewController: UIViewController {
 
@@ -16,13 +17,28 @@ class CheckInViewController: UIViewController {
     var placeSelected : PlaceManager?
     var cupSelected : CupManager?
     
-    @IBOutlet weak var mapView: MKMapView!
+
+    @IBOutlet var mapView: GMSMapView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+        
+        // passar longitude e latitudo do bar aqui
+        let camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(-30.024180, longitude: -51.202917, zoom: 16.0)
+        mapView.myLocationEnabled = true
+        mapView.camera = camera
+        var marker = GMSMarker()
+        marker.position = camera.target
+        
+        //passar nome do bar aqui!
+        marker.snippet = "Thomas Pub"
+        marker.appearAnimation = kGMSMarkerAnimationPop
+        marker.map = mapView
+        
+        mapView.mapType = kGMSTypeTerrain
+        
+        
+}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

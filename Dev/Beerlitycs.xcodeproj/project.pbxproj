@@ -395,7 +395,7 @@
 				TargetAttributes = {
 					BFF6D0AE1B351402000984C4 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 4NRYRR94WS;
+						DevelopmentTeam = 73G64RLV47;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -647,6 +647,7 @@
 				INFOPLIST_FILE = Beerlitycs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Beerlitycs/Bridging-Header.h";
 			};
 			name = Debug;
@@ -664,6 +665,7 @@
 				INFOPLIST_FILE = Beerlitycs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Beerlitycs/Bridging-Header.h";
 			};
 			name = Release;
