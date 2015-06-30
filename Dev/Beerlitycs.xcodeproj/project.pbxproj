@@ -59,6 +59,7 @@
 		BFF6D1031B398D5E000984C4 /* RankingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6D1021B398D5E000984C4 /* RankingManager.swift */; };
 		BFF6D1051B398FB8000984C4 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6D1041B398FB8000984C4 /* UserManager.swift */; };
 		BFF7E4341B42428C00695771 /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7E4331B42428C00695771 /* RankingTableViewCell.swift */; };
+		BFF7E4381B4300E800695771 /* PushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7E4371B4300E800695771 /* PushNotifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,7 @@
 		BFF6D1021B398D5E000984C4 /* RankingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingManager.swift; sourceTree = "<group>"; };
 		BFF6D1041B398FB8000984C4 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		BFF7E4331B42428C00695771 /* RankingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
+		BFF7E4371B4300E800695771 /* PushNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,6 +370,7 @@
 				BFF6D0FE1B388758000984C4 /* PlaceManager.swift */,
 				BFF6D1021B398D5E000984C4 /* RankingManager.swift */,
 				BFF4F1A51B3C293100AD2F83 /* DrinkManager.swift */,
+				BFF7E4371B4300E800695771 /* PushNotifications.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFF7E4381B4300E800695771 /* PushNotifications.swift in Sources */,
 				A047DEEE1B41CAD50012EA2B /* StaticRankingTableViewCell.swift in Sources */,
 				BFF6D1051B398FB8000984C4 /* UserManager.swift in Sources */,
 				396AB3C51B42C9E7007B25BF /* AnalyticsCell.swift in Sources */,

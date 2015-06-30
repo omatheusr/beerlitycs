@@ -18,6 +18,7 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
 
         self.tableView.tableFooterView = UIView()
+        PushNotifications.associateDeviceWithCurrentUser()
         loadData()
     }
 

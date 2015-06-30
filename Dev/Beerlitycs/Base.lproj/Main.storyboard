@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E36b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -431,7 +431,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h5k-X2-JaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="aQZ-93-jKE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2856" y="1220"/>
+            <point key="canvasLocation" x="2757" y="1220"/>
         </scene>
         <!--Onde você está-->
         <scene sceneID="eQh-uj-zYY">
@@ -806,7 +806,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxU-wh-9Am">
-                                        <rect key="frame" x="32" y="99" width="536" height="264"/>
+                                        <rect key="frame" x="32" y="122" width="536" height="264"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nome" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hY4-3T-MP1">
                                                 <rect key="frame" x="16" y="0.0" width="504" height="44"/>
@@ -888,8 +888,33 @@
                                             <constraint firstItem="hY4-3T-MP1" firstAttribute="top" secondItem="oxU-wh-9Am" secondAttribute="top" id="ycT-Mu-rCT"/>
                                         </constraints>
                                     </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-photo" translatesAutoresizingMaskIntoConstraints="NO" id="17S-jB-X2t">
+                                        <rect key="frame" x="255" y="16" width="90" height="90"/>
+                                        <color key="backgroundColor" red="0.7803921568627451" green="0.75686274509803919" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="17S-jB-X2t" secondAttribute="height" multiplier="1:1" id="SjA-16-x8a"/>
+                                            <constraint firstAttribute="width" constant="90" id="cf4-2v-Wak"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egm-Wa-Voh">
+                                        <rect key="frame" x="255" y="16" width="90" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="egm-Wa-Voh" secondAttribute="height" multiplier="1:1" id="Su4-vE-Y6C"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Su4-vE-Y6C"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="changePhoto:" destination="Ymh-fs-jXc" eventType="touchUpInside" id="BpR-S2-rKK"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIc-Mu-fOk">
-                                        <rect key="frame" x="32" y="385" width="536" height="44"/>
+                                        <rect key="frame" x="32" y="408" width="536" height="44"/>
                                         <color key="backgroundColor" red="0.36862745098039218" green="0.31764705882352939" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="Fni-nb-yKe"/>
@@ -906,14 +931,26 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="oxU-wh-9Am" secondAttribute="centerX" id="0JI-uh-C3N"/>
+                                    <constraint firstItem="17S-jB-X2t" firstAttribute="top" secondItem="oxU-wh-9Am" secondAttribute="top" constant="-93" id="G2j-Ll-rlc"/>
+                                    <constraint firstItem="egm-Wa-Voh" firstAttribute="top" secondItem="HWL-Gu-6hV" secondAttribute="top" constant="16" id="O8Z-OP-9AS"/>
                                     <constraint firstItem="IIc-Mu-fOk" firstAttribute="top" secondItem="oxU-wh-9Am" secondAttribute="bottom" constant="22" id="UYs-Fq-O1L"/>
                                     <constraint firstItem="IIc-Mu-fOk" firstAttribute="leading" secondItem="oxU-wh-9Am" secondAttribute="leading" id="dVh-oc-pQC"/>
+                                    <constraint firstItem="17S-jB-X2t" firstAttribute="centerX" secondItem="egm-Wa-Voh" secondAttribute="centerX" id="hgr-Lr-yUU"/>
                                     <constraint firstAttribute="trailing" secondItem="oxU-wh-9Am" secondAttribute="trailing" constant="32" id="iuC-yv-ezP"/>
                                     <constraint firstItem="oxU-wh-9Am" firstAttribute="leading" secondItem="HWL-Gu-6hV" secondAttribute="leading" constant="32" id="lks-Gk-yXw"/>
-                                    <constraint firstAttribute="bottom" secondItem="IIc-Mu-fOk" secondAttribute="bottom" constant="171" id="lzx-qf-Kej"/>
-                                    <constraint firstItem="oxU-wh-9Am" firstAttribute="top" secondItem="HWL-Gu-6hV" secondAttribute="top" constant="99" id="uxp-Jc-IwH"/>
+                                    <constraint firstItem="17S-jB-X2t" firstAttribute="height" secondItem="egm-Wa-Voh" secondAttribute="height" id="njz-Ww-VNu"/>
+                                    <constraint firstItem="oxU-wh-9Am" firstAttribute="top" secondItem="egm-Wa-Voh" secondAttribute="bottom" constant="16" id="npZ-uq-ThT"/>
+                                    <constraint firstItem="17S-jB-X2t" firstAttribute="top" secondItem="HWL-Gu-6hV" secondAttribute="top" constant="16" id="qDx-MB-9LX"/>
+                                    <constraint firstAttribute="bottom" secondItem="IIc-Mu-fOk" secondAttribute="bottom" constant="96" id="svN-Cp-keI"/>
+                                    <constraint firstItem="17S-jB-X2t" firstAttribute="width" secondItem="egm-Wa-Voh" secondAttribute="width" id="tQr-R8-VCr"/>
+                                    <constraint firstAttribute="centerX" secondItem="17S-jB-X2t" secondAttribute="centerX" id="uU0-64-WFE"/>
                                     <constraint firstItem="IIc-Mu-fOk" firstAttribute="trailing" secondItem="oxU-wh-9Am" secondAttribute="trailing" id="yNK-2m-b3L"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="G2j-Ll-rlc"/>
+                                    </mask>
+                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -938,10 +975,11 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="bgInputView" destination="oxU-wh-9Am" id="lwQ-bp-a6R"/>
-                        <outlet property="bottomConstraint" destination="lzx-qf-Kej" id="h7m-BN-6Dx"/>
+                        <outlet property="bottomConstraint" destination="svN-Cp-keI" id="bE3-LF-CMm"/>
                         <outlet property="heightBottomConstraint" destination="GT4-jU-LnJ" id="bgq-kw-EZb"/>
                         <outlet property="inputEmail" destination="0xx-pF-vqg" id="6ek-A6-ZIG"/>
                         <outlet property="inputHeight" destination="Ve5-AG-qEh" id="L4Q-pv-y2V"/>
+                        <outlet property="inputImage" destination="17S-jB-X2t" id="luN-67-AFO"/>
                         <outlet property="inputName" destination="hY4-3T-MP1" id="KRl-FH-7zj"/>
                         <outlet property="inputPassword" destination="Lfx-Bu-p2c" id="Pfh-Xp-MMp"/>
                         <outlet property="inputUserName" destination="Llf-n2-Oqx" id="1jH-cN-4v8"/>
@@ -979,7 +1017,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3g-XA-bfX">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="159"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profiledefault" translatesAutoresizingMaskIntoConstraints="NO" id="EQr-rx-Pe4">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-photo" translatesAutoresizingMaskIntoConstraints="NO" id="EQr-rx-Pe4">
                                                             <rect key="frame" x="270" y="16" width="60" height="60"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="60" id="Bfo-5u-uki"/>
@@ -1319,7 +1357,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tan-hJ-5Ux" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2096" y="1220"/>
+            <point key="canvasLocation" x="2044" y="1220"/>
         </scene>
         <!--Bar-->
         <scene sceneID="Sga-Go-c7g">
@@ -1955,7 +1993,7 @@
         <image name="icon-back" width="32" height="32"/>
         <image name="icon-drunk" width="93" height="93"/>
         <image name="login-background" width="640" height="1146"/>
-        <image name="profiledefault" width="316" height="293"/>
+        <image name="profile-photo" width="128" height="128"/>
         <image name="ranking-icon" width="19" height="19"/>
         <image name="register-background" width="640" height="1146"/>
         <image name="stats-icon" width="27" height="17"/>
