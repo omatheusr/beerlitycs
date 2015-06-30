@@ -1,6 +1,7 @@
 *~
 .DS_Store
 Pods/
+*Podfile.lock
 
 # Criado por https://www.gitignore.io
 
