@@ -248,7 +248,7 @@ class UserManager: NSObject {
     }
     
     //----------------------------------------------------------------------------------------------
-    //
+    // Get Cups Drunk Per User
     //----------------------------------------------------------------------------------------------
     
     func getCupsDrunk (userID: String, callback: (cups: NSInteger?, error: NSError?) -> ()) {
@@ -285,8 +285,44 @@ class UserManager: NSObject {
         
     }
     
+    //----------------------------------------------------------------------------------------------
+    // When a new beer is added on table "Drink", call this function to add on total beer drunk
+    // This fuction can only be used for current user.
+    //----------------------------------------------------------------------------------------------
     
+    func addNewBeerInMLToTotal (userID: String, mlDrunk: NSInteger, callback: (error: NSError?) -> ()){
     
+        var query = PFUser.query()!
+        
+        query.getObjectInBackgroundWithId(userID){
+            (objects, error) -> Void in
+            
+            if error != nil {
+                callback(error: error)
+                
+            } else{
+                if let query = objects as? PFUser {
+                    
+                    var name: String = query["mlDrunk"] as! String
+                    var mililiters: Int = name.toInt()!
+                    
+                    mililiters = mililiters + mlDrunk
+                
+                    query["mlDrunk"] = String(mililiters)
+                    query.saveInBackgroundWithBlock {
+                        (success: Bool, error: NSError?) -> Void in
+                        if (success) {
+                            callback(error: nil)
+                        } else {
+                            callback(error: error)
+                        }
+                    }
+                    callback(error: nil)
+                }
+            }
+        }
+        
+    }
     
     
     

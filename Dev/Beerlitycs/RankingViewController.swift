@@ -21,6 +21,7 @@ class RankingViewController: UIViewController {
 
         self.tableView.tableFooterView = UIView()
         loadMutualFriends()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -106,12 +107,6 @@ class RankingViewController: UIViewController {
                 println(error)
             }
         })
-        
-    }
-    
-    
-    func classifyFriendsByMLDrunk(){
-        
         
     }
     
