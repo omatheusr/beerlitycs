@@ -11,6 +11,7 @@ import Parse
 
 class BeersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate {
 
+    @IBOutlet var activity: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     var beers = [PFObject]()
     var filteredBeers = [PFObject]()
@@ -18,6 +19,7 @@ class BeersViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.translucent = true
         self.tableView.hideSearchBar()
 
         loadData()
@@ -32,6 +34,7 @@ class BeersViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self.updateTableView()
             } else {
                 println("Ocorreu um erro ao carregar as cervejas")
+                self.activity.hidden = true
             }
         }
     }
@@ -43,6 +46,7 @@ class BeersViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func updateTableView() {
+        self.activity.hidden = true
         self.tableView.reloadData()
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -123,6 +127,9 @@ class BeersViewController: UIViewController, UITableViewDataSource, UITableViewD
         return true
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 52
+    }
     
     func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchScope searchOption: Int) -> Bool {
         self.filterContenctsForSearchText(self.searchDisplayController!.searchBar.text, scope: "Title")

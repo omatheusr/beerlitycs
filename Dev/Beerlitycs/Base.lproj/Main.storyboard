@@ -411,12 +411,18 @@
                                     <outlet property="delegate" destination="bFa-5C-Akj" id="4zR-CP-OEV"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="yTz-ZH-2bV">
+                                <rect key="frame" x="282" y="281" width="37" height="37"/>
+                                <color key="color" red="0.8980392157" green="0.31764705879999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nOg-UJ-qPb" firstAttribute="top" secondItem="2lX-xp-QDe" secondAttribute="bottom" id="00q-GB-5Hp"/>
+                            <constraint firstAttribute="centerY" secondItem="yTz-ZH-2bV" secondAttribute="centerY" id="EA2-0X-McZ"/>
                             <constraint firstItem="2lX-xp-QDe" firstAttribute="top" secondItem="AYo-Br-9aT" secondAttribute="top" id="PGG-2y-bDX"/>
                             <constraint firstItem="2lX-xp-QDe" firstAttribute="leading" secondItem="AYo-Br-9aT" secondAttribute="leading" id="Rni-qD-JFb"/>
+                            <constraint firstAttribute="centerX" secondItem="yTz-ZH-2bV" secondAttribute="centerX" id="W20-C9-eGL"/>
                             <constraint firstAttribute="trailing" secondItem="2lX-xp-QDe" secondAttribute="trailing" id="vaa-ia-lBh"/>
                         </constraints>
                     </view>
@@ -428,6 +434,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activity" destination="yTz-ZH-2bV" id="brj-0K-3hD"/>
                         <outlet property="searchDisplayController" destination="XwD-hS-kaa" id="drq-gI-bhW"/>
                         <outlet property="tableView" destination="2lX-xp-QDe" id="DgE-LM-dRJ"/>
                     </connections>
