@@ -13,6 +13,7 @@ class BeersViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var beers = []
+    var selectedBeer : BeerManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,8 @@ class BeersViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.selectedBeer = BeerManager(dictionary: beers[indexPath.row] as! PFObject)
+
         self.performSegueWithIdentifier("selectBeer", sender: nil)
     }
     
@@ -68,8 +71,11 @@ class BeersViewController: UIViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "selectBeer") {
+            if(self.selectedBeer != nil) {
+                let rVC : CheckInViewController = segue.destinationViewController as! CheckInViewController
             
+                rVC.beerSelected = self.selectedBeer
+            }
         }
     }
-
 }
