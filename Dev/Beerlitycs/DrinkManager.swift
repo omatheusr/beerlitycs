@@ -75,7 +75,7 @@ class DrinkManager: NSObject {
         }
     }
 
-    func getDrinksForGraph(callback: (beerPoints: [Int]?, error: NSError?) ->()) {
+    func getDrinksForGraph(callback: (beerPoints: [Double]?, datePoints: [String]?, error: NSError?) ->()) {
         let cal = NSCalendar.currentCalendar()
         var date = cal.startOfDayForDate(NSDate())
         
@@ -86,7 +86,8 @@ class DrinkManager: NSObject {
         
         query.whereKey("createdAt", greaterThan: dateweek)
 
-        var graphPoints:[Int] = []
+        var graphPoints:[Double] = []
+        var datePoints:[String] = []
 
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in
@@ -97,12 +98,12 @@ class DrinkManager: NSObject {
                     
                     date = cal.dateByAddingUnit(.CalendarUnitDay, value: -1, toDate: date, options: nil)!
                     var teste = false
-                    var aux = 0
+                    var aux:Double = 0
                     
                     if(objects!.count != 0) {
                         for j in 0...objects!.count-1 {
                             //                        let day2 = cal.component(.CalendarUnitDay, fromDate: objects![j].createdAt)
-                            let day2 = cal.component(.CalendarUnitDay, fromDate: objects![j]["localDate"] as! NSDate)
+                            let day2 = cal.component(.CalendarUnitDay, fromDate: objects![j].createdAt as NSDate)
                             
                             if(day == day2) {
                                 aux = aux + 1
@@ -122,16 +123,16 @@ class DrinkManager: NSObject {
                                 }
                             }
                         }
-                        
+                        datePoints.insert(String(day), atIndex: i)
                         graphPoints.insert(aux, atIndex: i)
                     }
                 }
                 
-                callback(beerPoints: graphPoints.reverse(), error: nil)
+                callback(beerPoints: graphPoints.reverse(), datePoints: datePoints.reverse(), error: nil)
             } else {
                 // Log details of the failure
                 println("Error: \(error) \(error!.userInfo!)")
-                callback(beerPoints: nil, error: error!)
+                callback(beerPoints: nil, datePoints:nil, error: error!)
             }
         }
     }
