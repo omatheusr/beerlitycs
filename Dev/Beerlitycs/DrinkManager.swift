@@ -75,7 +75,7 @@ class DrinkManager: NSObject {
         }
     }
 
-    func getDrinksForGraph(callback: (beerPoints: [Double]?, datePoints: [String]?, error: NSError?) ->()) {
+    func getDrinksForGraph(numberPoints: Int,  dayPoints: Bool, callback: (beerPoints: [Double]?, datePoints: [String]?, error: NSError?) ->()) {
         let cal = NSCalendar.currentCalendar()
         var date = cal.startOfDayForDate(NSDate())
         
@@ -92,7 +92,7 @@ class DrinkManager: NSObject {
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in
             if error == nil {
-                for i in 0...6 {
+                for i in 0...numberPoints {
                     let day = cal.component(.CalendarUnitDay, fromDate: date)
                     days.append(day)
                     

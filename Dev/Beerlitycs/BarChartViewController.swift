@@ -25,7 +25,8 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
         barChartView.delegate = self
         
         let graphControl = DrinkManager()
-        graphControl.getDrinksForGraph { (beerPoints, datePoints, error) -> () in
+        
+        graphControl.getDrinksForGraph(29, dayPoints: false) { (beerPoints, datePoints, error) -> () in
             if(error == nil) {
                 self.months = datePoints!
                 let unitsSold = beerPoints!
@@ -50,6 +51,7 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Units Sold")
         let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
         barChartView.data = chartData
+
         barChartView.descriptionText = ""
         
         chartDataSet.colors = [UIColor(red: 225/255, green: 110/255, blue: 55/255, alpha: 1)]
@@ -59,11 +61,11 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
         
         barChartView.xAxis.drawAxisLineEnabled = false
         barChartView.xAxis.drawGridLinesEnabled = false
-        barChartView.xAxis.labelTextColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        barChartView.xAxis.labelTextColor = UIColor(red: 229/255, green: 110/255, blue: 55/255, alpha: 1)
         
         barChartView.drawValueAboveBarEnabled = true
         barChartView.data?.setValueTextColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1))
-        barChartView.data?.setDrawValues(true)
+        barChartView.data?.setDrawValues(false)
         
         
         
