@@ -194,6 +194,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Cadastrar cerveja" id="ddO-lq-lyU">
+                        <barButtonItem key="leftBarButtonItem" image="icon-back" id="ZPN-0N-HRy">
+                            <connections>
+                                <segue destination="rgH-43-A1x" kind="unwind" identifier="saveBeer" unwindAction="backFromNewBeer:" id="j3q-iz-BOl"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Salvar" id="dgW-43-cRV">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="f6d-yl-gHK" id="cJF-BU-2ji"/>
@@ -206,6 +211,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSs-fW-WvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="rgH-43-A1x" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2757" y="-419"/>
         </scene>
@@ -931,11 +937,13 @@
                                     <constraint firstAttribute="bottom" secondItem="IIc-Mu-fOk" secondAttribute="bottom" constant="96" id="svN-Cp-keI"/>
                                     <constraint firstItem="17S-jB-X2t" firstAttribute="width" secondItem="egm-Wa-Voh" secondAttribute="width" id="tQr-R8-VCr"/>
                                     <constraint firstAttribute="centerX" secondItem="17S-jB-X2t" secondAttribute="centerX" id="uU0-64-WFE"/>
+                                    <constraint firstItem="egm-Wa-Voh" firstAttribute="top" secondItem="HWL-Gu-6hV" secondAttribute="top" constant="16" id="v3i-ZK-jld"/>
                                     <constraint firstItem="IIc-Mu-fOk" firstAttribute="trailing" secondItem="oxU-wh-9Am" secondAttribute="trailing" id="yNK-2m-b3L"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="G2j-Ll-rlc"/>
+                                        <exclude reference="O8Z-OP-9AS"/>
                                     </mask>
                                 </variation>
                             </scrollView>

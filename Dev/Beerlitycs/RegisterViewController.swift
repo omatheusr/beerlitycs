@@ -38,13 +38,6 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
         Util.roundedView(self.inputImage.layer, border: false, radius: self.inputImage.frame.size.width / 2)
         self.inputImage.clipsToBounds = true
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
-
         if(editView == nil) {
             let color = UIColor(red: 55.0/255.0, green: 61.0/255.0, blue: 74.0/255.0, alpha: 1.0)
             self.navigationController?.navigationBar.barTintColor = color
@@ -53,7 +46,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
         } else {
             self.registerButton.setTitle("Editar", forState: UIControlState.Normal)
         }
-
+        
         if(self.userControl != nil) {
             self.inputName.text = self.userControl?.name
             self.inputEmail.text = self.userControl?.email
@@ -62,7 +55,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
             self.userControl!.photo?.getDataInBackgroundWithBlock({ (image, error) -> Void in
                 self.inputImage.image = UIImage(data: image!)
             })
-
+            
             if PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
                 if(self.userControl?.email != nil) {
                     self.inputEmail.enabled = false
@@ -75,6 +68,13 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
                 self.inputUserName.text = self.userControl?.username
             }
         }
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
     }
     @IBAction func backButton(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)

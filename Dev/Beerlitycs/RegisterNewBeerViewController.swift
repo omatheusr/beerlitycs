@@ -16,17 +16,10 @@ class RegisterNewBeerViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func saveButtonTapped(sender: AnyObject) {
@@ -46,7 +39,7 @@ class RegisterNewBeerViewController: UITableViewController {
                     // Cerveja enviada para lista de aprovação
                     var alert = UIAlertController(title: "Obrigado por nos ajudar!", message: "A cerveja adicionada entrará para um lista de aprovação.", preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default){ (action) -> Void in
-                        self.navigationController?.popToRootViewControllerAnimated(true)
+                        self.performSegueWithIdentifier("saveBeer", sender: nil)
                     })
                     self.presentViewController(alert, animated: true, completion: nil)
                     
