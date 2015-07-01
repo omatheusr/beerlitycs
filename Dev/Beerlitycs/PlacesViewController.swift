@@ -13,6 +13,7 @@ class PlacesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var places = []
+    var placeControl : PlaceManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +54,10 @@ class PlacesViewController: UIViewController {
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.placeControl = PlaceManager(array: places[indexPath.row])
+
         self.performSegueWithIdentifier("selectPlace", sender: nil)
+
     }
 
     func loadData() {
@@ -71,14 +75,12 @@ class PlacesViewController: UIViewController {
             }
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if(segue.identifier == "selectPlace") {
+            let rVC : CheckInViewController = segue.destinationViewController as! CheckInViewController
+
+            rVC.placeSelected = self.placeControl
+        }
     }
-    */
 
 }
