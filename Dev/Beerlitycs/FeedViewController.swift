@@ -56,7 +56,7 @@ class FeedViewController: UIViewController {
 
             drinkControl.user?.photo?.getDataInBackgroundWithBlock({ (image, error) -> Void in
                 cell.profileImage.image = UIImage(data: image!)
-                Util.roundedView(cell.profileImage.layer, border: false, radius: cell.profileImage.frame.size.width / 2)
+                Util.roundedView(cell.profileImage.layer, border: false, colorHex: nil, borderSize: nil, radius: cell.profileImage.frame.size.width / 2)
                 cell.profileImage.clipsToBounds = true
             })
 
