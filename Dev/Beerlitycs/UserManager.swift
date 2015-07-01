@@ -269,11 +269,17 @@ class UserManager: NSObject {
                     fbID.append(fbIDe)
                 }
                 
-                var friendQuery = PFUser.query()!
+                var userQuery  = PFUser.query()!
+                userQuery.whereKey("objectId", equalTo: user.objectId!)
                 
+                var friendQuery = PFUser.query()!
                 friendQuery.whereKey("facebookId", containedIn: fbID as [AnyObject])
-                friendQuery.orderByDescending("mlDrunk")
-                friendQuery.findObjectsInBackgroundWithBlock {
+                //friendQuery.orderByDescending("mlDrunk")
+                
+                var subQuery = PFQuery.orQueryWithSubqueries([userQuery, friendQuery])
+                subQuery.orderByDescending("mlDrunk")
+                
+                subQuery.findObjectsInBackgroundWithBlock {
                     (objects, error) -> Void in
                     if error == nil {
                         auxUsers = objects!
