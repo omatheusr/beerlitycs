@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -322,6 +322,11 @@
                             <constraint firstItem="n7i-Uu-lhW" firstAttribute="top" secondItem="cTt-NJ-Hi4" secondAttribute="bottom" constant="60" id="mvK-GD-oFo"/>
                             <constraint firstItem="ybf-A2-yTu" firstAttribute="top" secondItem="n7i-Uu-lhW" secondAttribute="bottom" constant="16" id="uvQ-dK-Lnn"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="mvK-GD-oFo"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Check In" id="zkM-fB-dHi">
                         <barButtonItem key="leftBarButtonItem" image="close-button" id="7VX-mF-YJn">
@@ -349,11 +354,11 @@
                         <viewControllerLayoutGuide type="bottom" id="nOg-UJ-qPb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AYo-Br-9aT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="53" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2lX-xp-QDe">
-                                <rect key="frame" x="0.0" y="108" width="600" height="443"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" restorationIdentifier="SearchBarCell" text="" placeholder="busca" id="b4a-e8-cWd">
                                     <rect key="frame" x="0.0" y="64" width="600" height="44"/>
@@ -1200,7 +1205,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.21568627450980393" green="0.23921568627450981" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.12549019607843137" green="0.14117647058823529" blue="0.17647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="rmC-ph-g1S" firstAttribute="top" secondItem="C1b-9x-E3H" secondAttribute="top" id="0u6-g2-XSd"/>
                                                         <constraint firstItem="C1b-9x-E3H" firstAttribute="top" secondItem="bO9-5W-yl0" secondAttribute="bottom" id="7rc-fs-YUQ"/>
@@ -1432,7 +1437,7 @@
                                                 <constraint firstItem="Xi9-HL-iL4" firstAttribute="top" secondItem="lUP-JF-bR8" secondAttribute="bottom" id="zum-SN-WEU"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.2156862745" green="0.23921568630000001" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.12549019607843137" green="0.14117647058823529" blue="0.17647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="0.2156862745" green="0.23921568630000001" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="feedCell" rowHeight="80" id="08f-0o-OAY" customClass="FeedTableViewCell" customModule="Beerlitycs" customModuleProvider="target">
@@ -2010,7 +2015,7 @@
         <image name="stats-icon" width="27" height="17"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fBL-IU-tE9"/>
+        <segue reference="oKW-0R-7X3"/>
         <segue reference="tVi-G4-Nng"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

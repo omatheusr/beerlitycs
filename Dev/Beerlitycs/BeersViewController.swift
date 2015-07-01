@@ -12,7 +12,8 @@ import Parse
 class BeersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    var beers = []
+    var beers = [PFObject]()
+    var filteredBeers = [PFObject]()
     var selectedBeer : BeerManager?
 
     override func viewDidLoad() {
@@ -47,61 +48,53 @@ class BeersViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
      
         
-        if (tableView == self.searchDisplayController?.searchResultsTableView)
-        {
+        if (tableView == self.searchDisplayController?.searchResultsTableView) {
             return self.filteredBeers.count
         }
-        else
-        {
+        else {
             return beers.count
         }
 
     }
     
-    
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let cell = self.tableView.dequeueReusableCellWithIdentifier("beerCell") as! BeersTableViewCell
-        
-        
-        
-        var beerControl = BeerManager()
 
+        var beerControl = BeerManager()
         
-        if (tableView == self.searchDisplayController?.searchResultsTableView)
-        {
-           
+        if (tableView == self.searchDisplayController?.searchResultsTableView) {
             beerControl = BeerManager(dictionary: filteredBeers[indexPath.row])
             cell.beerName.text = beerControl.name
             cell.beerAlcoholContent.text = beerControl.alcoholContent + "%"
             return cell
 
         }
-        else
-        {
+        else {
             beerControl = BeerManager(dictionary: beers[indexPath.row])
             cell.beerName.text = beerControl.name
             cell.beerAlcoholContent.text = beerControl.alcoholContent + "%"
             return cell
 
         }
-
-        
-        
-        
     }
-    
     
     func tableView(tableView: UITableView, numberOfSectionsInTableView section: Int) -> Int {
         return 1
     }
     
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.selectedBeer = BeerManager(dictionary: beers[indexPath.row] as! PFObject)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-        self.performSegueWithIdentifier("selectBeer", sender: nil)
+        if (tableView == self.searchDisplayController?.searchResultsTableView) {
+            self.selectedBeer = BeerManager(dictionary: filteredBeers[indexPath.row] as! PFObject)
+            self.performSegueWithIdentifier("selectBeer", sender: nil)
+
+        }
+        else {
+            self.selectedBeer = BeerManager(dictionary: beers[indexPath.row] as! PFObject)
+            self.performSegueWithIdentifier("selectBeer", sender: nil)
+
+        }
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -110,9 +103,7 @@ class BeersViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     // MARK: - Search Methods
     
-    func filterContenctsForSearchText(searchText: String, scope: String = "Title")
-    {
-        
+    func filterContenctsForSearchText(searchText: String, scope: String = "Title") {
         self.filteredBeers =  self.beers.filter({ (beer:PFObject) ->
             Bool in
             var categoryMatch = (scope == "Title")
@@ -124,32 +115,21 @@ class BeersViewController: UIViewController, UITableViewDataSource, UITableViewD
             return categoryMatch && (stringMatch != nil)
             
          })
-        
-        
     }
     
-    func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchString searchString: String!) -> Bool
-    {
-        
+    func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchString searchString: String!) -> Bool {
         self.filterContenctsForSearchText(searchString, scope: "Title")
         
         return true
-        
-        
     }
     
     
-    func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchScope searchOption: Int) -> Bool
-    {
-        
+    func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchScope searchOption: Int) -> Bool {
         self.filterContenctsForSearchText(self.searchDisplayController!.searchBar.text, scope: "Title")
         
         return true
-        
     }
 
-    
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "selectBeer") {
             if(self.selectedBeer != nil) {
