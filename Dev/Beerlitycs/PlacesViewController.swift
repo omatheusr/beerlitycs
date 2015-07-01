@@ -77,9 +77,11 @@ class PlacesViewController: UIViewController {
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "selectPlace") {
-            let rVC : CheckInViewController = segue.destinationViewController as! CheckInViewController
+            if(self.placeControl != nil) {
+                let rVC : CheckInViewController = segue.destinationViewController as! CheckInViewController
 
-            rVC.placeSelected = self.placeControl
+                rVC.placeSelected = self.placeControl
+            }
         }
     }
 

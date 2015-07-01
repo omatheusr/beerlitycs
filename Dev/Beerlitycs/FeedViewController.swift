@@ -52,7 +52,20 @@ class FeedViewController: UIViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier("feedCell") as! FeedTableViewCell
  
             var drinkControl = DrinkManager(dictionary: self.feed[indexPath.row-1] as! PFObject)
-            let activityText = "está bebendo uma \(drinkControl.beer!.name) \(drinkControl.cup!.size)ml no THOMAS PUB"
+            
+            var activityText = "está bebendo"
+            
+            if(drinkControl.beer != nil) {
+                activityText = activityText + " uma " + drinkControl.beer!.name
+            }
+            
+            if(drinkControl.cup != nil) {
+                activityText = activityText + String(drinkControl.cup!.size) + "ml"
+            }
+
+            if(drinkControl.place != nil) {
+                activityText = activityText + " no " + drinkControl.place!.name
+            }
 
             drinkControl.user?.photo?.getDataInBackgroundWithBlock({ (image, error) -> Void in
                 cell.profileImage.image = UIImage(data: image!)
