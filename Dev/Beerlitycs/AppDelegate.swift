@@ -9,11 +9,7 @@
 import UIKit
 import Parse
 import Bolts
-import GoogleMaps
-
-
-
-
+//import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         //Google Maps
-        GMSServices.provideAPIKey("AIzaSyDM2AN03SBXVEkq7RJjjbRCFAOC0PUEiog")
-        
+//        GMSServices.provideAPIKey("AIzaSyDM2AN03SBXVEkq7RJjjbRCFAOC0PUEiog")
         
         // [Optional] Power your app with Local Datastore. For more info, go to
         // https://parse.com/docs/ios_guide#localdatastore/iOS
@@ -47,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.whiteColor()], forState: UIControlState.Selected)
 
-        let colorNav = UIColor(red: 157.0/255.0, green: 140.0/255.0, blue: 112.0/255.0, alpha: 1.0)
+        let colorNav = UIColor(red: 229.0/255.0, green: 110.0/255.0, blue: 55.0/255.0, alpha: 1.0)
         let font = UIFont(name: "AvenirNext-Regular", size: 20)
         if let font = font {
             UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName : font, NSForegroundColorAttributeName : UIColor.whiteColor()]

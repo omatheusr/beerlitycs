@@ -12,8 +12,6 @@ import Parse
 import GoogleMaps
 import MapboxGL
 
-
-
 class CheckInViewController: UIViewController, MGLMapViewDelegate {
 
     var beerSelected : BeerManager?
@@ -21,55 +19,19 @@ class CheckInViewController: UIViewController, MGLMapViewDelegate {
     var cupSelected : CupManager?
     var mapViewCustom : MGLMapView!
 
+    @IBOutlet weak var mapImage: UIImageView!
+    @IBOutlet weak var choiceBeerButton: UIButton!
 
-    @IBOutlet var baseMapView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    
-        //estyle
-        mapViewCustom = MGLMapView ( frame :  CGRectMake(0, 0,self.view.frame.size.width, baseMapView.frame.size.height), styleURL :  NSURL(string: "asset://styles/dark-v7.json"))
-        mapViewCustom.delegate = self
-        
-        //zoom
-
-        
-        //ponto
-        
-        self.baseMapView.addSubview(mapViewCustom)
-        
+        loadData()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        mapViewCustom.setCenterCoordinate(CLLocationCoordinate2D(latitude: -30.024246, longitude: -51.202715), zoomLevel: 14, animated: true)
-        
-        let pin = MGLPointAnnotation()
-        pin.coordinate = CLLocationCoordinate2D(latitude: -30.024246, longitude: -51.202715)
-        pin.title = "Thomas Pub"//NOME DO BUTECO
-        pin.subtitle = "subtitulo"//SLA DA PRA POR ALGO AQUI
-        mapViewCustom.addAnnotation(pin)
-
     }
     
-//        // passar longitude e latitudo do bar aqui
-//        let camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(-30.024180, longitude: -51.202917, zoom: 16.0)
-//        mapView.myLocationEnabled = true
-//        mapView.camera = camera
-//        var marker = GMSMarker()
-//        marker.position = camera.target
-//        
-//        //passar nome do bar aqui!
-//        marker.snippet = "Thomas Pub"
-//        marker.appearAnimation = kGMSMarkerAnimationPop
-//        marker.map = mapView
-//        
-//        mapView.mapType = kGMSTypeTerrain
-        
-        
-
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -83,22 +45,59 @@ class CheckInViewController: UIViewController, MGLMapViewDelegate {
     
     @IBAction func selectBeer(segue:UIStoryboardSegue) {
         if(segue.identifier == "selectBeer") {
-            println("cerveja selecionada")
+            if(self.beerSelected != nil) {
+                let textButton = self.beerSelected?.name
+                self.choiceBeerButton.setTitle(textButton! + " - Trocar", forState: UIControlState.Normal)
+            }
         }
     }
 
     @IBAction func selectPlace(segue:UIStoryboardSegue) {
         if(segue.identifier == "selectPlace") {
-            println("local selecionado")
+            addStaticMap()
         }
     }
 
-    func mapView(mapView: MGLMapView, symbolNameForAnnotation annotation: MGLAnnotation) -> String? {
-        return "default_marker"
+    func addStaticMap() {
+        let lat = self.placeSelected?.location.latitude
+        let long = self.placeSelected?.location.longitude
+        let clLocation = CLLocationCoordinate2DMake(lat!, long!)
+
+        let markerOverlay = MapboxStaticMap.Marker(
+            coordinate: clLocation,
+            size: .Medium,
+            label: "triangle",
+            color: UIColor.whiteColor()
+        )
+
+        let map = MapboxStaticMap(
+            mapID: "matheusbecker.873c9d11",
+            center: clLocation,
+            zoom: 17,
+            size: CGSize(width: self.mapImage.layer.frame.width, height: self.mapImage.layer.frame.height),
+            accessToken: "sk.eyJ1IjoibWF0aGV1c2JlY2tlciIsImEiOiJiYWZhNTg4NjRlYWJkYzUyNjBiYzNiYzk5YmFlOWZmZCJ9.Y4vw-oFFlJjuvhKdc0F8qA",
+            overlays: [markerOverlay],
+            retina: true
+        )
+        
+        self.mapImage.image = map.image
     }
     
-    func mapView(mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        return true
+    func loadData() {
+        PFGeoPoint.geoPointForCurrentLocationInBackground {
+            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+            if error == nil {
+                let location = CLLocation(
+                    latitude: geoPoint!.latitude,
+                    longitude: geoPoint!.longitude
+                )
+                
+                let placeControl = PlaceManager()
+                let places = placeControl.requestPlacesWithLocation(location) as NSArray
+                self.placeSelected = PlaceManager(array: places.firstObject!)
+                self.addStaticMap()
+            }
+        }
     }
 }
 

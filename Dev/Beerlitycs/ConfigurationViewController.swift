@@ -57,6 +57,9 @@ class ConfigurationViewController: UITableViewController {
     @IBAction func backFromNewBeer(segue:UIStoryboardSegue) {
     }
 
+    @IBAction func selectBeer(segue:UIStoryboardSegue) {
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "editProfile") {
             let rVC : RegisterViewController = segue.destinationViewController as! RegisterViewController
