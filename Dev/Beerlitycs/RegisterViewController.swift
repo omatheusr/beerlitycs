@@ -32,10 +32,11 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Util.roundedView(self.bgInputView.layer, border: true, colorHex: "E6DCD7", borderSize: 1.0, radius: 6)
+        Util.roundedView(self.registerButton.layer, border: false, colorHex: nil, borderSize: nil, radius: 6)
+        Util.roundedView(self.inputImage.layer, border: true, colorHex: "E55122", borderSize: 2.0, radius: self.inputImage.frame.size.width / 2)
 
-        Util.roundedView(self.bgInputView.layer, border: true, radius: 6)
-        Util.roundedView(self.registerButton.layer, border: false, radius: 6)
-        Util.roundedView(self.inputImage.layer, border: false, radius: self.inputImage.frame.size.width / 2)
         self.inputImage.clipsToBounds = true
 
         if(editView == nil) {

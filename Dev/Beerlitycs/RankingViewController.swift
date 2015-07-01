@@ -47,7 +47,8 @@ class RankingViewController: UIViewController {
             cell.profileName.text = userControl.name
             userControl.photo?.getDataInBackgroundWithBlock({ (image, error) -> Void in
                 cell.profileImage.image = UIImage(data: image!)
-                Util.roundedView(cell.profileImage.layer, border: false, radius: cell.profileImage.frame.size.width / 2)
+                Util.roundedView(cell.profileImage.layer, border: true, colorHex: "E55122", borderSize: 2.0, radius: cell.profileImage.frame.size.width / 2)
+
                 cell.profileImage.clipsToBounds = true
             })
 
@@ -60,7 +61,7 @@ class RankingViewController: UIViewController {
             cell.userName.text = userControl.name
             userControl.photo?.getDataInBackgroundWithBlock({ (image, error) -> Void in
                 cell.userPhoto.image = UIImage(data: image!)
-                Util.roundedView(cell.userPhoto.layer, border: false, radius: cell.userPhoto.frame.size.width / 2)
+                Util.roundedView(cell.userPhoto.layer, border: false, colorHex: nil, borderSize: nil, radius: cell.userPhoto.frame.size.width / 2)
                 cell.userPhoto.clipsToBounds = true
             })
             

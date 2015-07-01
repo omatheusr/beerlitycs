@@ -26,9 +26,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        Util.roundedView(self.inputBgLogin.layer, border: true, radius: 6)
-        Util.roundedView(self.loginButton.layer, border: false, radius: 6)
-        Util.roundedView(self.loginFBButton.layer, border: false, radius: 6)
+        Util.roundedView(self.inputBgLogin.layer, border: true, colorHex: "E6DCD7", borderSize: 1.0, radius: 6)
+        Util.roundedView(self.loginButton.layer, border: false, colorHex: nil, borderSize: nil, radius: 6)
+        Util.roundedView(self.loginFBButton.layer, border: false, colorHex: nil, borderSize: nil, radius: 6)
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
