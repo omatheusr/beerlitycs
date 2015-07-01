@@ -21,6 +21,7 @@ class RankingViewController: UIViewController {
 
         self.tableView.tableFooterView = UIView()
         loadMutualFriends()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,7 +100,7 @@ class RankingViewController: UIViewController {
     func loadMutualFriends() {
         let userControl = UserManager()
         
-        userControl.getMutualFriends(PFUser.currentUser()!, callback: { (friends, error) -> () in
+        userControl.getMutualFriendsDescendingByMLDrunk(PFUser.currentUser()!, callback: { (friends, error) -> () in
             if(error == nil) {
                 self.ranking = friends!
                 self.updateTableView()
@@ -107,12 +108,6 @@ class RankingViewController: UIViewController {
                 println(error)
             }
         })
-        
-    }
-    
-    
-    func classifyFriendsByMLDrunk(){
-        
         
     }
     

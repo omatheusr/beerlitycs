@@ -43,8 +43,9 @@ class UserManager: NSObject {
         
         if((dictionary["mlDrunk"]) != nil) {
             self.mlDrunk = dictionary["mlDrunk"] as? String
+        } else {
+            self.mlDrunk = "0" 
         }
-        
     }
 
     func newUser(userControl: UserManager, callback: (error: NSError?) -> ()) {
@@ -74,11 +75,8 @@ class UserManager: NSObject {
             query["photo"] = userControl.photo
         }
         
-        if userControl.mlDrunk != nil{
-            query["mlDrunk"] = userControl.mlDrunk
-        }
-        
-        
+        query["mlDrunk"] = "0"
+    
         query.signUpInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
@@ -138,6 +136,8 @@ class UserManager: NSObject {
                     
                     if userControl.mlDrunk != nil{
                         query["mlDrunk"] = userControl.mlDrunk
+                    } else {
+                        query["mlDrunk"] = "0"
                     }
                     
                     
@@ -247,8 +247,57 @@ class UserManager: NSObject {
         }
     }
     
+    
     //----------------------------------------------------------------------------------------------
-    //
+    // Get mutual friends and sort by ML Drunk
+    //----------------------------------------------------------------------------------------------
+    
+    func getMutualFriendsDescendingByMLDrunk(user: PFUser, callback: (friends: NSArray?, error: NSError?) -> ()) {
+        let fbRequestFriends : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "/me/friends", parameters: nil)
+        
+        fbRequestFriends.startWithCompletionHandler{
+            (connection:FBSDKGraphRequestConnection!,result:AnyObject?, error:NSError!) -> Void in
+            
+            var auxUsers: NSArray!
+            
+            if error == nil && result != nil {
+                auxUsers = result!["data"]! as! NSArray
+                var fbID = [String]()
+                
+                for user in auxUsers {
+                    let fbIDe = user["id"]! as! String
+                    fbID.append(fbIDe)
+                }
+                
+                var userQuery  = PFUser.query()!
+                userQuery.whereKey("objectId", equalTo: user.objectId!)
+                
+                var friendQuery = PFUser.query()!
+                friendQuery.whereKey("facebookId", containedIn: fbID as [AnyObject])
+                //friendQuery.orderByDescending("mlDrunk")
+                
+                var subQuery = PFQuery.orQueryWithSubqueries([userQuery, friendQuery])
+                subQuery.orderByDescending("mlDrunk")
+                
+                subQuery.findObjectsInBackgroundWithBlock {
+                    (objects, error) -> Void in
+                    if error == nil {
+                        auxUsers = objects!
+                        callback(friends: auxUsers, error: nil)
+                    } else {
+                        callback(friends: nil, error: error)
+                    }
+                }
+            } else {
+                callback(friends: nil, error: error)
+            }
+        }
+    }
+
+    
+    
+    //----------------------------------------------------------------------------------------------
+    // Get Cups Drunk Per User
     //----------------------------------------------------------------------------------------------
     
     func getCupsDrunk (userID: String, callback: (cups: NSInteger?, error: NSError?) -> ()) {
@@ -261,6 +310,7 @@ class UserManager: NSObject {
     
         query.includeKey("cup")
         query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
+
 
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in
@@ -285,10 +335,44 @@ class UserManager: NSObject {
         
     }
     
+    //----------------------------------------------------------------------------------------------
+    // When a new beer is added on table "Drink", call this function to add on total beer drunk
+    // This fuction can only be used for current user.
+    //----------------------------------------------------------------------------------------------
     
+    func addNewBeerInMLToTotal (userID: String, mlDrunk: NSInteger, callback: (error: NSError?) -> ()){
     
-    
-    
+        var query = PFUser.query()!
+        
+        query.getObjectInBackgroundWithId(userID){
+            (objects, error) -> Void in
+            
+            if error != nil {
+                callback(error: error)
+                
+            } else{
+                if let query = objects as? PFUser {
+                    
+                    var name: String = query["mlDrunk"] as! String
+                    var mililiters: Int = name.toInt()!
+                    
+                    mililiters = mililiters + mlDrunk
+                
+                    query["mlDrunk"] = String(mililiters)
+                    query.saveInBackgroundWithBlock {
+                        (success: Bool, error: NSError?) -> Void in
+                        if (success) {
+                            callback(error: nil)
+                        } else {
+                            callback(error: error)
+                        }
+                    }
+                    callback(error: nil)
+                }
+            }
+        }
+        
+    }
     
     
     
