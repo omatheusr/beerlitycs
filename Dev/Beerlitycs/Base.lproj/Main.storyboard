@@ -194,6 +194,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Cadastrar cerveja" id="ddO-lq-lyU">
+                        <barButtonItem key="leftBarButtonItem" image="icon-back" id="ZPN-0N-HRy">
+                            <connections>
+                                <segue destination="rgH-43-A1x" kind="unwind" identifier="saveBeer" unwindAction="backFromNewBeer:" id="j3q-iz-BOl"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Salvar" id="dgW-43-cRV">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="f6d-yl-gHK" id="cJF-BU-2ji"/>
@@ -206,6 +211,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSs-fW-WvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="rgH-43-A1x" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2757" y="-419"/>
         </scene>
@@ -553,7 +559,7 @@
                                         <color key="textColor" red="1" green="0.97254901960784312" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RNv-HQ-Bis">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNv-HQ-Bis">
                                         <rect key="frame" x="32" y="150" width="536" height="88"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Senha" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qnE-GX-2zF">
@@ -600,7 +606,7 @@
                                             <constraint firstItem="qnE-GX-2zF" firstAttribute="top" secondItem="cgA-wg-NpA" secondAttribute="bottom" id="uGq-yp-oqa"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GD2-tj-YvW">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GD2-tj-YvW">
                                         <rect key="frame" x="32" y="323" width="536" height="44"/>
                                         <color key="backgroundColor" red="0.19215686274509805" green="0.28627450980392155" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -615,13 +621,13 @@
                                             <action selector="fbLoginButton:" destination="oJ0-rc-sLW" eventType="touchUpInside" id="G8p-HJ-84d"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ainda não é usuário?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBK-Gv-EsB">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ainda não é usuário?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBK-Gv-EsB">
                                         <rect key="frame" x="225" y="537" width="153" height="21"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="15"/>
                                         <color key="textColor" red="0.99607843137254903" green="0.96470588235294119" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKB-j6-nqK">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKB-j6-nqK">
                                         <rect key="frame" x="260" y="558" width="80" height="33"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="15"/>
                                         <state key="normal" title="Criar conta">
@@ -633,7 +639,7 @@
                                             <segue destination="Ymh-fs-jXc" kind="show" id="6mi-cI-iEU"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-zO-XmL">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-zO-XmL">
                                         <rect key="frame" x="32" y="271" width="536" height="44"/>
                                         <color key="backgroundColor" red="0.44313725490196076" green="0.38823529411764707" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -923,11 +929,13 @@
                                     <constraint firstAttribute="bottom" secondItem="IIc-Mu-fOk" secondAttribute="bottom" constant="96" id="svN-Cp-keI"/>
                                     <constraint firstItem="17S-jB-X2t" firstAttribute="width" secondItem="egm-Wa-Voh" secondAttribute="width" id="tQr-R8-VCr"/>
                                     <constraint firstAttribute="centerX" secondItem="17S-jB-X2t" secondAttribute="centerX" id="uU0-64-WFE"/>
+                                    <constraint firstItem="egm-Wa-Voh" firstAttribute="top" secondItem="HWL-Gu-6hV" secondAttribute="top" constant="16" id="v3i-ZK-jld"/>
                                     <constraint firstItem="IIc-Mu-fOk" firstAttribute="trailing" secondItem="oxU-wh-9Am" secondAttribute="trailing" id="yNK-2m-b3L"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="G2j-Ll-rlc"/>
+                                        <exclude reference="O8Z-OP-9AS"/>
                                     </mask>
                                 </variation>
                             </scrollView>
@@ -1070,7 +1078,7 @@
                                                                 </mask>
                                                             </variation>
                                                         </view>
-                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xTA-GG-yIN">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xTA-GG-yIN">
                                                             <rect key="frame" x="200" y="110" width="200" height="49"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100º" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebG-u0-TUE">

@@ -13,7 +13,7 @@ class PushNotifications: NSObject {
     static func associateDeviceWithCurrentUser() {
         let installation = PFInstallation.currentInstallation()
         
-        if(installation["user"] == nil) {
+        if((installation["user"] == nil) && PFUser.currentUser() != nil) {
             installation["user"] = PFUser.currentUser()
             installation.saveInBackground()
         }

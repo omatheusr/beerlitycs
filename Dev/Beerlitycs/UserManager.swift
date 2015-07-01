@@ -82,6 +82,7 @@ class UserManager: NSObject {
         query.signUpInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
+                PushNotifications.associateDeviceWithCurrentUser()
                 callback(error: nil)
             } else {
                 callback(error: error)
