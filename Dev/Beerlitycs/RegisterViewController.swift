@@ -8,8 +8,9 @@
 
 import UIKit
 import Parse
+import MobileCoreServices
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
@@ -22,6 +23,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var inputPassword: UITextField!
     @IBOutlet weak var inputHeight: UITextField!
     @IBOutlet weak var inputWeight: UITextField!
+    @IBOutlet weak var inputImage: UIImageView!
 
     @IBOutlet weak var heightBottomConstraint: NSLayoutConstraint!
 
@@ -33,12 +35,8 @@ class RegisterViewController: UIViewController {
 
         Util.roundedView(self.bgInputView.layer, border: true, radius: 6)
         Util.roundedView(self.registerButton.layer, border: false, radius: 6)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
+        Util.roundedView(self.inputImage.layer, border: false, radius: self.inputImage.frame.size.width / 2)
+        self.inputImage.clipsToBounds = true
 
         if(editView == nil) {
             let color = UIColor(red: 55.0/255.0, green: 61.0/255.0, blue: 74.0/255.0, alpha: 1.0)
@@ -48,13 +46,16 @@ class RegisterViewController: UIViewController {
         } else {
             self.registerButton.setTitle("Editar", forState: UIControlState.Normal)
         }
-
+        
         if(self.userControl != nil) {
             self.inputName.text = self.userControl?.name
             self.inputEmail.text = self.userControl?.email
             self.inputHeight.text = self.userControl?.height
             self.inputWeight.text = self.userControl?.weight
-
+            self.userControl!.photo?.getDataInBackgroundWithBlock({ (image, error) -> Void in
+                self.inputImage.image = UIImage(data: image!)
+            })
+            
             if PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
                 if(self.userControl?.email != nil) {
                     self.inputEmail.enabled = false
@@ -67,6 +68,13 @@ class RegisterViewController: UIViewController {
                 self.inputUserName.text = self.userControl?.username
             }
         }
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
     }
     @IBAction func backButton(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
@@ -77,6 +85,55 @@ class RegisterViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func changePhoto(sender: AnyObject) {
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
+        // 2
+        let deleteAction = UIAlertAction(title: "Tirar foto", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
+                var imag = UIImagePickerController()
+                imag.delegate = self
+                imag.sourceType = UIImagePickerControllerSourceType.Camera;
+                imag.mediaTypes = [kUTTypeImage]
+                imag.allowsEditing = true
+                
+                self.presentViewController(imag, animated: true, completion: nil)
+            }
+        })
+
+        let saveAction = UIAlertAction(title: "Escolher foto", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            var imag = UIImagePickerController()
+            imag.delegate = self
+            imag.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
+            imag.mediaTypes = [kUTTypeImage]
+            imag.allowsEditing = true
+            
+            self.presentViewController(imag, animated: true, completion: nil)
+        })
+
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            println("Cancelled")
+        })
+
+        optionMenu.addAction(deleteAction)
+        optionMenu.addAction(saveAction)
+        optionMenu.addAction(cancelAction)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        self.inputImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     func animateTextFieldWithKeyboard(notification: NSNotification) {
         
         let userInfo = notification.userInfo!
@@ -115,6 +172,9 @@ class RegisterViewController: UIViewController {
             userControl.height = inputHeight.text
             userControl.weight = inputWeight.text
 
+            let imageData = UIImageJPEGRepresentation(self.inputImage.image, 0.6)
+            userControl.photo = PFFile(name: userControl.objectId + ".jpg", data: imageData)
+
             if !PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
                 userControl.password = self.inputPassword.text
                 userControl.username = self.inputUserName.text
@@ -139,6 +199,9 @@ class RegisterViewController: UIViewController {
             userControl.height = inputHeight.text
             userControl.weight = inputWeight.text
             
+            let imageData = UIImageJPEGRepresentation(self.inputImage.image, 0.6)
+            userControl.photo = PFFile(name: userControl.objectId + ".jpg", data: imageData)
+
             userControl.newUser(userControl, callback: { (error) -> () in
                 if(error == nil) {
                     self.dismissViewControllerAnimated(true, completion: nil)

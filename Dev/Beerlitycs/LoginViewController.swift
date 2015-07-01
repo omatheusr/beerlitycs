@@ -59,6 +59,7 @@ class LoginViewController: UIViewController {
                     println("User signed up and logged in through Facebook!")
                     userControl.returnUserData(loggedUser, callback: { (error) -> () in
                         if(error == nil) {
+                            PushNotifications.associateDeviceWithCurrentUser()
                             self.userLogged = UserManager(dictionary: loggedUser)
                             self.performSegueWithIdentifier("registerSegue", sender: nil)
                         }

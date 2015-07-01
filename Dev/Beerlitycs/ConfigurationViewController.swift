@@ -28,17 +28,19 @@ class ConfigurationViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func exitButtonTapped(sender: UIButton) {
+    @IBAction func exitButtonTapped(sender: UIButton) {        
         var alert = UIAlertController(title: "Cuidado!", message: "Tem certeza que deseja sair do aplicativo?", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default){ (action) -> Void in
             
             if ((PFUser.currentUser()) != nil){
-                PFUser.logOut()
-                self.navigationController?.popToRootViewControllerAnimated(true)
+                PFUser.logOutInBackgroundWithBlock({ (error) -> Void in
+                    if(error == nil) {
+                        self.navigationController?.popViewControllerAnimated(true)
+                    }
+                })
             }
-            
         })
-        
+
         alert.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.Default){ (action) -> Void in })
         self.presentViewController(alert, animated: true, completion: nil)
 
@@ -51,6 +53,10 @@ class ConfigurationViewController: UITableViewController {
     @IBAction func backToView(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
     }
+
+    @IBAction func backFromNewBeer(segue:UIStoryboardSegue) {
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "editProfile") {
             let rVC : RegisterViewController = segue.destinationViewController as! RegisterViewController
