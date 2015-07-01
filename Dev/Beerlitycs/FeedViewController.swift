@@ -91,13 +91,11 @@ class FeedViewController: UIViewController {
     }
 
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
+    constante = 0,74 (homem) || 0,67 (mulher)
+    
+    VolumeAlcoolBebida = (volumeBebida * porcentualAlcool) / 100
+    MassaEtanol = VolumeAlcoolBebida * 0,8g
+    AlcoolNoSangue = MassaEtanol / (PesoPessoa * constante)
     */
 
 }

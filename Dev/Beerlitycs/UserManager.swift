@@ -43,8 +43,9 @@ class UserManager: NSObject {
         
         if((dictionary["mlDrunk"]) != nil) {
             self.mlDrunk = dictionary["mlDrunk"] as? String
+        } else {
+            self.mlDrunk = "0" 
         }
-        
     }
 
     func newUser(userControl: UserManager, callback: (error: NSError?) -> ()) {
@@ -74,11 +75,8 @@ class UserManager: NSObject {
             query["photo"] = userControl.photo
         }
         
-        if userControl.mlDrunk != nil{
-            query["mlDrunk"] = userControl.mlDrunk
-        }
-        
-        
+        query["mlDrunk"] = "0"
+    
         query.signUpInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
@@ -138,6 +136,8 @@ class UserManager: NSObject {
                     
                     if userControl.mlDrunk != nil{
                         query["mlDrunk"] = userControl.mlDrunk
+                    } else {
+                        query["mlDrunk"] = "0"
                     }
                     
                     
@@ -247,6 +247,49 @@ class UserManager: NSObject {
         }
     }
     
+    
+    //----------------------------------------------------------------------------------------------
+    // Get mutual friends and sort by ML Drunk
+    //----------------------------------------------------------------------------------------------
+    
+    func getMutualFriendsDescendingByMLDrunk(user: PFUser, callback: (friends: NSArray?, error: NSError?) -> ()) {
+        let fbRequestFriends : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "/me/friends", parameters: nil)
+        
+        fbRequestFriends.startWithCompletionHandler{
+            (connection:FBSDKGraphRequestConnection!,result:AnyObject?, error:NSError!) -> Void in
+            
+            var auxUsers: NSArray!
+            
+            if error == nil && result != nil {
+                auxUsers = result!["data"]! as! NSArray
+                var fbID = [String]()
+                
+                for user in auxUsers {
+                    let fbIDe = user["id"]! as! String
+                    fbID.append(fbIDe)
+                }
+                
+                var friendQuery = PFUser.query()!
+                
+                friendQuery.whereKey("facebookId", containedIn: fbID as [AnyObject])
+                friendQuery.orderByDescending("mlDrunk")
+                friendQuery.findObjectsInBackgroundWithBlock {
+                    (objects, error) -> Void in
+                    if error == nil {
+                        auxUsers = objects!
+                        callback(friends: auxUsers, error: nil)
+                    } else {
+                        callback(friends: nil, error: error)
+                    }
+                }
+            } else {
+                callback(friends: nil, error: error)
+            }
+        }
+    }
+
+    
+    
     //----------------------------------------------------------------------------------------------
     // Get Cups Drunk Per User
     //----------------------------------------------------------------------------------------------
@@ -261,6 +304,7 @@ class UserManager: NSObject {
     
         query.includeKey("cup")
         query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
+
 
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in
@@ -323,8 +367,6 @@ class UserManager: NSObject {
         }
         
     }
-    
-    
     
     
     
