@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import Parse
 
 class BarChartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ChartViewDelegate {
     
@@ -21,15 +22,19 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
-        
         barChartView.delegate = self
         
-        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
+        let graphControl = DrinkManager()
+        graphControl.getDrinksForGraph { (beerPoints, datePoints, error) -> () in
+            if(error == nil) {
+                self.months = datePoints!
+                let unitsSold = beerPoints!
+                self.setChart(self.months, values: unitsSold)
+            } else {
+                
+            }
+        }
         
-        setChart(months, values: unitsSold)
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
@@ -48,17 +53,18 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
         
         barChartView.descriptionText = ""
         
-        chartDataSet.colors = [UIColor(red: 157/255, green: 140/255, blue: 112/255, alpha: 1)]
-        //        chartDataSet.colors = ChartColorTemplates.colorful()
+        chartDataSet.colors = [UIColor(red: 229/255, green: 110/255, blue: 55/255, alpha: 1)]
+        //chartDataSet.colors = ChartColorTemplates.colorful()
         
         barChartView.xAxis.labelPosition = .Bottom
         
         barChartView.xAxis.drawAxisLineEnabled = false
         barChartView.xAxis.drawGridLinesEnabled = false
         
-        barChartView.drawValueAboveBarEnabled = false
+        barChartView.drawValueAboveBarEnabled = true
         
-        barChartView.legend.enabled = false
+        barChartView.legend.enabled = true
+        barChartView.legend.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
         
         
         barChartView.backgroundColor = UIColor(red: 55/255, green: 61/255, blue: 74/255, alpha: 1)
