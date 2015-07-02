@@ -9,22 +9,22 @@
 import UIKit
 import MapKit
 import Parse
-import GoogleMaps
-import MapboxGL
 
-class CheckInViewController: UIViewController, MGLMapViewDelegate {
+class CheckInViewController: UITableViewController {
 
     var beerSelected : BeerManager?
     var placeSelected : PlaceManager?
     var cupSelected : CupManager?
-    var mapViewCustom : MGLMapView!
 
     @IBOutlet weak var mapImage: UIImageView!
     @IBOutlet weak var choiceBeerButton: UIButton!
+    @IBOutlet weak var choicePlaceButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.tableFooterView = UIView()
+
         loadData()
     }
     
@@ -37,6 +37,9 @@ class CheckInViewController: UIViewController, MGLMapViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func childViewControllerDidPressButton(childViewController: CupsCollectionViewController) {
+        // Do fun handling of child button presses!
+    }
 
     @IBAction func cancelCheckIn(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -47,7 +50,7 @@ class CheckInViewController: UIViewController, MGLMapViewDelegate {
         if(segue.identifier == "selectBeer") {
             if(self.beerSelected != nil) {
                 let textButton = self.beerSelected?.name
-                self.choiceBeerButton.setTitle(textButton! + " - Trocar", forState: UIControlState.Normal)
+                self.choiceBeerButton.setTitle(textButton!, forState: UIControlState.Normal)
             }
         }
     }
@@ -59,6 +62,8 @@ class CheckInViewController: UIViewController, MGLMapViewDelegate {
     }
 
     func addStaticMap() {
+        self.choicePlaceButton.setTitle(self.placeSelected?.name, forState: UIControlState.Normal)
+
         let lat = self.placeSelected?.location.latitude
         let long = self.placeSelected?.location.longitude
         let clLocation = CLLocationCoordinate2DMake(lat!, long!)
@@ -79,10 +84,47 @@ class CheckInViewController: UIViewController, MGLMapViewDelegate {
             overlays: [markerOverlay],
             retina: true
         )
-        
-        self.mapImage.image = map.image
+
+//        let teste : String!
+//
+//        teste = "http://files.parsetfss.com/ec68a11d-2ad9-48a8-abfb-407dfc3ebd78/tfss-8cd4e020-b3c6-4cab-a34e-1def095f0214-NJm5gZHh82.jpg"
+//        
+////        let fileUrl = NSURL(fileURLWithPath: url)
+//        let fileUrl = NSURL(string: teste!)
+
+        self.mapImage.setImageWithURL(map.requestURL, placeholderImage: UIImage(named: "placeholder"),usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     }
     
+    @IBAction func makeCheckIn(sender: AnyObject) {
+        let drinkControl = DrinkManager()
+        
+        drinkControl.place = self.placeSelected
+        drinkControl.beer = self.beerSelected
+        drinkControl.cup = self.cupSelected
+        
+//        println(drinkControl.place)
+//        println(drinkControl.beer)
+//        println(drinkControl.cup)
+        
+        if(placeSelected != nil) {
+            drinkControl.prepareForDrink(drinkControl, callback: { (error) -> () in
+                if(error == nil) {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                } else {
+                    println("erro no check in")
+                }
+            })
+        } else {
+            drinkControl.newDrink(drinkControl) { (error) -> () in
+                if(error == nil) {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                } else {
+                    println("erro no check in")
+                }
+            }
+        }
+    }
+
     func loadData() {
         PFGeoPoint.geoPointForCurrentLocationInBackground {
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
@@ -97,6 +139,13 @@ class CheckInViewController: UIViewController, MGLMapViewDelegate {
                 self.placeSelected = PlaceManager(array: places.firstObject!)
                 self.addStaticMap()
             }
+        }
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "embedCups" {
+            let childViewController = segue.destinationViewController as! CupsCollectionViewController
+            childViewController.parentVC = self
         }
     }
 }

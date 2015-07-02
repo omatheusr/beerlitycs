@@ -27,22 +27,80 @@ class DrinkManager: NSObject {
         super.init()
 
         self.user = UserManager(dictionary: dictionary["user"] as! PFUser)
-//        self.place = PlaceManager(dictionary: dictionary["place"] as! PFObject)
-        self.beer = BeerManager(dictionary: dictionary["beer"] as! PFObject)
-        self.cup = CupManager(dictionary: dictionary["cup"] as! PFObject)
+        
+        if(dictionary["place"] != nil) {
+            self.place = PlaceManager(dictionary: dictionary["place"] as! PFObject)
+        }
+
+        if(dictionary["beer"] != nil) {
+            self.beer = BeerManager(dictionary: dictionary["beer"] as! PFObject)
+        }
+
+        if(dictionary["cup"] != nil) {
+            self.cup = CupManager(dictionary: dictionary["cup"] as! PFObject)
+        }
 
         self.date = formatDate(dictionary.createdAt!, format: "dd/MM/yyyy")
         self.hour = formatDate(dictionary.createdAt!, format: "HH:mm")
     }
     
+    func prepareForDrink(drinkControl: DrinkManager, callback: (error: NSError?) -> ()) {
+        var query = PFObject(className:"Drink")
+
+        query["user"] = PFUser.currentUser()
+        
+        let placeControl = PlaceManager()
+        placeControl.verifyPlace(drinkControl.place!.foursquareId, callback: { (exist, objIdV, error) -> () in
+            if(error == nil) {
+                if(exist != true) {
+                    placeControl.newPlace(drinkControl.place!, callback: { (objId, error) -> () in // N Existe place criar um e pegar o ID
+                        if(error == nil) {
+                            drinkControl.place?.objectId = objId
+                            
+                            self.newDrink(drinkControl, callback: { (error) -> () in
+                                if (error == nil) {
+                                    callback(error: nil)
+                                } else {
+                                    callback(error: error)
+                                }
+                            })
+                        } else {
+                            callback(error: error)
+                        }
+                    })
+                } else {
+                    drinkControl.place?.objectId = objIdV
+                    
+                    self.newDrink(drinkControl, callback: { (error) -> () in
+                        if (error == nil) {
+                            callback(error: nil)
+                        } else {
+                            callback(error: error)
+                        }
+                    })
+                }
+            } else {
+                println("Ocorreu um erro")
+            }
+        })
+    }
+    
+    
     func newDrink(drinkControl: DrinkManager, callback: (error: NSError?) -> ()) {
         var query = PFObject(className:"Drink")
-        
-        query["user"] = drinkControl.user
-        query["place"] = drinkControl.place
-        query["beer"] = drinkControl.beer
-        query["cup"] = drinkControl.cup
-        
+
+        query["user"] = PFUser.currentUser()
+
+        if(drinkControl.place?.objectId != nil) {
+            query["place"] = PFObject(withoutDataWithClassName:"Place", objectId: drinkControl.place?.objectId)
+        }
+        if(drinkControl.user?.objectId != nil) {
+            query["beer"] = PFObject(withoutDataWithClassName:"Beer", objectId: drinkControl.beer?.objectId)
+        }
+        if(drinkControl.cup?.objectId != nil) {
+            query["cup"] = PFObject(withoutDataWithClassName:"Cup", objectId: drinkControl.cup?.objectId)
+        }
+
         query.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
@@ -52,7 +110,7 @@ class DrinkManager: NSObject {
             }
         }
     }
-    
+
     func getDrinks(callback: (allDrinks: NSArray?, error: NSError?) -> ()) {
         var query = PFQuery(className:"Drink")
         
@@ -60,6 +118,8 @@ class DrinkManager: NSObject {
         query.includeKey("place")
         query.includeKey("beer")
         query.includeKey("cup")
+        
+        query.orderByDescending("createdAt")
 
         var auxDrinks: NSArray!
         

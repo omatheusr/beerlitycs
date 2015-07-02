@@ -21,7 +21,6 @@ class RankingViewController: UIViewController {
 
         self.tableView.tableFooterView = UIView()
         loadMutualFriends()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,12 +45,12 @@ class RankingViewController: UIViewController {
             let userControl = UserManager(dictionary: PFUser.currentUser()!)
             
             cell.profileName.text = userControl.name
-            userControl.photo?.getDataInBackgroundWithBlock({ (image, error) -> Void in
-                cell.profileImage.image = UIImage(data: image!)
-                Util.roundedView(cell.profileImage.layer, border: true, colorHex: "E55122", borderSize: 2.0, radius: cell.profileImage.frame.size.width / 2)
 
-                cell.profileImage.clipsToBounds = true
-            })
+            let url = NSURL(string: userControl.photo!.url!)
+            cell.profileImage.setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"),usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+            Util.roundedView(cell.profileImage.layer, border: true, colorHex: "E55122", borderSize: 2.0, radius: cell.profileImage.frame.size.width / 2)
+
+            cell.profileImage.clipsToBounds = true
 
             return cell
         } else {
@@ -60,11 +59,12 @@ class RankingViewController: UIViewController {
             let userControl = UserManager(dictionary: ranking[indexPath.row-1] as! PFUser)
             
             cell.userName.text = userControl.name
-            userControl.photo?.getDataInBackgroundWithBlock({ (image, error) -> Void in
-                cell.userPhoto.image = UIImage(data: image!)
-                Util.roundedView(cell.userPhoto.layer, border: false, colorHex: nil, borderSize: nil, radius: cell.userPhoto.frame.size.width / 2)
-                cell.userPhoto.clipsToBounds = true
-            })
+            
+            let url = NSURL(string: userControl.photo!.url!)
+            cell.userPhoto.setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"),usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+
+            Util.roundedView(cell.userPhoto.layer, border: false, colorHex: nil, borderSize: nil, radius: cell.userPhoto.frame.size.width / 2)
+            cell.userPhoto.clipsToBounds = true
             
             cell.userPosition.text = String(indexPath.row) + "º"
             cell.userDrinked.text = userControl.mlDrunk! + " ml"

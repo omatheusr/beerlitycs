@@ -19,6 +19,7 @@ class UserManager: NSObject {
     var birth: NSDate?
     var height: String?
     var weight: String?
+    var facebookId: String?
     var createdAt: NSDate!
     var date: String!
     var hour: String!
@@ -39,6 +40,7 @@ class UserManager: NSObject {
         self.birth = dictionary["birth"] as? NSDate
         self.height = dictionary["height"] as? String
         self.weight = dictionary["weight"] as? String
+        self.facebookId = dictionary["facebookId"] as? String
         self.photo = dictionary["photo"] as? PFFile
         
         if((dictionary["mlDrunk"]) != nil) {
@@ -130,6 +132,10 @@ class UserManager: NSObject {
                         query["weight"] = userControl.weight
                     }
                     
+                    if userControl.facebookId != nil{
+                        query["facebookId"] = userControl.facebookId
+                    }
+                    
                     if userControl.photo != nil{
                         query["photo"] = userControl.photo
                     }
@@ -182,7 +188,7 @@ class UserManager: NSObject {
             else {
                 var currentUser = UserManager()
 
-                let userID: NSString = result.valueForKey("id") as! NSString
+                let userID: String! = result.valueForKey("id") as! String
                 let userName : NSString = result.valueForKey("name") as! NSString
                 if let userEmail = result.valueForKey("email") as? NSString {
                     currentUser.email = userEmail as String
@@ -190,23 +196,38 @@ class UserManager: NSObject {
                 
                 currentUser.objectId = user.objectId
                 currentUser.name = userName as String
-
-                // Get users image from facebook ans save on parse
-                let url = NSURL(string: "http://graph.facebook.com/\(userID)/picture?type=large")!
-                let urlRequest = NSURLRequest(URL: url)
                 
-                NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue.mainQueue(), completionHandler: { (response:NSURLResponse!, data:NSData!, error:NSError!) -> Void in
-                    let image = UIImage(data: data)
+                if(userID != nil) {
+                    currentUser.facebookId = userID
+
+                    let swiftString: String! = "http://graph.facebook.com/\(userID!)/picture?type=large"
                     
+                    let url = NSURL(string: swiftString)
+                    let data = NSData(contentsOfURL: url!)
+                    
+                    let image: UIImage = UIImage(data: data!)!
                     var jpegImage = UIImageJPEGRepresentation(image, 1.0)
                     let file = PFFile(name:currentUser.objectId + ".jpg" , data: jpegImage)
+
                     currentUser.photo = file
 
-                    currentUser.editUser(currentUser, callback: { (error) -> () in
-                        if (error == nil) {
-                            callback(error: nil)
-                        }
-                    })
+    //                if let d = data {
+    //                    var image = UIImage(data: d)
+    //                    if let _image = image {
+    //                        var jpegImage = UIImageJPEGRepresentation(image, 1.0)
+    //                        let file = PFFile(name:currentUser.objectId + ".jpg" , data: jpegImage)
+    //                        currentUser.photo = file
+    //                    } else {
+    //                        //error when convert to UIImage
+    //                    }
+    //                    
+    //                }
+                }
+
+                currentUser.editUser(currentUser, callback: { (error) -> () in
+                    if (error == nil) {
+                        callback(error: nil)
+                    }
                 })
             }
         })
@@ -373,41 +394,4 @@ class UserManager: NSObject {
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
 }

@@ -52,13 +52,28 @@ class FeedViewController: UIViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier("feedCell") as! FeedTableViewCell
  
             var drinkControl = DrinkManager(dictionary: self.feed[indexPath.row-1] as! PFObject)
-            let activityText = "está bebendo uma \(drinkControl.beer!.name) \(drinkControl.cup!.size)ml no THOMAS PUB"
+            
+            var activityText = "está bebendo"
+            
+            if(drinkControl.beer != nil) {
+                activityText = activityText + " uma " + drinkControl.beer!.name
+            }
+            
+            if(drinkControl.cup != nil) {
+                activityText = activityText + " " + String(drinkControl.cup!.size) + " ml"
+            }
 
-            drinkControl.user?.photo?.getDataInBackgroundWithBlock({ (image, error) -> Void in
-                cell.profileImage.image = UIImage(data: image!)
-                Util.roundedView(cell.profileImage.layer, border: false, colorHex: nil, borderSize: nil, radius: cell.profileImage.frame.size.width / 2)
-                cell.profileImage.clipsToBounds = true
-            })
+            if(drinkControl.place != nil) {
+                activityText = activityText + " no " + drinkControl.place!.name
+            }
+            
+//            let url = NSURL.fileURLWithPath(drinkControl.user!.photo!.url!)
+            let url = NSURL(string: drinkControl.user!.photo!.url!)
+            
+            cell.profileImage.setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"),usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+
+            Util.roundedView(cell.profileImage.layer, border: false, colorHex: nil, borderSize: nil, radius: cell.profileImage.frame.size.width / 2)
+            cell.profileImage.clipsToBounds = true
 
             cell.profileName.text = drinkControl.user!.name
             cell.activityText.text = activityText
