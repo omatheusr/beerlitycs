@@ -348,6 +348,51 @@ class UserManager: NSObject {
     }
     
     //----------------------------------------------------------------------------------------------
+    // Get Fav Place Per User
+    //----------------------------------------------------------------------------------------------
+    
+    func getFavPlace (userID: String, callback: (numPlace: NSInteger?, placeName: String?, error: NSError?) -> ()) {
+        
+        var query = PFQuery(className: "Drink")
+        var place = NSInteger()
+        var plcName = String()
+        var auxDrinks = []
+        
+        mlDrunk = 0
+        
+        query.includeKey("place")
+        query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
+        
+        
+        query.findObjectsInBackgroundWithBlock {
+            (objects, error) -> Void in
+            if error == nil {
+                auxDrinks = objects!
+                
+                var i : Int
+                for(i = 0; i < auxDrinks.count; i++) {
+                    let drink = DrinkManager(dictionary: auxDrinks[i] as! PFObject)
+                    
+                    place++
+                    plcName = drink.place!.name
+                    println(drink.place?.name)
+                    
+//                    if let mililiters = drink.cup?.size {
+//                        mlDrunk = mlDrunk + mililiters
+//                    }
+                }
+                
+                callback(numPlace: place, placeName: plcName, error: nil)
+            } else {
+                println("Error: \(error) \(error!.userInfo!)")
+                callback(numPlace: nil, placeName: nil, error: error!)
+            }
+        }
+        
+    }
+
+    
+    //----------------------------------------------------------------------------------------------
     // Get Fav Beer Drunk Per User
     //----------------------------------------------------------------------------------------------
     
@@ -432,12 +477,12 @@ class UserManager: NSObject {
                             aux = 0;
                         }
                         
-                        println(beerList)
-                        println(beerQty)
-                                        println(majorName)
-                                        println(majorSize)
-                                        println(minorName)
-                                        println(minorSize)
+//                        println(beerList)
+//                        println(beerQty)
+//                        println(majorName)
+//                        println(majorSize)
+//                        println(minorName)
+//                        println(minorSize)
                         
                         callback(majName: majorName, majSize: majorSize, minName: minorName, minSize: minorSize, error: nil)
                         

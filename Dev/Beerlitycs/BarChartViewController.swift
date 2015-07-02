@@ -19,6 +19,8 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
     var maSize: String!
     var miName: String!
     var miSize: String!
+    var nPlace: String!
+    var pName: String!
     var months: [String]!
     @IBOutlet weak var lblMl: UILabel!
     @IBOutlet weak var tblAnalytics: UITableView!
@@ -57,6 +59,21 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
                 println("erro")
             }
         })
+        
+        cupsControl.getFavPlace(userControl.objectId) { (numPlace, placeName, error) -> () in
+            if(error == nil) {
+                self.nPlace = String(stringInterpolationSegment: numPlace!)
+                self.pName = placeName!
+//                self.maName = majorName
+//                self.lblName.text = majorName
+//                self.maSize = String(stringInterpolationSegment: majorSize) + " ml"
+//                self.miName = minorName
+//                self.miSize = String(stringInterpolationSegment: minorSize) + " ml"
+                self.tblAnalytics.reloadData()
+            } else {
+                println("erro")
+            }
+        }
         
         
     }
@@ -132,11 +149,11 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
         }else if(indexPath.row == 3) {
             cell.lblName.text = "Bares visitados"
             cell.lblBeer.text = ""
-            cell.lblNumber.text = "97"
+            cell.lblNumber.text = self.nPlace
         }else if(indexPath.row == 4) {
             cell.lblName.text = "Bar preferido"
             cell.lblBeer.text = ""
-            cell.lblNumber.text = "Ramblas"
+            cell.lblNumber.text = self.pName
         }
 
     
