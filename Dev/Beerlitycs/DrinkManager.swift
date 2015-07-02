@@ -94,7 +94,7 @@ class DrinkManager: NSObject {
         if(drinkControl.place?.objectId != nil) {
             query["place"] = PFObject(withoutDataWithClassName:"Place", objectId: drinkControl.place?.objectId)
         }
-        if(drinkControl.user?.objectId != nil) {
+        if(drinkControl.beer?.objectId != nil) {
             query["beer"] = PFObject(withoutDataWithClassName:"Beer", objectId: drinkControl.beer?.objectId)
         }
         if(drinkControl.cup?.objectId != nil) {

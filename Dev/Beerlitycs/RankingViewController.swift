@@ -15,6 +15,7 @@ class RankingViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var ranking = []
+    var position = NSInteger()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +45,15 @@ class RankingViewController: UIViewController {
             cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
             let userControl = UserManager(dictionary: PFUser.currentUser()!)
             
+            if let mldrunk = userControl.mlDrunk{
+                cell.mlDrunk.text = String(stringInterpolationSegment: userControl.mlDrunk!) + " ml"
+            } else {
+                cell.mlDrunk.text = "-"
+            }
+            
             cell.profileName.text = userControl.name
+            cell.userPosition.text = String(self.position) + "º"
+            cell.numberOFBarsVisited.text = String(10)
 
             let url = NSURL(string: userControl.photo!.url!)
             cell.profileImage.setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"),usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
@@ -67,7 +76,7 @@ class RankingViewController: UIViewController {
             cell.userPhoto.clipsToBounds = true
             
             cell.userPosition.text = String(indexPath.row) + "º"
-            cell.userDrinked.text = userControl.mlDrunk! + " ml"
+            cell.userDrinked.text = String(userControl.mlDrunk!) + " ml"
 
             return cell
         }
@@ -91,6 +100,16 @@ class RankingViewController: UIViewController {
         userControl.getMutualFriendsDescendingByMLDrunk(PFUser.currentUser()!, callback: { (friends, error) -> () in
             if(error == nil) {
                 self.ranking = friends!
+                
+                var i = NSInteger()
+                
+                for(i=0;i<self.ranking.count;i++) {
+                    if (PFUser.currentUser()?.objectId == self.ranking[i].objectId){
+                        self.position = i+1;
+                    }
+                }
+                 
+                
                 self.updateTableView()
             } else {
                 println(error)

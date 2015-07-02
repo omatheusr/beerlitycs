@@ -19,17 +19,20 @@ class CheckInViewController: UITableViewController {
     @IBOutlet weak var mapImage: UIImageView!
     @IBOutlet weak var choiceBeerButton: UIButton!
     @IBOutlet weak var choicePlaceButton: UIButton!
+    @IBOutlet var confirmationButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.tableFooterView = UIView()
+        self.confirmationButton.enabled = true
 
         loadData()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.confirmationButton.enabled = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -75,6 +78,7 @@ class CheckInViewController: UITableViewController {
             color: UIColor.whiteColor()
         )
 
+        
         let map = MapboxStaticMap(
             mapID: "matheusbecker.873c9d11",
             center: clLocation,
@@ -97,6 +101,7 @@ class CheckInViewController: UITableViewController {
     
     @IBAction func makeCheckIn(sender: AnyObject) {
         let drinkControl = DrinkManager()
+        let userControl = UserManager()
         
         drinkControl.place = self.placeSelected
         drinkControl.beer = self.beerSelected
@@ -104,12 +109,28 @@ class CheckInViewController: UITableViewController {
         
 //        println(drinkControl.place)
 //        println(drinkControl.beer)
+//        println("segundo")
+//        println(self.beerSelected)
 //        println(drinkControl.cup)
         
+        self.confirmationButton.enabled = false
+        
+        // Nao foi selecionado o local
         if(placeSelected != nil) {
             drinkControl.prepareForDrink(drinkControl, callback: { (error) -> () in
                 if(error == nil) {
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    
+                    var decision = self.showAlert("Cuidado!", message: "Você não selecionou nenhum bar. Deseja continuar mesmo assim? ")
+                    if(decision == true){
+                        userControl.addNewBeerInMLToTotal(PFUser.currentUser()!.objectId!, mlDrunk: drinkControl.cup!.size!, callback: { (error) -> () in
+                            if (error == nil) {
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                            }else {
+                                println(error)
+                            }
+                        })
+                    }
+                    
                 } else {
                     println("erro no check in")
                 }
@@ -117,7 +138,16 @@ class CheckInViewController: UITableViewController {
         } else {
             drinkControl.newDrink(drinkControl) { (error) -> () in
                 if(error == nil) {
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    
+                    userControl.addNewBeerInMLToTotal(PFUser.currentUser()!.objectId!, mlDrunk: drinkControl.cup!.size!, callback: { (error) -> () in
+                        if (error == nil) {
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }else {
+                            println(error)
+                        }
+                    })
+                    
+                    
                 } else {
                     println("erro no check in")
                 }
@@ -142,12 +172,31 @@ class CheckInViewController: UITableViewController {
         }
     }
 
+    
+    func showAlert(title : String, message: String) -> Bool{
+        
+        var decision = Bool()
+        
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default){ (action) -> Void in
+                decision = true
+        })
+        
+        alert.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.Default){ (action) -> Void in
+                decision = false
+        })
+        
+        return decision
+    }
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "embedCups" {
             let childViewController = segue.destinationViewController as! CupsCollectionViewController
             childViewController.parentVC = self
         }
     }
+    
 }
 
 

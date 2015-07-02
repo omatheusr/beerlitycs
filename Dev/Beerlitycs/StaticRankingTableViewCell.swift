@@ -12,7 +12,11 @@ class StaticRankingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileName: UILabel!
+    @IBOutlet var mlDrunk: UILabel!
+    @IBOutlet var userPosition: UILabel!
+    @IBOutlet var numberOFBarsVisited: UILabel!
 
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
