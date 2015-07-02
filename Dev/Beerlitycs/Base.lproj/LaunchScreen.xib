@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,42 +9,10 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-splash" translatesAutoresizingMaskIntoConstraints="NO" id="jV2-Xg-wOL">
-                    <rect key="frame" x="32" y="32" width="416" height="416"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="jV2-Xg-wOL" secondAttribute="height" multiplier="1:1" id="LWc-UN-wY6"/>
-                        <constraint firstAttribute="width" constant="200" id="ghh-Og-weF"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="ghh-Og-weF"/>
-                        </mask>
-                    </variation>
-                </imageView>
-            </subviews>
-            <color key="backgroundColor" red="0.21568627450980393" green="0.23921568627450981" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstAttribute="centerX" secondItem="jV2-Xg-wOL" secondAttribute="centerX" id="6tl-TO-GwA"/>
-                <constraint firstItem="jV2-Xg-wOL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="32" id="PgR-9I-xTW"/>
-                <constraint firstAttribute="centerX" secondItem="jV2-Xg-wOL" secondAttribute="centerX" id="Pr8-qR-NSg"/>
-                <constraint firstAttribute="centerY" secondItem="jV2-Xg-wOL" secondAttribute="centerY" id="ioR-57-KTb"/>
-                <constraint firstAttribute="centerY" secondItem="jV2-Xg-wOL" secondAttribute="centerY" id="ug2-sK-I2K"/>
-                <constraint firstAttribute="trailing" secondItem="jV2-Xg-wOL" secondAttribute="trailing" constant="32" id="wlS-Ub-jkm"/>
-            </constraints>
+            <color key="backgroundColor" red="0.13725490200000001" green="0.1529411765" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="6tl-TO-GwA"/>
-                    <exclude reference="Pr8-qR-NSg"/>
-                    <exclude reference="ug2-sK-I2K"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
-    <resources>
-        <image name="logo-splash" width="474" height="420"/>
-    </resources>
 </document>
