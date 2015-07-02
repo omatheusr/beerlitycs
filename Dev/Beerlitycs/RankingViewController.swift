@@ -67,19 +67,7 @@ class RankingViewController: UIViewController {
             })
             
             cell.userPosition.text = String(indexPath.row) + "º"
-            
-            
-            var mlDrunk = NSInteger()
-            mlDrunk = 0
-            
-            userControl.getCupsDrunk(userControl.objectId, callback: { (cups, error) -> () in
-                if(error == nil) {
-                    mlDrunk = cups!
-                    cell.userDrinked.text = String(mlDrunk) + " ml"
-                } else {
-                    println("erro")
-                }
-            })
+            cell.userDrinked.text = userControl.mlDrunk! + " ml"
 
             return cell
         }
