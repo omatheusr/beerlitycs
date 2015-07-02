@@ -15,10 +15,16 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var barChartView: BarChartView!
     @IBOutlet weak var btnSelect: UISegmentedControl!
     
-    var year: [String]!
-    var month: [String]!
-    var week: [String]!
+    var maName: String!
+    var maSize: String!
+    var miName: String!
+    var miSize: String!
+    var nPlace: String!
+    var pName: String!
     var months: [String]!
+    @IBOutlet weak var lblMl: UILabel!
+    @IBOutlet weak var tblAnalytics: UITableView!
+    @IBOutlet weak var lblName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +42,34 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
                 
             }
         }
+        
+        let userControl = UserManager(dictionary: PFUser.currentUser()!)
+        self.lblMl.text = String(stringInterpolationSegment: userControl.mlDrunk!) + " ml"
+        
+        let cupsControl = UserManager ()
+        cupsControl.getFavBeer(userControl.objectId, callback: { (majorName, majorSize, minorName, minorSize, error) -> () in
+            if(error == nil) {
+                self.maName = majorName
+                self.lblName.text = majorName
+                self.maSize = String(stringInterpolationSegment: majorSize) + " ml"
+                self.miName = minorName
+                self.miSize = String(stringInterpolationSegment: minorSize) + " ml"
+                self.tblAnalytics.reloadData()
+            } else {
+                println("erro")
+            }
+        })
+        
+        cupsControl.getFavPlace(userControl.objectId) { (numPlace, placeName, error) -> () in
+            if(error == nil) {
+                self.nPlace = String(stringInterpolationSegment: numPlace!)
+                self.pName = placeName!
+                self.tblAnalytics.reloadData()
+            } else {
+                println("erro")
+            }
+        }
+        
         
     }
     
@@ -97,24 +131,24 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
         
         if(indexPath.row == 0) {
             cell.lblName.text = "Mais bebida"
-            cell.lblBeer.text = "Polar"
-            cell.lblNumber.text = "1.300ml"
+            cell.lblBeer.text = self.maName
+            cell.lblNumber.text = self.maSize
         }else if(indexPath.row == 1) {
             cell.lblName.text = "Menos bebida"
-            cell.lblBeer.text = "Bohemia"
-            cell.lblNumber.text = "345ml"
+            cell.lblBeer.text = self.miName
+            cell.lblNumber.text = self.miSize
         }else if(indexPath.row == 2) {
-            cell.lblName.text = "Novas adicionadas"
+            cell.lblName.text = "Adicionadas"
             cell.lblBeer.text = ""
-            cell.lblNumber.text = "4"
+            cell.lblNumber.text = "0"
         }else if(indexPath.row == 3) {
             cell.lblName.text = "Bares visitados"
             cell.lblBeer.text = ""
-            cell.lblNumber.text = "97"
+            cell.lblNumber.text = self.nPlace
         }else if(indexPath.row == 4) {
             cell.lblName.text = "Bar preferido"
             cell.lblBeer.text = ""
-            cell.lblNumber.text = "Ramblas"
+            cell.lblNumber.text = self.pName
         }
 
     
