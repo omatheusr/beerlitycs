@@ -24,6 +24,7 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         super.willActivate()
         
+        /*
         var request = ["request": "getStatus"]
         
         WKInterfaceController.openParentApplication(request, reply: { (replyFromParent, error) -> Void in
@@ -36,6 +37,7 @@ class InterfaceController: WKInterfaceController {
                 self.statusText.setText("Ops parece que você está bebado")
             }
         })
+*/
     }
 
     override func didDeactivate() {
