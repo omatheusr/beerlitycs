@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -1583,7 +1583,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DOSE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCT-MR-Qgm">
                                                     <rect key="frame" x="16" y="22" width="36" height="16"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                    <color key="textColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1951,16 +1951,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gco-PZ-4OF">
-                                <rect key="frame" x="16" y="178" width="568" height="29"/>
+                                <rect key="frame" x="16" y="242" width="568" height="29"/>
                                 <segments>
                                     <segment title="7 dias"/>
                                     <segment title="30 dias"/>
-                                    <segment title="12 meses"/>
+                                    <segment title="60 dias"/>
                                 </segments>
                                 <color key="tintColor" red="0.89803921568627454" green="0.31764705882352939" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="actSelect:" destination="to9-XE-bPt" eventType="valueChanged" id="Zz4-hu-0ax"/>
+                                </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6r-5D-TGQ">
-                                <rect key="frame" x="16" y="222" width="280" height="80"/>
+                                <rect key="frame" x="16" y="286" width="280" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cerveja preferida" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Td-FT-Ol6">
                                         <rect key="frame" x="101" y="13" width="79" height="12"/>
@@ -1985,7 +1988,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54q-gs-pDx">
-                                <rect key="frame" x="304" y="222" width="280" height="80"/>
+                                <rect key="frame" x="304" y="286" width="280" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ml ingeridos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4LT-Bl-J9B">
                                         <rect key="frame" x="111" y="13" width="58" height="12"/>
@@ -2010,7 +2013,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Mep-6T-OkY">
-                                <rect key="frame" x="16" y="347" width="568" height="204"/>
+                                <rect key="frame" x="16" y="411" width="568" height="140"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="30" id="BeY-io-x2S" customClass="AnalyticsCell" customModule="Beerlitycs" customModuleProvider="target">
@@ -2065,13 +2068,13 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estatísticas" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Bf-Am-fXJ">
-                                <rect key="frame" x="16" y="318" width="88" height="21"/>
+                                <rect key="frame" x="16" y="382" width="88" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TKY-Ze-oMZ" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="-31" y="0.0" width="662" height="170"/>
+                                <rect key="frame" x="-31" y="64" width="662" height="170"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="170" id="IAg-vf-q0G"/>
@@ -2083,7 +2086,7 @@
                             <constraint firstItem="TKY-Ze-oMZ" firstAttribute="leading" secondItem="hbp-49-zMX" secondAttribute="leading" constant="-31" id="03A-DM-D9W"/>
                             <constraint firstAttribute="trailing" secondItem="TKY-Ze-oMZ" secondAttribute="trailing" constant="-31" id="0Cz-ga-o4l"/>
                             <constraint firstItem="54q-gs-pDx" firstAttribute="leading" secondItem="u6r-5D-TGQ" secondAttribute="trailing" constant="8" id="7fT-Md-P45"/>
-                            <constraint firstItem="TKY-Ze-oMZ" firstAttribute="top" secondItem="hbp-49-zMX" secondAttribute="top" id="BHR-cu-hOC"/>
+                            <constraint firstItem="TKY-Ze-oMZ" firstAttribute="top" secondItem="hbp-49-zMX" secondAttribute="top" constant="64" id="BHR-cu-hOC"/>
                             <constraint firstItem="Mep-6T-OkY" firstAttribute="leading" secondItem="hbp-49-zMX" secondAttribute="leadingMargin" id="Eva-5i-kSq"/>
                             <constraint firstItem="Mep-6T-OkY" firstAttribute="top" secondItem="6Bf-Am-fXJ" secondAttribute="bottom" constant="8" id="FOJ-Yl-9Of"/>
                             <constraint firstItem="gco-PZ-4OF" firstAttribute="leading" secondItem="hbp-49-zMX" secondAttribute="leadingMargin" id="LMd-rp-HTV"/>
@@ -2101,12 +2104,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="gco-PZ-4OF" secondAttribute="trailing" id="qGG-kV-9Vo"/>
                             <constraint firstItem="54q-gs-pDx" firstAttribute="top" secondItem="gco-PZ-4OF" secondAttribute="bottom" constant="16" id="rEn-E6-9TB"/>
                             <constraint firstItem="gco-PZ-4OF" firstAttribute="top" secondItem="TKY-Ze-oMZ" secondAttribute="bottom" constant="8" id="xdJ-cc-GIB"/>
-                            <constraint firstItem="TKY-Ze-oMZ" firstAttribute="top" secondItem="hbp-49-zMX" secondAttribute="top" id="ybt-7b-c4Q"/>
+                            <constraint firstItem="TKY-Ze-oMZ" firstAttribute="top" secondItem="hbp-49-zMX" secondAttribute="top" constant="64" id="ybt-7b-c4Q"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Análise" id="jGm-UW-ICb"/>
                     <connections>
                         <outlet property="barChartView" destination="TKY-Ze-oMZ" id="KOr-Qk-OLZ"/>
+                        <outlet property="btnSelect" destination="gco-PZ-4OF" id="Olh-Hr-hiT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9CC-IL-8E2" userLabel="First Responder" sceneMemberID="firstResponder"/>

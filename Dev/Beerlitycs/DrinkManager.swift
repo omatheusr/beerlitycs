@@ -107,7 +107,7 @@ class DrinkManager: NSObject {
         var date = cal.startOfDayForDate(NSDate())
         
         var days = [Int]()
-        var dateweek = cal.dateByAddingUnit(.CalendarUnitDay, value: -6, toDate: date, options: nil)!
+        var dateweek = cal.dateByAddingUnit(.CalendarUnitDay, value: -numberPoints, toDate: date, options: nil)!
         
         var query = PFQuery(className:"Drink")
         
@@ -121,9 +121,17 @@ class DrinkManager: NSObject {
             if error == nil {
                 for i in 0...numberPoints {
                     let day = cal.component(.CalendarUnitDay, fromDate: date)
-                    days.append(day)
+                    if(dayPoints){
+                        let day = cal.component(.CalendarUnitDay, fromDate: date)
+                        days.append(day)
                     
-                    date = cal.dateByAddingUnit(.CalendarUnitDay, value: -1, toDate: date, options: nil)!
+                        date = cal.dateByAddingUnit(.CalendarUnitDay, value: -1, toDate: date, options: nil)!
+                    }else if(dayPoints == false){
+                        let day = cal.component(.CalendarUnitMonth, fromDate: date)
+                        days.append(day)
+                        
+                        date = cal.dateByAddingUnit(.CalendarUnitMonth, value: -1, toDate: date, options: nil)!
+                    }
                     var teste = false
                     var aux:Double = 0
                     
@@ -131,6 +139,12 @@ class DrinkManager: NSObject {
                         for j in 0...objects!.count-1 {
                             //                        let day2 = cal.component(.CalendarUnitDay, fromDate: objects![j].createdAt)
                             let day2 = cal.component(.CalendarUnitDay, fromDate: objects![j].createdAt as NSDate)
+                            if(dayPoints){
+                                let day2 = cal.component(.CalendarUnitDay, fromDate: objects![j].createdAt as NSDate)
+                            }else if(dayPoints == false){
+                                let day2 = cal.component(.CalendarUnitMonth, fromDate: objects![j].createdAt as NSDate)
+                            }
+                            
                             
                             if(day == day2) {
                                 aux = aux + 1
