@@ -50,8 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UINavigationBar.appearance().barTintColor = colorNav
         UINavigationBar.appearance().opaque = true
-        UINavigationBar.appearance().translucent = false
-
+        UINavigationBar.appearance().translucent = true
         
         if application.applicationState != UIApplicationState.Background {
             // Track an app open here if we launch with a push, unless

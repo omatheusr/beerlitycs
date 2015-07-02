@@ -18,7 +18,7 @@ class PlaceManager: NSObject {
     var objectId: String!
     var name: String!
     var foursquareId: String!
-    var totalml: String!
+    var totalml: String?
     var address: String?
     var location: PFGeoPoint!
     var createdAt: NSDate!
@@ -32,9 +32,13 @@ class PlaceManager: NSObject {
     init(dictionary : PFObject) {
         super.init()
         
+        self.objectId = dictionary.objectId
         self.name = dictionary["name"] as! String
         self.foursquareId = dictionary["foursquareId"] as! String
-        self.totalml = dictionary["totalml"] as! String
+        
+        if(dictionary["totalml"] != nil) {
+            self.totalml = dictionary["totalml"] as? String
+        }
     }
 
     init(array : AnyObject) {
@@ -51,19 +55,22 @@ class PlaceManager: NSObject {
         self.location = PFGeoPoint(latitude:placeLocation["lat"] as! Double, longitude: placeLocation["lng"] as! Double)
     }
 
-    func newPlace(placeControl: PlaceManager, callback: (error: NSError?) -> ()) {
+    func newPlace(placeControl: PlaceManager, callback: (objId: String, error: NSError?) -> ()) {
         var query = PFObject(className:"Place")
 
         query["name"] = placeControl.name
         query["foursquareId"] = placeControl.foursquareId
-        query["totalml"] = placeControl.totalml
+        
+        if placeControl.totalml != nil{
+            query["totalml"] = placeControl.totalml
+        }
 
         query.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
-                callback(error: nil)
+                callback(objId: query.objectId!, error: nil)
             } else {
-                callback(error: error)
+                callback(objId: query.objectId!, error: error)
             }
         }
     }
@@ -84,6 +91,28 @@ class PlaceManager: NSObject {
             }
         }
     }
+
+    func verifyPlace(foursquareId: String, callback: (exist: Bool, objId: String?, error: NSError?) -> ()) {
+        var query = PFQuery(className:"Place")
+        query.whereKey("foursquareId", equalTo: foursquareId)
+
+        query.findObjectsInBackgroundWithBlock {
+            (objects, error) -> Void in
+            if error == nil {
+                if(objects?.count == 1) {
+                    let placeInfo = PlaceManager(dictionary: objects!.first as! PFObject)
+
+                    callback(exist: true, objId: placeInfo.objectId, error: nil)
+                } else {
+                    callback(exist: false, objId: nil, error: nil)
+                }
+            } else {
+                println("Error: \(error) \(error!.userInfo!)")
+                callback(exist: true, objId: nil, error: error!)
+            }
+        }
+    }
+    
 
     func requestPlacesWithLocation(location: CLLocation) -> [AnyObject] {
         let requestString = "\(API_URL)venues/search?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&categoryId=\(CATEGORY_ID)&v=20130815&ll=\(location.coordinate.latitude),\(location.coordinate.longitude)"

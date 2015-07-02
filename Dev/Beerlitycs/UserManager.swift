@@ -19,11 +19,12 @@ class UserManager: NSObject {
     var birth: NSDate?
     var height: String?
     var weight: String?
+    var facebookId: String?
     var createdAt: NSDate!
     var date: String!
     var hour: String!
     var photo: PFFile?
-    var mlDrunk: String?
+    var mlDrunk: NSInteger?
     
     override init() {
         super.init()
@@ -39,12 +40,14 @@ class UserManager: NSObject {
         self.birth = dictionary["birth"] as? NSDate
         self.height = dictionary["height"] as? String
         self.weight = dictionary["weight"] as? String
+        self.facebookId = dictionary["facebookId"] as? String
         self.photo = dictionary["photo"] as? PFFile
         
         if((dictionary["mlDrunk"]) != nil) {
-            self.mlDrunk = dictionary["mlDrunk"] as? String
+            self.mlDrunk = dictionary["mlDrunk"] as? NSInteger
+        } else {
+            self.mlDrunk = 0
         }
-        
     }
 
     func newUser(userControl: UserManager, callback: (error: NSError?) -> ()) {
@@ -74,11 +77,8 @@ class UserManager: NSObject {
             query["photo"] = userControl.photo
         }
         
-        if userControl.mlDrunk != nil{
-            query["mlDrunk"] = userControl.mlDrunk
-        }
-        
-        
+        query["mlDrunk"] = 0
+    
         query.signUpInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
@@ -103,15 +103,18 @@ class UserManager: NSObject {
 
     func editUser(userControl: UserManager, callback: (error: NSError?) -> ()) {
         var query = PFUser.query()!
-        
+
         query.getObjectInBackgroundWithId(userControl.objectId) {
             (userObject, error: NSError?) -> Void in
             if error != nil {
                 println(error)
             } else if let userObject = userObject {
                 if let query = userObject as? PFUser {
-                    query["name"] = userControl.name
                     
+                    if userControl.name != nil{
+                        query["name"] = userControl.name
+                    }
+
                     if userControl.email != nil{
                         query["email"] = userControl.email
                     }
@@ -132,12 +135,12 @@ class UserManager: NSObject {
                         query["weight"] = userControl.weight
                     }
                     
-                    if userControl.photo != nil{
-                        query["photo"] = userControl.photo
+                    if userControl.facebookId != nil{
+                        query["facebookId"] = userControl.facebookId
                     }
                     
-                    if userControl.mlDrunk != nil{
-                        query["mlDrunk"] = userControl.mlDrunk
+                    if userControl.photo != nil{
+                        query["photo"] = userControl.photo
                     }
                     
                     
@@ -172,7 +175,7 @@ class UserManager: NSObject {
         }
     }
     
-    func returnUserData(user: PFUser, callback: (error: NSError?) -> ()) {
+    func returnUserData(user: PFUser, linked: Bool, callback: (error: NSError?) -> ()) {
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             
@@ -182,31 +185,40 @@ class UserManager: NSObject {
             else {
                 var currentUser = UserManager()
 
-                let userID: NSString = result.valueForKey("id") as! NSString
-                let userName : NSString = result.valueForKey("name") as! NSString
-                if let userEmail = result.valueForKey("email") as? NSString {
-                    currentUser.email = userEmail as String
-                }
-                
+                let userID: String! = result.valueForKey("id") as! String
                 currentUser.objectId = user.objectId
-                currentUser.name = userName as String
 
-                // Get users image from facebook ans save on parse
-                let url = NSURL(string: "http://graph.facebook.com/\(userID)/picture?type=large")!
-                let urlRequest = NSURLRequest(URL: url)
-                
-                NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue.mainQueue(), completionHandler: { (response:NSURLResponse!, data:NSData!, error:NSError!) -> Void in
-                    let image = UIImage(data: data)
+                if(linked == false) {
+                    if let userName = result.valueForKey("name") as? NSString {
+                        currentUser.name = userName as String
+                    }
+                    if let userEmail = result.valueForKey("email") as? NSString {
+                        currentUser.email = userEmail as String
+                    }
                     
-                    var jpegImage = UIImageJPEGRepresentation(image, 1.0)
-                    let file = PFFile(name:currentUser.objectId + ".jpg" , data: jpegImage)
-                    currentUser.photo = file
+                    if(userID != nil) {
+                        currentUser.facebookId = userID
 
-                    currentUser.editUser(currentUser, callback: { (error) -> () in
-                        if (error == nil) {
-                            callback(error: nil)
-                        }
-                    })
+                        let swiftString: String! = "http://graph.facebook.com/\(userID!)/picture?type=large"
+                        
+                        let url = NSURL(string: swiftString)
+                        let data = NSData(contentsOfURL: url!)
+                        
+                        let image: UIImage = UIImage(data: data!)!
+                        var jpegImage = UIImageJPEGRepresentation(image, 1.0)
+                        let file = PFFile(name:currentUser.objectId + ".jpg" , data: jpegImage)
+
+                        currentUser.photo = file
+                    }
+                } else {
+                    currentUser.facebookId = userID
+                }
+
+                currentUser.editUser(currentUser, callback: { (error) -> () in
+                    if (error == nil) {
+                        println(currentUser.facebookId!)
+                        callback(error: nil)
+                    }
                 })
             }
         })
@@ -247,8 +259,57 @@ class UserManager: NSObject {
         }
     }
     
+    
     //----------------------------------------------------------------------------------------------
-    //
+    // Get mutual friends and sort by ML Drunk
+    //----------------------------------------------------------------------------------------------
+    
+    func getMutualFriendsDescendingByMLDrunk(user: PFUser, callback: (friends: NSArray?, error: NSError?) -> ()) {
+        let fbRequestFriends : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "/me/friends", parameters: nil)
+        
+        fbRequestFriends.startWithCompletionHandler{
+            (connection:FBSDKGraphRequestConnection!,result:AnyObject?, error:NSError!) -> Void in
+            
+            var auxUsers: NSArray!
+            
+            if error == nil && result != nil {
+                auxUsers = result!["data"]! as! NSArray
+                var fbID = [String]()
+                
+                for user in auxUsers {
+                    let fbIDe = user["id"]! as! String
+                    fbID.append(fbIDe)
+                }
+                
+                var userQuery  = PFUser.query()!
+                userQuery.whereKey("objectId", equalTo: user.objectId!)
+                
+                var friendQuery = PFUser.query()!
+                friendQuery.whereKey("facebookId", containedIn: fbID as [AnyObject])
+                //friendQuery.orderByDescending("mlDrunk")
+                
+                var subQuery = PFQuery.orQueryWithSubqueries([userQuery, friendQuery])
+                subQuery.orderByDescending("mlDrunk")
+                
+                subQuery.findObjectsInBackgroundWithBlock {
+                    (objects, error) -> Void in
+                    if error == nil {
+                        auxUsers = objects!
+                        callback(friends: auxUsers, error: nil)
+                    } else {
+                        callback(friends: nil, error: error)
+                    }
+                }
+            } else {
+                callback(friends: nil, error: error)
+            }
+        }
+    }
+
+    
+    
+    //----------------------------------------------------------------------------------------------
+    // Get Cups Drunk Per User
     //----------------------------------------------------------------------------------------------
     
     func getCupsDrunk (userID: String, callback: (cups: NSInteger?, error: NSError?) -> ()) {
@@ -261,6 +322,7 @@ class UserManager: NSObject {
     
         query.includeKey("cup")
         query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
+
 
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in
@@ -285,45 +347,42 @@ class UserManager: NSObject {
         
     }
     
+    //----------------------------------------------------------------------------------------------
+    // When a new beer is added on table "Drink", call this function to add on total beer drunk
+    // This fuction can only be used for current user.
+    //----------------------------------------------------------------------------------------------
     
+    func addNewBeerInMLToTotal (userID: String, mlDrunk: NSInteger, callback: (error: NSError?) -> ()){
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
+        var query = PFUser.query()!
+        
+        query.getObjectInBackgroundWithId(userID){
+            (objects, error) -> Void in
+            
+            if error != nil {
+                callback(error: error)
+                
+            } else{
+                if let query = objects as? PFUser {
+                    
+                    var mililiters: NSInteger = query["mlDrunk"] as! NSInteger
+                    //var mililiters: Int = name.toInt()!
+                    
+                    mililiters = mililiters + mlDrunk
+                
+                    query["mlDrunk"] = mililiters
+                    query.saveInBackgroundWithBlock {
+                        (success: Bool, error: NSError?) -> Void in
+                        if (success) {
+                            callback(error: nil)
+                        } else {
+                            callback(error: error)
+                        }
+                    }
+                    callback(error: nil)
+                }
+            }
+        }
+        
+    }
 }

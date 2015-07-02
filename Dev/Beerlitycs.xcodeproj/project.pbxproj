@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		066F593C7A4071E5C8221EC3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5909D293D240285F07BA66A1 /* libPods.a */; };
 		396AB3C51B42C9E7007B25BF /* AnalyticsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396AB3C41B42C9E7007B25BF /* AnalyticsCell.swift */; };
 		396AB3C71B42CA5E007B25BF /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396AB3C61B42CA5E007B25BF /* BarChartViewController.swift */; };
 		396AB3CE1B42CB24007B25BF /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396AB3CD1B42CB13007B25BF /* Charts.framework */; };
 		396AB3CF1B42CB24007B25BF /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 396AB3CD1B42CB13007B25BF /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8862899A316504830D36910F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54460F0C1A161F917FA078AF /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A02E9AC91B3D81FA00F962E9 /* RegisterNewBeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02E9AC81B3D81FA00F962E9 /* RegisterNewBeerViewController.swift */; };
 		A02E9ACB1B3D977A00F962E9 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02E9ACA1B3D977A00F962E9 /* ConfigurationViewController.swift */; };
 		A047DEEE1B41CAD50012EA2B /* StaticRankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A047DEED1B41CAD50012EA2B /* StaticRankingTableViewCell.swift */; };
@@ -29,6 +29,8 @@
 		BF5641DC1B4178D700F414C3 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5641DB1B4178D700F414C3 /* Util.swift */; };
 		BF7B61FA1B39E00A00336C4F /* PlacesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */; };
 		BFC403301B43930D009BC394 /* MapboxStatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4032F1B43930D009BC394 /* MapboxStatic.swift */; };
+		BFDD42C91B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = BFDD42C81B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
+		BFDD42CD1B45736700771A47 /* ConectFBTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD42CC1B45736700771A47 /* ConectFBTableViewCell.swift */; };
 		BFF40ECE1B3C62D30004BDDC /* BeersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */; };
 		BFF40ED01B3C62EB0004BDDC /* BeersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */; };
 		BFF4F1A61B3C293100AD2F83 /* DrinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF4F1A51B3C293100AD2F83 /* DrinkManager.swift */; };
@@ -107,7 +109,7 @@
 		396AB3C41B42C9E7007B25BF /* AnalyticsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsCell.swift; sourceTree = "<group>"; };
 		396AB3C61B42CA5E007B25BF /* BarChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
 		396AB3C81B42CB12007B25BF /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
-		54460F0C1A161F917FA078AF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5909D293D240285F07BA66A1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A02E9AC81B3D81FA00F962E9 /* RegisterNewBeerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterNewBeerViewController.swift; sourceTree = "<group>"; };
 		A02E9ACA1B3D977A00F962E9 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		A047DEED1B41CAD50012EA2B /* StaticRankingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticRankingTableViewCell.swift; sourceTree = "<group>"; };
@@ -126,6 +128,9 @@
 		BF5641DB1B4178D700F414C3 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTableViewCell.swift; sourceTree = "<group>"; };
 		BFC4032F1B43930D009BC394 /* MapboxStatic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapboxStatic.swift; sourceTree = "<group>"; };
+		BFDD42C71B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
+		BFDD42C81B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
+		BFDD42CC1B45736700771A47 /* ConectFBTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConectFBTableViewCell.swift; sourceTree = "<group>"; };
 		BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeersViewController.swift; sourceTree = "<group>"; };
 		BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeersTableViewCell.swift; sourceTree = "<group>"; };
 		BFF4F1A51B3C293100AD2F83 /* DrinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkManager.swift; sourceTree = "<group>"; };
@@ -188,7 +193,7 @@
 				BFF6D0E11B385166000984C4 /* Parse.framework in Frameworks */,
 				396AB3CE1B42CB24007B25BF /* Charts.framework in Frameworks */,
 				BFF6D0E01B385166000984C4 /* Bolts.framework in Frameworks */,
-				8862899A316504830D36910F /* Pods.framework in Frameworks */,
+				066F593C7A4071E5C8221EC3 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +262,7 @@
 				BFF6D0D91B3520D3000984C4 /* RankingViewController.swift */,
 				BFF7E4331B42428C00695771 /* RankingTableViewCell.swift */,
 				A047DEED1B41CAD50012EA2B /* StaticRankingTableViewCell.swift */,
+				BFDD42CC1B45736700771A47 /* ConectFBTableViewCell.swift */,
 			);
 			name = Ranking;
 			sourceTree = "<group>";
@@ -278,6 +284,15 @@
 				BF02298A1B3F9C3D006A66CF /* RegisterViewController.swift */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		BFDD42CB1B44BAF600771A47 /* UIImageViewActivityIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				BFDD42C71B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.h */,
+				BFDD42C81B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.m */,
+			);
+			name = UIImageViewActivityIndicator;
 			sourceTree = "<group>";
 		};
 		BFF6D0A61B351402000984C4 = {
@@ -381,6 +396,7 @@
 		BFF6D0DD1B385145000984C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BFDD42CB1B44BAF600771A47 /* UIImageViewActivityIndicator */,
 				A058D5DA1B3C2BC10005140C /* ParseFacebookUtilsV4.framework */,
 				A058D5D41B3C2BB30005140C /* FBSDKCoreKit.framework */,
 				A058D5D51B3C2BB30005140C /* FBSDKLoginKit.framework */,
@@ -399,7 +415,7 @@
 				BFF6D0E21B3851B3000984C4 /* CFNetwork.framework */,
 				BFF6D0DE1B385166000984C4 /* Bolts.framework */,
 				BFF6D0DF1B385166000984C4 /* Parse.framework */,
-				54460F0C1A161F917FA078AF /* Pods.framework */,
+				5909D293D240285F07BA66A1 /* libPods.a */,
 			);
 			name = Frameworks;
 			path = Beerlitycs;
@@ -418,7 +434,6 @@
 				BFF6D0AD1B351402000984C4 /* Resources */,
 				316BB2EB7AF2733392670C57 /* Copy Pods Resources */,
 				396AB3D21B42CB24007B25BF /* Embed Frameworks */,
-				D2520E5AD9D26E67229A491D /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -557,21 +572,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D2520E5AD9D26E67229A491D /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -586,6 +586,7 @@
 				BF0229821B3F99FF006A66CF /* CupsCollectionViewCell.swift in Sources */,
 				BFF40ED01B3C62EB0004BDDC /* BeersTableViewCell.swift in Sources */,
 				BFF4F1A61B3C293100AD2F83 /* DrinkManager.swift in Sources */,
+				BFDD42C91B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				BF0229891B3F9C31006A66CF /* LoginViewController.swift in Sources */,
 				BFF6D0D81B351511000984C4 /* CheckInViewController.swift in Sources */,
 				A02E9AC91B3D81FA00F962E9 /* RegisterNewBeerViewController.swift in Sources */,
@@ -607,6 +608,7 @@
 				BFC403301B43930D009BC394 /* MapboxStatic.swift in Sources */,
 				BFF6D0FF1B388758000984C4 /* PlaceManager.swift in Sources */,
 				BF02297E1B3DBB79006A66CF /* CupsCollectionViewController.swift in Sources */,
+				BFDD42CD1B45736700771A47 /* ConectFBTableViewCell.swift in Sources */,
 				BF02298F1B40A0ED006A66CF /* StatusTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
