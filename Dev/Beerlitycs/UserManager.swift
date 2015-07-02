@@ -354,48 +354,108 @@ class UserManager: NSObject {
     // Get Fav Beer Drunk Per User
     //----------------------------------------------------------------------------------------------
     
-    func getFavBeer (userID: String, callback: (cups: NSInteger?, error: NSError?) -> ()) {
+    func getFavBeer (userID: String, callback: (majName: String, majSize: Int, minName: String, minSize: Int, error: NSError?) -> ()) {
         
         var query = PFQuery(className: "Drink")
+        var query2 = PFQuery(className: "Drink")
         var mlDrunk = NSInteger()
+        var auxBeer = []
         var auxDrinks = []
         var beerList = [String]()
         var beerQty = [Int]()
+        var majorName : String = ""
+        var minorName : String = ""
+        var majorSize : Int = 0
+        var minorSize : Int = 10000000
+        var beerRanking : [String : Int]
         
         mlDrunk = 0
         
-        //query.includeKey("cup")
         query.includeKey("beer")
         query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
-        
-        
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in
             if error == nil {
-                auxDrinks = objects!
+                auxBeer = objects!
                 
                 var i : Int
-                for(i = 0; i < auxDrinks.count; i++) {
-                    let drink = DrinkManager(dictionary: auxDrinks[i] as! PFObject)
+                var ii : Int = 0
+                var aux : String = ""
                 
-                    beerList.insert(drink.beer!.name, atIndex: i)
+                
+                for(i = 0; i < auxBeer.count-1; i++) {
+                    let drink = DrinkManager(dictionary: auxBeer[i] as! PFObject)
+
+                    if(aux == drink.beer!.name){
+                        
+                    }else{
+                        beerList.insert(drink.beer!.name, atIndex: ii)
+                        aux = drink.beer!.name
+                        ii++
+                    }
                     
-                    //println(drink.beer?.name)
-                    //println(drink.cup?.size)
-                    
-//                    if let mililiters = drink.cup?.size {
-//                        mlDrunk = mlDrunk + mililiters
-//                    }
                 }
-                println(beerList)
                 
-                callback(cups: mlDrunk, error: nil)
+                query2.includeKey("cup")
+                query2.includeKey("beer")
+                query2.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
+                query2.findObjectsInBackgroundWithBlock {
+                    (objects, error) -> Void in
+                    if error == nil {
+                        auxDrinks = objects!
+                        
+                        var i : Int
+                        var ii : Int
+                        var aux : Int = 0
+                        var auxName : String = ""
+                        
+                        for(ii = 0; ii < beerList.count; ii++) {
+                            for(i = 0; i < auxDrinks.count; i++) {
+                                let drink = DrinkManager(dictionary: auxDrinks[i] as! PFObject)
+                                
+                                //beerQty.insert(drink.cup!.size, atIndex: i)
+                                
+                                if(beerList[ii] == drink.beer!.name){
+                                    aux += drink.cup!.size
+                                    auxName = drink.beer!.name
+                                }
+                            }
+                            
+                            if(majorSize < aux){
+                                majorName = auxName
+                                majorSize = aux
+                            }
+                            
+                            if(minorSize >= aux){
+                                minorName = auxName
+                                minorSize = aux
+                            }
+                            
+                            beerQty.insert(aux, atIndex: ii)
+                            aux = 0;
+                        }
+                        
+                        println(beerList)
+                        println(beerQty)
+                                        println(majorName)
+                                        println(majorSize)
+                                        println(minorName)
+                                        println(minorSize)
+                        
+                        callback(majName: majorName, majSize: majorSize, minName: minorName, minSize: minorSize, error: nil)
+                        
+                    } else {
+                        
+                        println("Error: \(error) \(error!.userInfo!)")
+                    }
+                    
+                    
+                }
+            
             } else {
                 println("Error: \(error) \(error!.userInfo!)")
-                callback(cups: nil, error: error!)
             }
         }
-        
     }
     
     //----------------------------------------------------------------------------------------------
