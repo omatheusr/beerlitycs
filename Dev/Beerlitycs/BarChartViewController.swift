@@ -64,11 +64,6 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
             if(error == nil) {
                 self.nPlace = String(stringInterpolationSegment: numPlace!)
                 self.pName = placeName!
-//                self.maName = majorName
-//                self.lblName.text = majorName
-//                self.maSize = String(stringInterpolationSegment: majorSize) + " ml"
-//                self.miName = minorName
-//                self.miSize = String(stringInterpolationSegment: minorSize) + " ml"
                 self.tblAnalytics.reloadData()
             } else {
                 println("erro")
