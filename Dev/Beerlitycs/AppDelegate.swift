@@ -130,5 +130,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
+        
+        //        var currentUser = PFUser.currentUser()
+        var currentUser = "123"
+        
+        if let userInfo = userInfo, request = userInfo["request"] as? String {
+            
+            UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum);
+            var bgTask = UIBackgroundTaskIdentifier()
+            bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler { () -> Void in
+                
+                
+                UIApplication.sharedApplication().endBackgroundTask(bgTask)
+                bgTask = UIBackgroundTaskInvalid
+            }
+            
+            if(request == "newPoop") {
+                
+            } else if(request == "getStatus") {
+                reply(["reply": "1"])
+            }
+        }
+    }
 }
 
