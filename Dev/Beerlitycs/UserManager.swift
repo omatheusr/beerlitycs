@@ -24,7 +24,7 @@ class UserManager: NSObject {
     var date: String!
     var hour: String!
     var photo: PFFile?
-    var mlDrunk: String?
+    var mlDrunk: NSInteger?
     
     override init() {
         super.init()
@@ -44,9 +44,9 @@ class UserManager: NSObject {
         self.photo = dictionary["photo"] as? PFFile
         
         if((dictionary["mlDrunk"]) != nil) {
-            self.mlDrunk = dictionary["mlDrunk"] as? String
+            self.mlDrunk = dictionary["mlDrunk"] as? NSInteger
         } else {
-            self.mlDrunk = "0" 
+            self.mlDrunk = 0
         }
     }
 
@@ -77,7 +77,7 @@ class UserManager: NSObject {
             query["photo"] = userControl.photo
         }
         
-        query["mlDrunk"] = "0"
+        query["mlDrunk"] = 0
     
         query.signUpInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
@@ -370,12 +370,12 @@ class UserManager: NSObject {
             } else{
                 if let query = objects as? PFUser {
                     
-                    var name: String = query["mlDrunk"] as! String
-                    var mililiters: Int = name.toInt()!
+                    var mililiters: NSInteger = query["mlDrunk"] as! NSInteger
+                    //var mililiters: Int = name.toInt()!
                     
                     mililiters = mililiters + mlDrunk
                 
-                    query["mlDrunk"] = String(mililiters)
+                    query["mlDrunk"] = mililiters
                     query.saveInBackgroundWithBlock {
                         (success: Bool, error: NSError?) -> Void in
                         if (success) {

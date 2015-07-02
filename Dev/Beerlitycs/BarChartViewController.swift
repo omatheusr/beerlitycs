@@ -13,6 +13,7 @@ import Parse
 class BarChartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ChartViewDelegate {
     
     @IBOutlet weak var barChartView: BarChartView!
+    @IBOutlet weak var btnSelect: UISegmentedControl!
     
     var year: [String]!
     var month: [String]!
@@ -26,7 +27,7 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let graphControl = DrinkManager()
         
-        graphControl.getDrinksForGraph(29, dayPoints: false) { (beerPoints, datePoints, error) -> () in
+        graphControl.getDrinksForGraph(6, dayPoints: true) { (beerPoints, datePoints, error) -> () in
             if(error == nil) {
                 self.months = datePoints!
                 let unitsSold = beerPoints!
@@ -122,6 +123,48 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
+    }
+    @IBAction func actSelect(sender: AnyObject) {
+        if(btnSelect.selectedSegmentIndex == 0){
+            let graphControl = DrinkManager()
+            graphControl.getDrinksForGraph(6, dayPoints: true) { (beerPoints, datePoints, error) -> () in
+                if(error == nil) {
+                    self.months = datePoints!
+                    let unitsSold = beerPoints!
+                    self.setChart(self.months, values: unitsSold)
+                } else {
+                    
+                }
+            }
+        }else if(btnSelect.selectedSegmentIndex == 1){
+            let graphControl = DrinkManager()
+            
+            graphControl.getDrinksForGraph(29, dayPoints: true) { (beerPoints, datePoints, error) -> () in
+                if(error == nil) {
+                    self.months = datePoints!
+                    let unitsSold = beerPoints!
+                    self.setChart(self.months, values: unitsSold)
+                } else {
+                    
+                }
+            }
+            
+            
+        }else if(btnSelect.selectedSegmentIndex == 2){
+            let graphControl = DrinkManager()
+            
+            graphControl.getDrinksForGraph(59, dayPoints: true) { (beerPoints, datePoints, error) -> () in
+                if(error == nil) {
+                    self.months = datePoints!
+                    let unitsSold = beerPoints!
+                    self.setChart(self.months, values: unitsSold)
+                } else {
+                    
+                }
+            }
+        }
+        
+        
     }
 }
 

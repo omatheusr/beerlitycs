@@ -82,19 +82,7 @@ class RankingViewController: UIViewController {
             cell.userPhoto.clipsToBounds = true
             
             cell.userPosition.text = String(indexPath.row) + "º"
-            
-            
-            var mlDrunk = NSInteger()
-            mlDrunk = 0
-            
-            userControl.getCupsDrunk(userControl.objectId, callback: { (cups, error) -> () in
-                if(error == nil) {
-                    mlDrunk = cups!
-                    cell.userDrinked.text = String(mlDrunk) + " ml"
-                } else {
-                    println("erro")
-                }
-            })
+            cell.userDrinked.text = String(userControl.mlDrunk!) + " ml"
 
             return cell
         }
@@ -146,6 +134,16 @@ class RankingViewController: UIViewController {
         userControl.getMutualFriendsDescendingByMLDrunk(PFUser.currentUser()!, callback: { (friends, error) -> () in
             if(error == nil) {
                 self.ranking = friends!
+                
+                var i = NSInteger()
+                
+                for(i=0;i<self.ranking.count;i++) {
+                    if (PFUser.currentUser()?.objectId == self.ranking[i].objectId){
+                        self.position = i+1;
+                    }
+                }
+                 
+                
                 self.updateTableView()
             } else {
                 println(error)
