@@ -105,12 +105,22 @@ class CheckInViewController: UITableViewController {
 //        println(drinkControl.place)
 //        println(drinkControl.beer)
 //        println(drinkControl.cup)
-
-        drinkControl.newDrink(drinkControl) { (error) -> () in
-            if(error == nil) {
-                self.dismissViewControllerAnimated(true, completion: nil)
-            } else {
-                println("erro no check in")
+        
+        if(placeSelected != nil) {
+            drinkControl.prepareForDrink(drinkControl, callback: { (error) -> () in
+                if(error == nil) {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                } else {
+                    println("erro no check in")
+                }
+            })
+        } else {
+            drinkControl.newDrink(drinkControl) { (error) -> () in
+                if(error == nil) {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                } else {
+                    println("erro no check in")
+                }
             }
         }
     }

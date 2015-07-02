@@ -21,7 +21,6 @@ class RankingViewController: UIViewController {
 
         self.tableView.tableFooterView = UIView()
         loadMutualFriends()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,7 +49,7 @@ class RankingViewController: UIViewController {
             let url = NSURL(string: userControl.photo!.url!)
             cell.profileImage.setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"),usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
             Util.roundedView(cell.profileImage.layer, border: true, colorHex: "E55122", borderSize: 2.0, radius: cell.profileImage.frame.size.width / 2)
-            
+
             cell.profileImage.clipsToBounds = true
 
             return cell
