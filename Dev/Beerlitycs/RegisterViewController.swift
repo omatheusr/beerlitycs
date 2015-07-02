@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import MobileCoreServices
 
-class RegisterViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class RegisterViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
@@ -35,7 +35,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
         
         Util.roundedView(self.bgInputView.layer, border: true, colorHex: "E6DCD7", borderSize: 1.0, radius: 6)
         Util.roundedView(self.registerButton.layer, border: false, colorHex: nil, borderSize: nil, radius: 6)
-        Util.roundedView(self.inputImage.layer, border: true, colorHex: "E55122", borderSize: 2.0, radius: self.inputImage.frame.size.width / 2)
+        Util.roundedView(self.inputImage.layer, border: true, colorHex: "53555B", borderSize: 2.0, radius: self.inputImage.frame.size.width / 2)
 
         self.inputImage.clipsToBounds = true
 
@@ -218,7 +218,13 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
     func keyboardWillHide(notification: NSNotification) {
         animateTextFieldWithKeyboard(notification)
     }
+    
+    @IBAction func btnEsconder(sender: AnyObject) {
+        self.resignFirstResponder()
+    }
 
+    
+    
     /*
     // MARK: - Navigation
 

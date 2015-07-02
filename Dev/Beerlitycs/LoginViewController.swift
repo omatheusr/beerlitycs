@@ -135,4 +135,11 @@ class LoginViewController: UIViewController {
             rVC.userControl = self.userLogged!
         }
     }
+
+    @IBAction func btnEsconder(sender: AnyObject) {
+        self.resignFirstResponder()
+    }
+
+    
+
 }
