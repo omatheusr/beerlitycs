@@ -143,12 +143,7 @@ class UserManager: NSObject {
                         query["photo"] = userControl.photo
                     }
                     
-                    if userControl.mlDrunk != nil{
-                        query["mlDrunk"] = userControl.mlDrunk
-                    } else {
-                        query["mlDrunk"] = 0
-                    }
-
+                    
                     query.saveInBackgroundWithBlock {
                         (success: Bool, error: NSError?) -> Void in
                         if (success) {

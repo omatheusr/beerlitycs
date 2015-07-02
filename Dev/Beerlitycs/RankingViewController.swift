@@ -15,6 +15,7 @@ class RankingViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var ranking = []
+    var position = NSInteger()
     var refreshControl:UIRefreshControl!
     
     override func viewDidLoad() {
@@ -55,6 +56,15 @@ class RankingViewController: UIViewController {
                 let userControl = UserManager(dictionary: PFUser.currentUser()!)
                 
                 cell.profileName.text = userControl.name
+                if let mldrunk = userControl.mlDrunk{
+                    cell.mlDrunk.text = String(stringInterpolationSegment: userControl.mlDrunk!) + " ml"
+                } else {
+                    cell.mlDrunk.text = "-"
+                }
+            
+            cell.profileName.text = userControl.name
+            cell.userPosition.text = String(self.position) + "º"
+            cell.numberOFBarsVisited.text = String(10)
 
                 let url = NSURL(string: userControl.photo!.url!)
                 cell.profileImage.setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"),usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
