@@ -44,7 +44,7 @@ class DrinkManager: NSObject {
         self.hour = formatDate(dictionary.createdAt!, format: "HH:mm")
     }
     
-    func newDrink(drinkControl: DrinkManager, callback: (error: NSError?) -> ()) {
+    func prepareForDrink(drinkControl: DrinkManager, callback: (error: NSError?) -> ()) {
         var query = PFObject(className:"Drink")
 
         query["user"] = PFUser.currentUser()
@@ -53,31 +53,64 @@ class DrinkManager: NSObject {
         placeControl.verifyPlace(drinkControl.place!.foursquareId, callback: { (exist, objIdV, error) -> () in
             if(error == nil) {
                 if(exist != true) {
-                    placeControl.newPlace(drinkControl.place!, callback: { (objId, error) -> () in
-                        query["place"] = PFObject(withoutDataWithClassName:"Place", objectId: objId)
+                    placeControl.newPlace(drinkControl.place!, callback: { (objId, error) -> () in // N Existe place criar um e pegar o ID
+                        if(error == nil) {
+                            drinkControl.place?.objectId = objId
+                            
+                            self.newDrink(drinkControl, callback: { (error) -> () in
+                                if (error == nil) {
+                                    callback(error: nil)
+                                } else {
+                                    callback(error: error)
+                                }
+                            })
+                        } else {
+                            callback(error: error)
+                        }
                     })
                 } else {
-                    query["place"] = PFObject(withoutDataWithClassName:"Place", objectId: objIdV)
+                    drinkControl.place?.objectId = objIdV
+                    
+                    self.newDrink(drinkControl, callback: { (error) -> () in
+                        if (error == nil) {
+                            callback(error: nil)
+                        } else {
+                            callback(error: error)
+                        }
+                    })
                 }
-                
             } else {
                 println("Ocorreu um erro")
-            }
-            
-            query["beer"] = PFObject(withoutDataWithClassName:"Beer", objectId: drinkControl.beer?.objectId)
-            query["cup"] = PFObject(withoutDataWithClassName:"Cup", objectId: drinkControl.cup?.objectId)
-            
-            query.saveInBackgroundWithBlock {
-                (success: Bool, error: NSError?) -> Void in
-                if (success) {
-                    callback(error: nil)
-                } else {
-                    callback(error: error)
-                }
             }
         })
     }
     
+    
+    func newDrink(drinkControl: DrinkManager, callback: (error: NSError?) -> ()) {
+        var query = PFObject(className:"Drink")
+
+        query["user"] = PFUser.currentUser()
+
+        if(drinkControl.place?.objectId != nil) {
+            query["place"] = PFObject(withoutDataWithClassName:"Place", objectId: drinkControl.place?.objectId)
+        }
+        if(drinkControl.user?.objectId != nil) {
+            query["beer"] = PFObject(withoutDataWithClassName:"Beer", objectId: drinkControl.beer?.objectId)
+        }
+        if(drinkControl.cup?.objectId != nil) {
+            query["cup"] = PFObject(withoutDataWithClassName:"Cup", objectId: drinkControl.cup?.objectId)
+        }
+
+        query.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                callback(error: nil)
+            } else {
+                callback(error: error)
+            }
+        }
+    }
+
     func getDrinks(callback: (allDrinks: NSArray?, error: NSError?) -> ()) {
         var query = PFQuery(className:"Drink")
         
