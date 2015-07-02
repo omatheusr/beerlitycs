@@ -579,6 +579,10 @@
                                         <color key="textColor" red="1" green="0.97254901960784312" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="JdS-SU-1eJ">
+                                        <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                        <color key="color" red="1" green="0.97254901959999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="dLX-zO-XmL" firstAttribute="top" secondItem="RNv-HQ-Bis" secondAttribute="top" constant="121" id="5el-tb-Xy6"/>
@@ -587,6 +591,7 @@
                                     <constraint firstItem="RNv-HQ-Bis" firstAttribute="leading" secondItem="rHg-D1-NWs" secondAttribute="leading" constant="32" id="ICy-dp-cmU"/>
                                     <constraint firstAttribute="centerX" secondItem="qM6-7E-e1v" secondAttribute="centerX" id="If9-JT-AUB"/>
                                     <constraint firstItem="cKB-j6-nqK" firstAttribute="top" secondItem="IBK-Gv-EsB" secondAttribute="bottom" id="KYS-Np-Lkv"/>
+                                    <constraint firstAttribute="centerX" secondItem="JdS-SU-1eJ" secondAttribute="centerX" id="LYe-Qh-X4m"/>
                                     <constraint firstItem="dLX-zO-XmL" firstAttribute="trailing" secondItem="GD2-tj-YvW" secondAttribute="trailing" id="M2n-kn-Hk7"/>
                                     <constraint firstAttribute="centerX" secondItem="RNv-HQ-Bis" secondAttribute="centerX" id="OgO-0Y-8OI"/>
                                     <constraint firstItem="IBK-Gv-EsB" firstAttribute="top" secondItem="GD2-tj-YvW" secondAttribute="bottom" constant="160" id="P6Z-tO-aUo"/>
@@ -598,6 +603,7 @@
                                     <constraint firstAttribute="bottom" secondItem="cKB-j6-nqK" secondAttribute="bottom" constant="9" id="dKT-8f-1lP"/>
                                     <constraint firstItem="dLX-zO-XmL" firstAttribute="top" secondItem="RNv-HQ-Bis" secondAttribute="bottom" constant="33" id="f0b-fo-ZL4"/>
                                     <constraint firstItem="dLX-zO-XmL" firstAttribute="trailing" secondItem="RNv-HQ-Bis" secondAttribute="trailing" id="fTs-iA-gmA"/>
+                                    <constraint firstAttribute="centerY" secondItem="JdS-SU-1eJ" secondAttribute="centerY" id="ivn-Jm-P79"/>
                                     <constraint firstItem="IBK-Gv-EsB" firstAttribute="centerX" secondItem="cKB-j6-nqK" secondAttribute="centerX" id="jpd-gh-4JF"/>
                                     <constraint firstItem="qM6-7E-e1v" firstAttribute="top" secondItem="2pA-K7-nGh" secondAttribute="bottom" constant="8" id="lig-sy-sUg"/>
                                     <constraint firstItem="qM6-7E-e1v" firstAttribute="leading" secondItem="rHg-D1-NWs" secondAttribute="leading" constant="32" id="nsl-pj-Rvy"/>
@@ -646,6 +652,7 @@
                     <navigationItem key="navigationItem" id="jeO-zt-0jG"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="JdS-SU-1eJ" id="59L-C3-bDl"/>
                         <outlet property="bottomConstraint" destination="dKT-8f-1lP" id="hhP-jZ-Mla"/>
                         <outlet property="inputBgLogin" destination="RNv-HQ-Bis" id="s7f-j0-pWg"/>
                         <outlet property="inputPassword" destination="qnE-GX-2zF" id="kpz-Ee-Y4D"/>
@@ -883,7 +890,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="1" green="0.97254901960784312" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="separatorColor" red="0.094117647058823528" green="0.098039215686274508" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="0.97254901959999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="1" green="0.97254901959999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -1478,6 +1484,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="BCW-hI-7fz"/>
+                                                        <constraint firstAttribute="height" constant="160" id="qqW-Jv-0EO"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -2120,8 +2127,8 @@
         <image name="stats-icon" width="27" height="17"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yVn-HW-Cvv"/>
         <segue reference="cNb-by-jRP"/>
+        <segue reference="yVn-HW-Cvv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

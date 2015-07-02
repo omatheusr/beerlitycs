@@ -60,18 +60,20 @@ class FeedViewController: UIViewController {
             }
             
             if(drinkControl.cup != nil) {
-                activityText = activityText + String(drinkControl.cup!.size) + "ml"
+                activityText = activityText + " " + String(drinkControl.cup!.size) + " ml"
             }
 
             if(drinkControl.place != nil) {
                 activityText = activityText + " no " + drinkControl.place!.name
             }
+            
+//            let url = NSURL.fileURLWithPath(drinkControl.user!.photo!.url!)
+            let url = NSURL(string: drinkControl.user!.photo!.url!)
+            
+            cell.profileImage.setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"),usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
 
-            drinkControl.user?.photo?.getDataInBackgroundWithBlock({ (image, error) -> Void in
-                cell.profileImage.image = UIImage(data: image!)
-                Util.roundedView(cell.profileImage.layer, border: false, colorHex: nil, borderSize: nil, radius: cell.profileImage.frame.size.width / 2)
-                cell.profileImage.clipsToBounds = true
-            })
+            Util.roundedView(cell.profileImage.layer, border: false, colorHex: nil, borderSize: nil, radius: cell.profileImage.frame.size.width / 2)
+            cell.profileImage.clipsToBounds = true
 
             cell.profileName.text = drinkControl.user!.name
             cell.activityText.text = activityText

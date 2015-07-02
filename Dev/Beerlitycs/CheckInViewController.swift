@@ -62,6 +62,8 @@ class CheckInViewController: UITableViewController {
     }
 
     func addStaticMap() {
+        self.choicePlaceButton.setTitle(self.placeSelected?.name, forState: UIControlState.Normal)
+
         let lat = self.placeSelected?.location.latitude
         let long = self.placeSelected?.location.longitude
         let clLocation = CLLocationCoordinate2DMake(lat!, long!)
@@ -82,8 +84,15 @@ class CheckInViewController: UITableViewController {
             overlays: [markerOverlay],
             retina: true
         )
-        
-        self.mapImage.image = map.image
+
+//        let teste : String!
+//
+//        teste = "http://files.parsetfss.com/ec68a11d-2ad9-48a8-abfb-407dfc3ebd78/tfss-8cd4e020-b3c6-4cab-a34e-1def095f0214-NJm5gZHh82.jpg"
+//        
+////        let fileUrl = NSURL(fileURLWithPath: url)
+//        let fileUrl = NSURL(string: teste!)
+
+        self.mapImage.setImageWithURL(map.requestURL, placeholderImage: UIImage(named: "placeholder"),usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     }
     
     @IBAction func makeCheckIn(sender: AnyObject) {
@@ -118,7 +127,6 @@ class CheckInViewController: UITableViewController {
                 let placeControl = PlaceManager()
                 let places = placeControl.requestPlacesWithLocation(location) as NSArray
                 self.placeSelected = PlaceManager(array: places.firstObject!)
-                self.choicePlaceButton.setTitle(self.placeSelected?.name, forState: UIControlState.Normal)
                 self.addStaticMap()
             }
         }

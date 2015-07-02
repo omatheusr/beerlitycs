@@ -20,6 +20,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var inputUsername: UITextField!
     @IBOutlet weak var inputPassword: UITextField!
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var permissions = ["public_profile", "email", "user_friends"]
     var userLogged : UserManager?
 
@@ -49,6 +51,8 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func fbLoginButton(sender: AnyObject) {
+        self.activityIndicator.startAnimating()
+
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
             (user: PFUser?, error: NSError?) -> Void in
             
@@ -61,6 +65,7 @@ class LoginViewController: UIViewController {
                         if(error == nil) {
                             PushNotifications.associateDeviceWithCurrentUser()
                             self.userLogged = UserManager(dictionary: loggedUser)
+                            self.activityIndicator.stopAnimating()
                             self.performSegueWithIdentifier("registerSegue", sender: nil)
                         }
                     })
