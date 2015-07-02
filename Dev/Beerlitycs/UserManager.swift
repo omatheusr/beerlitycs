@@ -357,6 +357,54 @@ class UserManager: NSObject {
     }
     
     //----------------------------------------------------------------------------------------------
+    // Get Fav Beer Drunk Per User
+    //----------------------------------------------------------------------------------------------
+    
+    func getFavBeer (userID: String, callback: (cups: NSInteger?, error: NSError?) -> ()) {
+        
+        var query = PFQuery(className: "Drink")
+        var mlDrunk = NSInteger()
+        var auxDrinks = []
+        var beerList = [String]()
+        var beerQty = [Int]()
+        
+        mlDrunk = 0
+        
+        //query.includeKey("cup")
+        query.includeKey("beer")
+        query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
+        
+        
+        query.findObjectsInBackgroundWithBlock {
+            (objects, error) -> Void in
+            if error == nil {
+                auxDrinks = objects!
+                
+                var i : Int
+                for(i = 0; i < auxDrinks.count; i++) {
+                    let drink = DrinkManager(dictionary: auxDrinks[i] as! PFObject)
+                
+                    beerList.insert(drink.beer!.name, atIndex: i)
+                    
+                    //println(drink.beer?.name)
+                    //println(drink.cup?.size)
+                    
+//                    if let mililiters = drink.cup?.size {
+//                        mlDrunk = mlDrunk + mililiters
+//                    }
+                }
+                println(beerList)
+                
+                callback(cups: mlDrunk, error: nil)
+            } else {
+                println("Error: \(error) \(error!.userInfo!)")
+                callback(cups: nil, error: error!)
+            }
+        }
+        
+    }
+    
+    //----------------------------------------------------------------------------------------------
     // When a new beer is added on table "Drink", call this function to add on total beer drunk
     // This fuction can only be used for current user.
     //----------------------------------------------------------------------------------------------

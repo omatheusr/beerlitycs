@@ -2111,6 +2111,7 @@
                     <connections>
                         <outlet property="barChartView" destination="TKY-Ze-oMZ" id="KOr-Qk-OLZ"/>
                         <outlet property="btnSelect" destination="gco-PZ-4OF" id="Olh-Hr-hiT"/>
+                        <outlet property="lblMl" destination="Kxh-CU-NXT" id="YXf-SQ-aIv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9CC-IL-8E2" userLabel="First Responder" sceneMemberID="firstResponder"/>

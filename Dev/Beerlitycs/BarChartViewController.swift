@@ -19,6 +19,7 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
     var month: [String]!
     var week: [String]!
     var months: [String]!
+    @IBOutlet weak var lblMl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,31 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
                 
             }
         }
+        
+        
+        
+        let userControl = UserManager(dictionary: PFUser.currentUser()!)
+        let cupsControl = UserManager()
+        var mlDrunk = NSInteger()
+        mlDrunk = 0
+        
+        cupsControl.getCupsDrunk(userControl.objectId, callback: { (cups, error) -> () in
+            if(error == nil) {
+                mlDrunk = cups!
+                self.lblMl.text = String(mlDrunk) + " ml"
+            } else {
+                println("erro")
+            }
+        })
+        
+        cupsControl.getFavBeer(userControl.objectId, callback: { (cups, error) -> () in
+            if(error == nil) {
+                mlDrunk = cups!
+                self.lblMl.text = String(mlDrunk) + " ml"
+            } else {
+                println("erro")
+            }
+        })
         
     }
     
@@ -106,7 +132,7 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
         }else if(indexPath.row == 2) {
             cell.lblName.text = "Novas adicionadas"
             cell.lblBeer.text = ""
-            cell.lblNumber.text = "4"
+            cell.lblNumber.text = "0"
         }else if(indexPath.row == 3) {
             cell.lblName.text = "Bares visitados"
             cell.lblBeer.text = ""
