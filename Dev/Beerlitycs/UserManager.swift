@@ -103,15 +103,18 @@ class UserManager: NSObject {
 
     func editUser(userControl: UserManager, callback: (error: NSError?) -> ()) {
         var query = PFUser.query()!
-        
+
         query.getObjectInBackgroundWithId(userControl.objectId) {
             (userObject, error: NSError?) -> Void in
             if error != nil {
                 println(error)
             } else if let userObject = userObject {
                 if let query = userObject as? PFUser {
-                    query["name"] = userControl.name
                     
+                    if userControl.name != nil{
+                        query["name"] = userControl.name
+                    }
+
                     if userControl.email != nil{
                         query["email"] = userControl.email
                     }
@@ -143,10 +146,9 @@ class UserManager: NSObject {
                     if userControl.mlDrunk != nil{
                         query["mlDrunk"] = userControl.mlDrunk
                     } else {
-                        query["mlDrunk"] = "0"
+                        query["mlDrunk"] = 0
                     }
-                    
-                    
+
                     query.saveInBackgroundWithBlock {
                         (success: Bool, error: NSError?) -> Void in
                         if (success) {
@@ -178,7 +180,7 @@ class UserManager: NSObject {
         }
     }
     
-    func returnUserData(user: PFUser, callback: (error: NSError?) -> ()) {
+    func returnUserData(user: PFUser, linked: Bool, callback: (error: NSError?) -> ()) {
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             
@@ -189,43 +191,37 @@ class UserManager: NSObject {
                 var currentUser = UserManager()
 
                 let userID: String! = result.valueForKey("id") as! String
-                let userName : NSString = result.valueForKey("name") as! NSString
-                if let userEmail = result.valueForKey("email") as? NSString {
-                    currentUser.email = userEmail as String
-                }
-                
                 currentUser.objectId = user.objectId
-                currentUser.name = userName as String
-                
-                if(userID != nil) {
+
+                if(linked == false) {
+                    if let userName = result.valueForKey("name") as? NSString {
+                        currentUser.name = userName as String
+                    }
+                    if let userEmail = result.valueForKey("email") as? NSString {
+                        currentUser.email = userEmail as String
+                    }
+                    
+                    if(userID != nil) {
+                        currentUser.facebookId = userID
+
+                        let swiftString: String! = "http://graph.facebook.com/\(userID!)/picture?type=large"
+                        
+                        let url = NSURL(string: swiftString)
+                        let data = NSData(contentsOfURL: url!)
+                        
+                        let image: UIImage = UIImage(data: data!)!
+                        var jpegImage = UIImageJPEGRepresentation(image, 1.0)
+                        let file = PFFile(name:currentUser.objectId + ".jpg" , data: jpegImage)
+
+                        currentUser.photo = file
+                    }
+                } else {
                     currentUser.facebookId = userID
-
-                    let swiftString: String! = "http://graph.facebook.com/\(userID!)/picture?type=large"
-                    
-                    let url = NSURL(string: swiftString)
-                    let data = NSData(contentsOfURL: url!)
-                    
-                    let image: UIImage = UIImage(data: data!)!
-                    var jpegImage = UIImageJPEGRepresentation(image, 1.0)
-                    let file = PFFile(name:currentUser.objectId + ".jpg" , data: jpegImage)
-
-                    currentUser.photo = file
-
-    //                if let d = data {
-    //                    var image = UIImage(data: d)
-    //                    if let _image = image {
-    //                        var jpegImage = UIImageJPEGRepresentation(image, 1.0)
-    //                        let file = PFFile(name:currentUser.objectId + ".jpg" , data: jpegImage)
-    //                        currentUser.photo = file
-    //                    } else {
-    //                        //error when convert to UIImage
-    //                    }
-    //                    
-    //                }
                 }
 
                 currentUser.editUser(currentUser, callback: { (error) -> () in
                     if (error == nil) {
+                        println(currentUser.facebookId!)
                         callback(error: nil)
                     }
                 })
