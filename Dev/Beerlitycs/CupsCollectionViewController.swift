@@ -9,14 +9,20 @@
 import UIKit
 import Parse
 
-class CupsCollectionViewController: UICollectionViewController {
+class CupsCollectionViewController: UICollectionViewController{
     
     var cups = []
     var selectedCup : CupManager?
     var parentVC : CheckInViewController!
+    var set = Set<Int>()
+     var index : Int!
+     var aux :Int!
 
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         loadCups()
     }
@@ -32,22 +38,61 @@ class CupsCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.cups.count
     }
+    
+    
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cupCell", forIndexPath: indexPath) as! CupsCollectionViewCell
     
-//        cell.iconCup.image = 
         let cupControl = CupManager(dictionary: self.cups[indexPath.row] as! PFObject)
+        
         cell.sizeCup.text = String(cupControl.size) + "ml"
+        cell.iconCup.image = UIImage(named: cupControl.icon!)
+        
+        Util.roundedView(cell.contentView.layer, border: false, colorHex: nil, borderSize: nil, radius: cell.contentView.frame.height / 9)
+        
+        var index = indexPath.row
+        
+        if set.contains(index){
+            cell.contentView.backgroundColor = UIColor.blackColor()
+            cell.sizeCup.textColor = UIColor.whiteColor()
+            
+            
+        }else{
+            cell.contentView.backgroundColor = UIColor(red: 255.0/255.0, green: 246.0/255.0, blue: 241.0/255.0, alpha: 1.0)
+        }
     
         return cell
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.selectedCup = CupManager(dictionary: self.cups[indexPath.row] as! PFObject)
+        
+        set.removeAll(keepCapacity: true)
+        
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CupsCollectionViewCell
+        cell?.contentView.backgroundColor = UIColor.blackColor()
+        index = indexPath.row
+        set.insert(index)
 
+
+        
+        self.selectedCup = CupManager(dictionary: self.cups[indexPath.row] as! PFObject)
         self.parentVC!.cupSelected = self.selectedCup
     }
+    
+    
+    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        println("ok")
+        
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CupsCollectionViewCell
+        var index = indexPath.row
+        
+ 
+            cell?.contentView.backgroundColor = UIColor(red: 255.0/255.0, green: 246.0/255.0, blue: 241.0/255.0, alpha: 1.0)
+    }
+
+    
+    
 
     func loadCups() {
         let cupControl = CupManager()
@@ -55,6 +100,8 @@ class CupsCollectionViewController: UICollectionViewController {
         cupControl.getCups { (allCups, error) -> () in
             if(error == nil) {
                 self.cups = allCups!
+                
+                println(self.cups)
                 self.updateTableView()
             } else {
                 println("falha ao carregar")

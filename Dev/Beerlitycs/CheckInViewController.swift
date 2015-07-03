@@ -119,9 +119,6 @@ class CheckInViewController: UITableViewController {
         if(placeSelected != nil) {
             drinkControl.prepareForDrink(drinkControl, callback: { (error) -> () in
                 if(error == nil) {
-                    
-                    //var decision = self.showAlert("Cuidado!", message: "Você não selecionou nenhum bar. Deseja continuar mesmo assim? ")
-                    //if(decision == true){
                         userControl.addNewBeerInMLToTotal(PFUser.currentUser()!.objectId!, mlDrunk: drinkControl.cup!.size!, callback: { (error) -> () in
                             if (error == nil) {
                                 self.dismissViewControllerAnimated(true, completion: nil)
@@ -129,7 +126,7 @@ class CheckInViewController: UITableViewController {
                                 println(error)
                             }
                         })
-                    //}
+                    
                     
                 } else {
                     println("erro no check in")
@@ -139,6 +136,8 @@ class CheckInViewController: UITableViewController {
             drinkControl.newDrink(drinkControl) { (error) -> () in
                 if(error == nil) {
                     
+                    //var decision = self.showAlert("Cuidado!", message: "Você não selecionou nenhum bar. Deseja continuar mesmo assim? ")
+                    //if(decision == true){
                     userControl.addNewBeerInMLToTotal(PFUser.currentUser()!.objectId!, mlDrunk: drinkControl.cup!.size!, callback: { (error) -> () in
                         if (error == nil) {
                             self.dismissViewControllerAnimated(true, completion: nil)
@@ -146,7 +145,7 @@ class CheckInViewController: UITableViewController {
                             println(error)
                         }
                     })
-                    
+                    //}
                     
                 } else {
                     println("erro no check in")
