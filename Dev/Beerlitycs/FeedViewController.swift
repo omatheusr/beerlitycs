@@ -12,6 +12,7 @@ import Parse
 class FeedViewController: UIViewController {
     var feed = []
     var refreshControl:UIRefreshControl!
+    var loadApp : Bool?
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var checkButton: UIButton!
@@ -42,6 +43,10 @@ class FeedViewController: UIViewController {
         
         if currentUser == nil {
             self.performSegueWithIdentifier("loginSegue", sender: nil)
+        } else {
+            if(UserDefaultsManager.getUserId == nil) {
+                UserDefaultsManager.getUserId = currentUser
+            }
         }
     }
 
@@ -57,13 +62,29 @@ class FeedViewController: UIViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier("statusCell") as! StatusTableViewCell
             let statusControl = StatsManager()
             
-            statusControl.alcoholContentInBlood(PFUser.currentUser()!.objectId!, callback: { (alcoholInBlood, type, error) -> () in
-                if(error == nil){
-                    cell.alcoholContentInBlood.text = NSString(format: "%.2f",  alcoholInBlood!) as String
-                } else {
-                    println(error)
-                }
-            })
+            if(PFUser.currentUser() != nil) {
+                statusControl.alcoholContentInBlood(PFUser.currentUser()!.objectId!, callback: { (alcoholInBlood, type, error) -> () in
+                    if(error == nil){
+                        cell.alcoholContentInBlood.text = NSString(format: "%.2f",  alcoholInBlood!) as String
+                        
+                        if(type == 1) {
+                            cell.textStatus.text = "Parábens! Você está limpo!"
+                            cell.imageStatus.image = UIImage(named: "22")
+                        } else if(type == 2){
+                            cell.textStatus.text = "OPA! Abrindo os trabalhos!"
+                            cell.imageStatus.image = UIImage(named: "17")
+                        } else if(type == 3){
+                            cell.textStatus.text = "BELEZA! Tudo está ficando lindo!"
+                            cell.imageStatus.image = UIImage(named: "05")
+                        } else {
+                            cell.textStatus.text = "CUIDADO! Não vá fazer algo que se arrependa.. e chame um Taxi!"
+                            cell.imageStatus.image = UIImage(named: "04")
+                        }
+                    } else {
+                        println(error)
+                    }
+                })
+            }
             
             cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
 

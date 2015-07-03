@@ -131,25 +131,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
-        
-        //        var currentUser = PFUser.currentUser()
-        var currentUser = "123"
-        
+        let currentUser = UserDefaultsManager.getUserId
+
         if let userInfo = userInfo, request = userInfo["request"] as? String {
             
-            UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum);
-            var bgTask = UIBackgroundTaskIdentifier()
-            bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler { () -> Void in
+            if UserDefaultsManager.getUserId == nil {
+                reply(["reply": false])
+            } else {
+                UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum);
+                var bgTask = UIBackgroundTaskIdentifier()
+                bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler { () -> Void in
+                    
+                    
+                    UIApplication.sharedApplication().endBackgroundTask(bgTask)
+                    bgTask = UIBackgroundTaskInvalid
+                }
                 
-                
-                UIApplication.sharedApplication().endBackgroundTask(bgTask)
-                bgTask = UIBackgroundTaskInvalid
-            }
-            
-            if(request == "newPoop") {
-                
-            } else if(request == "getStatus") {
-                reply(["reply": "1"])
+                if(request == "getRankingPosition") {
+                    let stats = StatsManager()
+                    
+                    stats.get(PFUser.currentUser()!.objectId, callback: { (position, error) -> () in
+                        if(error == nil) {
+                            let strPosition : String! = String(stringInterpolationSegment: position) as String
+                            reply(["reply": strPosition!])
+                        } else {
+                            println("erro")
+                        }
+                        
+                        UIApplication.sharedApplication().endBackgroundTask(bgTask)
+                        bgTask = UIBackgroundTaskInvalid
+                    })
+                } else if(request == "getStatus") {
+                    let statusControl = StatsManager()
+                    
+                    statusControl.alcoholContentInBlood(PFUser.currentUser()!.objectId!, callback: { (alcoholInBlood, type, error) -> () in
+                        if(error == nil){
+                            let statusReply = [NSString(format: "%.2f",  alcoholInBlood!) as String, type!]
+//                            statusReply.setValue(alcoholInBlood!, forKey: 0)
+//                            statusReply.setValue(type!, forKey: 1)
+                            reply(["reply": statusReply])
+                       } else {
+                            println(error)
+                        }
+
+                        UIApplication.sharedApplication().endBackgroundTask(bgTask)
+                        bgTask = UIBackgroundTaskInvalid
+                    })
+                }
             }
         }
     }

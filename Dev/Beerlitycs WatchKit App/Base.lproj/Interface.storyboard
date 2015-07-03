@@ -10,7 +10,7 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Beerlitycs_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <label height="28" alignment="left" text="Status" textAlignment="center" id="uwG-5g-WRk">
+                        <label height="28" alignment="center" text="Status" textAlignment="center" id="uwG-5g-WRk">
                             <color key="textColor" red="1" green="0.62352941179999999" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="font" type="system" pointSize="16"/>
                         </label>
@@ -30,33 +30,6 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="235" y="327"/>
-        </scene>
-        <!--Stats Interface Controller-->
-        <scene sceneID="x7x-85-jFL">
-            <objects>
-                <controller id="7XS-ck-lpo" customClass="StatsInterfaceController" customModule="Beerlitycs_WatchKit_Extension">
-                    <items>
-                        <table alignment="left" id="xXS-GA-F1e">
-                            <items>
-                                <tableRow identifier="StatsCell" id="p5T-Vg-g3U" customClass="StatsCell" customModule="Beerlitycs_WatchKit_Extension">
-                                    <group key="rootItem" width="1" alignment="left" layout="vertical" id="4v4-1l-cDA">
-                                        <items>
-                                            <label alignment="left" text="Teste" id="W00-cr-ARo"/>
-                                        </items>
-                                    </group>
-                                    <connections>
-                                        <outlet property="statsOption" destination="W00-cr-ARo" id="MDK-ru-3iw"/>
-                                    </connections>
-                                </tableRow>
-                            </items>
-                        </table>
-                    </items>
-                    <connections>
-                        <outlet property="statsTable" destination="xXS-GA-F1e" id="3pK-AP-qid"/>
-                    </connections>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="553" y="347"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">
@@ -81,6 +54,9 @@
                         </group>
                     </items>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
+                    <connections>
+                        <outlet property="rankingPosition" destination="Rj4-1V-ZFN" id="8PQ-c5-fN4"/>
+                    </connections>
                 </glanceController>
             </objects>
             <point key="canvasLocation" x="235" y="672"/>

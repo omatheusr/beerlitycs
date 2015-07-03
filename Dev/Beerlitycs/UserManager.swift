@@ -160,9 +160,9 @@ class UserManager: NSObject {
 
     func getUsers(callback: (users: NSArray?, error: NSError?) -> ()) {
         var query = PFUser.query()!
-
+        
         var auxUsers: NSArray!
-
+        
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in
             if error == nil {
@@ -174,7 +174,28 @@ class UserManager: NSObject {
             }
         }
     }
-    
+
+    func getUserById(userId: String!, callback: (user: UserManager?, error: NSError?) -> ()) {
+        var query = PFUser.query()!
+        
+        query.whereKey("objectId", equalTo: userId)
+
+        var auxUsers: NSArray!
+        
+        query.findObjectsInBackgroundWithBlock {
+            (objects, error) -> Void in
+            if error == nil {
+                auxUsers = objects!
+                
+                let uControl = UserManager(dictionary: PFUser(withoutDataWithObjectId: userId))
+                    callback(user: uControl, error: nil)
+            } else {
+                println("Error: \(error) \(error!.userInfo!)")
+                callback(user: nil, error: error!)
+            }
+        }
+    }
+
     func returnUserData(user: PFUser, linked: Bool, callback: (error: NSError?) -> ()) {
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in

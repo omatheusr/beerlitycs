@@ -11,6 +11,8 @@ import UIKit
 class StatusTableViewCell: UITableViewCell {
 
     @IBOutlet var alcoholContentInBlood: UILabel!
+    @IBOutlet weak var imageStatus: UIImageView!
+    @IBOutlet weak var textStatus: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
