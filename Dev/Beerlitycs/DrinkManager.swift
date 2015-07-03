@@ -142,20 +142,9 @@ class DrinkManager: NSObject {
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: date)
 
-        
         //var value = -3 - timezone/3600
         var value = -3
         var newDate = calendar.dateByAddingUnit(.CalendarUnitHour, value: value, toDate: date, options: nil)
-        
-//        var text = String(stringInterpolationSegment: newDate!)
-//        
-//        var newDate2 = NSDateFormatter()
-//        newDate2.dateFormat = "MM dd, yyyy, hh:mm"
-//        var date2 = newDate2.dateFromString(text)
-//        println(text)
-//        println(date2)
-//        
-//        println(newDate)
         
         var query = PFQuery(className: "Drink")
         

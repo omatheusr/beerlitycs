@@ -17,16 +17,7 @@ class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var drink = DrinkManager()
-        drink.getLatestDrinkPerUser(PFUser.currentUser()!.objectId!, callback: { (drinks, error) -> () in
-            if (error == nil){
-                println(drinks)
-            } else {
-                println(error)
-            }
-        })
-        
+                
         self.tableView.tableFooterView = UIView()
         PushNotifications.associateDeviceWithCurrentUser()
         
