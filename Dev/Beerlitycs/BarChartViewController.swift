@@ -10,8 +10,8 @@ import UIKit
 import Charts
 import Parse
 
-class BarChartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ChartViewDelegate {
-    
+class BarChartViewController: UITableViewController, ChartViewDelegate {
+
     @IBOutlet weak var barChartView: BarChartView!
     @IBOutlet weak var btnSelect: UISegmentedControl!
     
@@ -22,55 +22,22 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
     var nPlace: String!
     var pName: String!
     var months: [String]!
-    @IBOutlet weak var lblMl: UILabel!
-    @IBOutlet weak var tblAnalytics: UITableView!
-    @IBOutlet weak var lblName: UILabel!
     
+    @IBOutlet weak var favBeer: UILabel!
+    @IBOutlet weak var lessConsumedBeer: UILabel!
+    @IBOutlet weak var mlDrunk: UILabel!
+    @IBOutlet weak var favPlace: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         barChartView.delegate = self
         
-        let graphControl = DrinkManager()
-        
-        graphControl.getDrinksForGraph(6, dayPoints: true) { (beerPoints, datePoints, error) -> () in
-            if(error == nil) {
-                self.months = datePoints!
-                let unitsSold = beerPoints!
-                self.setChart(self.months, values: unitsSold)
-            } else {
-                
-            }
-        }
-        
-        let userControl = UserManager(dictionary: PFUser.currentUser()!)
-        self.lblMl.text = String(stringInterpolationSegment: userControl.mlDrunk!) + " ml"
-        
-        let cupsControl = UserManager ()
-        cupsControl.getFavBeer(userControl.objectId, callback: { (majorName, majorSize, minorName, minorSize, error) -> () in
-            if(error == nil) {
-                self.maName = majorName
-                self.lblName.text = majorName
-                self.maSize = String(stringInterpolationSegment: majorSize) + " ml"
-                self.miName = minorName
-                self.miSize = String(stringInterpolationSegment: minorSize) + " ml"
-                self.tblAnalytics.reloadData()
-            } else {
-                println("erro")
-            }
-        })
-        
-        cupsControl.getFavPlace(userControl.objectId) { (numPlace, placeName, error) -> () in
-            if(error == nil) {
-                self.nPlace = String(stringInterpolationSegment: numPlace!)
-                self.pName = placeName!
-                self.tblAnalytics.reloadData()
-            } else {
-                println("erro")
-            }
-        }
-        
-        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.addTarget(self, action: "loadData:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl!)
+        self.refreshControl!.beginRefreshing()
+
+        loadData(nil)
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
@@ -102,10 +69,6 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
         barChartView.data?.setValueTextColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1))
         barChartView.data?.setDrawValues(false)
         
-        
-        
-            
-        
         barChartView.legend.enabled = false
 //        barChartView.legend.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
         
@@ -123,41 +86,7 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBAction func saveChart(sender: UIBarButtonItem) {
         barChartView.saveToCameraRoll()
     }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! AnalyticsCell
-        
-        tableView.backgroundColor = UIColor.clearColor()
-        
-        if(indexPath.row == 0) {
-            cell.lblName.text = "Mais bebida"
-            cell.lblBeer.text = self.maName
-            cell.lblNumber.text = self.maSize
-        }else if(indexPath.row == 1) {
-            cell.lblName.text = "Menos bebida"
-            cell.lblBeer.text = self.miName
-            cell.lblNumber.text = self.miSize
-        }else if(indexPath.row == 2) {
-            cell.lblName.text = "Adicionadas"
-            cell.lblBeer.text = ""
-            cell.lblNumber.text = "0"
-        }else if(indexPath.row == 3) {
-            cell.lblName.text = "Bares visitados"
-            cell.lblBeer.text = ""
-            cell.lblNumber.text = self.nPlace
-        }else if(indexPath.row == 4) {
-            cell.lblName.text = "Bar preferido"
-            cell.lblBeer.text = ""
-            cell.lblNumber.text = self.pName
-        }
 
-    
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
     @IBAction func actSelect(sender: AnyObject) {
         if(btnSelect.selectedSegmentIndex == 0){
             let graphControl = DrinkManager()
@@ -197,8 +126,51 @@ class BarChartViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
             }
         }
+    }
+    
+    func loadData(sender:AnyObject?) {
+        let graphControl = DrinkManager()
+
+        graphControl.getDrinksForGraph(6, dayPoints: true) { (beerPoints, datePoints, error) -> () in
+            if(error == nil) {
+                self.months = datePoints!
+                let unitsSold = beerPoints!
+                self.setChart(self.months, values: unitsSold)
+                
+                self.refreshControl!.endRefreshing()
+            } else {
+                
+            }
+        }
         
+        let userControl = UserManager(dictionary: PFUser.currentUser()!)
+        self.mlDrunk.text = String(stringInterpolationSegment: userControl.mlDrunk!) + " ml"
         
+        let cupsControl = UserManager ()
+        cupsControl.getFavBeer(userControl.objectId, callback: { (majorName, majorSize, minorName, minorSize, error) -> () in
+            if(error == nil) {
+                self.maName = majorName
+                self.favBeer.text = majorName
+                self.maSize = String(stringInterpolationSegment: majorSize) + " ml"
+                self.miName = minorName
+                self.lessConsumedBeer.text = self.miName
+                
+                self.miSize = String(stringInterpolationSegment: minorSize) + " ml"
+            } else {
+                println("erro")
+            }
+        })
+        
+        cupsControl.getFavPlace(userControl.objectId) { (numPlace, placeName, error) -> () in
+            if(error == nil) {
+                self.nPlace = String(stringInterpolationSegment: numPlace!)
+                self.pName = placeName!
+                self.favPlace.text = self.pName
+                
+            } else {
+                println("erro")
+            }
+        }
     }
 }
 
