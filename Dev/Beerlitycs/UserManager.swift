@@ -354,16 +354,17 @@ class UserManager: NSObject {
     func getFavPlace (userID: String, callback: (numPlace: NSInteger?, placeName: String?, error: NSError?) -> ()) {
         
         var query = PFQuery(className: "Drink")
-        var place = NSInteger()
+        var place = Int()
+        var places = NSInteger()
         var plcName = String()
+        var auxPlace = [String]()
         var auxDrinks = []
-        
+        var auxMajor = [String: Int]()
         
         mlDrunk = 0
         
         query.includeKey("place")
         query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
-        query.orderByAscending("place")
         
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in
@@ -373,19 +374,26 @@ class UserManager: NSObject {
                 var i : Int
                 for(i = 0; i < auxDrinks.count; i++) {
                     let drink = DrinkManager(dictionary: auxDrinks[i] as! PFObject)
-                    
-                    if(plcName != drink.place!.name){
-                        place++
-                    }
-                    plcName = drink.place!.name
-                    println(drink.place?.name)
-                    
-//                    if let mililiters = drink.cup?.size {
-//                        mlDrunk = mlDrunk + mililiters
-//                    }
+                    auxPlace.insert(drink.place!.name, atIndex: i)
                 }
                 
-                callback(numPlace: place, placeName: plcName, error: nil)
+                var outArray = sorted(auxPlace)
+                
+                for(i = 0; i < outArray.count; i++) {
+        
+                    if(plcName != outArray[i]){
+                        places++
+                        place++
+                    }else{
+                        place = 0
+                    }
+                    plcName = outArray[i]
+                }
+                
+                println(auxMajor)
+                println(outArray)
+                
+                callback(numPlace: places, placeName: plcName, error: nil)
             } else {
                 println("Error: \(error) \(error!.userInfo!)")
                 callback(numPlace: nil, placeName: nil, error: error!)
@@ -540,5 +548,11 @@ class UserManager: NSObject {
             }
         }
         
+    }
+    
+    //Função de ordenação de array
+    func backward(x : String, y: String) -> Bool
+    {
+        return x>y
     }
 }
