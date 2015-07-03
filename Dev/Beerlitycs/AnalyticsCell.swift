@@ -10,8 +10,4 @@ import UIKit
 
 class AnalyticsCell: UITableViewCell {
 
-    
-    @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblBeer: UILabel!
-    @IBOutlet weak var lblNumber: UILabel!
 }
