@@ -25,7 +25,7 @@ class CupManager: NSObject {
         self.objectId = dictionary.objectId
         self.name = dictionary["name"] as! String
         self.size = dictionary["size"] as! Int
-        self.icon? = dictionary["icon"] as! String
+        self.icon = dictionary["icon"] as? String
     }
     
     func newCup(cupControl: CupManager, callback: (error: NSError?) -> ()) {
