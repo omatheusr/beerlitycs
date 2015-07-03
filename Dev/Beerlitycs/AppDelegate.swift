@@ -131,9 +131,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
-        
-        UserDefaultsManager.getUserId = "X3LT5WQkfb"
-
         let currentUser = UserDefaultsManager.getUserId
 
         if let userInfo = userInfo, request = userInfo["request"] as? String {

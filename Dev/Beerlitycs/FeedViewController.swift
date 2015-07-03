@@ -42,6 +42,10 @@ class FeedViewController: UIViewController {
         
         if currentUser == nil {
             self.performSegueWithIdentifier("loginSegue", sender: nil)
+        } else {
+            if(UserDefaultsManager.getUserId == nil) {
+                UserDefaultsManager.getUserId = currentUser
+            }
         }
     }
 
