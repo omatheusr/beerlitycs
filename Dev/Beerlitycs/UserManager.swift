@@ -358,11 +358,12 @@ class UserManager: NSObject {
         var plcName = String()
         var auxDrinks = []
         
+        
         mlDrunk = 0
         
         query.includeKey("place")
         query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
-        
+        query.orderByAscending("place")
         
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in
@@ -373,7 +374,9 @@ class UserManager: NSObject {
                 for(i = 0; i < auxDrinks.count; i++) {
                     let drink = DrinkManager(dictionary: auxDrinks[i] as! PFObject)
                     
-                    place++
+                    if(plcName != drink.place!.name){
+                        place++
+                    }
                     plcName = drink.place!.name
                     println(drink.place?.name)
                     
