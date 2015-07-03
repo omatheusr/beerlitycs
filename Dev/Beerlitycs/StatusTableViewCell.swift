@@ -10,6 +10,8 @@ import UIKit
 
 class StatusTableViewCell: UITableViewCell {
 
+    @IBOutlet var alcoholContentInBlood: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
