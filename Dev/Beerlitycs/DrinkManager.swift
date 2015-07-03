@@ -148,12 +148,17 @@ class DrinkManager: NSObject {
         
         var query = PFQuery(className: "Drink")
         
+        query.includeKey("user")
+        query.includeKey("cup")
+        query.includeKey("beer")
+        query.includeKey("place")
+        
         query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
         query.whereKey("createdAt", greaterThan: newDate!)
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if(error == nil){
                 var drinks: NSArray! = objects!
-                callback(drinks: objects, error: nil)
+                callback(drinks: drinks, error: nil)
             } else {
                 callback(drinks: nil, error: error)
             }
