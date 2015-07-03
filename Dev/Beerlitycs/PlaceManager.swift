@@ -139,10 +139,10 @@ class PlaceManager: NSObject {
     }
 
     func requestPlacesWithLocation(location: CLLocation, callback: (locations: NSArray?, error: Bool?) -> ()) {
-//        let requestString = "\(API_URL)venues/search?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&categoryId=\(CATEGORY_ID)&v=20130815&ll=\(location.coordinate.latitude),\(location.coordinate.longitude)"
+        let requestString = "\(API_URL)venues/search?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&categoryId=\(CATEGORY_ID)&radius=1000&intent=browse&v=20130815&ll=\(location.coordinate.latitude),\(location.coordinate.longitude)"
         // Source
 
-        let requestString = "\(API_URL)venues/search?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&v=20130815&radius=500&intent=browse&ll=\(location.coordinate.latitude),\(location.coordinate.longitude)"
+//        let requestString = "\(API_URL)venues/search?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&v=20130815&radius=500&intent=browse&ll=\(location.coordinate.latitude),\(location.coordinate.longitude)"
 
         if let url = NSURL(string: requestString) {
             let request = NSURLRequest(URL: url)
