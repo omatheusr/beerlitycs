@@ -12,7 +12,8 @@ import Parse
 let API_URL = "https://api.foursquare.com/v2/"
 let CLIENT_ID = "URTAIWYA3BRK2KJMI021TPJGSD2DC4SSQEJEUAY4YFDTRXTA"
 let CLIENT_SECRET = "JTLHDJCLSALUBS5MGFOQGPQSMLV3LW10JODXSDQNW5FJNKL3"
-let CATEGORY_ID = "4d4b7105d754a06376d81259"
+let CATEGORY_ID = "4d4b7105d754a06376d81259,52e81612bcbc57f1066b7a06,4bf58dd8d48988d1e5931735,5267e4d9e4b0ec79466e48d1,4bf58dd8d48988d17c941735,4bf58dd8d48988d11f941735,4bf58dd8d48988d11b941735"
+
 
 class PlaceManager: NSObject {
     var objectId: String!
@@ -21,6 +22,7 @@ class PlaceManager: NSObject {
     var totalml: String?
     var address: String?
     var location: PFGeoPoint!
+    var distance: String!
     var createdAt: NSDate!
     var date: String!
     var hour: String!
@@ -47,6 +49,8 @@ class PlaceManager: NSObject {
         var placeLocation : NSDictionary = array["location"] as! NSDictionary
         self.name = array["name"] as! String
         self.foursquareId = array["id"] as! String
+        self.distance = placeLocation["distance"]?.stringValue
+
         if ((placeLocation["address"]) != nil) {
             self.address = placeLocation["address"] as? String
         } else {
@@ -113,20 +117,50 @@ class PlaceManager: NSObject {
         }
     }
     
-
-    func requestPlacesWithLocation(location: CLLocation) -> [AnyObject] {
-        let requestString = "\(API_URL)venues/search?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&categoryId=\(CATEGORY_ID)&v=20130815&ll=\(location.coordinate.latitude),\(location.coordinate.longitude)"
+    func orderPlaces(array: AnyObject) {
+        //                        var placeLocation : NSDictionary = array["location"] as! NSDictionary
         
+        var locais = [PlaceManager]()
+
+        for(var i = 0; i < array.count; i++) {
+//            let place = PlaceManager(array: array[i])
+//            locais().sort({ $0.fileID > $1.fileID })
+//            locais.append(place)
+        }
+        
+        println(locais[0].distance)
+        
+//        locais.so
+
+//        let sd = NSSortDescriptor(key: "distance", ascending: true)
+//        var descriptor: NSSortDescriptor = NSSortDescriptor(key: "distance", ascending: true)
+//        var sortedResults: NSArray = locais.sortedArrayUsingDescriptors([descriptor])
+//        println(sortedResults)
+    }
+
+    func requestPlacesWithLocation(location: CLLocation, callback: (locations: NSArray?, error: Bool?) -> ()) {
+//        let requestString = "\(API_URL)venues/search?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&categoryId=\(CATEGORY_ID)&v=20130815&ll=\(location.coordinate.latitude),\(location.coordinate.longitude)"
+        // Source
+
+        let requestString = "\(API_URL)venues/search?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&v=20130815&radius=500&intent=browse&ll=\(location.coordinate.latitude),\(location.coordinate.longitude)"
+
         if let url = NSURL(string: requestString) {
             let request = NSURLRequest(URL: url)
             if let data = NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil) {
                 if let returnInfo = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as? [String:AnyObject] {
                     let responseInfo = returnInfo["response"] as! [String:AnyObject]
                     let venues = responseInfo["venues"] as! [[String:AnyObject]]
-                    return venues
+                    let locations = venues as NSArray
+
+                    if(locations.count != 0) {
+                        callback(locations: locations, error: nil)
+                    } else {
+                        callback(locations: nil, error: true)
+                    }
                 }
             }
+        } else {
+            callback(locations: nil, error: true)
         }
-        return []
     }
 }

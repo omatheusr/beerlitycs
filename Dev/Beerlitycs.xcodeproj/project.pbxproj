@@ -26,11 +26,22 @@
 		BF02298B1B3F9C3D006A66CF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02298A1B3F9C3D006A66CF /* RegisterViewController.swift */; };
 		BF02298D1B409E63006A66CF /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02298C1B409E63006A66CF /* FeedTableViewCell.swift */; };
 		BF02298F1B40A0ED006A66CF /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02298E1B40A0ED006A66CF /* StatusTableViewCell.swift */; };
+		BF056CD61B4606C00000C485 /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF056CD51B4606C00000C485 /* StatsManager.swift */; };
 		BF5641DC1B4178D700F414C3 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5641DB1B4178D700F414C3 /* Util.swift */; };
 		BF7B61FA1B39E00A00336C4F /* PlacesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */; };
 		BFC403301B43930D009BC394 /* MapboxStatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4032F1B43930D009BC394 /* MapboxStatic.swift */; };
 		BFDD42C91B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = BFDD42C81B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
 		BFDD42CD1B45736700771A47 /* ConectFBTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD42CC1B45736700771A47 /* ConectFBTableViewCell.swift */; };
+		BFDD42D81B45A63300771A47 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD42D71B45A63300771A47 /* InterfaceController.swift */; };
+		BFDD42DA1B45A63300771A47 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD42D91B45A63300771A47 /* NotificationController.swift */; };
+		BFDD42DC1B45A63300771A47 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD42DB1B45A63300771A47 /* GlanceController.swift */; };
+		BFDD42DE1B45A63300771A47 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFDD42DD1B45A63300771A47 /* Images.xcassets */; };
+		BFDD42E21B45A63300771A47 /* Beerlitycs WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = BFDD42E11B45A63300771A47 /* Beerlitycs WatchKit App.app */; };
+		BFDD42EA1B45A63300771A47 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFDD42E81B45A63300771A47 /* Interface.storyboard */; };
+		BFDD42EC1B45A63300771A47 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFDD42EB1B45A63300771A47 /* Images.xcassets */; };
+		BFDD42EF1B45A63300771A47 /* Beerlitycs WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BFDD42D21B45A63300771A47 /* Beerlitycs WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BFDD42F81B45BD5A00771A47 /* StatsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD42F71B45BD5A00771A47 /* StatsInterfaceController.swift */; };
+		BFDD42FA1B45BFFF00771A47 /* StatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD42F91B45BFFF00771A47 /* StatsCell.swift */; };
 		BFF40ECE1B3C62D30004BDDC /* BeersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */; };
 		BFF40ED01B3C62EB0004BDDC /* BeersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */; };
 		BFF4F1A61B3C293100AD2F83 /* DrinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF4F1A51B3C293100AD2F83 /* DrinkManager.swift */; };
@@ -80,6 +91,20 @@
 			remoteGlobalIDString = 5BA8EC3F1A9D14DC00CE82E1;
 			remoteInfo = Charts;
 		};
+		BFDD42E31B45A63300771A47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFF6D0A71B351402000984C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFDD42E01B45A63300771A47;
+			remoteInfo = "Beerlitycs WatchKit App";
+		};
+		BFDD42ED1B45A63300771A47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFF6D0A71B351402000984C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFDD42D11B45A63300771A47;
+			remoteInfo = "Beerlitycs WatchKit Extension";
+		};
 		BFF6D0C51B351402000984C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFF6D0A71B351402000984C4 /* Project object */;
@@ -99,6 +124,17 @@
 				396AB3CF1B42CB24007B25BF /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFDD42F61B45A63400771A47 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BFDD42EF1B45A63300771A47 /* Beerlitycs WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -125,12 +161,26 @@
 		BF02298A1B3F9C3D006A66CF /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		BF02298C1B409E63006A66CF /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		BF02298E1B40A0ED006A66CF /* StatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
+		BF056CD51B4606C00000C485 /* StatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsManager.swift; sourceTree = "<group>"; };
 		BF5641DB1B4178D700F414C3 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTableViewCell.swift; sourceTree = "<group>"; };
 		BFC4032F1B43930D009BC394 /* MapboxStatic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapboxStatic.swift; sourceTree = "<group>"; };
 		BFDD42C71B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
 		BFDD42C81B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
 		BFDD42CC1B45736700771A47 /* ConectFBTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConectFBTableViewCell.swift; sourceTree = "<group>"; };
+		BFDD42D21B45A63300771A47 /* Beerlitycs WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Beerlitycs WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFDD42D51B45A63300771A47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFDD42D61B45A63300771A47 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		BFDD42D71B45A63300771A47 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		BFDD42D91B45A63300771A47 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		BFDD42DB1B45A63300771A47 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		BFDD42DD1B45A63300771A47 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BFDD42E11B45A63300771A47 /* Beerlitycs WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beerlitycs WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFDD42E71B45A63300771A47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFDD42E91B45A63300771A47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		BFDD42EB1B45A63300771A47 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BFDD42F71B45BD5A00771A47 /* StatsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsInterfaceController.swift; sourceTree = "<group>"; };
+		BFDD42F91B45BFFF00771A47 /* StatsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsCell.swift; sourceTree = "<group>"; };
 		BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeersViewController.swift; sourceTree = "<group>"; };
 		BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeersTableViewCell.swift; sourceTree = "<group>"; };
 		BFF4F1A51B3C293100AD2F83 /* DrinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkManager.swift; sourceTree = "<group>"; };
@@ -170,6 +220,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BFDD42CF1B45A63300771A47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFF6D0AC1B351402000984C4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -286,6 +343,13 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		BF056CD41B4606A30000C485 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Stats;
+			sourceTree = "<group>";
+		};
 		BFDD42CB1B44BAF600771A47 /* UIImageViewActivityIndicator */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,12 +359,55 @@
 			name = UIImageViewActivityIndicator;
 			sourceTree = "<group>";
 		};
+		BFDD42D31B45A63300771A47 /* Beerlitycs WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BFDD42D71B45A63300771A47 /* InterfaceController.swift */,
+				BFDD42F71B45BD5A00771A47 /* StatsInterfaceController.swift */,
+				BFDD42F91B45BFFF00771A47 /* StatsCell.swift */,
+				BFDD42D91B45A63300771A47 /* NotificationController.swift */,
+				BFDD42DB1B45A63300771A47 /* GlanceController.swift */,
+				BFDD42DD1B45A63300771A47 /* Images.xcassets */,
+				BFDD42D41B45A63300771A47 /* Supporting Files */,
+			);
+			path = "Beerlitycs WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		BFDD42D41B45A63300771A47 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BFDD42D51B45A63300771A47 /* Info.plist */,
+				BFDD42D61B45A63300771A47 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BFDD42E51B45A63300771A47 /* Beerlitycs WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				BFDD42E81B45A63300771A47 /* Interface.storyboard */,
+				BFDD42EB1B45A63300771A47 /* Images.xcassets */,
+				BFDD42E61B45A63300771A47 /* Supporting Files */,
+			);
+			path = "Beerlitycs WatchKit App";
+			sourceTree = "<group>";
+		};
+		BFDD42E61B45A63300771A47 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BFDD42E71B45A63300771A47 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		BFF6D0A61B351402000984C4 = {
 			isa = PBXGroup;
 			children = (
 				396AB3C81B42CB12007B25BF /* Charts.xcodeproj */,
 				BFF6D0B11B351402000984C4 /* Beerlitycs */,
 				BFF6D0C71B351402000984C4 /* BeerlitycsTests */,
+				BFDD42D31B45A63300771A47 /* Beerlitycs WatchKit Extension */,
+				BFDD42E51B45A63300771A47 /* Beerlitycs WatchKit App */,
 				BFF6D0B01B351402000984C4 /* Products */,
 				BFF6D0DD1B385145000984C4 /* Frameworks */,
 				100B90B91F33BCA042516008 /* Pods */,
@@ -312,6 +419,8 @@
 			children = (
 				BFF6D0AF1B351402000984C4 /* Beerlitycs.app */,
 				BFF6D0C41B351402000984C4 /* BeerlitycsTests.xctest */,
+				BFDD42D21B45A63300771A47 /* Beerlitycs WatchKit Extension.appex */,
+				BFDD42E11B45A63300771A47 /* Beerlitycs WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -360,6 +469,7 @@
 		BFF6D0D41B351430000984C4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BF056CD41B4606A30000C485 /* Stats */,
 				396AB3C31B42C9B2007B25BF /* Analytic */,
 				BF0229871B3F9C1F006A66CF /* Login */,
 				BF0229861B3F9C08006A66CF /* Feed */,
@@ -388,6 +498,7 @@
 				BFF6D0FE1B388758000984C4 /* PlaceManager.swift */,
 				BFF6D1021B398D5E000984C4 /* RankingManager.swift */,
 				BFF4F1A51B3C293100AD2F83 /* DrinkManager.swift */,
+				BF056CD51B4606C00000C485 /* StatsManager.swift */,
 				BFF7E4371B4300E800695771 /* PushNotifications.swift */,
 			);
 			name = Model;
@@ -424,6 +535,39 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BFDD42D11B45A63300771A47 /* Beerlitycs WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFDD42F31B45A63400771A47 /* Build configuration list for PBXNativeTarget "Beerlitycs WatchKit Extension" */;
+			buildPhases = (
+				BFDD42CE1B45A63300771A47 /* Sources */,
+				BFDD42CF1B45A63300771A47 /* Frameworks */,
+				BFDD42D01B45A63300771A47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BFDD42E41B45A63300771A47 /* PBXTargetDependency */,
+			);
+			name = "Beerlitycs WatchKit Extension";
+			productName = "Beerlitycs WatchKit Extension";
+			productReference = BFDD42D21B45A63300771A47 /* Beerlitycs WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		BFDD42E01B45A63300771A47 /* Beerlitycs WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFDD42F01B45A63400771A47 /* Build configuration list for PBXNativeTarget "Beerlitycs WatchKit App" */;
+			buildPhases = (
+				BFDD42DF1B45A63300771A47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Beerlitycs WatchKit App";
+			productName = "Beerlitycs WatchKit App";
+			productReference = BFDD42E11B45A63300771A47 /* Beerlitycs WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 		BFF6D0AE1B351402000984C4 /* Beerlitycs */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BFF6D0CE1B351402000984C4 /* Build configuration list for PBXNativeTarget "Beerlitycs" */;
@@ -434,11 +578,13 @@
 				BFF6D0AD1B351402000984C4 /* Resources */,
 				316BB2EB7AF2733392670C57 /* Copy Pods Resources */,
 				396AB3D21B42CB24007B25BF /* Embed Frameworks */,
+				BFDD42F61B45A63400771A47 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				396AB3D11B42CB24007B25BF /* PBXTargetDependency */,
+				BFDD42EE1B45A63300771A47 /* PBXTargetDependency */,
 			);
 			name = Beerlitycs;
 			productName = Beerlitycs;
@@ -472,6 +618,13 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = BEPiD;
 				TargetAttributes = {
+					BFDD42D11B45A63300771A47 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					BFDD42E01B45A63300771A47 = {
+						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 4NRYRR94WS;
+					};
 					BFF6D0AE1B351402000984C4 = {
 						CreatedOnToolsVersion = 6.3.1;
 						SystemCapabilities = {
@@ -507,6 +660,8 @@
 			targets = (
 				BFF6D0AE1B351402000984C4 /* Beerlitycs */,
 				BFF6D0C31B351402000984C4 /* BeerlitycsTests */,
+				BFDD42D11B45A63300771A47 /* Beerlitycs WatchKit Extension */,
+				BFDD42E01B45A63300771A47 /* Beerlitycs WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -522,6 +677,24 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BFDD42D01B45A63300771A47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFDD42E21B45A63300771A47 /* Beerlitycs WatchKit App.app in Resources */,
+				BFDD42DE1B45A63300771A47 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFDD42DF1B45A63300771A47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFDD42EA1B45A63300771A47 /* Interface.storyboard in Resources */,
+				BFDD42EC1B45A63300771A47 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFF6D0AD1B351402000984C4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -575,6 +748,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BFDD42CE1B45A63300771A47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFDD42DA1B45A63300771A47 /* NotificationController.swift in Sources */,
+				BFDD42F81B45BD5A00771A47 /* StatsInterfaceController.swift in Sources */,
+				BFDD42D81B45A63300771A47 /* InterfaceController.swift in Sources */,
+				BFDD42DC1B45A63300771A47 /* GlanceController.swift in Sources */,
+				BFDD42FA1B45BFFF00771A47 /* StatsCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFF6D0AB1B351402000984C4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -602,6 +787,7 @@
 				BF5641DC1B4178D700F414C3 /* Util.swift in Sources */,
 				BFF6D1031B398D5E000984C4 /* RankingManager.swift in Sources */,
 				BFF40ECE1B3C62D30004BDDC /* BeersViewController.swift in Sources */,
+				BF056CD61B4606C00000C485 /* StatsManager.swift in Sources */,
 				BF02298D1B409E63006A66CF /* FeedTableViewCell.swift in Sources */,
 				BFF6D0DA1B3520D3000984C4 /* RankingViewController.swift in Sources */,
 				BFF6D0FD1B387DEF000984C4 /* CupManager.swift in Sources */,
@@ -629,6 +815,16 @@
 			name = Charts;
 			targetProxy = 396AB3D01B42CB24007B25BF /* PBXContainerItemProxy */;
 		};
+		BFDD42E41B45A63300771A47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFDD42E01B45A63300771A47 /* Beerlitycs WatchKit App */;
+			targetProxy = BFDD42E31B45A63300771A47 /* PBXContainerItemProxy */;
+		};
+		BFDD42EE1B45A63300771A47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFDD42D11B45A63300771A47 /* Beerlitycs WatchKit Extension */;
+			targetProxy = BFDD42ED1B45A63300771A47 /* PBXContainerItemProxy */;
+		};
 		BFF6D0C61B351402000984C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BFF6D0AE1B351402000984C4 /* Beerlitycs */;
@@ -637,6 +833,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		BFDD42E81B45A63300771A47 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BFDD42E91B45A63300771A47 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		BFF6D0B81B351402000984C4 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -656,6 +860,72 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		BFDD42F11B45A63400771A47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = Beerlitycs_WatchKit_Extension;
+				INFOPLIST_FILE = "Beerlitycs WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		BFDD42F21B45A63400771A47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				IBSC_MODULE = Beerlitycs_WatchKit_Extension;
+				INFOPLIST_FILE = "Beerlitycs WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
+		BFDD42F41B45A63400771A47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Beerlitycs WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		BFDD42F51B45A63400771A47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				INFOPLIST_FILE = "Beerlitycs WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		BFF6D0CC1B351402000984C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -816,6 +1086,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BFDD42F01B45A63400771A47 /* Build configuration list for PBXNativeTarget "Beerlitycs WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFDD42F11B45A63400771A47 /* Debug */,
+				BFDD42F21B45A63400771A47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFDD42F31B45A63400771A47 /* Build configuration list for PBXNativeTarget "Beerlitycs WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFDD42F41B45A63400771A47 /* Debug */,
+				BFDD42F51B45A63400771A47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BFF6D0AA1B351402000984C4 /* Build configuration list for PBXProject "Beerlitycs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
