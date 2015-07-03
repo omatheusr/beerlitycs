@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -1484,7 +1484,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jnT-g8-nqA" id="KRN-7p-DcD">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bebão" translatesAutoresizingMaskIntoConstraints="NO" id="Jqr-d2-TVr">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="04" translatesAutoresizingMaskIntoConstraints="NO" id="Jqr-d2-TVr">
                                                     <rect key="frame" x="280" y="16" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Jqr-d2-TVr" secondAttribute="height" multiplier="1:1" id="3kF-J4-qJ2"/>
@@ -1615,6 +1615,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="checkButton" destination="A74-ZW-uuA" id="P6e-5o-EAf"/>
                         <outlet property="tableView" destination="6VL-aZ-2bl" id="491-az-roh"/>
                         <segue destination="wfV-Mm-AEt" kind="presentation" identifier="loginSegue" id="FL2-F9-Svp"/>
                     </connections>
@@ -2334,7 +2335,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Bebão" width="100" height="99"/>
+        <image name="04" width="100" height="99"/>
         <image name="Line" width="331" height="1"/>
         <image name="Rectangle 149" width="30" height="30"/>
         <image name="bar-icon" width="10" height="23"/>
