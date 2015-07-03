@@ -204,4 +204,10 @@ class CheckInViewController: UITableViewController {
     
 }
 
+/*
+cell.contentView.backgroundColor = UIColor
+
+cell.sizeCup.textColor = UIColor(red: 255.0/255.0, green: 246.0/255.0, blue: 241.0/255.0, alpha: 1.0)
+*/
+
 
