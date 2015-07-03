@@ -11,6 +11,7 @@ import Parse
 
 class FeedViewController: UIViewController {
     var feed = []
+    var refreshControl:UIRefreshControl!
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -28,7 +29,13 @@ class FeedViewController: UIViewController {
         
         self.tableView.tableFooterView = UIView()
         PushNotifications.associateDeviceWithCurrentUser()
-        loadData()
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action: "loadData:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
+        self.refreshControl.beginRefreshing()
+
+        loadData(nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,7 +106,7 @@ class FeedViewController: UIViewController {
         }
     }
     
-    func loadData() {
+    func loadData(sender:AnyObject?) {
         let drinkControl = DrinkManager()
         
         drinkControl.getDrinks { (allDrinks, error) -> () in
@@ -111,6 +118,7 @@ class FeedViewController: UIViewController {
     }
 
     func updateTableView() {
+        self.refreshControl.endRefreshing()
         self.tableView.reloadData()
     }
 

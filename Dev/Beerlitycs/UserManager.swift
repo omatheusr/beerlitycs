@@ -103,15 +103,18 @@ class UserManager: NSObject {
 
     func editUser(userControl: UserManager, callback: (error: NSError?) -> ()) {
         var query = PFUser.query()!
-        
+
         query.getObjectInBackgroundWithId(userControl.objectId) {
             (userObject, error: NSError?) -> Void in
             if error != nil {
                 println(error)
             } else if let userObject = userObject {
                 if let query = userObject as? PFUser {
-                    query["name"] = userControl.name
                     
+                    if userControl.name != nil{
+                        query["name"] = userControl.name
+                    }
+
                     if userControl.email != nil{
                         query["email"] = userControl.email
                     }
@@ -172,7 +175,7 @@ class UserManager: NSObject {
         }
     }
     
-    func returnUserData(user: PFUser, callback: (error: NSError?) -> ()) {
+    func returnUserData(user: PFUser, linked: Bool, callback: (error: NSError?) -> ()) {
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             
@@ -183,43 +186,37 @@ class UserManager: NSObject {
                 var currentUser = UserManager()
 
                 let userID: String! = result.valueForKey("id") as! String
-                let userName : NSString = result.valueForKey("name") as! NSString
-                if let userEmail = result.valueForKey("email") as? NSString {
-                    currentUser.email = userEmail as String
-                }
-                
                 currentUser.objectId = user.objectId
-                currentUser.name = userName as String
-                
-                if(userID != nil) {
+
+                if(linked == false) {
+                    if let userName = result.valueForKey("name") as? NSString {
+                        currentUser.name = userName as String
+                    }
+                    if let userEmail = result.valueForKey("email") as? NSString {
+                        currentUser.email = userEmail as String
+                    }
+                    
+                    if(userID != nil) {
+                        currentUser.facebookId = userID
+
+                        let swiftString: String! = "http://graph.facebook.com/\(userID!)/picture?type=large"
+                        
+                        let url = NSURL(string: swiftString)
+                        let data = NSData(contentsOfURL: url!)
+                        
+                        let image: UIImage = UIImage(data: data!)!
+                        var jpegImage = UIImageJPEGRepresentation(image, 1.0)
+                        let file = PFFile(name:currentUser.objectId + ".jpg" , data: jpegImage)
+
+                        currentUser.photo = file
+                    }
+                } else {
                     currentUser.facebookId = userID
-
-                    let swiftString: String! = "http://graph.facebook.com/\(userID!)/picture?type=large"
-                    
-                    let url = NSURL(string: swiftString)
-                    let data = NSData(contentsOfURL: url!)
-                    
-                    let image: UIImage = UIImage(data: data!)!
-                    var jpegImage = UIImageJPEGRepresentation(image, 1.0)
-                    let file = PFFile(name:currentUser.objectId + ".jpg" , data: jpegImage)
-
-                    currentUser.photo = file
-
-    //                if let d = data {
-    //                    var image = UIImage(data: d)
-    //                    if let _image = image {
-    //                        var jpegImage = UIImageJPEGRepresentation(image, 1.0)
-    //                        let file = PFFile(name:currentUser.objectId + ".jpg" , data: jpegImage)
-    //                        currentUser.photo = file
-    //                    } else {
-    //                        //error when convert to UIImage
-    //                    }
-    //                    
-    //                }
                 }
 
                 currentUser.editUser(currentUser, callback: { (error) -> () in
                     if (error == nil) {
+                        println(currentUser.facebookId!)
                         callback(error: nil)
                     }
                 })
@@ -348,6 +345,162 @@ class UserManager: NSObject {
             }
         }
         
+    }
+    
+    //----------------------------------------------------------------------------------------------
+    // Get Fav Place Per User
+    //----------------------------------------------------------------------------------------------
+    
+    func getFavPlace (userID: String, callback: (numPlace: NSInteger?, placeName: String?, error: NSError?) -> ()) {
+        
+        var query = PFQuery(className: "Drink")
+        var place = NSInteger()
+        var plcName = String()
+        var auxDrinks = []
+        
+        
+        mlDrunk = 0
+        
+        query.includeKey("place")
+        query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
+        query.orderByAscending("place")
+        
+        query.findObjectsInBackgroundWithBlock {
+            (objects, error) -> Void in
+            if error == nil {
+                auxDrinks = objects!
+                
+                var i : Int
+                for(i = 0; i < auxDrinks.count; i++) {
+                    let drink = DrinkManager(dictionary: auxDrinks[i] as! PFObject)
+                    
+                    if(plcName != drink.place!.name){
+                        place++
+                    }
+                    plcName = drink.place!.name
+                    println(drink.place?.name)
+                    
+//                    if let mililiters = drink.cup?.size {
+//                        mlDrunk = mlDrunk + mililiters
+//                    }
+                }
+                
+                callback(numPlace: place, placeName: plcName, error: nil)
+            } else {
+                println("Error: \(error) \(error!.userInfo!)")
+                callback(numPlace: nil, placeName: nil, error: error!)
+            }
+        }
+        
+    }
+
+    
+    //----------------------------------------------------------------------------------------------
+    // Get Fav Beer Drunk Per User
+    //----------------------------------------------------------------------------------------------
+    
+    func getFavBeer (userID: String, callback: (majName: String, majSize: Int, minName: String, minSize: Int, error: NSError?) -> ()) {
+        
+        var query = PFQuery(className: "Drink")
+        var query2 = PFQuery(className: "Drink")
+        var mlDrunk = NSInteger()
+        var auxBeer = []
+        var auxDrinks = []
+        var beerList = [String]()
+        var beerQty = [Int]()
+        var majorName : String = ""
+        var minorName : String = ""
+        var majorSize : Int = 0
+        var minorSize : Int = 10000000
+        var beerRanking : [String : Int]
+        
+        mlDrunk = 0
+        
+        query.includeKey("beer")
+        query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
+        query.findObjectsInBackgroundWithBlock {
+            (objects, error) -> Void in
+            if error == nil {
+                auxBeer = objects!
+                
+                var i : Int
+                var ii : Int = 0
+                var aux : String = ""
+                
+                
+                for(i = 0; i < auxBeer.count-1; i++) {
+                    let drink = DrinkManager(dictionary: auxBeer[i] as! PFObject)
+
+                    if(aux == drink.beer!.name){
+                        
+                    }else{
+                        beerList.insert(drink.beer!.name, atIndex: ii)
+                        aux = drink.beer!.name
+                        ii++
+                    }
+                    
+                }
+                
+                query2.includeKey("cup")
+                query2.includeKey("beer")
+                query2.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
+                query2.findObjectsInBackgroundWithBlock {
+                    (objects, error) -> Void in
+                    if error == nil {
+                        auxDrinks = objects!
+                        
+                        var i : Int
+                        var ii : Int
+                        var aux : Int = 0
+                        var auxName : String = ""
+                        
+                        for(ii = 0; ii < beerList.count; ii++) {
+                            for(i = 0; i < auxDrinks.count; i++) {
+                                let drink = DrinkManager(dictionary: auxDrinks[i] as! PFObject)
+                                
+                                //beerQty.insert(drink.cup!.size, atIndex: i)
+                                
+                                if(beerList[ii] == drink.beer!.name){
+                                    aux += drink.cup!.size
+                                    auxName = drink.beer!.name
+                                }
+                            }
+                            
+                            if(majorSize < aux){
+                                majorName = auxName
+                                majorSize = aux
+                            }
+                            
+                            if(minorSize >= aux){
+                                minorName = auxName
+                                minorSize = aux
+                            }
+                            
+                            beerQty.insert(aux, atIndex: ii)
+                            aux = 0;
+                        }
+                        
+//                        println(beerList)
+//                        println(beerQty)
+//                        println(majorName)
+//                        println(majorSize)
+//                        println(minorName)
+//                        println(minorSize)
+                        
+                        callback(majName: majorName, majSize: majorSize, minName: minorName, minSize: minorSize, error: nil)
+                        
+                    } else {
+                        
+                        println("Error: \(error) \(error!.userInfo!)")
+                    }
+                    
+                    
+                }
+            
+            } else {
+                println("Error: \(error) \(error!.userInfo!)")
+            }
+        }
     }
     
     //----------------------------------------------------------------------------------------------

@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
             if let loggedUser = user {
                 if loggedUser.isNew {
                     println("User signed up and logged in through Facebook!")
-                    userControl.returnUserData(loggedUser, callback: { (error) -> () in
+                    userControl.returnUserData(loggedUser, linked: false, callback: { (error) -> () in
                         if(error == nil) {
                             PushNotifications.associateDeviceWithCurrentUser()
                             self.userLogged = UserManager(dictionary: loggedUser)
@@ -140,4 +140,11 @@ class LoginViewController: UIViewController {
             rVC.userControl = self.userLogged!
         }
     }
+
+    @IBAction func btnEsconder(sender: AnyObject) {
+        self.resignFirstResponder()
+    }
+
+    
+
 }

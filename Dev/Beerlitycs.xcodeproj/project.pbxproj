@@ -30,6 +30,7 @@
 		BF7B61FA1B39E00A00336C4F /* PlacesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */; };
 		BFC403301B43930D009BC394 /* MapboxStatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4032F1B43930D009BC394 /* MapboxStatic.swift */; };
 		BFDD42C91B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = BFDD42C81B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
+		BFDD42CD1B45736700771A47 /* ConectFBTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD42CC1B45736700771A47 /* ConectFBTableViewCell.swift */; };
 		BFF40ECE1B3C62D30004BDDC /* BeersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */; };
 		BFF40ED01B3C62EB0004BDDC /* BeersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */; };
 		BFF4F1A61B3C293100AD2F83 /* DrinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF4F1A51B3C293100AD2F83 /* DrinkManager.swift */; };
@@ -129,6 +130,7 @@
 		BFC4032F1B43930D009BC394 /* MapboxStatic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapboxStatic.swift; sourceTree = "<group>"; };
 		BFDD42C71B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
 		BFDD42C81B44AC2B00771A47 /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
+		BFDD42CC1B45736700771A47 /* ConectFBTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConectFBTableViewCell.swift; sourceTree = "<group>"; };
 		BFF40ECD1B3C62D30004BDDC /* BeersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeersViewController.swift; sourceTree = "<group>"; };
 		BFF40ECF1B3C62EB0004BDDC /* BeersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeersTableViewCell.swift; sourceTree = "<group>"; };
 		BFF4F1A51B3C293100AD2F83 /* DrinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkManager.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				BFF6D0D91B3520D3000984C4 /* RankingViewController.swift */,
 				BFF7E4331B42428C00695771 /* RankingTableViewCell.swift */,
 				A047DEED1B41CAD50012EA2B /* StaticRankingTableViewCell.swift */,
+				BFDD42CC1B45736700771A47 /* ConectFBTableViewCell.swift */,
 			);
 			name = Ranking;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				BFC403301B43930D009BC394 /* MapboxStatic.swift in Sources */,
 				BFF6D0FF1B388758000984C4 /* PlaceManager.swift in Sources */,
 				BF02297E1B3DBB79006A66CF /* CupsCollectionViewController.swift in Sources */,
+				BFDD42CD1B45736700771A47 /* ConectFBTableViewCell.swift in Sources */,
 				BF02298F1B40A0ED006A66CF /* StatusTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
