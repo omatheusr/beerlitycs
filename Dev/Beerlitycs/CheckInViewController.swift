@@ -165,9 +165,15 @@ class CheckInViewController: UITableViewController {
                 )
                 
                 let placeControl = PlaceManager()
-                let places = placeControl.requestPlacesWithLocation(location) as NSArray
-                self.placeSelected = PlaceManager(array: places.firstObject!)
-                self.addStaticMap()
+                placeControl.requestPlacesWithLocation(location, callback: { (locations, error) -> () in
+                    if(error != true) {
+                        let places: AnyObject = locations! as AnyObject
+                        self.placeSelected = PlaceManager(array: places.firstObject!!)
+                        self.addStaticMap()
+                    } else {
+                        println("Não foi possivel pegar as localizações")
+                    }
+                })
             }
         }
     }

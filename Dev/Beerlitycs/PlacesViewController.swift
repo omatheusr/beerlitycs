@@ -43,6 +43,8 @@ class PlacesViewController: UIViewController {
         
         cell.placeName.text = placeControl.name
         cell.placeAddress.text = placeControl.address
+//        println(self.placeControl!.distance)
+
 
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
@@ -70,8 +72,15 @@ class PlacesViewController: UIViewController {
                 )
                 
                 let placeControl = PlaceManager()
-                self.places = placeControl.requestPlacesWithLocation(location)
-                self.updateTableView()
+                placeControl.requestPlacesWithLocation(location, callback: { (locations, error) -> () in
+                    if(error != true) {
+                        self.places = locations!
+                        self.updateTableView()
+                    } else {
+                        println("Não foi possivel pegar as localizações")
+                    }
+                })
+                
             }
         }
     }

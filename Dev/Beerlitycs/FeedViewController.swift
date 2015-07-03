@@ -14,6 +14,7 @@ class FeedViewController: UIViewController {
     var refreshControl:UIRefreshControl!
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var checkButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,8 @@ class FeedViewController: UIViewController {
         self.refreshControl.addTarget(self, action: "loadData:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
         self.refreshControl.beginRefreshing()
+        
+        Util.roundedView(self.checkButton.layer, border: false, colorHex: nil, borderSize: nil, radius: self.checkButton.frame.height / 2)
 
         loadData(nil)
     }
