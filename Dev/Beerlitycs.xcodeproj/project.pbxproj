@@ -623,11 +623,9 @@
 				TargetAttributes = {
 					BFDD42D11B45A63300771A47 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 73G64RLV47;
 					};
 					BFDD42E01B45A63300771A47 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 73G64RLV47;
 					};
 					BFF6D0AE1B351402000984C4 = {
 						CreatedOnToolsVersion = 6.3.1;
