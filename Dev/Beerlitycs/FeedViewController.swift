@@ -55,6 +55,16 @@ class FeedViewController: UIViewController {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if(indexPath.row == 0) {
             let cell = tableView.dequeueReusableCellWithIdentifier("statusCell") as! StatusTableViewCell
+            let statusControl = StatsManager()
+            
+            statusControl.alcoholContentInBlood(PFUser.currentUser()!.objectId!, callback: { (alcoholInBlood, type, error) -> () in
+                if(error == nil){
+                    cell.alcoholContentInBlood.text = NSString(format: "%.2f",  alcoholInBlood!) as String
+                } else {
+                    println(error)
+                }
+            })
+            
             cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
 
             return cell
@@ -116,8 +126,7 @@ class FeedViewController: UIViewController {
         self.tableView.reloadData()
     }
 
-    
-    
+        
     /*
     constante = 0,74 (homem) || 0,67 (mulher)
     
