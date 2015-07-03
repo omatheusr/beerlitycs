@@ -159,7 +159,7 @@ class DrinkManager: NSObject {
         
         var query = PFQuery(className: "Drink")
         
-        query.whereKey("user", equalTo: userID)
+        query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
         query.whereKey("createdAt", greaterThan: newDate!)
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if(error == nil){
