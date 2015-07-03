@@ -54,12 +54,14 @@ class CupsCollectionViewController: UICollectionViewController{
         var index = indexPath.row
         
         if set.contains(index){
-            cell.contentView.backgroundColor = UIColor.blackColor()
-            cell.sizeCup.textColor = UIColor.whiteColor()
+            cell.contentView.backgroundColor = UIColor(red: 24.0/255.0, green: 27.00/255.0, blue: 32.0/255.0, alpha: 1.0)
+            cell.sizeCup.textColor = UIColor(red: 255.0/255.0, green: 246.0/255.0, blue: 241.0/255.0, alpha: 1.0)
+
             
             
         }else{
             cell.contentView.backgroundColor = UIColor(red: 255.0/255.0, green: 246.0/255.0, blue: 241.0/255.0, alpha: 1.0)
+            cell.sizeCup.textColor = UIColor(red: 24.0/255.0, green: 27.00/255.0, blue: 32.0/255.0, alpha: 1.0)
         }
     
         return cell
@@ -70,9 +72,11 @@ class CupsCollectionViewController: UICollectionViewController{
         set.removeAll(keepCapacity: true)
         
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CupsCollectionViewCell
-        cell?.contentView.backgroundColor = UIColor.blackColor()
+        cell?.contentView.backgroundColor = UIColor(red: 24.0/255.0, green: 27.00/255.0, blue: 32.0/255.0, alpha: 1.0)
         index = indexPath.row
         set.insert(index)
+        
+    cell?.sizeCup.textColor = UIColor(red: 255.0/255.0, green: 244.0/255.0, blue: 237.0/255.0, alpha: 1.0)
 
 
         
@@ -89,6 +93,9 @@ class CupsCollectionViewController: UICollectionViewController{
         
  
             cell?.contentView.backgroundColor = UIColor(red: 255.0/255.0, green: 246.0/255.0, blue: 241.0/255.0, alpha: 1.0)
+        
+            cell?.sizeCup.textColor = UIColor(red: 24.0/255.0, green: 27.00/255.0, blue: 32.0/255.0, alpha: 1.0)
+
     }
 
     
