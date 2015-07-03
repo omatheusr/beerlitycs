@@ -134,7 +134,33 @@ class DrinkManager: NSObject {
             }
         }
     }
+    
+    func getLatestDrinkPerUser(userID: String, callback:(drinks: NSArray?, error: NSError?) ->()){
+        
+        //let timeZone = NSTimeZone.localTimeZone().secondsFromGMT
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: date)
 
+        //var value = -3 - timezone/3600
+        var value = -3
+        var newDate = calendar.dateByAddingUnit(.CalendarUnitHour, value: value, toDate: date, options: nil)
+        
+        var query = PFQuery(className: "Drink")
+        
+        query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
+        query.whereKey("createdAt", greaterThan: newDate!)
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if(error == nil){
+                var drinks: NSArray! = objects!
+                callback(drinks: objects, error: nil)
+            } else {
+                callback(drinks: nil, error: error)
+            }
+        }
+    }
+    
+    
     func getDrinksForGraph(numberPoints: Int,  dayPoints: Bool, callback: (beerPoints: [Double]?, datePoints: [String]?, error: NSError?) ->()) {
         let cal = NSCalendar.currentCalendar()
         var date = cal.startOfDayForDate(NSDate())

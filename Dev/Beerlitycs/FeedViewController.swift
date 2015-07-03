@@ -17,7 +17,7 @@ class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+                
         self.tableView.tableFooterView = UIView()
         PushNotifications.associateDeviceWithCurrentUser()
         
@@ -113,6 +113,8 @@ class FeedViewController: UIViewController {
         self.tableView.reloadData()
     }
 
+    
+    
     /*
     constante = 0,74 (homem) || 0,67 (mulher)
     

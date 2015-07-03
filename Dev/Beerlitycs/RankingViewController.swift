@@ -61,10 +61,19 @@ class RankingViewController: UIViewController {
                 } else {
                     cell.mlDrunk.text = "-"
                 }
+            //Mexi Aqui!
+            let cupsControl = UserManager ()
+            cupsControl.getFavPlace(userControl.objectId) { (numPlace, placeName, error) -> () in
+            if(error == nil) {
+                    cell.numberOFBarsVisited.text = String(stringInterpolationSegment: numPlace!)
+                } else {
+                    println("erro")
+                }
+            }
+            //fim
             
             cell.profileName.text = userControl.name
             cell.userPosition.text = String(self.position) + "º"
-            cell.numberOFBarsVisited.text = String(10)
 
                 let url = NSURL(string: userControl.photo!.url!)
                 cell.profileImage.setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"),usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
