@@ -27,6 +27,7 @@
 		BF02298D1B409E63006A66CF /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02298C1B409E63006A66CF /* FeedTableViewCell.swift */; };
 		BF02298F1B40A0ED006A66CF /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02298E1B40A0ED006A66CF /* StatusTableViewCell.swift */; };
 		BF056CD61B4606C00000C485 /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF056CD51B4606C00000C485 /* StatsManager.swift */; };
+		BF056CD81B4642490000C485 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF056CD71B4642490000C485 /* UserDefaultsManager.swift */; };
 		BF5641DC1B4178D700F414C3 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5641DB1B4178D700F414C3 /* Util.swift */; };
 		BF7B61FA1B39E00A00336C4F /* PlacesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */; };
 		BFC403301B43930D009BC394 /* MapboxStatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4032F1B43930D009BC394 /* MapboxStatic.swift */; };
@@ -162,6 +163,7 @@
 		BF02298C1B409E63006A66CF /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		BF02298E1B40A0ED006A66CF /* StatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
 		BF056CD51B4606C00000C485 /* StatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsManager.swift; sourceTree = "<group>"; };
+		BF056CD71B4642490000C485 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		BF5641DB1B4178D700F414C3 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		BF7B61F91B39E00A00336C4F /* PlacesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTableViewCell.swift; sourceTree = "<group>"; };
 		BFC4032F1B43930D009BC394 /* MapboxStatic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapboxStatic.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 		BFF6D0D61B35146B000984C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BF056CD71B4642490000C485 /* UserDefaultsManager.swift */,
 				BFF6D1041B398FB8000984C4 /* UserManager.swift */,
 				BFF6D0DB1B384D55000984C4 /* BeerManager.swift */,
 				BFF6D0FC1B387DEF000984C4 /* CupManager.swift */,
@@ -790,6 +793,7 @@
 				BF056CD61B4606C00000C485 /* StatsManager.swift in Sources */,
 				BF02298D1B409E63006A66CF /* FeedTableViewCell.swift in Sources */,
 				BFF6D0DA1B3520D3000984C4 /* RankingViewController.swift in Sources */,
+				BF056CD81B4642490000C485 /* UserDefaultsManager.swift in Sources */,
 				BFF6D0FD1B387DEF000984C4 /* CupManager.swift in Sources */,
 				BFC403301B43930D009BC394 /* MapboxStatic.swift in Sources */,
 				BFF6D0FF1B388758000984C4 /* PlaceManager.swift in Sources */,

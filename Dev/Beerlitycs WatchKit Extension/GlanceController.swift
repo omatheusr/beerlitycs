@@ -11,11 +11,30 @@ import Foundation
 
 
 class GlanceController: WKInterfaceController {
+    
+    var myPosition : String!
 
+    @IBOutlet weak var rankingPosition: WKInterfaceLabel!
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        // Configure interface objects here.
+        var request = ["request": "getRankingPosition"]
+        
+        WKInterfaceController.openParentApplication(request, reply: { (replyFromParent, error) -> Void in
+            if(error != nil) {
+                println("there was an error receiving a reply")
+            } else {
+                let position: AnyObject = replyFromParent["reply"]! as AnyObject
+                
+                println(position)
+                let str : String = position as! String
+
+                self.myPosition = str as String
+
+                println("alo")
+                self.rankingPosition.setText(self.myPosition)
+            }
+        })
     }
 
     override func willActivate() {
