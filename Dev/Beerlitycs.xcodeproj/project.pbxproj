@@ -623,7 +623,6 @@
 					};
 					BFDD42E01B45A63300771A47 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 4NRYRR94WS;
 					};
 					BFF6D0AE1B351402000984C4 = {
 						CreatedOnToolsVersion = 6.3.1;
