@@ -24,20 +24,30 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         super.willActivate()
         
-        /*
         var request = ["request": "getStatus"]
         
         WKInterfaceController.openParentApplication(request, reply: { (replyFromParent, error) -> Void in
             if(error != nil) {
                 println("there was an error receiving a reply")
             } else {
-                let average : String = (replyFromParent["reply"] as? String)!
-                println(average)
-                self.statusImage.setImage(UIImage(named: "1"))
-                self.statusText.setText("Ops parece que você está bebado")
+                
+                println(replyFromParent["reply"])
+                
+//                if(type == 1) {
+//                    cell.statusText.text = "Parábens! Você está limpo!"
+//                    cell.statusImage.image = UIImage(named: "22")
+//                } else if(type == 2){
+//                    cell.statusText.text = "OPA! Abrindo os trabalhos!"
+//                    cell.statusImage.image = UIImage(named: "17")
+//                } else if(type == 2){
+//                    cell.statusText.text = "BELEZA! Tudo está ficando lindo!"
+//                    cell.statusImage.image = UIImage(named: "05")
+//                } else {
+//                    cell.statusText.text = "CUIDADO! Não vá fazer algo que se arrependa.. e chame um Taxi!"
+//                    cell.statusImage.image = UIImage(named: "04")
+//                }
             }
         })
-*/
     }
 
     override func didDeactivate() {

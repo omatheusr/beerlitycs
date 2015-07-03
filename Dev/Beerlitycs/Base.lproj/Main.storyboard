@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LSI-5S-EOn">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -478,7 +478,7 @@
                                         <color key="textColor" red="1" green="0.97254901960784312" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RNv-HQ-Bis">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNv-HQ-Bis">
                                         <rect key="frame" x="32" y="190" width="536" height="88"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Senha" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qnE-GX-2zF">
@@ -560,7 +560,7 @@
                                             <constraint firstItem="ecF-NL-4G5" firstAttribute="leading" secondItem="RNv-HQ-Bis" secondAttribute="leadingMargin" id="yNd-gw-sBN"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GD2-tj-YvW">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GD2-tj-YvW">
                                         <rect key="frame" x="32" y="363" width="536" height="44"/>
                                         <color key="backgroundColor" red="0.19215686274509805" green="0.28627450980392155" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -575,13 +575,13 @@
                                             <action selector="fbLoginButton:" destination="oJ0-rc-sLW" eventType="touchUpInside" id="G8p-HJ-84d"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ainda não é usuário?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBK-Gv-EsB">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ainda não é usuário?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBK-Gv-EsB">
                                         <rect key="frame" x="224" y="542" width="153" height="21"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="15"/>
                                         <color key="textColor" red="0.99607843137254903" green="0.96470588235294119" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKB-j6-nqK">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKB-j6-nqK">
                                         <rect key="frame" x="260" y="563" width="80" height="33"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="15"/>
                                         <state key="normal" title="Criar conta">
@@ -593,7 +593,7 @@
                                             <segue destination="Ymh-fs-jXc" kind="show" id="6mi-cI-iEU"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-zO-XmL">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-zO-XmL">
                                         <rect key="frame" x="32" y="311" width="536" height="44"/>
                                         <color key="backgroundColor" red="0.89803921568627454" green="0.43137254901960786" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -1123,7 +1123,7 @@
                                                                 </mask>
                                                             </variation>
                                                         </view>
-                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xTA-GG-yIN">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xTA-GG-yIN">
                                                             <rect key="frame" x="200" y="110" width="200" height="49"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebG-u0-TUE">
@@ -1530,10 +1530,10 @@
                                                         <mask key="constraints">
                                                             <exclude reference="HrD-8P-jIT"/>
                                                             <exclude reference="n4D-sf-tbD"/>
+                                                            <exclude reference="UTI-76-ySA"/>
                                                             <exclude reference="Sbf-Rj-CwC"/>
                                                             <exclude reference="jlV-8w-mUB"/>
                                                             <exclude reference="yS7-GD-2He"/>
-                                                            <exclude reference="UTI-76-ySA"/>
                                                         </mask>
                                                     </variation>
                                                 </view>
@@ -1579,10 +1579,10 @@
                                                         <mask key="constraints">
                                                             <exclude reference="KeD-0P-q7r"/>
                                                             <exclude reference="qIa-UG-E4z"/>
+                                                            <exclude reference="iB6-2D-tAP"/>
                                                             <exclude reference="BIJ-wg-NOt"/>
                                                             <exclude reference="EMY-VP-ewa"/>
                                                             <exclude reference="wPd-m3-f3t"/>
-                                                            <exclude reference="iB6-2D-tAP"/>
                                                         </mask>
                                                     </variation>
                                                 </view>
@@ -1621,10 +1621,10 @@
                                                         <mask key="constraints">
                                                             <exclude reference="9C3-LZ-IKa"/>
                                                             <exclude reference="qN6-P4-90J"/>
+                                                            <exclude reference="9iM-dD-Thu"/>
                                                             <exclude reference="FAl-ra-Uqj"/>
                                                             <exclude reference="GUg-92-AWF"/>
                                                             <exclude reference="Y8A-h9-GYe"/>
-                                                            <exclude reference="9iM-dD-Thu"/>
                                                         </mask>
                                                     </variation>
                                                 </view>
@@ -1663,10 +1663,10 @@
                                                         <mask key="constraints">
                                                             <exclude reference="18w-wb-SlY"/>
                                                             <exclude reference="3fg-Hf-XtU"/>
+                                                            <exclude reference="816-7X-U14"/>
                                                             <exclude reference="Ce3-AQ-zwY"/>
                                                             <exclude reference="CoQ-H8-oj8"/>
                                                             <exclude reference="FA3-nW-5MQ"/>
-                                                            <exclude reference="816-7X-U14"/>
                                                         </mask>
                                                     </variation>
                                                 </view>
@@ -1711,11 +1711,11 @@
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="pew-BF-W4v"/>
-                                                    <exclude reference="lVy-s9-7eZ"/>
                                                     <exclude reference="czM-9t-CH8"/>
+                                                    <exclude reference="lVy-s9-7eZ"/>
                                                     <exclude reference="PqV-30-iz0"/>
-                                                    <exclude reference="Y5v-1s-Uwc"/>
                                                     <exclude reference="Xab-Qe-xzf"/>
+                                                    <exclude reference="Y5v-1s-Uwc"/>
                                                     <exclude reference="eOW-R0-akX"/>
                                                 </mask>
                                             </variation>
@@ -1776,20 +1776,20 @@
                                                         <constraint firstAttribute="height" constant="40" id="GTb-hu-cFx"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ops! Parece que você esta bebado" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gxv-VR-ugi">
-                                                    <rect key="frame" x="166" y="72" width="268" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gxv-VR-ugi">
+                                                    <rect key="frame" x="24" y="72" width="552" height="0.0"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" red="1" green="0.97254901959999995" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nível alcoolico" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUP-JF-bR8">
-                                                    <rect key="frame" x="253" y="92" width="94" height="20"/>
+                                                    <rect key="frame" x="253" y="72" width="94" height="20"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                                     <color key="textColor" red="1" green="0.97254901959999995" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0,12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xi9-HL-iL4">
-                                                    <rect key="frame" x="271" y="112" width="58" height="41"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xi9-HL-iL4">
+                                                    <rect key="frame" x="292" y="92" width="17" height="41"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="30"/>
                                                     <color key="textColor" red="1" green="0.97254901959999995" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1801,15 +1801,24 @@
                                                 <constraint firstItem="Jqr-d2-TVr" firstAttribute="top" secondItem="KRN-7p-DcD" secondAttribute="topMargin" constant="8" id="Hif-5b-MxN"/>
                                                 <constraint firstItem="Gxv-VR-ugi" firstAttribute="centerX" secondItem="lUP-JF-bR8" secondAttribute="centerX" id="TOD-JP-Usp"/>
                                                 <constraint firstAttribute="centerX" secondItem="Jqr-d2-TVr" secondAttribute="centerX" id="Vv7-j4-dKp"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Gxv-VR-ugi" secondAttribute="trailing" constant="16" id="eOL-Qi-8i4"/>
                                                 <constraint firstItem="Gxv-VR-ugi" firstAttribute="top" secondItem="Jqr-d2-TVr" secondAttribute="bottom" constant="16" id="oVp-Ug-f13"/>
+                                                <constraint firstItem="Gxv-VR-ugi" firstAttribute="leading" secondItem="KRN-7p-DcD" secondAttribute="leadingMargin" constant="16" id="puc-f0-rKb"/>
                                                 <constraint firstItem="lUP-JF-bR8" firstAttribute="top" secondItem="Gxv-VR-ugi" secondAttribute="bottom" id="zNH-PI-F95"/>
                                                 <constraint firstItem="Xi9-HL-iL4" firstAttribute="top" secondItem="lUP-JF-bR8" secondAttribute="bottom" id="zum-SN-WEU"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="H92-P9-chc"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.12549019607843137" green="0.14117647058823529" blue="0.17647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="0.2156862745" green="0.23921568630000001" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="alcoholContentInBlood" destination="Xi9-HL-iL4" id="u94-WR-0AZ"/>
+                                            <outlet property="imageStatus" destination="Jqr-d2-TVr" id="RfP-c1-fbJ"/>
+                                            <outlet property="textStatus" destination="Gxv-VR-ugi" id="H1m-Ej-Yme"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="feedCell" rowHeight="80" id="08f-0o-OAY" customClass="FeedTableViewCell" customModule="Beerlitycs" customModuleProvider="target">
