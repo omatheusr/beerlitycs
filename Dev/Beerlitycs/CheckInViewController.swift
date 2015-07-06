@@ -128,6 +128,7 @@ class CheckInViewController: UITableViewController {
                         if(error == nil) {
                             userControl.addNewBeerInMLToTotal(PFUser.currentUser()!.objectId!, mlDrunk: drinkControl.cup!.size!, callback: { (error) -> () in
                             if (error == nil) {
+                                UserDefaultsManager.needReloadHome = true
                                 self.dismissViewControllerAnimated(true, completion: nil)
                             } else {
                                 println(error)

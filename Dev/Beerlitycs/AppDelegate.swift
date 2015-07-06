@@ -138,25 +138,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if UserDefaultsManager.getUserId == nil {
                 reply(["reply": false])
             } else {
-                UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum);
-                var bgTask = UIBackgroundTaskIdentifier()
-                bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler { () -> Void in
-                    
-                    
-                    UIApplication.sharedApplication().endBackgroundTask(bgTask)
-                    bgTask = UIBackgroundTaskInvalid
-                }
-                
                 if(request == "getRankingPosition") {
                     reply(["reply": UserDefaultsManager.getRankingPosition!])
-
-                    UIApplication.sharedApplication().endBackgroundTask(bgTask)
-                    bgTask = UIBackgroundTaskInvalid
                 } else if(request == "getStatus") {
                     let statusReply = [UserDefaultsManager.getAlcoholInBlood!, UserDefaultsManager.getAlcoholType!]
                     reply(["reply": statusReply])
-                    UIApplication.sharedApplication().endBackgroundTask(bgTask)
-                    bgTask = UIBackgroundTaskInvalid
                 }
             }
         }

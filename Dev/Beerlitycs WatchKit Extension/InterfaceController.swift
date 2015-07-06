@@ -14,6 +14,7 @@ class InterfaceController: WKInterfaceController {
 
     @IBOutlet weak var statusImage: WKInterfaceImage!
     @IBOutlet weak var statusText: WKInterfaceLabel!
+    @IBOutlet weak var statusAlcoholBlood: WKInterfaceLabel!
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -30,26 +31,28 @@ class InterfaceController: WKInterfaceController {
             if(error != nil) {
                 println("there was an error receiving a reply")
             } else {
+                var type : String!
+                if let id = replyFromParent["reply"]![1] as? String {
+                    // If we get here, we know "id" exists in the dictionary, and we know that we
+                    // got the type right.
+                    type = id
+                }
                 
-                println(replyFromParent["reply"]![0])
-                println(replyFromParent["reply"]![1])
-                
-                
-//                let type = replyFromParent["reply"]!
-//                
-//                if(type as! NSObject == 1) {
-//                    self.statusText.setText("Parábens! Você é o motorista da rodada")
-//                    self.statusImage.image = UIImage(named: "22")
-//                } else if(type == 2){
-//                    self.statusText.text = "OPA! Abrindo os trabalhos!"
-//                    self.statusImage.image = UIImage(named: "17")
-//                } else if(type == 2){
-//                    self.statusText.text = "BELEZA! Tudo está ficando lindo!"
-//                    self.statusImage.image = UIImage(named: "05")
-//                } else {
-//                    self.statusText.text = "CUIDADO! Não vá fazer algo que se arrependa.. e chame um Taxi!"
-//                    self.statusImage.image = UIImage(named: "04")
-//                }
+                self.statusAlcoholBlood.setText(replyFromParent["reply"]![0] as? String)
+
+                if(type == "1") {
+                    self.statusText.setText("Parábens! Você é o motorista da rodada")
+                    self.statusImage.setImage(UIImage(named: "22"))
+                } else if(type == "2"){
+                    self.statusText.setText("OPA! Abrindo os trabalhos!")
+                    self.statusImage.setImage(UIImage(named: "17"))
+                } else if(type == "3"){
+                    self.statusText.setText("BELEZA! Tudo está ficando lindo!")
+                    self.statusImage.setImage(UIImage(named: "05"))
+                } else {
+                    self.statusText.setText("CUIDADO! Não vá fazer algo que se arrependa.. e chame um Taxi!")
+                    self.statusImage.setImage(UIImage(named: "04"))
+                }
             }
         })
     }

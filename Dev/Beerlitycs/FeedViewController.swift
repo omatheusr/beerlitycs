@@ -46,21 +46,24 @@ class FeedViewController: UIViewController {
         } else {
             if(UserDefaultsManager.getUserId == nil) {
                 UserDefaultsManager.getUserId = currentUser
-
-                let stats = StatsManager()
-
-                stats.get(currentUser, callback: { (position, error) -> () in
-                    if(error == nil) {
-                        var str = ""
-                        if let v = position {
-                            str = "\(v)"
-                        }
-                        UserDefaultsManager.getRankingPosition = str
-                        println(UserDefaultsManager.getRankingPosition)
-                    } else {
-                        println(error)
+            }
+            let stats = StatsManager()
+            
+            stats.get(currentUser, callback: { (position, error) -> () in
+                if(error == nil) {
+                    var str = ""
+                    if let v = position {
+                        str = "\(v)"
                     }
-                })
+                    UserDefaultsManager.getRankingPosition = str
+                } else {
+                    println(error)
+                }
+            })
+            
+            if(UserDefaultsManager.needReloadHome == true) {
+                loadData(nil)
+                UserDefaultsManager.needReloadHome = false
             }
         }
     }
@@ -83,7 +86,7 @@ class FeedViewController: UIViewController {
                         cell.alcoholContentInBlood.text = NSString(format: "%.2f",  alcoholInBlood!) as String
                         
                         if(type == 1) {
-                            cell.textStatus.text = "Parábens! Você está limpo!"
+                            cell.textStatus.text = "Parábens! Você é o motorista da rodada!"
                             cell.imageStatus.image = UIImage(named: "22")
                         } else if(type == 2){
                             cell.textStatus.text = "OPA! Abrindo os trabalhos!"
@@ -95,6 +98,9 @@ class FeedViewController: UIViewController {
                             cell.textStatus.text = "CUIDADO! Não vá fazer algo que se arrependa.. e chame um Taxi!"
                             cell.imageStatus.image = UIImage(named: "04")
                         }
+                        
+                        UserDefaultsManager.getAlcoholType = String(stringInterpolationSegment: type!)
+                        UserDefaultsManager.getAlcoholInBlood = NSString(format: "%.2f",  alcoholInBlood!) as String
                     } else {
                         println(error)
                     }

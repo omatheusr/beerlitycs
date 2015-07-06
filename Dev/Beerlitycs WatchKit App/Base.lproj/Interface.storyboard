@@ -16,48 +16,24 @@
                         </label>
                         <group width="1" alignment="left" spacing="10" id="6Q6-sa-3dz">
                             <items>
-                                <imageView width="60" height="60" alignment="center" image="04" id="b5i-AC-RZ0"/>
+                                <imageView width="30" height="30" alignment="center" image="04" id="b5i-AC-RZ0"/>
                             </items>
                         </group>
-                        <label height="57" alignment="center" text="Ops.. Parece que você está bebado" textAlignment="center" numberOfLines="0" id="LV5-cz-VKH">
+                        <label height="45" alignment="center" text="0" id="tgh-qn-uLG">
+                            <fontDescription key="font" type="system" pointSize="22"/>
+                        </label>
+                        <label alignment="center" text="Ops.. Parece que você está bebado" textAlignment="center" numberOfLines="0" id="LV5-cz-VKH">
                             <fontDescription key="font" style="UICTFontTextStyleBody"/>
                         </label>
                     </items>
                     <connections>
+                        <outlet property="statusAlcoholBlood" destination="tgh-qn-uLG" id="77k-OS-M9q"/>
                         <outlet property="statusImage" destination="b5i-AC-RZ0" id="40A-GX-rkY"/>
                         <outlet property="statusText" destination="LV5-cz-VKH" id="Rq3-w5-ueb"/>
-                        <segue destination="OUz-jp-UBP" kind="relationship" relationship="nextPage" id="zwD-eG-kIu"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="235" y="327"/>
-        </scene>
-        <!--Stats Interface Controller-->
-        <scene sceneID="7g3-F0-uhe">
-            <objects>
-                <controller id="OUz-jp-UBP" customClass="StatsInterfaceController" customModule="Beerlitycs_WatchKit_Extension">
-                    <items>
-                        <table alignment="left" id="ygf-uI-ben">
-                            <items>
-                                <tableRow identifier="StatsCell" id="BBO-re-iLA" customClass="StatsCell" customModule="Beerlitycs_WatchKit_Extension">
-                                    <group key="rootItem" width="1" alignment="left" layout="vertical" id="3CO-1j-IIl">
-                                        <items>
-                                            <label alignment="left" text="Label" id="Vrm-i1-P4b"/>
-                                        </items>
-                                    </group>
-                                    <connections>
-                                        <outlet property="statsOption" destination="Vrm-i1-P4b" id="1z6-yD-zJD"/>
-                                    </connections>
-                                </tableRow>
-                            </items>
-                        </table>
-                    </items>
-                    <connections>
-                        <outlet property="statsTable" destination="ygf-uI-ben" id="2Oo-pl-3CT"/>
-                    </connections>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="458" y="326"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">
