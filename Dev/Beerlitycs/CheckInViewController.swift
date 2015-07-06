@@ -69,8 +69,15 @@ class CheckInViewController: UITableViewController {
 
         let lat = self.placeSelected?.location.latitude
         let long = self.placeSelected?.location.longitude
-        let clLocation = CLLocationCoordinate2DMake(lat!, long!)
-
+        var clLocation = CLLocationCoordinate2D()
+        
+        
+        if lat != nil{
+            if long != nil{
+                clLocation = CLLocationCoordinate2DMake(lat!, long!)
+            }
+        }
+        
         let markerOverlay = MapboxStaticMap.Marker(
             coordinate: clLocation,
             size: .Medium,
@@ -116,41 +123,44 @@ class CheckInViewController: UITableViewController {
         self.confirmationButton.enabled = false
         
         // Nao foi selecionado o local
-        if(placeSelected != nil) {
-            drinkControl.prepareForDrink(drinkControl, callback: { (error) -> () in
-                if(error == nil) {
-                        userControl.addNewBeerInMLToTotal(PFUser.currentUser()!.objectId!, mlDrunk: drinkControl.cup!.size!, callback: { (error) -> () in
+        if(placeSelected != nil) && (beerSelected != nil) && (cupSelected != nil) {
+                drinkControl.prepareForDrink(drinkControl, callback: { (error) -> () in
+                        if(error == nil) {
+                            userControl.addNewBeerInMLToTotal(PFUser.currentUser()!.objectId!, mlDrunk: drinkControl.cup!.size!, callback: { (error) -> () in
                             if (error == nil) {
                                 self.dismissViewControllerAnimated(true, completion: nil)
-                            }else {
+                            } else {
                                 println(error)
-                            }
-                        })
+                                }
+                            })
                     
-                    
-                } else {
-                    println("erro no check in")
-                }
-            })
+                        } else {
+                            println("erro no check in")
+                        }
+                    })
         } else {
-            drinkControl.newDrink(drinkControl) { (error) -> () in
-                if(error == nil) {
+//            drinkControl.newDrink(drinkControl) { (error) -> () in
+//                if(error == nil) {
                     
                     //var decision = self.showAlert("Cuidado!", message: "Você não selecionou nenhum bar. Deseja continuar mesmo assim? ")
                     //if(decision == true){
-                    userControl.addNewBeerInMLToTotal(PFUser.currentUser()!.objectId!, mlDrunk: drinkControl.cup!.size!, callback: { (error) -> () in
-                        if (error == nil) {
-                            self.dismissViewControllerAnimated(true, completion: nil)
-                        }else {
-                            println(error)
-                        }
-                    })
+//                    userControl.addNewBeerInMLToTotal(PFUser.currentUser()!.objectId!, mlDrunk: drinkControl.cup!.size!, callback: { (error) -> () in
+//                        if (error == nil) {
+//                            self.dismissViewControllerAnimated(true, completion: nil)
+//                        }else {
+//                            println(error)
+//                        }
+//                    })
                     //}
+            
+                self.showAlert("Oops!", message: "Voce deve selecionar um local e uma cerveja para fazer o check in.", buttonOption1: "OK!", buttonOption2: "")
+
+                self.confirmationButton.enabled = true
                     
-                } else {
-                    println("erro no check in")
-                }
-            }
+//                } else {
+//                    println("erro no check in")
+//                }
+//            }
         }
     }
 
@@ -178,18 +188,29 @@ class CheckInViewController: UITableViewController {
     }
 
     
-    func showAlert(title : String, message: String) -> Bool{
+    func showAlert(title : String, message: String, buttonOption1: String?, buttonOption2: String?) -> Bool{
         
         var decision = Bool()
+        var alert = UIAlertController()
         
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default){ (action) -> Void in
+        if buttonOption1!.isEmpty {
+            // NADA
+        } else {
+            alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: buttonOption1!, style: UIAlertActionStyle.Default){ (action) -> Void in
                 decision = true
-        })
+                })
+        }
         
-        alert.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.Default){ (action) -> Void in
+        if buttonOption2!.isEmpty {
+            // NADA
+        } else {
+            alert.addAction(UIAlertAction(title: buttonOption2!, style: UIAlertActionStyle.Default){ (action) -> Void in
                 decision = false
-        })
+            })
+        }
+        
+        self.presentViewController(alert, animated: true, completion: nil)
         
         return decision
     }

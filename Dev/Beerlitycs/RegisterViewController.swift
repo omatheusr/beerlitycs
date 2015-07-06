@@ -169,8 +169,10 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
 
             userControl.name = self.inputName.text
             userControl.email = self.inputEmail.text
-            userControl.height = inputHeight.text
             userControl.weight = inputWeight.text
+            
+            // Mantm o padrao de ponto como separador de casas decimais
+            userControl.height = inputHeight.text.stringByReplacingOccurrencesOfString(",", withString: ".", options: nil, range: nil)
 
             let imageData = UIImageJPEGRepresentation(self.inputImage.image, 0.6)
             userControl.photo = PFFile(name: userControl.objectId + ".jpg", data: imageData)
