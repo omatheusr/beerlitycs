@@ -71,6 +71,7 @@ class LoginViewController: UIViewController {
                     })
                 } else {
                     self.dismissViewControllerAnimated(true, completion: nil)
+                    UserDefaultsManager.needReloadHome = true
                 }
             } else {
                 println("Uh oh. The user cancelled the Facebook login.")

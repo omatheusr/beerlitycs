@@ -19,28 +19,28 @@ class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+
         self.tableView.tableFooterView = UIView()
         PushNotifications.associateDeviceWithCurrentUser()
-        
+
         self.refreshControl = UIRefreshControl()
         self.refreshControl.addTarget(self, action: "loadData:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
         self.refreshControl.beginRefreshing()
-        
-        Util.roundedView(self.checkButton.layer, border: false, colorHex: nil, borderSize: nil, radius: self.checkButton.frame.height / 2)
 
-        loadData(nil)
+        self.loadData(nil)
+
+        Util.roundedView(self.checkButton.layer, border: false, colorHex: nil, borderSize: nil, radius: self.checkButton.frame.height / 2)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         var currentUser = PFUser.currentUser()?.objectId
-        
+
         if currentUser == nil {
             self.performSegueWithIdentifier("loginSegue", sender: nil)
         } else {

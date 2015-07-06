@@ -16,6 +16,10 @@ class CheckInViewController: UITableViewController {
     var placeSelected : PlaceManager?
     var cupSelected : CupManager?
 
+    var lat : Double?
+    var long : Double?
+    var clLocation = CLLocationCoordinate2D()
+
     @IBOutlet weak var mapImage: UIImageView!
     @IBOutlet weak var choiceBeerButton: UIButton!
     @IBOutlet weak var choicePlaceButton: UIButton!
@@ -34,7 +38,7 @@ class CheckInViewController: UITableViewController {
         super.viewDidAppear(animated)
         self.confirmationButton.enabled = true
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -48,7 +52,6 @@ class CheckInViewController: UITableViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
-    
     @IBAction func selectBeer(segue:UIStoryboardSegue) {
         if(segue.identifier == "selectBeer") {
             if(self.beerSelected != nil) {
@@ -60,52 +63,12 @@ class CheckInViewController: UITableViewController {
 
     @IBAction func selectPlace(segue:UIStoryboardSegue) {
         if(segue.identifier == "selectPlace") {
-            addStaticMap()
-        }
-    }
-
-    func addStaticMap() {
-        self.choicePlaceButton.setTitle(self.placeSelected?.name, forState: UIControlState.Normal)
-
-        let lat = self.placeSelected?.location.latitude
-        let long = self.placeSelected?.location.longitude
-        var clLocation = CLLocationCoordinate2D()
-        
-        
-        if lat != nil{
-            if long != nil{
-                clLocation = CLLocationCoordinate2DMake(lat!, long!)
+            if(self.placeSelected != nil) {
+                loadData()
             }
         }
-        
-        let markerOverlay = MapboxStaticMap.Marker(
-            coordinate: clLocation,
-            size: .Medium,
-            label: "triangle",
-            color: UIColor.whiteColor()
-        )
-
-        
-        let map = MapboxStaticMap(
-            mapID: "matheusbecker.873c9d11",
-            center: clLocation,
-            zoom: 17,
-            size: CGSize(width: self.mapImage.layer.frame.width, height: self.mapImage.layer.frame.height),
-            accessToken: "sk.eyJ1IjoibWF0aGV1c2JlY2tlciIsImEiOiJiYWZhNTg4NjRlYWJkYzUyNjBiYzNiYzk5YmFlOWZmZCJ9.Y4vw-oFFlJjuvhKdc0F8qA",
-            overlays: [markerOverlay],
-            retina: true
-        )
-
-//        let teste : String!
-//
-//        teste = "http://files.parsetfss.com/ec68a11d-2ad9-48a8-abfb-407dfc3ebd78/tfss-8cd4e020-b3c6-4cab-a34e-1def095f0214-NJm5gZHh82.jpg"
-//        
-////        let fileUrl = NSURL(fileURLWithPath: url)
-//        let fileUrl = NSURL(string: teste!)
-
-        self.mapImage.setImageWithURL(map.requestURL, placeholderImage: UIImage(named: "placeholder"),usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     }
-    
+
     @IBAction func makeCheckIn(sender: AnyObject) {
         let drinkControl = DrinkManager()
         let userControl = UserManager()
@@ -166,28 +129,55 @@ class CheckInViewController: UITableViewController {
     }
 
     func loadData() {
-        PFGeoPoint.geoPointForCurrentLocationInBackground {
-            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
-            if error == nil {
-                let location = CLLocation(
-                    latitude: geoPoint!.latitude,
-                    longitude: geoPoint!.longitude
-                )
-                
-                let placeControl = PlaceManager()
-                placeControl.requestPlacesWithLocation(location, callback: { (locations, error) -> () in
-                    if(error != true) {
-                        let places: AnyObject = locations! as AnyObject
-                        self.placeSelected = PlaceManager(array: places.firstObject!!)
-                        self.addStaticMap()
-                    } else {
-                        println("Não foi possivel pegar as localizações")
-                    }
-                })
+        if(self.placeSelected != nil) {
+            self.choicePlaceButton.setTitle(self.placeSelected?.name, forState: UIControlState.Normal)
+            
+            self.lat = self.placeSelected?.location.latitude
+            self.long = self.placeSelected?.location.longitude
+            
+            addStaticMap()
+        } else {
+            PFGeoPoint.geoPointForCurrentLocationInBackground {
+                (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+                if error == nil {
+                    self.lat = geoPoint!.latitude
+                    self.long = geoPoint!.longitude
+                    self.clLocation = CLLocationCoordinate2D()
+                    
+                    self.addStaticMap()
+                } else {
+                    println("erro de localização")
+                }
             }
         }
     }
 
+    func addStaticMap() {
+        if lat != nil{
+            if long != nil{
+                clLocation = CLLocationCoordinate2DMake(lat!, long!)
+            }
+        }
+
+        let markerOverlay = MapboxStaticMap.Marker(
+            coordinate: clLocation,
+            size: .Medium,
+            label: "triangle",
+            color: UIColor.whiteColor()
+        )
+
+        let map = MapboxStaticMap(
+            mapID: "matheusbecker.873c9d11",
+            center: clLocation,
+            zoom: 17,
+            size: CGSize(width: self.mapImage.layer.frame.width, height: self.mapImage.layer.frame.height),
+            accessToken: "sk.eyJ1IjoibWF0aGV1c2JlY2tlciIsImEiOiJiYWZhNTg4NjRlYWJkYzUyNjBiYzNiYzk5YmFlOWZmZCJ9.Y4vw-oFFlJjuvhKdc0F8qA",
+            overlays: [markerOverlay],
+            retina: true
+        )
+
+        self.mapImage.setImageWithURL(map.requestURL, placeholderImage: UIImage(named: "placeholder"),usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    }
     
     func showAlert(title : String, message: String, buttonOption1: String?, buttonOption2: String?) -> Bool{
         
@@ -200,9 +190,9 @@ class CheckInViewController: UITableViewController {
             alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: buttonOption1!, style: UIAlertActionStyle.Default){ (action) -> Void in
                 decision = true
-                })
+            })
         }
-        
+
         if buttonOption2!.isEmpty {
             // NADA
         } else {

@@ -103,12 +103,10 @@ class CupsCollectionViewController: UICollectionViewController{
 
     func loadCups() {
         let cupControl = CupManager()
-        
+
         cupControl.getCups { (allCups, error) -> () in
             if(error == nil) {
                 self.cups = allCups!
-                
-                println(self.cups)
                 self.updateTableView()
             } else {
                 println("falha ao carregar")

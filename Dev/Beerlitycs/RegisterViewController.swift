@@ -188,6 +188,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
                         self.navigationController?.popViewControllerAnimated(true)
                     } else {
                         self.dismissViewControllerAnimated(true, completion: nil)
+                        UserDefaultsManager.needReloadHome = true
                     }
                 }
             })
