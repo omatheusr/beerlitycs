@@ -629,6 +629,7 @@
 					};
 					BFF6D0AE1B351402000984C4 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 73G64RLV47;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;

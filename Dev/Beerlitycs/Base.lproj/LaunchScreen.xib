@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,26 +11,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biercomcaneco" translatesAutoresizingMaskIntoConstraints="NO" id="JkB-FI-BWY">
-                    <rect key="frame" x="108" y="-49" width="264" height="480"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="264" id="h17-HC-5XR"/>
-                    </constraints>
+                    <rect key="frame" x="108" y="0.0" width="264" height="480"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BEERLITYCS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6n-mF-aVu">
-                    <rect key="frame" x="8" y="350" width="464" height="41"/>
-                    <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="41"/>
-                    <color key="textColor" red="1" green="0.97254901959999995" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="0.13725490200000001" green="0.1529411765" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="b6n-mF-aVu" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="4H0-Hm-hOb"/>
-                <constraint firstItem="JkB-FI-BWY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-49" id="9Ya-Eq-9xM"/>
-                <constraint firstItem="b6n-mF-aVu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="NXf-rA-0fN"/>
-                <constraint firstItem="b6n-mF-aVu" firstAttribute="centerX" secondItem="JkB-FI-BWY" secondAttribute="centerX" id="bHq-o9-1Ls"/>
-                <constraint firstAttribute="bottom" secondItem="JkB-FI-BWY" secondAttribute="bottom" constant="49" id="gsl-4n-j5N"/>
-                <constraint firstAttribute="bottom" secondItem="b6n-mF-aVu" secondAttribute="bottom" constant="89" id="kdw-kB-1Hc"/>
+                <constraint firstAttribute="trailing" secondItem="JkB-FI-BWY" secondAttribute="trailing" constant="108" id="AWV-7x-jRX"/>
+                <constraint firstAttribute="bottom" secondItem="JkB-FI-BWY" secondAttribute="bottom" id="FM8-Uh-LGI"/>
+                <constraint firstItem="JkB-FI-BWY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="108" id="pIn-Xg-iwa"/>
+                <constraint firstItem="JkB-FI-BWY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="raS-mZ-uqz"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
