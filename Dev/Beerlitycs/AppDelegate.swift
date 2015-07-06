@@ -150,21 +150,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if(request == "getRankingPosition") {
                     let stats = StatsManager()
                     
-                    stats.get(PFUser.currentUser()!.objectId, callback: { (position, error) -> () in
+                    stats.get(currentUser, callback: { (position, error) -> () in
                         if(error == nil) {
                             let strPosition : String! = String(stringInterpolationSegment: position) as String
                             reply(["reply": strPosition!])
                         } else {
                             println("erro")
                         }
-                        
+
                         UIApplication.sharedApplication().endBackgroundTask(bgTask)
                         bgTask = UIBackgroundTaskInvalid
                     })
                 } else if(request == "getStatus") {
                     let statusControl = StatsManager()
                     
-                    statusControl.alcoholContentInBlood(PFUser.currentUser()!.objectId!, callback: { (alcoholInBlood, type, error) -> () in
+                    statusControl.alcoholContentInBlood(currentUser!, callback: { (alcoholInBlood, type, error) -> () in
                         if(error == nil){
                             let statusReply = [NSString(format: "%.2f",  alcoholInBlood!) as String, type!]
 //                            statusReply.setValue(alcoholInBlood!, forKey: 0)

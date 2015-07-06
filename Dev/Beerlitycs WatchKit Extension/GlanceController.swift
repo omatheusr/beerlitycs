@@ -22,6 +22,8 @@ class GlanceController: WKInterfaceController {
         
         WKInterfaceController.openParentApplication(request, reply: { (replyFromParent, error) -> Void in
             if(error != nil) {
+//                println(replyFromParent["reply"])
+                self.rankingPosition.setText("Faça login com o facebook para ter acesso ao ranking")
                 println("there was an error receiving a reply")
             } else {
                 let position: AnyObject = replyFromParent["reply"]! as AnyObject
@@ -30,9 +32,10 @@ class GlanceController: WKInterfaceController {
                 let str : String = position as! String
 
                 self.myPosition = str as String
+                
+                println(replyFromParent["reply"]!)
 
-                println("alo")
-                self.rankingPosition.setText(self.myPosition)
+                self.rankingPosition.setText(self.myPosition! + "º")
             }
         })
     }

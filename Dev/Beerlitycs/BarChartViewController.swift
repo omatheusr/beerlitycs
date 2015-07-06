@@ -76,7 +76,6 @@ class BarChartViewController: UITableViewController, ChartViewDelegate {
         barChartView.gridBackgroundColor = UIColor(red: 32/255, green: 36/255, blue: 45/255, alpha: 1)
         
         barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .Linear)
-        
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {

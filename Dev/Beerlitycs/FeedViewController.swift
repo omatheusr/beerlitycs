@@ -62,7 +62,7 @@ class FeedViewController: UIViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier("statusCell") as! StatusTableViewCell
             let statusControl = StatsManager()
             
-            if(loadApp == true) {
+            if(PFUser.currentUser() != nil) {
                 statusControl.alcoholContentInBlood(PFUser.currentUser()!.objectId!, callback: { (alcoholInBlood, type, error) -> () in
                     if(error == nil){
                         cell.alcoholContentInBlood.text = NSString(format: "%.2f",  alcoholInBlood!) as String
@@ -137,7 +137,6 @@ class FeedViewController: UIViewController {
         drinkControl.getDrinks { (allDrinks, error) -> () in
             if(error == nil) {
                 self.feed = allDrinks!
-                self.loadApp = true
                 self.updateTableView()
             }
         }
