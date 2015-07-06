@@ -15,6 +15,7 @@ class StatsInterfaceController: WKInterfaceController {
 //    let statsHelper = CoinHelper()
 
     @IBOutlet weak var statsTable: WKInterfaceTable!
+    @IBOutlet weak var statusText: WKInterfaceLabel!
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)

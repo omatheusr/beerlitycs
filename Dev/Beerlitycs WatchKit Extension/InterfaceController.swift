@@ -31,20 +31,24 @@ class InterfaceController: WKInterfaceController {
                 println("there was an error receiving a reply")
             } else {
                 
-                println(replyFromParent["reply"])
+                println(replyFromParent["reply"]![0])
+                println(replyFromParent["reply"]![1])
                 
-//                if(type == 1) {
-//                    cell.statusText.text = "Parábens! Você está limpo!"
-//                    cell.statusImage.image = UIImage(named: "22")
+                
+//                let type = replyFromParent["reply"]!
+//                
+//                if(type as! NSObject == 1) {
+//                    self.statusText.setText("Parábens! Você é o motorista da rodada")
+//                    self.statusImage.image = UIImage(named: "22")
 //                } else if(type == 2){
-//                    cell.statusText.text = "OPA! Abrindo os trabalhos!"
-//                    cell.statusImage.image = UIImage(named: "17")
+//                    self.statusText.text = "OPA! Abrindo os trabalhos!"
+//                    self.statusImage.image = UIImage(named: "17")
 //                } else if(type == 2){
-//                    cell.statusText.text = "BELEZA! Tudo está ficando lindo!"
-//                    cell.statusImage.image = UIImage(named: "05")
+//                    self.statusText.text = "BELEZA! Tudo está ficando lindo!"
+//                    self.statusImage.image = UIImage(named: "05")
 //                } else {
-//                    cell.statusText.text = "CUIDADO! Não vá fazer algo que se arrependa.. e chame um Taxi!"
-//                    cell.statusImage.image = UIImage(named: "04")
+//                    self.statusText.text = "CUIDADO! Não vá fazer algo que se arrependa.. e chame um Taxi!"
+//                    self.statusImage.image = UIImage(named: "04")
 //                }
             }
         })

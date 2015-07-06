@@ -630,6 +630,9 @@
 					BFF6D0AE1B351402000984C4 = {
 						CreatedOnToolsVersion = 6.3.1;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.InAppPurchase = {
 								enabled = 0;
 							};

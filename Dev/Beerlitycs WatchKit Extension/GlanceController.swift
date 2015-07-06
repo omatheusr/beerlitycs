@@ -9,7 +9,6 @@
 import WatchKit
 import Foundation
 
-
 class GlanceController: WKInterfaceController {
     
     var myPosition : String!
@@ -22,18 +21,10 @@ class GlanceController: WKInterfaceController {
         
         WKInterfaceController.openParentApplication(request, reply: { (replyFromParent, error) -> Void in
             if(error != nil) {
-//                println(replyFromParent["reply"])
-                self.rankingPosition.setText("Faça login com o facebook para ter acesso ao ranking")
                 println("there was an error receiving a reply")
+                self.rankingPosition.setText("Faça login com o facebook para ter acesso ao ranking")
             } else {
-                let position: AnyObject = replyFromParent["reply"]! as AnyObject
-                
-                println(position)
-                let str : String = position as! String
-
-                self.myPosition = str as String
-                
-                println(replyFromParent["reply"]!)
+                self.myPosition = replyFromParent["reply"]! as! String
 
                 self.rankingPosition.setText(self.myPosition! + "º")
             }

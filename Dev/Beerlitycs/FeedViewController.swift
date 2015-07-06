@@ -46,6 +46,21 @@ class FeedViewController: UIViewController {
         } else {
             if(UserDefaultsManager.getUserId == nil) {
                 UserDefaultsManager.getUserId = currentUser
+
+                let stats = StatsManager()
+
+                stats.get(currentUser, callback: { (position, error) -> () in
+                    if(error == nil) {
+                        var str = ""
+                        if let v = position {
+                            str = "\(v)"
+                        }
+                        UserDefaultsManager.getRankingPosition = str
+                        println(UserDefaultsManager.getRankingPosition)
+                    } else {
+                        println(error)
+                    }
+                })
             }
         }
     }

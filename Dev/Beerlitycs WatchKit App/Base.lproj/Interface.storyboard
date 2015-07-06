@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -26,10 +26,38 @@
                     <connections>
                         <outlet property="statusImage" destination="b5i-AC-RZ0" id="40A-GX-rkY"/>
                         <outlet property="statusText" destination="LV5-cz-VKH" id="Rq3-w5-ueb"/>
+                        <segue destination="OUz-jp-UBP" kind="relationship" relationship="nextPage" id="zwD-eG-kIu"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="235" y="327"/>
+        </scene>
+        <!--Stats Interface Controller-->
+        <scene sceneID="7g3-F0-uhe">
+            <objects>
+                <controller id="OUz-jp-UBP" customClass="StatsInterfaceController" customModule="Beerlitycs_WatchKit_Extension">
+                    <items>
+                        <table alignment="left" id="ygf-uI-ben">
+                            <items>
+                                <tableRow identifier="StatsCell" id="BBO-re-iLA" customClass="StatsCell" customModule="Beerlitycs_WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" layout="vertical" id="3CO-1j-IIl">
+                                        <items>
+                                            <label alignment="left" text="Label" id="Vrm-i1-P4b"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="statsOption" destination="Vrm-i1-P4b" id="1z6-yD-zJD"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="statsTable" destination="ygf-uI-ben" id="2Oo-pl-3CT"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="458" y="326"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">
@@ -43,7 +71,7 @@
                         </group>
                         <group alignment="left" layout="vertical" id="uCw-4Q-Ouw">
                             <items>
-                                <label alignment="center" text="3º" id="Rj4-1V-ZFN">
+                                <label alignment="center" text="0" id="Rj4-1V-ZFN">
                                     <color key="textColor" red="1" green="0.62352941179999999" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" type="system" pointSize="62"/>
                                 </label>
