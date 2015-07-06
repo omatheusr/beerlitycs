@@ -43,7 +43,7 @@
                         </group>
                         <group alignment="left" layout="vertical" id="uCw-4Q-Ouw">
                             <items>
-                                <label alignment="center" text="1º" id="Rj4-1V-ZFN">
+                                <label alignment="center" text="3º" id="Rj4-1V-ZFN">
                                     <color key="textColor" red="1" green="0.62352941179999999" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" type="system" pointSize="62"/>
                                 </label>

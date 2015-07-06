@@ -39,6 +39,13 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
 
         self.inputImage.clipsToBounds = true
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
+        
         if(editView == nil) {
             let color = UIColor(red: 55.0/255.0, green: 61.0/255.0, blue: 74.0/255.0, alpha: 1.0)
             self.navigationController?.navigationBar.barTintColor = color
@@ -68,13 +75,6 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
                 self.inputUserName.text = self.userControl?.username
             }
         }
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
     }
     @IBAction func backButton(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
