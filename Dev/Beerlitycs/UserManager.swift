@@ -19,6 +19,7 @@ class UserManager: NSObject {
     var birth: NSDate?
     var height: String?
     var weight: String?
+    var sex: Bool?
     var facebookId: String?
     var createdAt: NSDate!
     var date: String!
@@ -40,9 +41,10 @@ class UserManager: NSObject {
         self.birth = dictionary["birth"] as? NSDate
         self.height = dictionary["height"] as? String
         self.weight = dictionary["weight"] as? String
+        self.sex = dictionary["sex"] as? Bool
         self.facebookId = dictionary["facebookId"] as? String
         self.photo = dictionary["photo"] as? PFFile
-        
+
         if((dictionary["mlDrunk"]) != nil) {
             self.mlDrunk = dictionary["mlDrunk"] as? NSInteger
         } else {
@@ -68,15 +70,19 @@ class UserManager: NSObject {
         if userControl.height != nil{
             query["height"] = userControl.height
         }
-        
+
         if userControl.weight != nil{
             query["weight"] = userControl.weight
         }
-        
+
+        if userControl.sex != nil{
+            query["sex"] = userControl.sex
+        }
+
         if userControl.photo != nil{
             query["photo"] = userControl.photo
         }
-        
+
         query["mlDrunk"] = 0
     
         query.signUpInBackgroundWithBlock {
@@ -118,7 +124,7 @@ class UserManager: NSObject {
                     if userControl.email != nil{
                         query["email"] = userControl.email
                     }
-                    
+
                     if userControl.username != nil{
                         query.username = userControl.username
                     }
@@ -126,7 +132,7 @@ class UserManager: NSObject {
                     if userControl.birth != nil{
                         query["birth"] = userControl.birth
                     }
-                    
+
                     if userControl.height != nil{
                         query["height"] = userControl.height
                     }
@@ -135,15 +141,18 @@ class UserManager: NSObject {
                         query["weight"] = userControl.weight
                     }
                     
+                    if userControl.sex != nil{
+                        query["sex"] = userControl.sex
+                    }
+
                     if userControl.facebookId != nil{
                         query["facebookId"] = userControl.facebookId
                     }
-                    
+
                     if userControl.photo != nil{
                         query["photo"] = userControl.photo
                     }
-                    
-                    
+
                     query.saveInBackgroundWithBlock {
                         (success: Bool, error: NSError?) -> Void in
                         if (success) {
@@ -153,7 +162,6 @@ class UserManager: NSObject {
                         }
                     }
                 }
-
             }
         }
     }

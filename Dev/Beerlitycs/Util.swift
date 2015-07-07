@@ -38,4 +38,37 @@ class Util {
             alpha: CGFloat(1.0)
         )
     }
+    
+    static func howLongTime (date: NSDate) -> String {
+        var messageAgo = ""
+
+        let dateNow = NSDate()
+        let userCalendar = NSCalendar.currentCalendar()
+
+        let dayCalendarUnit = NSCalendarUnit(UInt.max)
+
+        let dateAgo = userCalendar.components(
+            dayCalendarUnit,
+            fromDate: date,
+            toDate: dateNow,
+            options: nil)
+        
+        if(dateAgo.year > 0) {
+            messageAgo = String(dateAgo.year) + "a"
+        } else if(dateAgo.month > 0) {
+            messageAgo = String(dateAgo.month) + "mês"
+        } else if(dateAgo.weekdayOrdinal > 0) {
+            messageAgo = String(dateAgo.weekdayOrdinal) + "sem"
+        } else if(dateAgo.day > 0) {
+            messageAgo = String(dateAgo.day) + "d"
+        } else if(dateAgo.hour > 0) {
+            messageAgo = String(dateAgo.hour) + "h"
+        } else if(dateAgo.minute > 0) {
+            messageAgo = String(dateAgo.minute) + "m"
+        } else if(dateAgo.second > 0) {
+            messageAgo = String(dateAgo.second) + "s"
+        }
+
+        return messageAgo
+    }
 }

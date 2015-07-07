@@ -623,15 +623,12 @@
 				TargetAttributes = {
 					BFDD42D11B45A63300771A47 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 4NRYRR94WS;
 					};
 					BFDD42E01B45A63300771A47 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 4NRYRR94WS;
 					};
 					BFF6D0AE1B351402000984C4 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 4NRYRR94WS;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -883,7 +880,7 @@
 				INFOPLIST_FILE = "Beerlitycs WatchKit App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7d91f0b2-3ca2-4720-aba9-5910ee7bd17a";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
@@ -900,7 +897,7 @@
 				INFOPLIST_FILE = "Beerlitycs WatchKit App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "69f1ccd2-762b-4160-951d-5c8cd0afaeff";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
@@ -919,6 +916,7 @@
 				INFOPLIST_FILE = "Beerlitycs WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "cc5fcbc5-6043-4f35-810d-bb3720fcd2da";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -931,6 +929,7 @@
 				INFOPLIST_FILE = "Beerlitycs WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "f04ee5dd-f622-4d9b-917f-71bf7c8bc45e";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -1033,7 +1032,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "461ba3c2-99c4-46c4-bbe7-80fe165b0e34";
 				SWIFT_OBJC_BRIDGING_HEADER = "Beerlitycs/Bridging-Header.h";
 			};
 			name = Debug;
@@ -1053,7 +1052,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c70abebe-7fea-4f84-8f62-ee0c3b8cfbde";
 				SWIFT_OBJC_BRIDGING_HEADER = "Beerlitycs/Bridging-Header.h";
 			};
 			name = Release;

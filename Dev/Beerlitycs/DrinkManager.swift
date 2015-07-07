@@ -39,7 +39,8 @@ class DrinkManager: NSObject {
         if(dictionary["cup"] != nil) {
             self.cup = CupManager(dictionary: dictionary["cup"] as! PFObject)
         }
-
+        
+        self.createdAt = dictionary.createdAt
         self.date = formatDate(dictionary.createdAt!, format: "dd/MM/yyyy")
         self.hour = formatDate(dictionary.createdAt!, format: "HH:mm")
     }

@@ -22,7 +22,7 @@
                         <label height="45" alignment="center" text="0" id="tgh-qn-uLG">
                             <fontDescription key="font" type="system" pointSize="22"/>
                         </label>
-                        <label alignment="center" text="Ops.. Parece que você está bebado" textAlignment="center" numberOfLines="0" id="LV5-cz-VKH">
+                        <label alignment="center" textAlignment="center" numberOfLines="0" id="LV5-cz-VKH">
                             <fontDescription key="font" style="UICTFontTextStyleBody"/>
                         </label>
                     </items>
@@ -60,6 +60,7 @@
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
                     <connections>
                         <outlet property="rankingPosition" destination="Rj4-1V-ZFN" id="8PQ-c5-fN4"/>
+                        <outlet property="textPosition" destination="Y1z-2f-uHz" id="1aU-4p-FbJ"/>
                     </connections>
                 </glanceController>
             </objects>

@@ -14,6 +14,8 @@ class GlanceController: WKInterfaceController {
     var myPosition : String!
 
     @IBOutlet weak var rankingPosition: WKInterfaceLabel!
+    @IBOutlet weak var textPosition: WKInterfaceLabel!
+
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
@@ -22,10 +24,12 @@ class GlanceController: WKInterfaceController {
         WKInterfaceController.openParentApplication(request, reply: { (replyFromParent, error) -> Void in
             if(error != nil) {
                 println("there was an error receiving a reply")
-                self.rankingPosition.setText("Faça login com o facebook para ter acesso ao ranking")
+                self.rankingPosition.setHidden(true)
+                self.textPosition.setText("Faça login com o facebook para ter acesso ao ranking")
             } else {
                 self.myPosition = replyFromParent["reply"]! as! String
 
+                self.rankingPosition.setHidden(false)
                 self.rankingPosition.setText(self.myPosition! + "º")
             }
         })

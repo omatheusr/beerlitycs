@@ -41,6 +41,9 @@ class PlaceManager: NSObject {
         if(dictionary["totalml"] != nil) {
             self.totalml = dictionary["totalml"] as? String
         }
+        if(dictionary["location"] != nil) {
+            self.location = dictionary["location"] as? PFGeoPoint
+        }
     }
 
     init(array : AnyObject) {
@@ -67,6 +70,9 @@ class PlaceManager: NSObject {
         
         if placeControl.totalml != nil{
             query["totalml"] = placeControl.totalml
+        }
+        if placeControl.location != nil{
+            query["location"] = placeControl.location
         }
 
         query.saveInBackgroundWithBlock {

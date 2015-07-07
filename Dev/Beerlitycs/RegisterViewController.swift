@@ -21,11 +21,10 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
     @IBOutlet weak var inputUserName: UITextField!
     @IBOutlet weak var inputEmail: UITextField!
     @IBOutlet weak var inputPassword: UITextField!
-    @IBOutlet weak var inputHeight: UITextField!
     @IBOutlet weak var inputWeight: UITextField!
     @IBOutlet weak var inputImage: UIImageView!
 
-    @IBOutlet weak var heightBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var inputSex: UISegmentedControl!
 
     var userControl : UserManager?
     var editView : Bool?
@@ -51,14 +50,22 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
             self.navigationController?.navigationBar.barTintColor = color
             self.navigationItem.title = "Cadastro"
         } else {
-            self.registerButton.setTitle("Editar", forState: UIControlState.Normal)
+            self.registerButton.setTitle("EDITAR", forState: UIControlState.Normal)
         }
-        
+
         if(self.userControl != nil) {
             self.inputName.text = self.userControl?.name
             self.inputEmail.text = self.userControl?.email
-            self.inputHeight.text = self.userControl?.height
             self.inputWeight.text = self.userControl?.weight
+            
+            if(self.userControl?.sex == true) {
+                self.inputSex.selectedSegmentIndex = 0
+            } else if(self.userControl?.sex == false) {
+                self.inputSex.selectedSegmentIndex = 1
+            } else {
+                self.inputSex.selectedSegmentIndex = -1
+            }
+
             self.userControl!.photo?.getDataInBackgroundWithBlock({ (image, error) -> Void in
                 self.inputImage.image = UIImage(data: image!)
             })
@@ -69,8 +76,6 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
                 }
                 self.inputPassword.hidden = true
                 self.inputUserName.hidden = true
-                
-                self.heightBottomConstraint.priority = 1000
             } else {
                 self.inputUserName.text = self.userControl?.username
             }
@@ -172,7 +177,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
             userControl.weight = inputWeight.text
             
             // Mantm o padrao de ponto como separador de casas decimais
-            userControl.height = inputHeight.text.stringByReplacingOccurrencesOfString(",", withString: ".", options: nil, range: nil)
+//            userControl.height = inputHeight.text.stringByReplacingOccurrencesOfString(",", withString: ".", options: nil, range: nil)
 
             let imageData = UIImageJPEGRepresentation(self.inputImage.image, 0.6)
             userControl.photo = PFFile(name: userControl.objectId + ".jpg", data: imageData)
@@ -180,6 +185,12 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
             if !PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
                 userControl.password = self.inputPassword.text
                 userControl.username = self.inputUserName.text
+            }
+
+            if(self.inputSex.selectedSegmentIndex == 0) {
+                userControl.sex = true
+            } else {
+                userControl.sex = false
             }
 
             userControl.editUser(userControl, callback: { (error) -> () in
@@ -199,9 +210,14 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
             userControl.email = inputEmail.text
             userControl.username = inputUserName.text
             userControl.password = inputPassword.text
-            userControl.height = inputHeight.text
             userControl.weight = inputWeight.text
-            
+
+            if(self.inputSex.selectedSegmentIndex == 0) {
+                userControl.sex = true
+            } else {
+                userControl.sex = false
+            }
+
             let imageData = UIImageJPEGRepresentation(self.inputImage.image, 0.6)
             userControl.photo = PFFile(name: userControl.objectId + ".jpg", data: imageData)
 

@@ -21,6 +21,8 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
 
         self.tableView.tableFooterView = UIView()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+
         PushNotifications.associateDeviceWithCurrentUser()
 
         self.refreshControl = UIRefreshControl()
@@ -139,6 +141,7 @@ class FeedViewController: UIViewController {
 
             cell.profileName.text = drinkControl.user!.name
             cell.activityText.text = activityText
+            cell.dateAgo.text = Util.howLongTime(drinkControl.createdAt)
 
             return cell
         }
@@ -148,10 +151,14 @@ class FeedViewController: UIViewController {
         if(indexPath.row == 0) {
             return 160
         } else {
-            return 80
+            return 90
         }
     }
-    
+
+    func isLandscapeOrientation() -> Bool {
+        return UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication().statusBarOrientation)
+    }
+
     func loadData(sender:AnyObject?) {
         let drinkControl = DrinkManager()
         

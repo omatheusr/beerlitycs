@@ -13,6 +13,7 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var activityText: UILabel!
+    @IBOutlet weak var dateAgo: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
