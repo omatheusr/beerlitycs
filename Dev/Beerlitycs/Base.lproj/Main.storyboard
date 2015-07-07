@@ -232,17 +232,17 @@
         <!--Escolha a cerveja-->
         <scene sceneID="KjS-bz-RPk">
             <objects>
-                <viewController id="bFa-5C-Akj" customClass="BeersViewController" customModule="Beerlitycs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="bFa-5C-Akj" customClass="BeersViewController" customModule="Beerlitycs" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DjV-LK-M2R"/>
                         <viewControllerLayoutGuide type="bottom" id="nOg-UJ-qPb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AYo-Br-9aT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="650"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="53" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2lX-xp-QDe">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="650"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" restorationIdentifier="SearchBarCell" text="" placeholder="busca" id="b4a-e8-cWd">
                                     <rect key="frame" x="0.0" y="64" width="600" height="44"/>
@@ -295,19 +295,19 @@
                                     <outlet property="delegate" destination="bFa-5C-Akj" id="4zR-CP-OEV"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="yTz-ZH-2bV">
-                                <rect key="frame" x="282" y="307" width="37" height="37"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="yTz-ZH-2bV">
+                                <rect key="frame" x="282" y="256" width="37" height="37"/>
                                 <color key="color" red="0.8980392157" green="0.31764705879999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nOg-UJ-qPb" firstAttribute="top" secondItem="2lX-xp-QDe" secondAttribute="bottom" id="00q-GB-5Hp"/>
                             <constraint firstAttribute="centerY" secondItem="yTz-ZH-2bV" secondAttribute="centerY" id="EA2-0X-McZ"/>
-                            <constraint firstItem="2lX-xp-QDe" firstAttribute="top" secondItem="AYo-Br-9aT" secondAttribute="top" id="PGG-2y-bDX"/>
-                            <constraint firstItem="2lX-xp-QDe" firstAttribute="leading" secondItem="AYo-Br-9aT" secondAttribute="leading" id="Rni-qD-JFb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2lX-xp-QDe" secondAttribute="trailing" constant="-16" id="ILA-61-s11"/>
                             <constraint firstAttribute="centerX" secondItem="yTz-ZH-2bV" secondAttribute="centerX" id="W20-C9-eGL"/>
-                            <constraint firstAttribute="trailing" secondItem="2lX-xp-QDe" secondAttribute="trailing" id="vaa-ia-lBh"/>
+                            <constraint firstItem="2lX-xp-QDe" firstAttribute="leading" secondItem="AYo-Br-9aT" secondAttribute="leadingMargin" constant="-16" id="X9M-Nj-SDE"/>
+                            <constraint firstItem="2lX-xp-QDe" firstAttribute="top" secondItem="AYo-Br-9aT" secondAttribute="topMargin" id="hbR-OI-WBi"/>
+                            <constraint firstItem="nOg-UJ-qPb" firstAttribute="top" secondItem="2lX-xp-QDe" secondAttribute="bottom" id="jLR-zg-DqK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Escolha a cerveja" id="rBW-lo-Wc2">
@@ -317,6 +317,8 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="activity" destination="yTz-ZH-2bV" id="brj-0K-3hD"/>
                         <outlet property="searchDisplayController" destination="XwD-hS-kaa" id="drq-gI-bhW"/>
@@ -335,7 +337,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2757" y="1273"/>
+            <point key="canvasLocation" x="2822" y="1383"/>
         </scene>
         <!--Onde você está-->
         <scene sceneID="eQh-uj-zYY">
@@ -2540,8 +2542,8 @@
         <image name="weight18" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cNb-by-jRP"/>
         <segue reference="tVi-G4-Nng"/>
+        <segue reference="cNb-by-jRP"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
