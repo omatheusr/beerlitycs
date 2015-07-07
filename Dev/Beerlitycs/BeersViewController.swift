@@ -21,8 +21,14 @@ class BeersViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         self.navigationController?.navigationBar.translucent = true
         self.tableView.hideSearchBar()
+       
 
         loadData()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+       
     }
     
     func loadData() {
