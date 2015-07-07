@@ -61,23 +61,24 @@ class RankingViewController: UIViewController {
                 } else {
                     cell.mlDrunk.text = "-"
                 }
-            //Mexi Aqui!
-            let cupsControl = UserManager ()
-            cupsControl.getFavPlace(userControl.objectId) { (numPlace, placeName, error) -> () in
-            if(error == nil) {
-                    cell.numberOFBarsVisited.text = String(stringInterpolationSegment: numPlace!)
-                } else {
-                    println("erro")
+
+                //Mexi Aqui!
+                let cupsControl = UserManager ()
+                cupsControl.getFavPlace(userControl.objectId) { (numPlace, placeName, error) -> () in
+                if(error == nil) {
+                        cell.numberOFBarsVisited.text = String(stringInterpolationSegment: numPlace!)
+                    } else {
+                        println("erro")
+                    }
                 }
-            }
-            //fim
-            
-            cell.profileName.text = userControl.name
-            cell.userPosition.text = String(self.position) + "º"
+                //fim
+
+                cell.profileName.text = userControl.name
+                cell.userPosition.text = String(self.position) + "º"
 
                 let url = NSURL(string: userControl.photo!.url!)
                 cell.profileImage.setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"),usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-                Util.roundedView(cell.profileImage.layer, border: true, colorHex: "E55122", borderSize: 2.0, radius: cell.profileImage.frame.size.width / 2)
+                Util.roundedView(cell.profileImage.layer, border: true, colorHex: "53555B", borderSize: 2.0, radius: cell.profileImage.frame.size.width / 2)
 
                 cell.profileImage.clipsToBounds = true
 

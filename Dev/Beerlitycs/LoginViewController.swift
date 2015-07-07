@@ -93,6 +93,8 @@ class LoginViewController: UIViewController {
         userControl.login(userControl) { (error) -> () in
             if(error == nil) {
                 self.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                self.presentViewController(Util.showAlert("Ops!", message: "Digite seu nome de usuário e senha corretamente", buttonOption1: "OK!", buttonOption2: ""), animated: true, completion: nil)
             }
         }
     }

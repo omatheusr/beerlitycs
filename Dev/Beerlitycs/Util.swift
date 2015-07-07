@@ -71,4 +71,29 @@ class Util {
 
         return messageAgo
     }
+    
+    static func showAlert(title : String, message: String, buttonOption1: String?, buttonOption2: String?) -> UIAlertController{
+        
+        var decision = Bool()
+        var alert = UIAlertController()
+        
+        if buttonOption1!.isEmpty {
+            // NADA
+        } else {
+            alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: buttonOption1!, style: UIAlertActionStyle.Default){ (action) -> Void in
+                decision = true
+                })
+        }
+        
+        if buttonOption2!.isEmpty {
+            // NADA
+        } else {
+            alert.addAction(UIAlertAction(title: buttonOption2!, style: UIAlertActionStyle.Default){ (action) -> Void in
+                decision = false
+            })
+        }
+        
+        return alert
+    }
 }

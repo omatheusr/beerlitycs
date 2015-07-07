@@ -170,62 +170,67 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
     }
 
     @IBAction func registerUser(sender: AnyObject) {
-        if let userControl = self.userControl {
+        if(inputName.text == "" || inputEmail.text == "" || inputUserName.text == "" || inputPassword.text == "" || inputWeight.text == "") {
+            self.presentViewController(Util.showAlert("Ops!", message: "Preencha todos campos corretamente", buttonOption1: "OK!", buttonOption2: ""), animated: true, completion: nil)
 
-            userControl.name = self.inputName.text
-            userControl.email = self.inputEmail.text
-            userControl.weight = inputWeight.text
-            
-            // Mantm o padrao de ponto como separador de casas decimais
-//            userControl.height = inputHeight.text.stringByReplacingOccurrencesOfString(",", withString: ".", options: nil, range: nil)
-
-            let imageData = UIImageJPEGRepresentation(self.inputImage.image, 0.6)
-            userControl.photo = PFFile(name: userControl.objectId + ".jpg", data: imageData)
-
-            if !PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
-                userControl.password = self.inputPassword.text
-                userControl.username = self.inputUserName.text
-            }
-
-            if(self.inputSex.selectedSegmentIndex == 0) {
-                userControl.sex = true
-            } else {
-                userControl.sex = false
-            }
-
-            userControl.editUser(userControl, callback: { (error) -> () in
-                if (error == nil) {
-                    if(self.editView == true) {
-                        self.navigationController?.popViewControllerAnimated(true)
-                    } else {
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                        UserDefaultsManager.needReloadHome = true
-                    }
-                }
-            })
         } else {
-            let userControl = UserManager()
+            if let userControl = self.userControl {
 
-            userControl.name = inputName.text
-            userControl.email = inputEmail.text
-            userControl.username = inputUserName.text
-            userControl.password = inputPassword.text
-            userControl.weight = inputWeight.text
+                userControl.name = self.inputName.text
+                userControl.email = self.inputEmail.text
+                userControl.weight = inputWeight.text
+                
+                // Mantm o padrao de ponto como separador de casas decimais
+    //            userControl.height = inputHeight.text.stringByReplacingOccurrencesOfString(",", withString: ".", options: nil, range: nil)
 
-            if(self.inputSex.selectedSegmentIndex == 0) {
-                userControl.sex = true
-            } else {
-                userControl.sex = false
-            }
+                let imageData = UIImageJPEGRepresentation(self.inputImage.image, 0.6)
+                userControl.photo = PFFile(name: userControl.objectId + ".jpg", data: imageData)
 
-            let imageData = UIImageJPEGRepresentation(self.inputImage.image, 0.6)
-            userControl.photo = PFFile(name: userControl.objectId + ".jpg", data: imageData)
-
-            userControl.newUser(userControl, callback: { (error) -> () in
-                if(error == nil) {
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                if !PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
+                    userControl.password = self.inputPassword.text
+                    userControl.username = self.inputUserName.text
                 }
-            })
+
+                if(self.inputSex.selectedSegmentIndex == 0) {
+                    userControl.sex = true
+                } else {
+                    userControl.sex = false
+                }
+
+                userControl.editUser(userControl, callback: { (error) -> () in
+                    if (error == nil) {
+                        if(self.editView == true) {
+                            self.navigationController?.popViewControllerAnimated(true)
+                        } else {
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                            UserDefaultsManager.needReloadHome = true
+                        }
+                    }
+                })
+            } else {
+                let userControl = UserManager()
+
+                userControl.name = inputName.text
+                userControl.email = inputEmail.text
+                userControl.username = inputUserName.text
+                userControl.password = inputPassword.text
+                userControl.weight = inputWeight.text
+
+                if(self.inputSex.selectedSegmentIndex == 0) {
+                    userControl.sex = true
+                } else {
+                    userControl.sex = false
+                }
+
+                let imageData = UIImageJPEGRepresentation(self.inputImage.image, 0.6)
+                userControl.photo = PFFile(name: PFInstallation.currentInstallation().objectId! + ".jpg", data: imageData)
+
+                userControl.newUser(userControl, callback: { (error) -> () in
+                    if(error == nil) {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                })
+            }
         }
     }
 
