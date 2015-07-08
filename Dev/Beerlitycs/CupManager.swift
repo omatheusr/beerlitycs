@@ -23,11 +23,26 @@ class CupManager: NSObject {
         super.init()
 
         self.objectId = dictionary.objectId
-        self.name = dictionary["name"] as! String
-        self.size = dictionary["size"] as! Int
-        self.icon = dictionary["icon"] as? String
+
+        if(dictionary["name"] != nil) {
+            self.name = dictionary["name"] as! String
+        } else {
+            self.name = ""
+        }
+
+        if(dictionary["size"] != nil) {
+            self.size = dictionary["size"] as! Int
+        } else {
+            self.size = 0
+        }
+
+        if(dictionary["icon"] != nil) {
+            self.icon = dictionary["icon"] as? String
+        } else {
+            self.icon = ""
+        }
     }
-    
+
     func newCup(cupControl: CupManager, callback: (error: NSError?) -> ()) {
         var query = PFObject(className:"Cup")
         
@@ -44,7 +59,7 @@ class CupManager: NSObject {
             }
         }
     }
-    
+
     func getCups(callback: (allCups: NSArray?, error: NSError?) -> ()) {
         var query = PFQuery(className:"Cup")
         

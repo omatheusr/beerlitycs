@@ -406,6 +406,10 @@ class UserManager: NSObject {
         mlDrunk = 0
         
         query.includeKey("place")
+        query.includeKey("beer")
+        query.includeKey("cup")
+        query.includeKey("user")
+
         query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
         
         query.findObjectsInBackgroundWithBlock {

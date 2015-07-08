@@ -67,11 +67,13 @@ class Util {
             messageAgo = String(dateAgo.minute) + "m"
         } else if(dateAgo.second > 0) {
             messageAgo = String(dateAgo.second) + "s"
+        } else {
+            messageAgo = "agora"
         }
 
         return messageAgo
     }
-    
+
     static func showAlert(title : String, message: String, buttonOption1: String?, buttonOption2: String?) -> UIAlertController{
         
         var decision = Bool()

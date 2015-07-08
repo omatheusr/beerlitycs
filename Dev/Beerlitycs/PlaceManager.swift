@@ -35,8 +35,18 @@ class PlaceManager: NSObject {
         super.init()
         
         self.objectId = dictionary.objectId
-        self.name = dictionary["name"] as! String
-        self.foursquareId = dictionary["foursquareId"] as! String
+
+        if(dictionary["name"] != nil) {
+            self.name = dictionary["name"] as! String
+        } else {
+            self.name = ""
+        }
+
+        if(dictionary["foursquareId"] != nil) {
+            self.foursquareId = dictionary["foursquareId"] as! String
+        } else {
+            self.foursquareId = "0"
+        }
         
         if(dictionary["totalml"] != nil) {
             self.totalml = dictionary["totalml"] as? String

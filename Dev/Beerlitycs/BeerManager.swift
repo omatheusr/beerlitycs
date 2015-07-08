@@ -19,8 +19,18 @@ class BeerManager: NSObject {
         super.init()
 
         self.objectId = dictionary.objectId
-        self.name = dictionary["name"] as! String
-        self.alcoholContent = dictionary["alcoholcontent"] as! String
+
+        if(dictionary["name"] != nil) {
+            self.name = dictionary["name"] as! String
+        } else {
+            self.name = ""
+        }
+
+        if(dictionary["alcoholcontent"] != nil) {
+            self.alcoholContent = dictionary["alcoholcontent"] as! String
+        } else {
+            self.alcoholContent = "0"
+        }
     }
 
     func newBeer(beerControl: BeerManager, callback: (error: NSError?) -> ()) {

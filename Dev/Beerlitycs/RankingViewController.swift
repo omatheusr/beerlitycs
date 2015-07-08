@@ -68,11 +68,11 @@ class RankingViewController: UIViewController {
                 if(error == nil) {
                         cell.numberOFBarsVisited.text = String(stringInterpolationSegment: numPlace!)
                     } else {
-                        println("erro")
+                        cell.numberOFBarsVisited.text = "0"
                     }
                 }
                 //fim
-
+                
                 cell.profileName.text = userControl.name
                 cell.userPosition.text = String(self.position) + "º"
 

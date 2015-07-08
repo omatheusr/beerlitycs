@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "01.png"
+      "filename" : "Angel-128.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "01@2x.png"
+      "filename" : "Angel-128-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "01@3x.png"
+      "filename" : "Angel-128-2.png"
     }
   ],
   "info" : {

@@ -91,13 +91,13 @@ class FeedViewController: UIViewController {
                         
                         if(type == 1) {
                             cell.textStatus.text = "Parábens! Você é o motorista da rodada!"
-                            cell.imageStatus.image = UIImage(named: "22")
+                            cell.imageStatus.image = UIImage(named: "01")
                         } else if(type == 2){
                             cell.textStatus.text = "OPA! Abrindo os trabalhos!"
-                            cell.imageStatus.image = UIImage(named: "17")
+                            cell.imageStatus.image = UIImage(named: "02")
                         } else if(type == 3){
                             cell.textStatus.text = "BELEZA! Tudo está ficando lindo!"
-                            cell.imageStatus.image = UIImage(named: "05")
+                            cell.imageStatus.image = UIImage(named: "03")
                         } else {
                             cell.textStatus.text = "CUIDADO! Não vá fazer algo que se arrependa.. e chame um Taxi!"
                             cell.imageStatus.image = UIImage(named: "04")
@@ -160,7 +160,6 @@ class FeedViewController: UIViewController {
     func tableView(tableView: UITableView!, willDisplayCell cell: UITableViewCell!, forRowAtIndexPath indexPath: NSIndexPath!) {
         if (indexPath.row-1 ==  (self.feed.count-1) - self.Skip/2) {
             self.Skip = self.Skip + 10
-            println("aqui")
             self.loadData(nil)
         }
     }
@@ -182,7 +181,6 @@ class FeedViewController: UIViewController {
         
         drinkControl.getDrinks(self.Skip, callback: { (allDrinks, error) -> () in
             if(error == nil) {
-                println(update)
                 if(update == true) {
                     self.feed = allDrinks!.mutableCopy() as! NSMutableArray
                     self.updateTableView()

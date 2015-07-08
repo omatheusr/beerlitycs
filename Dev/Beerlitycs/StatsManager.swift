@@ -102,7 +102,7 @@ class StatsManager: NSObject {
                         type = 2
                     } else if (alcoholInBlood <= 2){
                         type = 3
-                    } else if (alcoholInBlood <= 3){
+                    } else if (alcoholInBlood > 2){
                         type = 4
                     } else {
                         type = 1
