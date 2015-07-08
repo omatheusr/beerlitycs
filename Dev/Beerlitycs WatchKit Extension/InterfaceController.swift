@@ -42,13 +42,13 @@ class InterfaceController: WKInterfaceController {
 
                 if(type == "1") {
                     self.statusText.setText("Parábens! Você é o motorista da rodada")
-                    self.statusImage.setImage(UIImage(named: "22"))
+                    self.statusImage.setImage(UIImage(named: "01"))
                 } else if(type == "2"){
                     self.statusText.setText("OPA! Abrindo os trabalhos!")
-                    self.statusImage.setImage(UIImage(named: "17"))
+                    self.statusImage.setImage(UIImage(named: "02"))
                 } else if(type == "3"){
                     self.statusText.setText("BELEZA! Tudo está ficando lindo!")
-                    self.statusImage.setImage(UIImage(named: "05"))
+                    self.statusImage.setImage(UIImage(named: "03"))
                 } else {
                     self.statusText.setText("CUIDADO! Não vá fazer algo que se arrependa.. e chame um Taxi!")
                     self.statusImage.setImage(UIImage(named: "04"))

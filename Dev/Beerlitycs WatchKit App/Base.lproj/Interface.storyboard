@@ -16,7 +16,7 @@
                         </label>
                         <group width="1" alignment="left" spacing="10" id="6Q6-sa-3dz">
                             <items>
-                                <imageView width="30" height="30" alignment="center" image="04" id="b5i-AC-RZ0"/>
+                                <imageView width="30" height="30" alignment="center" image="01" id="b5i-AC-RZ0"/>
                             </items>
                         </group>
                         <label height="45" alignment="center" text="0" id="tgh-qn-uLG">
