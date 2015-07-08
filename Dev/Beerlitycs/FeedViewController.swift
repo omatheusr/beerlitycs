@@ -10,9 +10,10 @@ import UIKit
 import Parse
 
 class FeedViewController: UIViewController {
-    var feed = []
+    var feed : NSMutableArray = []
     var refreshControl:UIRefreshControl!
     var loadApp : Bool?
+    var Skip : Int = 0
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var checkButton: UIButton!
@@ -26,13 +27,13 @@ class FeedViewController: UIViewController {
         PushNotifications.associateDeviceWithCurrentUser()
 
         self.refreshControl = UIRefreshControl()
-        self.refreshControl.addTarget(self, action: "loadData:", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl.addTarget(self, action: "loadDataUpdate:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
         self.refreshControl.beginRefreshing()
 
-        self.loadData(nil)
+        self.loadDataUpdate(nil)
 
-        Util.roundedView(self.checkButton.layer, border: false, colorHex: nil, borderSize: nil, radius: self.checkButton.frame.height / 2)
+        Util.roundedView(self.checkButton.layer, border: false, colorHex: nil, borderSize: nil, radius: 6)
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,7 +65,7 @@ class FeedViewController: UIViewController {
             })
             
             if(UserDefaultsManager.needReloadHome == true) {
-                loadData(nil)
+                loadDataUpdate(nil)
                 UserDefaultsManager.needReloadHome = false
             }
         }
@@ -73,6 +74,7 @@ class FeedViewController: UIViewController {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return feed.count+1
     }
+
     func tableView(tableView: UITableView, numberOfSectionsInTableView section: Int) -> Int {
         return 1
     }
@@ -154,20 +156,44 @@ class FeedViewController: UIViewController {
             return 90
         }
     }
+    
+    func tableView(tableView: UITableView!, willDisplayCell cell: UITableViewCell!, forRowAtIndexPath indexPath: NSIndexPath!) {
+        if (indexPath.row-1 ==  (self.feed.count-1) - self.Skip/2) {
+            self.Skip = self.Skip + 10
+            println("aqui")
+            self.loadData(nil)
+        }
+    }
 
     func isLandscapeOrientation() -> Bool {
         return UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication().statusBarOrientation)
     }
 
     func loadData(sender:AnyObject?) {
+        loadData(sender, update: false)
+    }
+    func loadDataUpdate(sender:AnyObject?) {
+        self.Skip = 0
+        loadData(sender, update: true)
+    }
+
+    func loadData(sender:AnyObject?, update: Bool) {
         let drinkControl = DrinkManager()
         
-        drinkControl.getDrinks { (allDrinks, error) -> () in
+        drinkControl.getDrinks(self.Skip, callback: { (allDrinks, error) -> () in
             if(error == nil) {
-                self.feed = allDrinks!
-                self.updateTableView()
+                println(update)
+                if(update == true) {
+                    self.feed = allDrinks!.mutableCopy() as! NSMutableArray
+                    self.updateTableView()
+                } else {
+                    self.feed.addObjectsFromArray(allDrinks! as [AnyObject])
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.tableView.reloadData()
+                    })
+                }
             }
-        }
+        })
     }
 
     func updateTableView() {

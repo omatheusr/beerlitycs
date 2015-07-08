@@ -40,8 +40,19 @@ class UserManager: NSObject {
         self.email = dictionary["email"] as? String
         self.birth = dictionary["birth"] as? NSDate
         self.height = dictionary["height"] as? String
-        self.weight = dictionary["weight"] as? String
-        self.sex = dictionary["sex"] as? Bool
+
+        if((dictionary["weight"]) != nil) {
+            self.weight = dictionary["weight"] as? String
+        } else {
+            self.weight = "0"
+        }
+
+        if((dictionary["sex"]) != nil) {
+            self.sex = dictionary["sex"] as? Bool
+        } else {
+            self.sex = true
+        }
+
         self.facebookId = dictionary["facebookId"] as? String
         self.photo = dictionary["photo"] as? PFFile
 

@@ -112,7 +112,7 @@ class DrinkManager: NSObject {
         }
     }
 
-    func getDrinks(callback: (allDrinks: NSArray?, error: NSError?) -> ()) {
+    func getDrinks(skip: Int, callback: (allDrinks: NSArray?, error: NSError?) -> ()) {
         var query = PFQuery(className:"Drink")
         
         query.includeKey("user")
@@ -121,6 +121,8 @@ class DrinkManager: NSObject {
         query.includeKey("cup")
         
         query.orderByDescending("createdAt")
+        query.limit = 10
+        query.skip = skip
 
         var auxDrinks: NSArray!
         
@@ -135,7 +137,7 @@ class DrinkManager: NSObject {
             }
         }
     }
-    
+
     func getLatestDrinkPerUser(userID: String, callback:(drinks: NSArray?, error: NSError?) ->()){
         
         //let timeZone = NSTimeZone.localTimeZone().secondsFromGMT

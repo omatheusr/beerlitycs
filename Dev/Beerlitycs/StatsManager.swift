@@ -77,7 +77,7 @@ class StatsManager: NSObject {
                     var alcoholContentOnDrink = Double()
                     var etanol = Double()
                     var alcoholInBlood = Double()
-                    var constant = 0.70
+                    var constant = 1.1
                     var i = NSInteger()
                     
                     for (i=0;i < auxDrinks.count; i++){
@@ -105,7 +105,7 @@ class StatsManager: NSObject {
                     } else if (alcoholInBlood <= 3){
                         type = 4
                     } else {
-                        type = 4
+                        type = 1
                     }
                     
                     callback(alcoholInBlood: alcoholInBlood, type: type, error: nil)

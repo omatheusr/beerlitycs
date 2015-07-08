@@ -30,6 +30,8 @@ class CheckInViewController: UITableViewController {
         
         self.tableView.tableFooterView = UIView()
         self.confirmationButton.enabled = true
+        
+        Util.roundedView(self.confirmationButton.layer, border: false, colorHex: nil, borderSize: nil, radius: 6)
 
         loadData()
     }
@@ -165,12 +167,19 @@ class CheckInViewController: UITableViewController {
             label: "triangle",
             color: UIColor.whiteColor()
         )
+        
+        var mapSize : CGSize!
+        if(self.mapImage.layer.frame.width < 640) {
+            mapSize = CGSize(width: self.mapImage.layer.frame.width, height: self.mapImage.layer.frame.height)
+        } else {
+            mapSize = CGSize(width: 640, height: self.mapImage.layer.frame.height)
+        }
 
         let map = MapboxStaticMap(
             mapID: "matheusbecker.873c9d11",
             center: clLocation,
             zoom: 17,
-            size: CGSize(width: self.mapImage.layer.frame.width, height: self.mapImage.layer.frame.height),
+            size: mapSize,
             accessToken: "sk.eyJ1IjoibWF0aGV1c2JlY2tlciIsImEiOiJiYWZhNTg4NjRlYWJkYzUyNjBiYzNiYzk5YmFlOWZmZCJ9.Y4vw-oFFlJjuvhKdc0F8qA",
             overlays: [markerOverlay],
             retina: true

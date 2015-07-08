@@ -883,7 +883,7 @@
                                                 </constraints>
                                                 <color key="textColor" red="0.21568627450980393" green="0.23921568627450981" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 <connections>
                                                     <action selector="btnEsconder:" destination="Ymh-fs-jXc" eventType="editingDidEndOnExit" id="Qmr-99-BGj"/>
                                                 </connections>
@@ -1934,7 +1934,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A74-ZW-uuA">
-                                <rect key="frame" x="18" y="499" width="568" height="44"/>
+                                <rect key="frame" x="16" y="499" width="568" height="44"/>
                                 <color key="backgroundColor" red="0.8980392157" green="0.43137254899999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="36X-0D-7FR"/>
@@ -1951,13 +1951,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="A74-ZW-uuA" secondAttribute="trailing" constant="14" id="9Rm-gd-tOQ"/>
+                            <constraint firstAttribute="trailing" secondItem="A74-ZW-uuA" secondAttribute="trailing" constant="16" id="9Rm-gd-tOQ"/>
                             <constraint firstItem="kwy-kd-lvP" firstAttribute="top" secondItem="A74-ZW-uuA" secondAttribute="bottom" constant="8" id="9f1-O6-xxx"/>
                             <constraint firstItem="kwy-kd-lvP" firstAttribute="top" secondItem="6VL-aZ-2bl" secondAttribute="bottom" id="9or-3H-Ojf"/>
                             <constraint firstAttribute="trailing" secondItem="6VL-aZ-2bl" secondAttribute="trailing" id="LQa-Ue-AWd"/>
                             <constraint firstItem="A74-ZW-uuA" firstAttribute="top" secondItem="6VL-aZ-2bl" secondAttribute="bottom" id="SwK-YJ-6Fg"/>
                             <constraint firstItem="6VL-aZ-2bl" firstAttribute="leading" secondItem="qmT-qb-brB" secondAttribute="leading" id="TPh-EY-yxK"/>
-                            <constraint firstItem="A74-ZW-uuA" firstAttribute="leading" secondItem="qmT-qb-brB" secondAttribute="leading" constant="18" id="WEx-xa-zod"/>
+                            <constraint firstItem="A74-ZW-uuA" firstAttribute="leading" secondItem="qmT-qb-brB" secondAttribute="leading" constant="16" id="WEx-xa-zod"/>
                             <constraint firstAttribute="bottom" secondItem="6VL-aZ-2bl" secondAttribute="bottom" constant="20" symbolic="YES" id="XU9-z9-60n"/>
                             <constraint firstItem="6VL-aZ-2bl" firstAttribute="top" secondItem="qmT-qb-brB" secondAttribute="top" id="gw7-Gn-5Hi"/>
                             <constraint firstItem="kwy-kd-lvP" firstAttribute="top" secondItem="6VL-aZ-2bl" secondAttribute="bottom" constant="56" id="qwf-4L-SVj"/>
@@ -2188,15 +2188,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="74k-Xg-Fl2">
-                                                    <rect key="frame" x="250" y="24" width="100" height="100"/>
+                                                    <rect key="frame" x="16" y="24" width="568" height="44"/>
+                                                    <color key="backgroundColor" red="0.8980392157" green="0.43137254899999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="2ol-eS-Yag"/>
+                                                        <constraint firstAttribute="height" constant="44" id="BIL-ZF-MS8"/>
                                                         <constraint firstAttribute="width" constant="68" id="I0l-0Y-VaC"/>
-                                                        <constraint firstAttribute="width" constant="100" id="Ikx-dB-9lY"/>
+                                                        <constraint firstAttribute="width" constant="44" id="Ikx-dB-9lY"/>
                                                         <constraint firstAttribute="width" secondItem="74k-Xg-Fl2" secondAttribute="height" multiplier="1:1" id="rVA-Zt-jEr"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                                    <state key="normal" title="OK!" backgroundImage="Icon-72">
+                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
+                                                    <state key="normal" title="CHECK IN">
                                                         <color key="titleColor" red="1" green="0.95686274510000002" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -2204,6 +2206,8 @@
                                                         <mask key="constraints">
                                                             <exclude reference="2ol-eS-Yag"/>
                                                             <exclude reference="I0l-0Y-VaC"/>
+                                                            <exclude reference="Ikx-dB-9lY"/>
+                                                            <exclude reference="rVA-Zt-jEr"/>
                                                         </mask>
                                                     </variation>
                                                     <connections>
@@ -2212,13 +2216,24 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="74k-Xg-Fl2" secondAttribute="trailing" constant="16" id="2UC-FA-aOX"/>
                                                 <constraint firstItem="74k-Xg-Fl2" firstAttribute="top" secondItem="a66-2V-n2r" secondAttribute="topMargin" constant="16" id="EWt-kj-aOh"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="74k-Xg-Fl2" secondAttribute="trailing" constant="8" id="IRa-uA-0pH"/>
+                                                <constraint firstItem="74k-Xg-Fl2" firstAttribute="leading" secondItem="a66-2V-n2r" secondAttribute="leadingMargin" constant="16" id="MmZ-PB-RBn"/>
+                                                <constraint firstAttribute="trailing" secondItem="74k-Xg-Fl2" secondAttribute="trailing" constant="16" id="aqq-e5-3pQ"/>
+                                                <constraint firstItem="74k-Xg-Fl2" firstAttribute="leading" secondItem="a66-2V-n2r" secondAttribute="leadingMargin" constant="8" id="fvs-fg-onH"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="74k-Xg-Fl2" secondAttribute="bottom" id="rjl-Xf-ILj"/>
+                                                <constraint firstItem="74k-Xg-Fl2" firstAttribute="leading" secondItem="a66-2V-n2r" secondAttribute="leading" constant="16" id="vOz-m9-QG9"/>
                                                 <constraint firstItem="74k-Xg-Fl2" firstAttribute="centerX" secondItem="a66-2V-n2r" secondAttribute="centerX" id="wGK-AB-6B1"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="2UC-FA-aOX"/>
+                                                    <exclude reference="IRa-uA-0pH"/>
+                                                    <exclude reference="MmZ-PB-RBn"/>
+                                                    <exclude reference="fvs-fg-onH"/>
                                                     <exclude reference="rjl-Xf-ILj"/>
+                                                    <exclude reference="wGK-AB-6B1"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -2525,7 +2540,6 @@
     </scenes>
     <resources>
         <image name="04" width="100" height="99"/>
-        <image name="Icon-72" width="48" height="48"/>
         <image name="bar-icon" width="10" height="23"/>
         <image name="close-button" width="32" height="32"/>
         <image name="config" width="44" height="45"/>
