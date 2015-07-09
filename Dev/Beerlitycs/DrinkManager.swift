@@ -240,77 +240,80 @@ class DrinkManager: NSObject {
         }
     }
     
-    func getDrinksForGraph(numberPoints: Int,  dayPoints: Bool, callback: (beerPoints: [Double]?, datePoints: [String]?, error: NSError?) ->()) {
-        let cal = NSCalendar.currentCalendar()
-        var date = cal.startOfDayForDate(NSDate())
+    
+    func getDrinksForMonthWithDate(date : NSDate, user: PFUser, monthsInRange: Int, callback: (beerPoints: [Double]?, datePoints: [String]?, error: NSError?) -> ()){
+        let calendar = NSCalendar.currentCalendar()
         
-        var days = [Int]()
-        var dateweek = cal.dateByAddingUnit(.CalendarUnitDay, value: -numberPoints, toDate: date, options: nil)!
+        // Set the start of the day (00:00:00)...
+        var startDate = calendar.startOfDayForDate(date)
+        // Get the last day of the last month
+        let componentStartDate = calendar.components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth, fromDate: startDate)
+        startDate = calendar.dateFromComponents(componentStartDate)!.dateByAddingTimeInterval(-1)
         
-        var query = PFQuery(className:"Drink")
+
         
-        query.whereKey("createdAt", greaterThan: dateweek)
+        // Set the day X (daysInRange) days before the startDate...
+        var finishDate = calendar.dateByAddingUnit(NSCalendarUnit.CalendarUnitMonth, value: -monthsInRange, toDate: startDate, options: nil)!
+        // Get the first day of the month
+        let componentStartDateFinish = calendar.components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth, fromDate: startDate)
+        finishDate = calendar.dateFromComponents(componentStartDateFinish)!
+        
+        var queryDrink = PFQuery(className: "Drink")
+        queryDrink.whereKey("createdAt", greaterThan: finishDate)
+        queryDrink.whereKey("createdAt", lessThan: startDate)
+        queryDrink.whereKey("user", equalTo: user)
         
         var graphPoints:[Double] = []
         var datePoints:[String] = []
         
-        query.findObjectsInBackgroundWithBlock {
-            (objects, error) -> Void in
-            if error == nil {
-                for i in 0...numberPoints {
-                    let day = cal.component(.CalendarUnitDay, fromDate: date)
-                    if(dayPoints){
-                        let day = cal.component(.CalendarUnitDay, fromDate: date)
-                        days.append(day)
-                        
-                        date = cal.dateByAddingUnit(.CalendarUnitDay, value: -1, toDate: date, options: nil)!
-                    }else if(dayPoints == false){
-                        let day = cal.component(.CalendarUnitMonth, fromDate: date)
-                        days.append(day)
-                        
-                        date = cal.dateByAddingUnit(.CalendarUnitMonth, value: -1, toDate: date, options: nil)!
-                    }
-                    var teste = false
-                    var aux:Double = 0
-                    
-                    if(objects!.count != 0) {
-                        for j in 0...objects!.count-1 {
-                            // let day2 = cal.component(.CalendarUnitDay, fromDate: objects![j].createdAt)
-                            let day2 = cal.component(.CalendarUnitDay, fromDate: objects![j].createdAt as NSDate)
-                            if(dayPoints){
-                                let day2 = cal.component(.CalendarUnitDay, fromDate: objects![j].createdAt as NSDate)
-                            }else if(dayPoints == false){
-                                let day2 = cal.component(.CalendarUnitMonth, fromDate: objects![j].createdAt as NSDate)
-                            }
+        var months = [Int]()
+        
+        queryDrink.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if let error = error
+            {
+                // Error
+                callback(beerPoints: nil, datePoints:nil, error: error)
+            }else{
+                if let objects = objects
+                {
+                    if objects.count <= 0
+                    {
+                        // No objects found
+                        callback(beerPoints: nil, datePoints:nil, error: error)
+                    }else{
+                        var auxMonth : Double = 0
+                        for i in 0...monthsInRange
+                        {
+                            let month   = calendar.component(NSCalendarUnit.CalendarUnitMonth, fromDate: startDate)
+                            let year    = calendar.component(NSCalendarUnit.CalendarUnitYear, fromDate: startDate)
+                            months.append(month)
                             
-                            if(day == day2) {
-                                aux = aux + 1
-                                if(teste == true) {
+                            startDate = calendar.dateByAddingUnit(NSCalendarUnit.CalendarUnitMonth, value: -1, toDate: startDate, options: nil)!
+                            
+                            for drink in objects
+                            {
+                                if let drink = drink as? PFObject
+                                {
+                                    let drinkMonth  = calendar.component(NSCalendarUnit.CalendarUnitMonth, fromDate: drink.createdAt!)
+                                    let drinkYear   = calendar.component(NSCalendarUnit.CalendarUnitYear, fromDate: drink.createdAt!)
                                     
-                                } else {
-                                    //                                println(day)
-                                }
-                                //                            println("1")
-                                //                            graphPoints.insert(1, atIndex: i)
-                                teste = true
-                            } else {
-                                if(teste == false) {
-                                    teste = true
-                                    //                                println(day)
-                                } else {
+                                    if (month == drinkMonth && year == drinkYear)
+                                    {
+                                        auxMonth++
+                                    }
                                 }
                             }
+                            datePoints.insert(String(month), atIndex: i)
+                            graphPoints.insert(auxMonth, atIndex: i)
                         }
-                        datePoints.insert(String(day), atIndex: i)
-                        graphPoints.insert(aux, atIndex: i)
+                        
+                        callback(beerPoints: graphPoints.reverse(), datePoints: datePoints.reverse(), error: nil)
                     }
                 }
-                
-                callback(beerPoints: graphPoints.reverse(), datePoints: datePoints.reverse(), error: nil)
-            } else {
-                // Log details of the failure
-                println("Error: \(error) \(error!.userInfo!)")
-                callback(beerPoints: nil, datePoints:nil, error: error!)
+                else{
+                    // Objects nil
+                    callback(beerPoints: nil, datePoints:nil, error: error)
+                }
             }
         }
     }
