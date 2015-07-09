@@ -65,6 +65,13 @@ class BarChartViewController: UITableViewController, ChartViewDelegate {
 
         barChartView.xAxis.labelPosition = .Bottom
         
+        barChartView.leftAxis.drawAxisLineEnabled = false
+        barChartView.leftAxis.drawGridLinesEnabled = false
+        barChartView.leftAxis.drawLabelsEnabled = false
+        barChartView.leftAxis.labelTextColor = UIColor(red: 225/255, green: 110/255, blue: 55/255, alpha: 1)
+        barChartView.rightAxis.drawGridLinesEnabled = false
+        barChartView.rightAxis.labelTextColor = UIColor(red: 225/255, green: 110/255, blue: 55/255, alpha: 1)
+
         barChartView.xAxis.drawAxisLineEnabled = false
         barChartView.xAxis.drawGridLinesEnabled = false
         barChartView.xAxis.labelTextColor = UIColor(red: 229/255, green: 110/255, blue: 55/255, alpha: 1)

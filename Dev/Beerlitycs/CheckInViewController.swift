@@ -78,55 +78,43 @@ class CheckInViewController: UITableViewController {
         drinkControl.place = self.placeSelected
         drinkControl.beer = self.beerSelected
         drinkControl.cup = self.cupSelected
-        
-//        println(drinkControl.place)
-//        println(drinkControl.beer)
-//        println("segundo")
-//        println(self.beerSelected)
-//        println(drinkControl.cup)
-        
+
         self.confirmationButton.enabled = false
         
         // Nao foi selecionado o local
-        if(placeSelected != nil) && (beerSelected != nil) && (cupSelected != nil) {
+        if(placeSelected == nil) && (beerSelected != nil) && (cupSelected != nil) {
+            drinkControl.newDrink(drinkControl) { (error) -> () in
+                if(error == nil) {
+                    userControl.addNewBeerInMLToTotal(PFUser.currentUser()!.objectId!, mlDrunk: drinkControl.cup!.size!, callback: { (error) -> () in
+                        if (error == nil) {
+                            UserDefaultsManager.needReloadHome = true
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }else {
+                            self.presentViewController(Util.showAlert("Ops!", message: "Ocorreu um erro", buttonOption1: "OK!", buttonOption2: ""), animated: true, completion: nil)
+                        }
+                    })
+                }
+            }
+        } else if(beerSelected != nil) && (cupSelected != nil) {
                 drinkControl.prepareForDrink(drinkControl, callback: { (error) -> () in
                         if(error == nil) {
                             userControl.addNewBeerInMLToTotal(PFUser.currentUser()!.objectId!, mlDrunk: drinkControl.cup!.size!, callback: { (error) -> () in
-                            if (error == nil) {
-                                UserDefaultsManager.needReloadHome = true
-                                self.dismissViewControllerAnimated(true, completion: nil)
-                            } else {
-                                println(error)
+                                if (error == nil) {
+                                    UserDefaultsManager.needReloadHome = true
+                                    self.dismissViewControllerAnimated(true, completion: nil)
+                                } else {
+                                    self.presentViewController(Util.showAlert("Ops!", message: "Ocorreu um erro", buttonOption1: "OK!", buttonOption2: ""), animated: true, completion: nil)
                                 }
                             })
                     
                         } else {
-                            println("erro no check in")
+                            self.presentViewController(Util.showAlert("Ops!", message: "Ocorreu um erro", buttonOption1: "OK!", buttonOption2: ""), animated: true, completion: nil)
                         }
                     })
         } else {
-//            drinkControl.newDrink(drinkControl) { (error) -> () in
-//                if(error == nil) {
-                    
-                    //var decision = self.showAlert("Cuidado!", message: "Você não selecionou nenhum bar. Deseja continuar mesmo assim? ")
-                    //if(decision == true){
-//                    userControl.addNewBeerInMLToTotal(PFUser.currentUser()!.objectId!, mlDrunk: drinkControl.cup!.size!, callback: { (error) -> () in
-//                        if (error == nil) {
-//                            self.dismissViewControllerAnimated(true, completion: nil)
-//                        }else {
-//                            println(error)
-//                        }
-//                    })
-                    //}
-            
-                self.showAlert("Oops!", message: "Voce deve selecionar um local e uma cerveja para fazer o check in.", buttonOption1: "OK!", buttonOption2: "")
+            self.presentViewController(Util.showAlert("Ops!", message: "Voce deve selecionar uma cerveja para fazer o check in.", buttonOption1: "OK!", buttonOption2: ""), animated: true, completion: nil)
 
-                self.confirmationButton.enabled = true
-                    
-//                } else {
-//                    println("erro no check in")
-//                }
-//            }
+            self.confirmationButton.enabled = true
         }
     }
 
@@ -148,7 +136,7 @@ class CheckInViewController: UITableViewController {
                     
                     self.addStaticMap()
                 } else {
-                    println("erro de localização")
+                    self.presentViewController(Util.showAlert("Ops!", message: "Ocorreu um erro", buttonOption1: "OK!", buttonOption2: ""), animated: true, completion: nil)
                 }
             }
         }
@@ -187,48 +175,11 @@ class CheckInViewController: UITableViewController {
 
         self.mapImage.setImageWithURL(map.requestURL, placeholderImage: UIImage(named: "placeholder"),usingActivityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     }
-    
-    func showAlert(title : String, message: String, buttonOption1: String?, buttonOption2: String?) -> Bool{
-        
-        var decision = Bool()
-        var alert = UIAlertController()
-        
-        if buttonOption1!.isEmpty {
-            // NADA
-        } else {
-            alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: buttonOption1!, style: UIAlertActionStyle.Default){ (action) -> Void in
-                decision = true
-            })
-        }
 
-        if buttonOption2!.isEmpty {
-            // NADA
-        } else {
-            alert.addAction(UIAlertAction(title: buttonOption2!, style: UIAlertActionStyle.Default){ (action) -> Void in
-                decision = false
-            })
-        }
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-        
-        return decision
-    }
-    
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "embedCups" {
             let childViewController = segue.destinationViewController as! CupsCollectionViewController
             childViewController.parentVC = self
         }
     }
-    
 }
-
-/*
-cell.contentView.backgroundColor = UIColor
-
-cell.sizeCup.textColor = UIColor(red: 255.0/255.0, green: 246.0/255.0, blue: 241.0/255.0, alpha: 1.0)
-*/
-
-

@@ -420,17 +420,18 @@ class UserManager: NSObject {
                 var i : Int
                 for(i = 0; i < auxDrinks.count; i++) {
                     let drink = DrinkManager(dictionary: auxDrinks[i] as! PFObject)
-                    auxPlace.insert(drink.place!.name, atIndex: i)
+                    if(drink.place != nil) {
+                        auxPlace.append(drink.place!.name)
+                    }
                 }
                 
                 var outArray = sorted(auxPlace)
                 
                 for(i = 0; i < outArray.count; i++) {
-        
-                    if(plcName != outArray[i]){
+                    if(plcName != outArray[i]) {
                         places++
                         place++
-                    }else{
+                    } else {
                         place = 0
                     }
                     plcName = outArray[i]
