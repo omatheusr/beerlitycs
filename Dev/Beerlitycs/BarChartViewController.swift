@@ -145,8 +145,23 @@ class BarChartViewController: UITableViewController, ChartViewDelegate {
                 }
             })
         case 2:
-            graphControl.getDrinksForDate(NSDate(), user: PFUser.currentUser()!, daysInRange: 59, callback: { (beerPoints, datePoints, error) -> () in
-                
+//            graphControl.getDrinksForDate(NSDate(), user: PFUser.currentUser()!, daysInRange: 59, callback: { (beerPoints, datePoints, error) -> () in
+//                
+//                if let error = error {
+//                    // Error treatment
+//                } else {
+//                    if let datePoints = datePoints
+//                    {
+//                        self.months = datePoints
+//                        
+//                        if let beerPoints = beerPoints
+//                        {
+//                            self.setChart(self.months, values: beerPoints)
+//                        }
+//                    }
+//                }
+//            })
+            graphControl.getDrinksForMonthWithDate(NSDate(), user: PFUser.currentUser()!, monthsInRange: 12, callback: { (beerPoints, datePoints, error) -> () in
                 if let error = error {
                     // Error treatment
                 } else {
