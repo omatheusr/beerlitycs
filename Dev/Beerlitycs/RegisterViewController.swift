@@ -139,35 +139,6 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    func animateTextFieldWithKeyboard(notification: NSNotification) {
-        
-        let userInfo = notification.userInfo!
-        
-        let keyboardSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! Double
-        let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as! UInt
-        
-        // baseContraint is your Auto Layout constraint that pins the
-        // text view to the bottom of the superview.
-        
-        if notification.name == UIKeyboardWillShowNotification {
-            bottomConstraint.constant = bottomConstraint.constant + keyboardSize.height  // move up
-        }
-        else {
-            bottomConstraint.constant = 171 // move down
-        }
-        
-        view.setNeedsUpdateConstraints()
-        
-        let options = UIViewAnimationOptions(curve << 16)
-        UIView.animateWithDuration(duration, delay: 0, options: options,
-            animations: {
-                self.view.layoutIfNeeded()
-            },
-            completion: nil
-        )
-        
-    }
 
     @IBAction func registerUser(sender: AnyObject) {
         if(inputName.text == "" || inputEmail.text == "" || inputUserName.text == "" || inputPassword.text == "" || inputWeight.text == "") {
@@ -223,7 +194,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
                 }
 
                 let imageData = UIImageJPEGRepresentation(self.inputImage.image, 0.6)
-                userControl.photo = PFFile(name: PFInstallation.currentInstallation().objectId! + ".jpg", data: imageData)
+                userControl.photo = PFFile(name: userControl.username! + ".jpg", data: imageData)
 
                 userControl.newUser(userControl, callback: { (error) -> () in
                     if(error == nil) {
@@ -232,6 +203,36 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
                 })
             }
         }
+    }
+
+    func animateTextFieldWithKeyboard(notification: NSNotification) {
+        
+        let userInfo = notification.userInfo!
+        
+        let keyboardSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! Double
+        let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as! UInt
+        
+        // baseContraint is your Auto Layout constraint that pins the
+        // text view to the bottom of the superview.
+        
+        if notification.name == UIKeyboardWillShowNotification {
+            bottomConstraint.constant = bottomConstraint.constant + keyboardSize.height  // move up
+        }
+        else {
+            bottomConstraint.constant = 171 // move down
+        }
+        
+        view.setNeedsUpdateConstraints()
+        
+        let options = UIViewAnimationOptions(curve << 16)
+        UIView.animateWithDuration(duration, delay: 0, options: options,
+            animations: {
+                self.view.layoutIfNeeded()
+            },
+            completion: nil
+        )
+        
     }
 
     func keyboardWillShow(notification: NSNotification) {
