@@ -150,6 +150,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
                 userControl.name = self.inputName.text
                 userControl.email = self.inputEmail.text
                 userControl.weight = inputWeight.text
+                userControl.mlDrunk = 0
                 
                 // Mantm o padrao de ponto como separador de casas decimais
     //            userControl.height = inputHeight.text.stringByReplacingOccurrencesOfString(",", withString: ".", options: nil, range: nil)

@@ -39,6 +39,7 @@ class RankingViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        updateTableView()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

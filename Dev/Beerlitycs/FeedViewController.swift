@@ -52,17 +52,21 @@ class FeedViewController: UIViewController {
             }
             let stats = StatsManager()
             
-            stats.get(currentUser, callback: { (position, error) -> () in
-                if(error == nil) {
-                    var str = ""
-                    if let v = position {
-                        str = "\(v)"
+            
+            // Pega a posicao apenas se estiver logado com o facebook
+            if(PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!)){
+                stats.get(currentUser, callback: { (position, error) -> () in
+                    if(error == nil) {
+                        var str = ""
+                        if let v = position {
+                            str = "\(v)"
+                        }
+                        UserDefaultsManager.getRankingPosition = str
+                    } else {
+                        println(error)
                     }
-                    UserDefaultsManager.getRankingPosition = str
-                } else {
-                    println(error)
-                }
-            })
+                })
+            }
             
             if(UserDefaultsManager.needReloadHome == true) {
                 loadDataUpdate(nil)

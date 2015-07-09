@@ -8,7 +8,7 @@
 
 import UIKit
 import Parse
-import FBSDKLoginKit
+
 
 class UserManager: NSObject {
     var objectId: String!
