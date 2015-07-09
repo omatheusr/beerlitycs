@@ -11,10 +11,9 @@ import Charts
 import Parse
 
 class BarChartViewController: UITableViewController, ChartViewDelegate {
-    
     @IBOutlet weak var barChartView: BarChartView!
     @IBOutlet weak var btnSelect: UISegmentedControl!
-    
+
     var maName: String!
     var maSize: String!
     var miName: String!
@@ -22,39 +21,34 @@ class BarChartViewController: UITableViewController, ChartViewDelegate {
     var nPlace: String!
     var pName: String!
     var months: [String]!
-    
+
     @IBOutlet weak var favBeer: UILabel!
     @IBOutlet weak var lessConsumedBeer: UILabel!
     @IBOutlet weak var mlDrunk: UILabel!
     @IBOutlet weak var favPlace: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.barChartView.delegate = self
         
         self.barChartView.noDataText = "Sem dados para mostrar."
         
-        self.barChartView.backgroundColor = UIColor(red: 32/255, green: 36/255, blue: 45/255, alpha: 1)
+        self.barChartView.backgroundColor = UIColor(red: 24/255, green: 27/255, blue: 34/255, alpha: 1)
         self.barChartView.pinchZoomEnabled = false
         self.barChartView.drawBarShadowEnabled = false
         self.barChartView.drawGridBackgroundEnabled = false
         self.barChartView.highlightEnabled = false
-        
-        
+
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: "loadData:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl!)
         self.refreshControl!.beginRefreshing()
-        
+
         self.loadData(nil)
         self.loadUserPreferenceData()
-        
-        
-        
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
-        
         var dataEntries: [BarChartDataEntry] = []
         for i in 0..<dataPoints.count {
             dataEntries.append(BarChartDataEntry(value: values[i], xIndex: i))
@@ -68,8 +62,7 @@ class BarChartViewController: UITableViewController, ChartViewDelegate {
         
         chartDataSet.colors = [UIColor(red: 225/255, green: 110/255, blue: 55/255, alpha: 1)]
         //chartDataSet.colors = ChartColorTemplates.colorful()
-        
-        
+
         barChartView.xAxis.labelPosition = .Bottom
         
         barChartView.xAxis.drawAxisLineEnabled = false
@@ -83,28 +76,27 @@ class BarChartViewController: UITableViewController, ChartViewDelegate {
         barChartView.legend.enabled = false
         //        barChartView.legend.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
         
-        barChartView.gridBackgroundColor = UIColor(red: 32/255, green: 36/255, blue: 45/255, alpha: 1)
-        
+        barChartView.gridBackgroundColor = UIColor(red: 24/255, green: 27/255, blue: 34/255, alpha: 1)
+
         barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .Linear)
     }
-    
+
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         println("\(entry.value) in \(months[entry.xIndex])")
     }
-    
+
     @IBAction func saveChart(sender: UIBarButtonItem) {
         barChartView.saveToCameraRoll()
     }
-    
+
     @IBAction func actSelect(sender: AnyObject) {
         showDataForSegment(self.btnSelect.selectedSegmentIndex)
     }
-    
+
     func loadData(sender:AnyObject?) {
         self.showDataForSegment(self.btnSelect.selectedSegmentIndex)
     }
-    
-    
+
     func showDataForSegment(segment: Int){
         let graphControl = DrinkManager()
         switch(segment)
@@ -115,12 +107,10 @@ class BarChartViewController: UITableViewController, ChartViewDelegate {
                 if let error = error {
                     // Error treatment
                 } else {
-                    if let datePoints = datePoints
-                    {
+                    if let datePoints = datePoints {
                         self.months = datePoints
-                        
-                        if let beerPoints = beerPoints
-                        {
+
+                        if let beerPoints = beerPoints {
                             self.setChart(self.months, values: beerPoints)
                         }
                     }
@@ -133,44 +123,24 @@ class BarChartViewController: UITableViewController, ChartViewDelegate {
                 if let error = error {
                     // Error treatment
                 } else {
-                    if let datePoints = datePoints
-                    {
+                    if let datePoints = datePoints {
                         self.months = datePoints
                         
-                        if let beerPoints = beerPoints
-                        {
+                        if let beerPoints = beerPoints {
                             self.setChart(self.months, values: beerPoints)
                         }
                     }
                 }
             })
         case 2:
-//            graphControl.getDrinksForDate(NSDate(), user: PFUser.currentUser()!, daysInRange: 59, callback: { (beerPoints, datePoints, error) -> () in
-//                
-//                if let error = error {
-//                    // Error treatment
-//                } else {
-//                    if let datePoints = datePoints
-//                    {
-//                        self.months = datePoints
-//                        
-//                        if let beerPoints = beerPoints
-//                        {
-//                            self.setChart(self.months, values: beerPoints)
-//                        }
-//                    }
-//                }
-//            })
             graphControl.getDrinksForMonthWithDate(NSDate(), user: PFUser.currentUser()!, monthsInRange: 12, callback: { (beerPoints, datePoints, error) -> () in
                 if let error = error {
                     // Error treatment
                 } else {
-                    if let datePoints = datePoints
-                    {
+                    if let datePoints = datePoints {
                         self.months = datePoints
-                        
-                        if let beerPoints = beerPoints
-                        {
+
+                        if let beerPoints = beerPoints {
                             self.setChart(self.months, values: beerPoints)
                         }
                     }
@@ -190,9 +160,7 @@ class BarChartViewController: UITableViewController, ChartViewDelegate {
         let cupsControl = UserManager ()
         cupsControl.getFavBeer(userControl.objectId, callback: { (majorName, majorSize, minorName, minorSize, error) -> () in
             if(error == nil) {
-                
-                if majorName == ""
-                {
+                if majorName == "" {
                     self.maName = "Nenhuma"
                 }else{
                     self.maName = majorName
@@ -200,12 +168,10 @@ class BarChartViewController: UITableViewController, ChartViewDelegate {
                 self.favBeer.text = self.maName
                 
                 self.maSize = String(stringInterpolationSegment: majorSize) + " ml"
-                
-                
-                if minorName == ""
-                {
+
+                if minorName == "" {
                     self.miName = "Nenhuma"
-                }else{
+                } else {
                     self.miName = minorName
                 }
                 self.lessConsumedBeer.text = self.miName
@@ -220,10 +186,9 @@ class BarChartViewController: UITableViewController, ChartViewDelegate {
             if(error == nil) {
                 self.nPlace = String(stringInterpolationSegment: numPlace!)
                 
-                if placeName! == ""
-                {
+                if placeName! == "" {
                     self.pName = "Nenhum"
-                }else{
+                } else {
                     self.pName = placeName!
                 }
                 self.favPlace.text = self.pName

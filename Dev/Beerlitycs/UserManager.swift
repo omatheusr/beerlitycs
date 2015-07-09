@@ -454,7 +454,7 @@ class UserManager: NSObject {
     //----------------------------------------------------------------------------------------------
     
     func getFavBeer (userID: String, callback: (majName: String, majSize: Int, minName: String, minSize: Int, error: NSError?) -> ()) {
-        
+
         var query = PFQuery(className: "Drink")
         var query2 = PFQuery(className: "Drink")
         var mlDrunk = NSInteger()
@@ -471,6 +471,10 @@ class UserManager: NSObject {
         mlDrunk = 0
         
         query.includeKey("beer")
+        query.includeKey("place")
+        query.includeKey("cup")
+        query.includeKey("user")
+
         query.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in
@@ -485,18 +489,18 @@ class UserManager: NSObject {
                 for(i = 0; i < auxBeer.count-1; i++) {
                     let drink = DrinkManager(dictionary: auxBeer[i] as! PFObject)
 
-                    if(aux == drink.beer!.name){
-                        
-                    }else{
+                    if(aux == drink.beer!.name) {
+                    } else{
                         beerList.insert(drink.beer!.name, atIndex: ii)
                         aux = drink.beer!.name
                         ii++
                     }
-                    
                 }
-                
                 query2.includeKey("cup")
                 query2.includeKey("beer")
+                query2.includeKey("place")
+                query2.includeKey("user")
+ 
                 query2.whereKey("user", equalTo: PFUser(withoutDataWithObjectId: userID))
                 query2.findObjectsInBackgroundWithBlock {
                     (objects, error) -> Void in
@@ -533,24 +537,12 @@ class UserManager: NSObject {
                             beerQty.insert(aux, atIndex: ii)
                             aux = 0;
                         }
-                        
-//                        println(beerList)
-//                        println(beerQty)
-//                        println(majorName)
-//                        println(majorSize)
-//                        println(minorName)
-//                        println(minorSize)
-                        
+
                         callback(majName: majorName, majSize: majorSize, minName: minorName, minSize: minorSize, error: nil)
-                        
                     } else {
-                        
                         println("Error: \(error) \(error!.userInfo!)")
                     }
-                    
-                    
                 }
-            
             } else {
                 println("Error: \(error) \(error!.userInfo!)")
             }

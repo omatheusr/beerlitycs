@@ -52,13 +52,13 @@ class Util {
             fromDate: date,
             toDate: dateNow,
             options: nil)
-        
+
         if(dateAgo.year > 0) {
             messageAgo = String(dateAgo.year) + "a"
         } else if(dateAgo.month > 0) {
             messageAgo = String(dateAgo.month) + "mês"
-        } else if(dateAgo.weekdayOrdinal > 0) {
-            messageAgo = String(dateAgo.weekdayOrdinal) + "sem"
+        } else if(dateAgo.weekOfYear > 0) {
+            messageAgo = String(dateAgo.weekOfYear) + "sem"
         } else if(dateAgo.day > 0) {
             messageAgo = String(dateAgo.day) + "d"
         } else if(dateAgo.hour > 0) {

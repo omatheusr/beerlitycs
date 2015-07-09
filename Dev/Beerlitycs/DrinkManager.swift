@@ -139,13 +139,10 @@ class DrinkManager: NSObject {
     }
     
     func getLatestDrinkPerUser(userID: String, callback:(drinks: NSArray?, error: NSError?) ->()){
-        
-        //let timeZone = NSTimeZone.localTimeZone().secondsFromGMT
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: date)
-        
-        //var value = -3 - timezone/3600
+
         var value = -3
         var newDate = calendar.dateByAddingUnit(.CalendarUnitHour, value: value, toDate: date, options: nil)
         
@@ -170,13 +167,15 @@ class DrinkManager: NSObject {
     
     func getDrinksForDate(date : NSDate, user: PFUser, daysInRange: Int, callback: (beerPoints: [Double]?, datePoints: [String]?, error: NSError?) -> ()){
         let calendar = NSCalendar.currentCalendar()
-        
-        // Set the start of the day (00:00:00)...
+
         var startDate = calendar.startOfDayForDate(date)
-        // Set the day X (daysInRange) days before the startDate...
+
         let finishDate = calendar.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -daysInRange, toDate: startDate, options: nil)!
-        
+
         var queryDrink = PFQuery(className: "Drink")
+
+        queryDrink.includeKey("cup")
+
         queryDrink.whereKey("createdAt", greaterThan: finishDate)
         queryDrink.whereKey("createdAt", lessThan: startDate)
         queryDrink.whereKey("user", equalTo: user)
@@ -187,21 +186,15 @@ class DrinkManager: NSObject {
         var days = [Int]()
         
         queryDrink.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-            if let error = error
-            {
-                // Error
+            if let error = error {
                 callback(beerPoints: nil, datePoints:nil, error: error)
-            }else{
-                if let objects = objects
-                {
-                    if objects.count <= 0
-                    {
-                        // No objects found
+            } else {
+                if let objects = objects {
+                    if objects.count <= 0 {
                         callback(beerPoints: nil, datePoints:nil, error: error)
-                    }else{
+                    } else {
                         var aux : Double = 0
-                        for i in 0...daysInRange
-                        {
+                        for i in 0...daysInRange {
                             aux = 0
                             let day     = calendar.component(NSCalendarUnit.CalendarUnitDay, fromDate: startDate)
                             let month   = calendar.component(NSCalendarUnit.CalendarUnitMonth, fromDate: startDate)
@@ -210,21 +203,19 @@ class DrinkManager: NSObject {
                             
                             startDate = calendar.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -1, toDate: startDate, options: nil)!
                             
-                            for drink in objects
-                            {
-                                if let drink = drink as? PFObject
-                                {
+                            for drink in objects {
+                                if let drink = drink as? PFObject {
                                     let drinkDay    = calendar.component(NSCalendarUnit.CalendarUnitDay, fromDate: drink.createdAt!)
                                     let drinkMonth  = calendar.component(NSCalendarUnit.CalendarUnitMonth, fromDate: drink.createdAt!)
                                     let drinkYear   = calendar.component(NSCalendarUnit.CalendarUnitYear, fromDate: drink.createdAt!)
                                     
-                                    if (day == drinkDay && month == drinkMonth && year == drinkYear)
-                                    {
-                                        aux++
+                                    if (day == drinkDay && month == drinkMonth && year == drinkYear) {
+                                        let cupControl = CupManager(dictionary: drink["cup"] as! PFObject)
+                                        aux = aux + Double(cupControl.size)
                                     }
                                 }
                             }
-                            
+
                             datePoints.insert(String(day), atIndex: i)
                             graphPoints.insert(aux, atIndex: i)
                         }
@@ -232,8 +223,7 @@ class DrinkManager: NSObject {
                         callback(beerPoints: graphPoints.reverse(), datePoints: datePoints.reverse(), error: nil)
                     }
                 }
-                else{
-                    // Objects nil
+                else {
                     callback(beerPoints: nil, datePoints:nil, error: error)
                 }
             }
@@ -242,76 +232,65 @@ class DrinkManager: NSObject {
     
     
     func getDrinksForMonthWithDate(date : NSDate, user: PFUser, monthsInRange: Int, callback: (beerPoints: [Double]?, datePoints: [String]?, error: NSError?) -> ()){
-        let calendar = NSCalendar.currentCalendar()
-        
-        // Set the start of the day (00:00:00)...
-        var startDate = calendar.startOfDayForDate(date)
-        // Get the last day of the last month
-        let componentStartDate = calendar.components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth, fromDate: startDate)
-        startDate = calendar.dateFromComponents(componentStartDate)!.dateByAddingTimeInterval(-1)
-        
 
-        
+        let calendar = NSCalendar.currentCalendar()
+        var startDate = date
+
+        let componentStartDate = calendar.components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth, fromDate: startDate)
+
         // Set the day X (daysInRange) days before the startDate...
-        var finishDate = calendar.dateByAddingUnit(NSCalendarUnit.CalendarUnitMonth, value: -monthsInRange, toDate: startDate, options: nil)!
-        // Get the first day of the month
-        let componentStartDateFinish = calendar.components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth, fromDate: startDate)
-        finishDate = calendar.dateFromComponents(componentStartDateFinish)!
-        
+        var finishDate = calendar.dateByAddingUnit(NSCalendarUnit.CalendarUnitYear, value: -1, toDate: date, options: nil)!
+
         var queryDrink = PFQuery(className: "Drink")
+
+        queryDrink.includeKey("cup")
+
         queryDrink.whereKey("createdAt", greaterThan: finishDate)
-        queryDrink.whereKey("createdAt", lessThan: startDate)
+        queryDrink.whereKey("createdAt", lessThan: date)
         queryDrink.whereKey("user", equalTo: user)
-        
+
         var graphPoints:[Double] = []
         var datePoints:[String] = []
-        
+
         var months = [Int]()
-        
+
         queryDrink.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-            if let error = error
-            {
+            if let error = error {
                 // Error
                 callback(beerPoints: nil, datePoints:nil, error: error)
-            }else{
-                if let objects = objects
-                {
-                    if objects.count <= 0
-                    {
-                        // No objects found
+            } else{
+                if let objects = objects {
+                    if objects.count <= 0 {
                         callback(beerPoints: nil, datePoints:nil, error: error)
-                    }else{
-                        var auxMonth : Double = 0
-                        for i in 0...monthsInRange
-                        {
+                    }else {
+                        for i in 0...monthsInRange-1 {
                             let month   = calendar.component(NSCalendarUnit.CalendarUnitMonth, fromDate: startDate)
                             let year    = calendar.component(NSCalendarUnit.CalendarUnitYear, fromDate: startDate)
                             months.append(month)
                             
-                            startDate = calendar.dateByAddingUnit(NSCalendarUnit.CalendarUnitMonth, value: -1, toDate: startDate, options: nil)!
-                            
-                            for drink in objects
-                            {
-                                if let drink = drink as? PFObject
-                                {
+                            var auxMonth : Double = 0
+
+                            for drink in objects {
+                                if let drink = drink as? PFObject {
                                     let drinkMonth  = calendar.component(NSCalendarUnit.CalendarUnitMonth, fromDate: drink.createdAt!)
                                     let drinkYear   = calendar.component(NSCalendarUnit.CalendarUnitYear, fromDate: drink.createdAt!)
-                                    
-                                    if (month == drinkMonth && year == drinkYear)
-                                    {
-                                        auxMonth++
+
+                                    if (month == drinkMonth && year == drinkYear) {
+                                        let cupControl = CupManager(dictionary: drink["cup"] as! PFObject)
+                                        auxMonth = auxMonth + Double(cupControl.size)
                                     }
                                 }
                             }
                             datePoints.insert(String(month), atIndex: i)
                             graphPoints.insert(auxMonth, atIndex: i)
+                            
+                            startDate = calendar.dateByAddingUnit(NSCalendarUnit.CalendarUnitMonth, value: -1, toDate: startDate, options: nil)!
                         }
-                        
+
                         callback(beerPoints: graphPoints.reverse(), datePoints: datePoints.reverse(), error: nil)
                     }
                 }
                 else{
-                    // Objects nil
                     callback(beerPoints: nil, datePoints:nil, error: error)
                 }
             }
