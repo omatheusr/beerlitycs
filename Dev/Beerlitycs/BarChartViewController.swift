@@ -30,8 +30,16 @@ class BarChartViewController: UITableViewController, ChartViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        barChartView.delegate = self
+        self.barChartView.delegate = self
+        
+        self.barChartView.noDataText = "Sem dados para mostrar."
+        
+        self.barChartView.backgroundColor = UIColor(red: 32/255, green: 36/255, blue: 45/255, alpha: 1)
+        self.barChartView.pinchZoomEnabled = false
+        self.barChartView.drawBarShadowEnabled = false
+        self.barChartView.drawGridBackgroundEnabled = false
+        self.barChartView.highlightEnabled = false
+        
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: "loadData:", forControlEvents: UIControlEvents.ValueChanged)
