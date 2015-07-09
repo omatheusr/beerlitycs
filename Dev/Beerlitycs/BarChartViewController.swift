@@ -30,6 +30,7 @@ class BarChartViewController: UITableViewController, ChartViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         barChartView.delegate = self
         
         self.refreshControl = UIRefreshControl()
